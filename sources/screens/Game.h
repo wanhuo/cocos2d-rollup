@@ -40,6 +40,13 @@
 #include "RotateGlobalBy.h"
 #include "Shake.h"
 
+#include "Environment.h"
+#include "Generator.h"
+
+#include "Element.h"
+#include "Character.h"
+#include "Segment.h"
+
 /**
  *
  *
@@ -121,7 +128,9 @@ class Game : public Screen
 
   enum State {
     NONE,
+    MENU,
     GAME,
+    FINISH
   };
 
   /**
@@ -149,6 +158,7 @@ class Game : public Screen
   Game();
  ~Game();
 
+  Environment* environment;
   FrameBuffer* frameBuffer;
 
   Sprite* generate;
@@ -184,13 +194,17 @@ class Game : public Screen
   virtual void onMail();
   virtual void onRestorePurchases();
 
+  virtual void onMenu();
   virtual void onGame();
+  virtual void onFinish();
 
   virtual void onNoad();
 
   virtual void changeState(State state);
 
+  virtual void updateMenu(float time);
   virtual void updateGame(float time);
+  virtual void updateFinish(float time);
 
   virtual void updateStates(float time);
 

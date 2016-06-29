@@ -155,6 +155,21 @@
 		78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB531D0C93D6000A85D4 /* UIActivityViewController+exclude.m */; };
 		78CF5D541CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78CF5D551CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
+		78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C11D24460A0049EB22 /* Environment.cpp */; };
+		78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C11D24460A0049EB22 /* Environment.cpp */; };
+		78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C11D24460A0049EB22 /* Environment.cpp */; };
+		78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C31D24460A0049EB22 /* Generator.cpp */; };
+		78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C31D24460A0049EB22 /* Generator.cpp */; };
+		78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C31D24460A0049EB22 /* Generator.cpp */; };
+		78DF64CD1D24463B0049EB22 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64CB1D24463B0049EB22 /* Character.cpp */; };
+		78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64CB1D24463B0049EB22 /* Character.cpp */; };
+		78DF64CF1D24463B0049EB22 /* Character.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64CB1D24463B0049EB22 /* Character.cpp */; };
+		78DF64D21D2446660049EB22 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D01D2446660049EB22 /* Element.cpp */; };
+		78DF64D31D2446660049EB22 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D01D2446660049EB22 /* Element.cpp */; };
+		78DF64D41D2446660049EB22 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D01D2446660049EB22 /* Element.cpp */; };
+		78DF64D71D244B200049EB22 /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D51D244B200049EB22 /* Segment.cpp */; };
+		78DF64D81D244B200049EB22 /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D51D244B200049EB22 /* Segment.cpp */; };
+		78DF64D91D244B200049EB22 /* Segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D51D244B200049EB22 /* Segment.cpp */; };
 		78E24E051CF782F3008B0821 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E24E041CF782F3008B0821 /* GameKit.framework */; };
 		78E24E071CF782F8008B0821 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E24E061CF782F8008B0821 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
@@ -347,6 +362,16 @@
 		78CEEB521D0C93D6000A85D4 /* UIActivityViewController+exclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityViewController+exclude.h"; sourceTree = "<group>"; };
 		78CEEB531D0C93D6000A85D4 /* UIActivityViewController+exclude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityViewController+exclude.m"; sourceTree = "<group>"; };
 		78CF5D531CE5E1900039FB70 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../resource/Shaders; sourceTree = "<group>"; };
+		78DF64C11D24460A0049EB22 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
+		78DF64C21D24460A0049EB22 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
+		78DF64C31D24460A0049EB22 /* Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generator.cpp; sourceTree = "<group>"; };
+		78DF64C41D24460A0049EB22 /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
+		78DF64CB1D24463B0049EB22 /* Character.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Character.cpp; sourceTree = "<group>"; };
+		78DF64CC1D24463B0049EB22 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
+		78DF64D01D2446660049EB22 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
+		78DF64D11D2446660049EB22 /* Element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Element.h; sourceTree = "<group>"; };
+		78DF64D51D244B200049EB22 /* Segment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Segment.cpp; sourceTree = "<group>"; };
+		78DF64D61D244B200049EB22 /* Segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
 		78E24E041CF782F3008B0821 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		78E24E061CF782F8008B0821 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -931,6 +956,16 @@
 		7894C02E1BC9282F00363FC9 /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				78DF64C11D24460A0049EB22 /* Environment.cpp */,
+				78DF64C21D24460A0049EB22 /* Environment.h */,
+				78DF64C31D24460A0049EB22 /* Generator.cpp */,
+				78DF64C41D24460A0049EB22 /* Generator.h */,
+				78DF64D01D2446660049EB22 /* Element.cpp */,
+				78DF64D11D2446660049EB22 /* Element.h */,
+				78DF64CB1D24463B0049EB22 /* Character.cpp */,
+				78DF64CC1D24463B0049EB22 /* Character.h */,
+				78DF64D51D244B200049EB22 /* Segment.cpp */,
+				78DF64D61D244B200049EB22 /* Segment.h */,
 			);
 			name = entities;
 			path = ../../sources/entities;
@@ -1268,9 +1303,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
+				78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */,
+				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
+				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
+				78DF64D81D244B200049EB22 /* Segment.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,15 +1321,20 @@
 				7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78C352D01CEE7DB000F10068 /* Game.cpp in Sources */,
+				78DF64CF1D24463B0049EB22 /* Character.cpp in Sources */,
 				78C352D91CEE7DB000F10068 /* Events.cpp in Sources */,
 				7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
+				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
+				78DF64D91D244B200049EB22 /* Segment.cpp in Sources */,
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
+				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
+				78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */,
 				7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78C35A511CEE84E200F10068 /* main.m in Sources */,
 			);
@@ -1302,6 +1347,7 @@
 				78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */,
 				7832A8AC1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				7832A8B51D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
+				78DF64D71D244B200049EB22 /* Segment.cpp in Sources */,
 				7891E88D1CF21293005C238E /* main.m in Sources */,
 				7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */,
 				78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */,
@@ -1312,6 +1358,7 @@
 				7891E88E1CF21293005C238E /* NSMedia.mm in Sources */,
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				7891E8911CF21293005C238E /* NSHeyzap.mm in Sources */,
+				78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
 				7891E88B1CF21293005C238E /* AppController.mm in Sources */,
 				7891E88F1CF21293005C238E /* NSModal.mm in Sources */,
@@ -1321,11 +1368,14 @@
 				78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */,
 				7832A8BB1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */,
+				78DF64CD1D24463B0049EB22 /* Character.cpp in Sources */,
 				7891E8921CF21293005C238E /* NSPurchase.mm in Sources */,
 				7832A8B81D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
+				78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */,
 				7891E8901CF21293005C238E /* NSBatch.mm in Sources */,
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,
+				78DF64D21D2446660049EB22 /* Element.cpp in Sources */,
 				7832A8A91D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */,
 				7891E8941CF21293005C238E /* NSServices.mm in Sources */,

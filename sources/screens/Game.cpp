@@ -59,26 +59,21 @@ Game::Game()
 
   this->generateFrameBuffer();
 
-  float x = 0;
-  float y = 0;
-  float z = 45;
+  this->startCameraX = 0;
+  this->startCameraY = 4.0;
+  this->startCameraZ = 10.0;
 
-  float rx = -40;
-  float ry = -40;
-  float rz = 0;
+  this->startCameraRotationX = -30;
+  this->startCameraRotationY = 0;
+  this->startCameraRotationZ = 0;
 
-  this->startCameraX = x;
-  this->startCameraY = y;
-  this->startCameraZ = z;
-
-  this->startCameraRotationX = rx;
-  this->startCameraRotationY = ry;
-  this->startCameraRotationZ = rz;
-
-  this->cameras.d->setPosition3D(Vec3(x, y, z));
-  this->cameras.d->setRotation3D(Vec3(rx, ry, rz));
+  this->cameras.d->setPosition3D(Vec3(this->startCameraX, this->startCameraY, this->startCameraZ));
+  this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX, this->startCameraRotationY, this->startCameraRotationZ));
 
   this->addChild(this->cameras.d);
+
+  this->environment = new Environment(this);
+  this->environment->create();
 }
 
 Game::~Game()
@@ -94,32 +89,6 @@ void Game::generateFrameBuffer()
 {
   if(Screenshot::support())
   {
-  auto size = Size(Director::getInstance()->getWinSizeInPixels().width, Director::getInstance()->getWinSizeInPixels().height);
-
-  this->frameBuffer = FrameBuffer::create(1, size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-
-  auto rt = RenderTarget::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-  auto rtDS = RenderTargetDepthStencil::create(size.width / FRAME_BUFFER_FACTOR, size.height / FRAME_BUFFER_FACTOR);
-  this->frameBuffer->attachRenderTarget(rt);
-  this->frameBuffer->attachDepthStencilTarget(rtDS);
-
-  this->generate = Sprite::createWithTexture(this->getFrameBuffer()->getRenderTarget()->getTexture());
-  this->generate->setScaleX(1 * FRAME_BUFFER_FACTOR);
-  this->generate->setScaleY(-1 * FRAME_BUFFER_FACTOR);
-  this->generate->setPosition(size.width / 2, size.height / 2);
-  this->generate->setCameraMask(2);
-  this->generate->setGlobalZOrder(1);
-  this->addChild(this->generate);
-
-  for(int i = 0; i < CAPTURE_FPS * CAPTURE_TIME; i++)
-  {
-    auto render = RenderTexture::create(size.width / FRAME_BUFFER_FACTOR / CAPTURE_SCALE, size.width / FRAME_BUFFER_FACTOR / CAPTURE_SCALE, Texture2D::PixelFormat::RGB565);
-    render->retain();
-
-    //this->capturing.textures.push_back(render);
-  }
-
-  this->cameras.d->setFrameBufferObject(this->getFrameBuffer());
   }
 }
 
@@ -193,6 +162,13 @@ void Game::onEnter()
    *
    */
   Internal::onStart();
+
+  /**
+   *
+   *
+   *
+   */
+   this->changeState(MENU);
 }
 
 void Game::onExit()
@@ -269,8 +245,19 @@ void Game::onRestorePurchases()
  *
  *
  */
+void Game::onMenu()
+{
+  this->environment->onMenu();
+}
+
 void Game::onGame()
 {
+  this->environment->onGame();
+}
+
+void Game::onFinish()
+{
+  this->environment->onFinish();
 }
 
 /**
@@ -297,8 +284,14 @@ void Game::changeState(State state)
     {
       default:
       break;
+      case MENU:
+      this->onMenu();
+      break;
       case GAME:
       this->onGame();
+      break;
+      case FINISH:
+      this->onFinish();
       break;
     }
   }
@@ -309,7 +302,15 @@ void Game::changeState(State state)
  *
  *
  */
+void Game::updateMenu(float time)
+{
+}
+
 void Game::updateGame(float time)
+{
+}
+
+void Game::updateFinish(float time)
 {
 }
 
@@ -324,8 +325,14 @@ void Game::updateStates(float time)
   {
     default:
     break;
+    case MENU:
+    this->updateMenu(time);
+    break;
     case GAME:
     this->updateGame(time);
+    break;
+    case FINISH:
+    this->updateFinish(time);
     break;
   }
 }
