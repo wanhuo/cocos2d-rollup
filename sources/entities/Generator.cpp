@@ -57,3 +57,12 @@ void Generator::destroy()
 void Generator::reset()
 {
 }
+
+/**
+ *
+ *
+ *
+ */
+Plate* Generator::element(int y, int x)
+{
+}

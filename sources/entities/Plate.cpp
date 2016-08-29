@@ -55,7 +55,7 @@ void Plate::initWithPhysics()
   Physics3DRigidBodyDes fixture;
 
   fixture.mass = 0;
-  fixture.shape = Physics3DShape::createBox(Vec3(1.0f, Generator::SIZE * 2, 1.0f));
+  fixture.shape = Physics3DShape::createBox(Vec3(1.0f, 1.0f, 1.0f));
 
   this->_physicsComponent = Physics3DComponent::create(Physics3DRigidBody::create(&fixture));
   this->_physicsComponent->retain();

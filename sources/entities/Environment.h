@@ -67,6 +67,8 @@ class Environment : public Background
 
   Entity3D* plane;
 
+  Pool* plates;
+
   virtual void create();
   virtual void reset();
 

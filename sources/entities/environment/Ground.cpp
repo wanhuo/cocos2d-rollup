@@ -34,8 +34,8 @@ Ground::Ground(Node* parent)
   this->texture = new Entity("ground-texture.png", this, true);
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
-  this->texture->setOpacity(190);
-  this->texture->setScale(0.003);
+  this->texture->setOpacity(230);
+  this->texture->setScale(0.002);
 
   this->setRotation3D(Vec3(-90, 0, 0));
   this->setGlobalZOrder(1000);

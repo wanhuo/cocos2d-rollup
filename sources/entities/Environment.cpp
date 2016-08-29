@@ -53,8 +53,25 @@ void Environment::create()
    *
    *
    */
+  this->plates = new Pool(new Plate, this->plane);
+
+  /**
+   *
+   *
+   *
+   */
   new Ground2(this->plane);
   this->ground = new Ground(this->plane);
+
+  /**
+   *
+   *
+   *
+   */
+  for(int i = 0; i < 1000; i++)
+  {
+    this->plates->_create()->setPosition(0, -10000, 0);
+  }
 }
 
 void Environment::reset()

@@ -38,6 +38,15 @@ class Generator : public Ref
    *
    *
    */
+  public:
+  const static int POSITION_MIN = -3;
+  const static int POSITION_MAX = 3;
+
+  /**
+   *
+   *
+   *
+   */
   private:
 
   /**
@@ -46,6 +55,7 @@ class Generator : public Ref
    *
    */
   protected:
+  bool* elements[1][1];
 
   /**
    *
@@ -53,20 +63,10 @@ class Generator : public Ref
    *
    */
   public:
-  const static int COUNT_START = 16;
-
-  const static int POSITION_MIN = -3;
-  const static int POSITION_MAX = 3;
-
-  const static int HEIGHT = 4;
-  const static int SIZE = 8;
-
   Generator();
  ~Generator();
 
   int index;
-
-  bool direction;
 
   float x;
   float y;
@@ -76,6 +76,8 @@ class Generator : public Ref
   virtual void destroy();
 
   virtual void reset();
+
+  virtual Plate* element(int x, int y);
 };
 
 #endif

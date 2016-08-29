@@ -34,7 +34,7 @@ Ground2::Ground2(Node* parent)
   this->texture = new Entity("sphere-texture.png", this, true);
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
-  this->texture->setScale(0.01);
+  this->texture->setScale(0.1);
 
   this->setRotation(-90, 0, 0);
   this->setGlobalZOrder(-1);
@@ -63,6 +63,6 @@ void Ground2::reset()
  */
 void Ground2::update(float time)
 {
-y-=1.01f;
+y-=0.1f;
   this->texture->setTextureRect(Rect(x, y, 100000, 100000));
 }
