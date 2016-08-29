@@ -55,15 +55,16 @@ void Environment::create()
    */
   auto sphere = new Entity3D("sphere.obj", this->plane, true);
   sphere->setPosition(0, 0, 0);
-  sphere->setRotation(0, 90, 0);
-  sphere->setScale(4.0);
+  sphere->setRotation(0, 0, 0);
+  sphere->setScale(1.0);
   sphere->setTexture("sphere-texture.png");
   sphere->runAction(
     RepeatForever::create(
-      RotateBy::create(10.0, Vec3(0, 0, 360))
+      RotateBy::create(10.0, Vec3(360, 0, 0))
     )
   );
-  sphere->setCullFace(GL_FRONT);
+  sphere->setLightMask(-1);
+  //sphere->setCullFace(GL_FRONT);
 
   auto ground = new Entity3D(this->plane, true);
   ground->setPosition(0, 0, 0);
