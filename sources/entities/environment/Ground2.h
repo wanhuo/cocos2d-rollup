@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _ENVIRONMENT_H_
-#define _ENVIRONMENT_H_
+#ifndef _GROUND2_H_
+#define _GROUND2_H_
 
 #include "Game.h"
 
@@ -31,30 +31,17 @@
  *
  *
  */
-class Character;
-class Generator;
-
-/**
- *
- *
- *
- */
-class Environment : public Background
+class Ground2 : public Entity3D
 {
   /**
    *
    *
    *
    */
-  public:
-
-  /**
-   *
-   *
-   *
-   */
-  private:
-  Ground* ground;
+  protected:
+  Entity* texture;
+  float x = 0;
+  float y = 0;
 
   /**
    *
@@ -62,23 +49,10 @@ class Environment : public Background
    *
    */
   public:
-  Environment(Node* parent);
- ~Environment();
+  Ground2(Node* parent);
+~Ground2();
 
-  Entity3D* plane;
-
-  virtual void create();
   virtual void reset();
-
-  virtual void onAction();
-
-  virtual void onMenu();
-  virtual void onGame();
-  virtual void onFinish();
-
-  virtual void updateMenu(float time);
-  virtual void updateGame(float time);
-  virtual void updateFinish(float time);
 
   virtual void update(float time);
 };

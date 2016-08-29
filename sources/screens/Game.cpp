@@ -54,9 +54,9 @@ Game::Game()
    * Setup cameras
    *
    */
-  this->cameras.defaultCamera = Camera::createPerspective(60, this->getWidth() / this->getHeight(), 1, 100);
+  this->cameras.defaultCamera = Camera::createPerspective(50, this->getWidth() / this->getHeight(), 1, 100);
   this->cameras.defaultCamera->setPosition(0, 14, 9);
-  this->cameras.defaultCamera->setRotation(-75, 0, 0);
+  this->cameras.defaultCamera->setRotation(-50, 0, 0);
 
   this->cameras.shadowCastCamera = Camera::createOrthographic(this->getWidth() / 70, this->getHeight() / 70, 1, 100);
   this->cameras.shadowCastCamera->setPosition(-10, 0.5, 10);

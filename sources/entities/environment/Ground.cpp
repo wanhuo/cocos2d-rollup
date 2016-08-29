@@ -34,11 +34,11 @@ Ground::Ground(Node* parent)
   this->texture = new Entity("ground-texture.png", this, true);
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
-  this->texture->setScale(0.75);
+  this->texture->setOpacity(190);
+  this->texture->setScale(0.003);
 
   this->setRotation3D(Vec3(-90, 0, 0));
-
-  this->setLightMask(0);
+  this->setGlobalZOrder(1000);
 
   this->setScheduleUpdate(true);
 }
@@ -63,5 +63,5 @@ void Ground::reset()
  */
 void Ground::update(float time)
 {
-  this->texture->setTextureRect(Rect(0, 0, 100, 100));
+  this->texture->setTextureRect(Rect(0, 0, 100000, 100000));
 }

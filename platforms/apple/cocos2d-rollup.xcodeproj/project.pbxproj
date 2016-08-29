@@ -173,9 +173,12 @@
 		78DF64D21D2446660049EB22 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D01D2446660049EB22 /* Element.cpp */; };
 		78DF64D31D2446660049EB22 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D01D2446660049EB22 /* Element.cpp */; };
 		78DF64D41D2446660049EB22 /* Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64D01D2446660049EB22 /* Element.cpp */; };
-		78E1E84D1D74F2EF00279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E84B1D74F2EF00279A07 /* Ground.cpp */; };
-		78E1E84E1D74F2EF00279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E84B1D74F2EF00279A07 /* Ground.cpp */; };
-		78E1E84F1D74F2EF00279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E84B1D74F2EF00279A07 /* Ground.cpp */; };
+		78E1E8531D74F42400279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8511D74F42400279A07 /* Ground.cpp */; };
+		78E1E8541D74F42400279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8511D74F42400279A07 /* Ground.cpp */; };
+		78E1E8551D74F42400279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8511D74F42400279A07 /* Ground.cpp */; };
+		78E1E8581D74F80900279A07 /* Ground2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8561D74F80900279A07 /* Ground2.cpp */; };
+		78E1E8591D74F80900279A07 /* Ground2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8561D74F80900279A07 /* Ground2.cpp */; };
+		78E1E85A1D74F80900279A07 /* Ground2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8561D74F80900279A07 /* Ground2.cpp */; };
 		78E24E051CF782F3008B0821 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E24E041CF782F3008B0821 /* GameKit.framework */; };
 		78E24E071CF782F8008B0821 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E24E061CF782F8008B0821 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
@@ -381,8 +384,10 @@
 		78DF64CC1D24463B0049EB22 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		78DF64D01D2446660049EB22 /* Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Element.cpp; sourceTree = "<group>"; };
 		78DF64D11D2446660049EB22 /* Element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Element.h; sourceTree = "<group>"; };
-		78E1E84B1D74F2EF00279A07 /* Ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ground.cpp; sourceTree = "<group>"; };
-		78E1E84C1D74F2EF00279A07 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ground.h; sourceTree = "<group>"; };
+		78E1E8511D74F42400279A07 /* Ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ground.cpp; sourceTree = "<group>"; };
+		78E1E8521D74F42400279A07 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ground.h; sourceTree = "<group>"; };
+		78E1E8561D74F80900279A07 /* Ground2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ground2.cpp; sourceTree = "<group>"; };
+		78E1E8571D74F80900279A07 /* Ground2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ground2.h; sourceTree = "<group>"; };
 		78E24E041CF782F3008B0821 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		78E24E061CF782F8008B0821 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -981,6 +986,7 @@
 		7894C02E1BC9282F00363FC9 /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				78E1E8501D74F42400279A07 /* environment */,
 				78DF64C11D24460A0049EB22 /* Environment.cpp */,
 				78DF64C21D24460A0049EB22 /* Environment.h */,
 				78DF64C31D24460A0049EB22 /* Generator.cpp */,
@@ -991,8 +997,6 @@
 				78C3F6831D528D980031E5B1 /* Plate.h */,
 				78DF64CB1D24463B0049EB22 /* Character.cpp */,
 				78DF64CC1D24463B0049EB22 /* Character.h */,
-				78E1E84B1D74F2EF00279A07 /* Ground.cpp */,
-				78E1E84C1D74F2EF00279A07 /* Ground.h */,
 			);
 			name = entities;
 			path = ../../sources/entities;
@@ -1078,6 +1082,17 @@
 				78CEEB521D0C93D6000A85D4 /* UIActivityViewController+exclude.h */,
 			);
 			path = UIActivityViewController;
+			sourceTree = "<group>";
+		};
+		78E1E8501D74F42400279A07 /* environment */ = {
+			isa = PBXGroup;
+			children = (
+				78E1E8561D74F80900279A07 /* Ground2.cpp */,
+				78E1E8571D74F80900279A07 /* Ground2.h */,
+				78E1E8511D74F42400279A07 /* Ground.cpp */,
+				78E1E8521D74F42400279A07 /* Ground.h */,
+			);
+			path = environment;
 			sourceTree = "<group>";
 		};
 		78F354581A1A0876009CD132 /* Platform */ = {
@@ -1335,9 +1350,10 @@
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
+				78E1E8591D74F80900279A07 /* Ground2.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
-				78E1E84E1D74F2EF00279A07 /* Ground.cpp in Sources */,
+				78E1E8541D74F42400279A07 /* Ground.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1355,6 +1371,7 @@
 				7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
 				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
+				78E1E85A1D74F80900279A07 /* Ground2.cpp in Sources */,
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
@@ -1364,7 +1381,7 @@
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */,
 				7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
-				78E1E84F1D74F2EF00279A07 /* Ground.cpp in Sources */,
+				78E1E8551D74F42400279A07 /* Ground.cpp in Sources */,
 				78C35A511CEE84E200F10068 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1385,6 +1402,7 @@
 				7891E8961CF21293005C238E /* NSVote.mm in Sources */,
 				7891E88E1CF21293005C238E /* NSMedia.mm in Sources */,
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
+				78E1E8581D74F80900279A07 /* Ground2.cpp in Sources */,
 				7891E8911CF21293005C238E /* NSHeyzap.mm in Sources */,
 				78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1397,7 +1415,7 @@
 				7832A8BB1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */,
 				78DF64CD1D24463B0049EB22 /* Character.cpp in Sources */,
-				78E1E84D1D74F2EF00279A07 /* Ground.cpp in Sources */,
+				78E1E8531D74F42400279A07 /* Ground.cpp in Sources */,
 				7891E8921CF21293005C238E /* NSPurchase.mm in Sources */,
 				7832A8B81D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */,

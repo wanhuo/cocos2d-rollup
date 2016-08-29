@@ -21,9 +21,6 @@
  *
  */
 
-#ifndef _ENVIRONMENT_H_
-#define _ENVIRONMENT_H_
-
 #include "Game.h"
 
 /**
@@ -31,56 +28,41 @@
  *
  *
  */
-class Character;
-class Generator;
+Ground2::Ground2(Node* parent)
+: Entity3D(parent, true)
+{
+  this->texture = new Entity("sphere-texture.png", this, true);
+  this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
+  this->texture->getTexture()->setAliasTexParameters();
+  this->texture->setScale(0.01);
+
+  this->setRotation(-90, 0, 0);
+  this->setGlobalZOrder(-1);
+  this->texture->setGlobalZOrder(-1);
+
+  this->setScheduleUpdate(true);
+}
+
+Ground2::~Ground2()
+{
+}
 
 /**
  *
  *
  *
  */
-class Environment : public Background
+void Ground2::reset()
 {
-  /**
-   *
-   *
-   *
-   */
-  public:
+}
 
-  /**
-   *
-   *
-   *
-   */
-  private:
-  Ground* ground;
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Environment(Node* parent);
- ~Environment();
-
-  Entity3D* plane;
-
-  virtual void create();
-  virtual void reset();
-
-  virtual void onAction();
-
-  virtual void onMenu();
-  virtual void onGame();
-  virtual void onFinish();
-
-  virtual void updateMenu(float time);
-  virtual void updateGame(float time);
-  virtual void updateFinish(float time);
-
-  virtual void update(float time);
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+void Ground2::update(float time)
+{
+y-=1.01f;
+  this->texture->setTextureRect(Rect(x, y, 100000, 100000));
+}
