@@ -39,6 +39,10 @@ class Character : public Element
    *
    */
   private:
+  bool direction;
+
+  int index;
+  int test;
 
   /**
    *
@@ -46,6 +50,8 @@ class Character : public Element
    *
    */
   protected:
+  virtual void initWithPhysics() override;
+  virtual void initWithBody() override;
 
   /**
    *
@@ -53,14 +59,15 @@ class Character : public Element
    *
    */
   public:
-  Entity3D* plane;
-
   enum State {
+    STATE_NONE,
+    STATE_START,
     STATE_NORMAL
   };
 
-  enum Crash {
-    UNDEFINED
+  struct Plates {
+    Plate* previous;
+    Plate* current;
   };
 
   /**
@@ -72,22 +79,28 @@ class Character : public Element
   Character();
  ~Character();
 
-  State state;
+  State state = STATE_NONE;
+
+  Plates plates;
 
   virtual void reset();
 
-  virtual void onCreate();
-  virtual void onDestroy(bool action = false);
+  virtual void onCreate() override;
+  virtual void onDestroy(bool action = false) override;
 
+  virtual void onAction();
+
+  virtual void onStart();
   virtual void onNormal();
 
   virtual void changeState(State state);
 
+  virtual void updateStart(float time);
   virtual void updateNormal(float time);
 
   virtual void updateStates(float time);
 
-  virtual void update(float time);
+  virtual void update(float time) override;
 };
 
 #endif

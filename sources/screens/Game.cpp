@@ -49,31 +49,104 @@ Game::Game()
 {
   instance = this;
 
-  Modal::show();
+  /**
+   *
+   * Setup cameras
+   *
+   */
+  this->cameras.defaultCamera = Camera::createPerspective(60, this->getWidth() / this->getHeight(), 1, 100);
+  this->cameras.defaultCamera->setPosition(0, 14, 9);
+  this->cameras.defaultCamera->setRotation(-20, 0, 0);
 
-  this->cameras.d = Camera::createPerspective(60, this->getWidth() / this->getHeight(), NEAR, FAR);
+  this->cameras.shadowCastCamera = Camera::createOrthographic(this->getWidth() / 70, this->getHeight() / 70, 1, 100);
+  this->cameras.shadowCastCamera->setPosition(-10, 0.5, 10);
+  this->cameras.shadowCastCamera->setRotation(-10, -20, 0);
 
-  this->cameras.d->setCameraFlag(1);
+  this->cameras.frameBufferCamera = Camera::create();
+  this->cameras.captureBufferCamera = Camera::create();
 
-  this->cameras.d->setDepth(1);
+  this->cameras.defaultCamera->setCameraFlag(1);
+  this->cameras.frameBufferCamera->setCameraFlag(2);
+  this->cameras.shadowCastCamera->setCameraFlag(1);
+  this->cameras.captureBufferCamera->setCameraFlag(2);
 
-  this->generateFrameBuffer();
+  this->cameras.defaultCamera->setDepth(2);
+  this->cameras.frameBufferCamera->setDepth(3);
+  this->cameras.shadowCastCamera->setDepth(1);
+  this->cameras.captureBufferCamera->setDepth(4);
 
-  this->startCameraX = 0;
-  this->startCameraY = 4.0;
-  this->startCameraZ = 10.0;
+  this->cameras.defaultCamera->setIndex(1);
+  this->cameras.frameBufferCamera->setIndex(3);
+  this->cameras.shadowCastCamera->setIndex(2);
+  this->cameras.captureBufferCamera->setIndex(4);
 
-  this->startCameraRotationX = -30;
-  this->startCameraRotationY = 0;
-  this->startCameraRotationZ = 0;
+  this->addChild(this->cameras.defaultCamera);
+  this->addChild(this->cameras.frameBufferCamera);
+  this->addChild(this->cameras.shadowCastCamera);
+  this->addChild(this->cameras.captureBufferCamera);
 
-  this->cameras.d->setPosition3D(Vec3(this->startCameraX, this->startCameraY, this->startCameraZ));
-  this->cameras.d->setRotation3D(Vec3(this->startCameraRotationX, this->startCameraRotationY, this->startCameraRotationZ));
+  /**
+   *
+   * @Director
+   * | @Ambient;
+   *
+   */
+  Director::getInstance()->setAmbientColor1(255, 255, 255);
+  Director::getInstance()->setAmbientColor2(150, 150, 150);
+  Director::getInstance()->setAmbientDirection(0, -1, 1);
+  Director::getInstance()->setAmbient(true, this);
 
-  this->addChild(this->cameras.d);
+  /**
+   *
+   * @Director
+   * | @Capture;
+   *
+   */
+  Director::getInstance()->setCaptureCamera(this->cameras.defaultCamera);
+  Director::getInstance()->setCaptureElement(new Entity(true));
+  Director::getInstance()->setCaptureCount(60);
+  Director::getInstance()->setCaptureTime(2);
+  Director::getInstance()->setCaptureFactor(1);
+  Director::getInstance()->setCaptureSize(240, 240);
+  Director::getInstance()->setCapturePosition(0, 0);
+  Director::getInstance()->setCaptureScale(3);
+  Director::getInstance()->setCapture(true, this);
 
+  /**
+   *
+   * @Director
+   * | @Shadows;
+   *
+   */
+  Director::getInstance()->setShadowCamera(this->cameras.shadowCastCamera);
+  Director::getInstance()->setShadowFactor(1);
+  Director::getInstance()->setShadow(false, this);
+
+  /**
+   *
+   *
+   *
+   */
   this->environment = new Environment(this);
   this->environment->create();
+
+  /**
+   *
+   * @Director
+   * | @Shadows;
+   *
+   */
+  Director::getInstance()->setShadowElement(this->environment->plane);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->initWithPhysics())
+  {
+    this->getPhysics3DWorld()->setGravity(Vec3(0, -50, 0));
+  }
 }
 
 Game::~Game()
@@ -85,21 +158,9 @@ Game::~Game()
  *
  *
  */
-void Game::generateFrameBuffer()
+Camera* Game::getCamera()
 {
-  if(Screenshot::support())
-  {
-  }
-}
-
-/**
- *
- *
- *
- */
-FrameBuffer* Game::getFrameBuffer()
-{
-  return this->frameBuffer;
+  return this->cameras.defaultCamera;
 }
 
 /**
@@ -111,9 +172,15 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
 {
   switch(this->state)
   {
-    default:
+    case STATE_NONE:
     break;
-    case GAME:
+    case STATE_MENU:
+    this->changeState(STATE_GAME);
+    break;
+    case STATE_GAME:
+    this->environment->onAction();
+    break;
+    case STATE_FINISH:
     break;
   }
 }
@@ -122,7 +189,13 @@ void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
 {
   switch(this->state)
   {
-    default:
+    case STATE_NONE:
+    break;
+    case STATE_MENU:
+    break;
+    case STATE_GAME:
+    break;
+    case STATE_FINISH:
     break;
   }
 }
@@ -136,9 +209,38 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
 {
   switch(this->state)
   {
+    case STATE_NONE:
+    break;
+    case STATE_MENU:
+    break;
+    case STATE_GAME:
+    break;
+    case STATE_FINISH:
+    break;
+  }
+
+  switch(key)
+  {
     default:
     break;
-    case GAME:
+
+    /**
+     *
+     * @Development
+     *
+     */
+    case EventKeyboard::KeyCode::KEY_SPACE:
+    this->getPhysics3DWorld()->setDebugDrawEnable(!this->getPhysics3DWorld()->isDebugDrawEnabled());
+    break;
+    case EventKeyboard::KeyCode::KEY_C:
+    if(Director::getInstance()->getShadowTexture()->state->create)
+    {
+      Director::getInstance()->getShadowTexture()->_destroy();
+    }
+    else
+    {
+      Director::getInstance()->getShadowTexture()->_create();
+    }
     break;
   }
 }
@@ -168,7 +270,7 @@ void Game::onEnter()
    *
    *
    */
-   this->changeState(MENU);
+   this->changeState(STATE_MENU);
 }
 
 void Game::onExit()
@@ -282,15 +384,15 @@ void Game::changeState(State state)
 
     switch(this->state)
     {
-      default:
+      case STATE_NONE:
       break;
-      case MENU:
+      case STATE_MENU:
       this->onMenu();
       break;
-      case GAME:
+      case STATE_GAME:
       this->onGame();
       break;
-      case FINISH:
+      case STATE_FINISH:
       this->onFinish();
       break;
     }
@@ -323,18 +425,26 @@ void Game::updateStates(float time)
 {
   switch(this->state)
   {
-    default:
+    case STATE_NONE:
     break;
-    case MENU:
+    case STATE_MENU:
     this->updateMenu(time);
     break;
-    case GAME:
+    case STATE_GAME:
     this->updateGame(time);
     break;
-    case FINISH:
+    case STATE_FINISH:
     this->updateFinish(time);
     break;
   }
+
+  /**
+   *
+   *
+   *
+   */
+  cocos2d::experimental::FrameBuffer::clearAllFBOs();
+  Director::getInstance()->updateCapture();
 }
 
 /**

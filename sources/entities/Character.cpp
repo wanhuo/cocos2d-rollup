@@ -29,16 +29,40 @@
  *
  */
 Character::Character()
-: Element("")
+: Element("character.obj", Application->environment->plane)
 {
-  this->plane = new Entity3D(Application->environment->plane, true);
-  this->plane->addChild(this);
+  this->initWithPhysics();
+  this->initWithBody();
 
-  this->setScheduleUpdate(true);
+  this->setTexture("character.png");
 }
 
 Character::~Character()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::initWithPhysics()
+{
+  Physics3DRigidBodyDes fixture;
+
+  fixture.mass = 10.0;
+  fixture.shape = Physics3DShape::createSphere(0.18);
+
+  this->_physicsComponent = Physics3DComponent::create(Physics3DRigidBody::create(&fixture));
+  this->_physicsComponent->retain();
+
+  this->addComponent(this->_physicsComponent);
+}
+
+void Character::initWithBody()
+{
+  this->getBody()->setRestitution(0.5);
+  this->getBody()->setFriction(1.0);
 }
 
 /**
@@ -53,17 +77,23 @@ void Character::reset()
     this->_create();
   }
 
-  this->plane->setPosition3D(Vec3(0.0, 0.0, 0.0));
-  this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
-  this->plane->setScale(1.0);
-  this->plane->stopAllActions();
+  this->setPosition3D(Vec3(-3.0, 20.0, 0.0));
+  this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  this->stopAllActions();
+  this->syncNodeToPhysics();
+
+  this->direction = true;
+
+  this->index = 0;
+  this->test = 1;
 
   /**
    *
    *
    *
    */
-  this->changeState(STATE_NORMAL);
+  this->changeState(STATE_START);
 }
 
 /**
@@ -93,8 +123,78 @@ void Character::onDestroy(bool action)
  *
  *
  */
+void Character::onAction()
+{
+  this->index++; /// ?
+  this->test = 2;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Character::onStart()
+{
+  this->getBody()->setLinearFactor(Vec3(0, 1, 0));
+  this->getBody()->setAngularFactor(Vec3(0, 0, 0));
+}
+
 void Character::onNormal()
 {
+  this->getBody()->setLinearFactor(Vec3(0, 0, 0));
+  this->getBody()->setAngularFactor(Vec3(0, 0, 0));
+
+  /**
+   *
+   *
+   *
+   */
+  auto plate = Application->environment->element(++this->index);
+
+  auto direction = plate->getPositionZ() == this->getPositionZ();
+  auto factor = (this->test > 1 ? (direction ? 2 : 1) : 1);
+
+  auto x1 = (direction ? 0.5 : (this->test > 1 ? 0.5 : 0.0)) * (this->direction ? 1 : -1) * factor;
+  auto y1 = 0;
+  auto z1 = 0;
+  
+  auto x2 = (direction ? 0.5 : (this->test > 1 ? 0.5 : 0.0)) * (this->direction ? 1 : -1) * factor;
+  auto y2 = 0;
+  auto z2 = 0;
+
+  this->runAction(
+    Sequence::create(
+      //EaseSineIn::create(
+        MoveBy::create(0.15, Vec3(x1, 0.5 * factor, direction ? 0.0 : -0.5))
+      //)
+      ,
+      //EaseSineOut::create(
+        MoveBy::create(0.15, Vec3(x2, -(0.5 * factor) + (direction || this->test > 1 ? 1.0 / Generator::HEIGHT : 0.0) * factor, direction ? 0.0 : -0.5))
+      //)
+      ,
+      //DelayTime::create(1.0),
+      CallFunc::create([=] () {
+      this->onNormal();
+      }),
+      nullptr
+    )
+  );
+
+  if(!direction)
+  {
+    this->direction = !this->direction;
+  }
+
+  Application->getCamera()->runAction(
+    MoveBy::create(0.3, Vec3(0.0, direction ? 1.0 / Generator::HEIGHT : 0.0, direction ? 0.0 : -1.0))
+  );
+
+  Application->cameras.shadowCastCamera->runAction(
+    MoveBy::create(0.3, Vec3(0.0, direction ? 1.0 / Generator::HEIGHT : 0.0, direction ? 0.0 : -1.0))
+  );
+
+  this->test = 1;
 }
 
 /**
@@ -110,6 +210,11 @@ void Character::changeState(State state)
 
     switch(this->state)
     {
+      case STATE_NONE:
+      break;
+      case STATE_START:
+      this->onStart();
+      break;
       case STATE_NORMAL:
       this->onNormal();
       break;
@@ -122,6 +227,10 @@ void Character::changeState(State state)
  *
  *
  */
+void Character::updateStart(float time)
+{
+}
+
 void Character::updateNormal(float time)
 {
 }
@@ -135,6 +244,11 @@ void Character::updateStates(float time)
 {
   switch(this->state)
   {
+    case STATE_NONE:
+    break;
+    case STATE_START:
+    this->updateStart(time);
+    break;
     case STATE_NORMAL:
     this->updateNormal(time);
     break;

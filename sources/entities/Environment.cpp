@@ -48,20 +48,46 @@ void Environment::create()
   this->plane->setRotation3D(Vec3(0, 0, 0));
   this->plane->setPosition3D(Vec3(0, 0, 0));
 
+  this->character = new Character;
   this->generator = new Generator;
 
-  this->segments = new Pool(new Segment, this->plane);
-
-  this->sources.a = AmbientLight::create(Color3B(150, 150, 150));
-  this->sources.b = DirectionLight::create(Vec3(0.5, -1.0, 0.0), Color3B(120, 120, 120));
-
-  this->plane->addChild(this->sources.a);
-  this->plane->addChild(this->sources.b);
+  this->plates = new Pool(new Plate, this->plane);
 }
 
 void Environment::reset()
 {
   this->generator->reset();
+  this->character->reset();
+}
+
+/**
+ *
+ *
+ *
+ */
+Plate* Environment::element(int index)
+{
+  for(int i = 0; i < this->plates->count; i++)
+  {
+    auto plate = static_cast<Plate*>(this->plates->element(i));
+
+    if(plate->getIndex() == index)
+    {
+      return plate;
+    }
+  }
+
+  return nullptr;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Environment::onAction()
+{
+  this->character->onAction();
 }
 
 /**
@@ -76,6 +102,19 @@ void Environment::onMenu()
 
 void Environment::onGame()
 {
+  this->character->changeState(Character::STATE_NORMAL);
+
+  this->runAction(
+    RepeatForever::create(
+      Sequence::create(
+        DelayTime::create(0.3),
+        CallFunc::create([=] () {
+        this->generator->create();
+        }),
+        nullptr
+      )
+    )
+  );
 }
 
 void Environment::onFinish()
@@ -108,15 +147,15 @@ void Environment::update(float time)
 {
   switch(Application->state)
   {
-    default:
+    case Game::STATE_NONE:
     break;
-    case Game::MENU:
+    case Game::STATE_MENU:
     this->updateMenu(time);
     break;
-    case Game::GAME:
+    case Game::STATE_GAME:
     this->updateGame(time);
     break;
-    case Game::FINISH:
+    case Game::STATE_FINISH:
     this->updateFinish(time);
     break;
   }

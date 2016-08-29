@@ -37,7 +37,7 @@
  *
  *
  */
-class Element : public Entity3D
+class Element : public PhysicsEntity3D
 {
   /**
    *
@@ -59,8 +59,7 @@ class Element : public Entity3D
    *
    */
   public:
-  Element(string file, Node* parent = nullptr);
-  Element(Node* parent = nullptr);
+  Element(const char* file, Node* parent = nullptr);
  ~Element();
 
   virtual void onCreate() override;

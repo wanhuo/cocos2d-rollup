@@ -25,6 +25,7 @@
 #define _GAME_H_
 
 #include "Entity.h"
+#include "PhysicsEntity3D.h"
 #include "TiledEntity.h"
 #include "AnimatedEntity.h"
 #include "Entity3D.h"
@@ -40,12 +41,14 @@
 #include "RotateGlobalBy.h"
 #include "Shake.h"
 
+#include "Element.h"
+#include "Plate.h"
+#include "Character.h"
+
 #include "Environment.h"
 #include "Generator.h"
 
-#include "Element.h"
-#include "Character.h"
-#include "Segment.h"
+#include "Color.h"
 
 /**
  *
@@ -83,32 +86,10 @@ class Game : public Screen
   const static int FAR = 10000;
 
   struct Cameras {
-    Camera* d;
-  };
-  
-  struct Elapsed {
-    int ad = -1;
-    int video = 0;
-    int present = random(0, 15);
-  };
-
-  struct Parameters {
-    int ad = 4;
-    int video = 4;
-    int present = 15;
-
-    Elapsed elapsed;
-  };
-
-  struct Capturing {
-    int index;
-    int frame;
-    int frames;
-
-    float time;
-    float timeElapsed;
-
-    vector<RenderTexture*> textures;
+    Camera* defaultCamera;
+    Camera* shadowCastCamera;
+    Camera* frameBufferCamera;
+    Camera* captureBufferCamera;
   };
 
   /**
@@ -117,35 +98,12 @@ class Game : public Screen
    *
    */
   public:
-  const static int SOUND_DISTANCE = 5;
-
-  const static int FRAME_BUFFER_FACTOR = 1;
-
-  const static int CAPTURE_TIME = 2;
-  const static int CAPTURE_FPS = 60;
-  const static int CAPTURE_SCALE = 2;
-  const static int CAPTURE_POSITION = 125;
-
   enum State {
-    NONE,
-    MENU,
-    GAME,
-    FINISH
+    STATE_NONE,
+    STATE_MENU,
+    STATE_GAME,
+    STATE_FINISH
   };
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  float startCameraX;
-  float startCameraY;
-  float startCameraZ;
-
-  float startCameraRotationX;
-  float startCameraRotationY;
-  float startCameraRotationZ;
 
   /**
    *
@@ -159,18 +117,12 @@ class Game : public Screen
  ~Game();
 
   Environment* environment;
-  FrameBuffer* frameBuffer;
 
-  Sprite* generate;
-
-  Parameters parameters;
   Cameras cameras;
 
-  State state = NONE;
+  State state = STATE_NONE;
 
-  virtual void generateFrameBuffer();
-
-  virtual FrameBuffer* getFrameBuffer();
+  virtual Camera* getCamera();
 
   virtual void onTouchStart(cocos2d::Touch* touch, Event* event);
   virtual void onTouchFinish(cocos2d::Touch* touch, Event* event);

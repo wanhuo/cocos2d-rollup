@@ -39,7 +39,6 @@ class Generator : public Ref
    *
    */
   private:
-  const static int SEGMENTS_START_COUNT = 10;
 
   /**
    *
@@ -47,7 +46,6 @@ class Generator : public Ref
    *
    */
   protected:
-  float position;
 
   /**
    *
@@ -55,10 +53,26 @@ class Generator : public Ref
    *
    */
   public:
+  const static int COUNT_START = 16;
+
+  const static int POSITION_MIN = -3;
+  const static int POSITION_MAX = 3;
+
+  const static int HEIGHT = 4;
+  const static int SIZE = 8;
+
   Generator();
  ~Generator();
 
-  virtual void create(bool animated = false);
+  int index;
+
+  bool direction;
+
+  float x;
+  float y;
+  float z;
+
+  virtual void create();
   virtual void destroy();
 
   virtual void reset();

@@ -34,14 +34,10 @@
  *
  *
  */
-Element::Element(string file, Node* parent)
-: Entity3D(file, parent)
+Element::Element(const char* file, Node* parent)
+: PhysicsEntity3D(file, parent)
 {
-}
-
-Element::Element(Node* parent)
-: Entity3D(parent)
-{
+  this->setScheduleUpdate(true);
 }
 
 Element::~Element()
@@ -55,12 +51,12 @@ Element::~Element()
  */
 void Element::onCreate()
 {
-  Entity3D::onCreate();
+  PhysicsEntity3D::onCreate();
 }
 
 void Element::onDestroy(bool action)
 {
-  Entity3D::onDestroy(action);
+  PhysicsEntity3D::onDestroy(action);
 }
 
 /**
@@ -70,12 +66,12 @@ void Element::onDestroy(bool action)
  */
 void Element::onEnter()
 {
-  Entity3D::onEnter();
+  PhysicsEntity3D::onEnter();
 }
 
 void Element::onExit()
 {
-  Entity3D::onExit();
+  PhysicsEntity3D::onExit();
 }
 
 /**
@@ -85,4 +81,16 @@ void Element::onExit()
  */
 void Element::update(float time)
 {
+  PhysicsEntity3D::update(time);
+
+  /**
+   *
+   *
+   *
+   */
+  if(Application->state == Game::STATE_GAME)
+  if(this->numberOfRunningActions() < 1 && !Application->getCamera()->isVisibleInFrustum(&this->getAABB()))
+  {
+    this->_destroy();
+  }
 }

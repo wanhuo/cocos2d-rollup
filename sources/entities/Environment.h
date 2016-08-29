@@ -46,11 +46,18 @@ class Environment : public Background
    *
    *
    */
+  public:
+  Entity3D* ground;
+  Entity3D* cube;
+
+  Entity3D* z;
+
+  /**
+   *
+   *
+   *
+   */
   private:
-  struct Sources {
-    BaseLight* a;
-    BaseLight* b;
-  };
 
   /**
    *
@@ -66,12 +73,14 @@ class Environment : public Background
   Character* character = nullptr;
   Generator* generator = nullptr;
 
-  Pool* segments;
-
-  Sources sources;
+  Pool* plates;
 
   virtual void create();
   virtual void reset();
+
+  virtual Plate* element(int index);
+
+  virtual void onAction();
 
   virtual void onMenu();
   virtual void onGame();
