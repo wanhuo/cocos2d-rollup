@@ -44,6 +44,7 @@
 #include "Element.h"
 #include "Plate.h"
 #include "Character.h"
+#include "Ground.h"
 
 #include "Environment.h"
 #include "Generator.h"

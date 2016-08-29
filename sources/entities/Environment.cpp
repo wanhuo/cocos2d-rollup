@@ -56,23 +56,21 @@ void Environment::create()
   auto sphere = new Entity3D("sphere.obj", this->plane, true);
   sphere->setPosition(0, 0, 0);
   sphere->setRotation(0, 0, 0);
-  sphere->setScale(1.0);
+  sphere->setScale(4.0);
   sphere->setTexture("sphere-texture.png");
   sphere->runAction(
     RepeatForever::create(
-      RotateBy::create(10.0, Vec3(360, 0, 0))
+      RotateBy::create(100.0, Vec3(-360, 0, 0))
     )
   );
-  sphere->setLightMask(-1);
-  //sphere->setCullFace(GL_FRONT);
+  sphere->setCullFace(GL_FRONT);
 
   auto ground = new Entity3D(this->plane, true);
   ground->setPosition(0, 0, 0);
   ground->setRotation(-90, 0, 0);
 
   auto ground_texture = new Entity("ground-texture.png", ground, true);
-  ground_texture->setScale(0.5);
-  ground_texture->setOpacity(100);
+  ground_texture->setOpacity(190);
 }
 
 void Environment::reset()

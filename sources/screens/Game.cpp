@@ -56,7 +56,7 @@ Game::Game()
    */
   this->cameras.defaultCamera = Camera::createPerspective(60, this->getWidth() / this->getHeight(), 1, 100);
   this->cameras.defaultCamera->setPosition(0, 14, 9);
-  this->cameras.defaultCamera->setRotation(-20, 0, 0);
+  this->cameras.defaultCamera->setRotation(-75, 0, 0);
 
   this->cameras.shadowCastCamera = Camera::createOrthographic(this->getWidth() / 70, this->getHeight() / 70, 1, 100);
   this->cameras.shadowCastCamera->setPosition(-10, 0.5, 10);
@@ -94,7 +94,7 @@ Game::Game()
   Director::getInstance()->setAmbientColor1(255, 255, 255);
   Director::getInstance()->setAmbientColor2(150, 150, 150);
   Director::getInstance()->setAmbientDirection(0, -1, 1);
-  Director::getInstance()->setAmbient(true, this);
+  Director::getInstance()->setAmbient(false, this);
 
   /**
    *
