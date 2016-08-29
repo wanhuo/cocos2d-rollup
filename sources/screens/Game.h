@@ -48,8 +48,6 @@
 #include "Environment.h"
 #include "Generator.h"
 
-#include "Color.h"
-
 /**
  *
  *

@@ -47,10 +47,6 @@ class Environment : public Background
    *
    */
   public:
-  Entity3D* ground;
-  Entity3D* cube;
-
-  Entity3D* z;
 
   /**
    *
@@ -70,15 +66,8 @@ class Environment : public Background
 
   Entity3D* plane;
 
-  Character* character = nullptr;
-  Generator* generator = nullptr;
-
-  Pool* plates;
-
   virtual void create();
   virtual void reset();
-
-  virtual Plate* element(int index);
 
   virtual void onAction();
 

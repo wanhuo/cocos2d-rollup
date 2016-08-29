@@ -39,10 +39,6 @@ class Character : public Element
    *
    */
   private:
-  bool direction;
-
-  int index;
-  int test;
 
   /**
    *
@@ -65,11 +61,6 @@ class Character : public Element
     STATE_NORMAL
   };
 
-  struct Plates {
-    Plate* previous;
-    Plate* current;
-  };
-
   /**
    *
    *
@@ -80,8 +71,6 @@ class Character : public Element
  ~Character();
 
   State state = STATE_NONE;
-
-  Plates plates;
 
   virtual void reset();
 

@@ -48,36 +48,24 @@ void Environment::create()
   this->plane->setRotation3D(Vec3(0, 0, 0));
   this->plane->setPosition3D(Vec3(0, 0, 0));
 
-  this->character = new Character;
-  this->generator = new Generator;
+  /**
+   *
+   *
+   *
+   */
+  auto sphere = new Entity3D("sphere.obj", this->plane, true);
+  sphere->setPosition(0, 0, 0);
+  sphere->setRotation(0, 0, 0);
+  sphere->setTexture("");
 
-  this->plates = new Pool(new Plate, this->plane);
+  auto ground = new Entity3D("ground.obj", this->plane, true);
+  ground->setPosition(0, 0, 0);
+  ground->setRotation(0, 0, 0);
+  ground->setTexture("");
 }
 
 void Environment::reset()
 {
-  this->generator->reset();
-  this->character->reset();
-}
-
-/**
- *
- *
- *
- */
-Plate* Environment::element(int index)
-{
-  for(int i = 0; i < this->plates->count; i++)
-  {
-    auto plate = static_cast<Plate*>(this->plates->element(i));
-
-    if(plate->getIndex() == index)
-    {
-      return plate;
-    }
-  }
-
-  return nullptr;
 }
 
 /**
@@ -87,7 +75,6 @@ Plate* Environment::element(int index)
  */
 void Environment::onAction()
 {
-  this->character->onAction();
 }
 
 /**
@@ -102,19 +89,6 @@ void Environment::onMenu()
 
 void Environment::onGame()
 {
-  this->character->changeState(Character::STATE_NORMAL);
-
-  this->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        DelayTime::create(0.3),
-        CallFunc::create([=] () {
-        this->generator->create();
-        }),
-        nullptr
-      )
-    )
-  );
 }
 
 void Environment::onFinish()

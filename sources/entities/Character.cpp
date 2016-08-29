@@ -83,11 +83,6 @@ void Character::reset()
   this->stopAllActions();
   this->syncNodeToPhysics();
 
-  this->direction = true;
-
-  this->index = 0;
-  this->test = 1;
-
   /**
    *
    *
@@ -125,8 +120,6 @@ void Character::onDestroy(bool action)
  */
 void Character::onAction()
 {
-  this->index++; /// ?
-  this->test = 2;
 }
 
 /**
@@ -144,57 +137,6 @@ void Character::onNormal()
 {
   this->getBody()->setLinearFactor(Vec3(0, 0, 0));
   this->getBody()->setAngularFactor(Vec3(0, 0, 0));
-
-  /**
-   *
-   *
-   *
-   */
-  auto plate = Application->environment->element(++this->index);
-
-  auto direction = plate->getPositionZ() == this->getPositionZ();
-  auto factor = (this->test > 1 ? (direction ? 2 : 1) : 1);
-
-  auto x1 = (direction ? 0.5 : (this->test > 1 ? 0.5 : 0.0)) * (this->direction ? 1 : -1) * factor;
-  auto y1 = 0;
-  auto z1 = 0;
-  
-  auto x2 = (direction ? 0.5 : (this->test > 1 ? 0.5 : 0.0)) * (this->direction ? 1 : -1) * factor;
-  auto y2 = 0;
-  auto z2 = 0;
-
-  this->runAction(
-    Sequence::create(
-      //EaseSineIn::create(
-        MoveBy::create(0.15, Vec3(x1, 0.5 * factor, direction ? 0.0 : -0.5))
-      //)
-      ,
-      //EaseSineOut::create(
-        MoveBy::create(0.15, Vec3(x2, -(0.5 * factor) + (direction || this->test > 1 ? 1.0 / Generator::HEIGHT : 0.0) * factor, direction ? 0.0 : -0.5))
-      //)
-      ,
-      //DelayTime::create(1.0),
-      CallFunc::create([=] () {
-      this->onNormal();
-      }),
-      nullptr
-    )
-  );
-
-  if(!direction)
-  {
-    this->direction = !this->direction;
-  }
-
-  Application->getCamera()->runAction(
-    MoveBy::create(0.3, Vec3(0.0, direction ? 1.0 / Generator::HEIGHT : 0.0, direction ? 0.0 : -1.0))
-  );
-
-  Application->cameras.shadowCastCamera->runAction(
-    MoveBy::create(0.3, Vec3(0.0, direction ? 1.0 / Generator::HEIGHT : 0.0, direction ? 0.0 : -1.0))
-  );
-
-  this->test = 1;
 }
 
 /**

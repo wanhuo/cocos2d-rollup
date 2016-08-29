@@ -300,7 +300,6 @@
 		7843ACE01C224FE30011F47C /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7843ACE11C2250060011F47C /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		785545EC1CD8CA2F00B58ED0 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../../resource/Models; sourceTree = "<group>"; };
-		785FBE7C1D52B0E80029D6A5 /* Color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Color.h; path = ../../sources/support/Color.h; sourceTree = "<group>"; };
 		787239751D521E36007BD010 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		787239761D521E36007BD010 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		787239771D521E36007BD010 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -969,7 +968,6 @@
 			children = (
 				783DE9571D1C096B009706B7 /* Events.mm */,
 				7894C0191BC9245800363FC9 /* Events.cpp */,
-				785FBE7C1D52B0E80029D6A5 /* Color.h */,
 			);
 			name = support;
 			path = ../../Sources/support;

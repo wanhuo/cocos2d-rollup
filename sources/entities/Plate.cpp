@@ -77,34 +77,11 @@ void Plate::initWithBody()
 void Plate::onCreate()
 {
   Element::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setColor(Color::t());
 }
 
 void Plate::onDestroy(bool action)
 {
   Element::onDestroy(action);
-  log("%d", this->index);
-}
-
-/**
- *
- *
- *
- */
-int Plate::setIndex(int index)
-{
-  return this->index = index;
-}
-
-int Plate::getIndex()
-{
-  return this->index;
 }
 
 /**

@@ -43,47 +43,6 @@ Generator::~Generator()
  */
 void Generator::create()
 {
-  auto yy = SIZE;
-  if(probably(10)) yy -= 0.5;
-
-  auto plate = static_cast<Plate*>(Application->environment->plates->_create());
-
-  plate->setPosition3D(Vec3(this->x, this->y, this->z));
-  plate->setRotation3D(Vec3(0, 0, 0));
-  plate->setIndex(this->index);
-  plate->syncNodeToPhysics();
-  plate->runAction(
-    ScaleTo::create(0.5, 1.0, yy, 1.0)
-  );
-
-  if(this->direction)
-  {
-    if(this->x == POSITION_MAX || (this->x > 0 && probably(10)))
-    {
-      this->direction = !this->direction;
-      this->z--;
-    }
-    else
-    {
-      this->x++;
-      this->y += 1.0 / HEIGHT;
-    }
-  }
-  else
-  {
-    if(this->x == POSITION_MIN || (this->x < 0 && probably(10)))
-    {
-      this->direction = !this->direction;
-      this->z--;
-    }
-    else
-    {
-      this->x--;
-      this->y += 1.0 / HEIGHT;
-    }
-  }
-
-  this->index++;
 }
 
 void Generator::destroy()
@@ -95,39 +54,6 @@ void Generator::destroy()
  *
  *
  */
-float Color::tt = 0.0;
 void Generator::reset()
 {
-  Application->environment->plates->clear();
-
-  /**
-   *
-   *
-   *
-   */
-  this->direction = true;
-
-  this->index = 0;
-
-  this->x = -3;
-  this->y = 0;
-  this->z = 0;
-
-  /**
-   *
-   *
-   *
-   */
-  Application->environment->runAction(
-    Repeat::create(
-      Sequence::create(
-        CallFunc::create([=] () {
-          this->create();
-        }),
-        DelayTime::create(0.02),
-        nullptr
-      ),
-      COUNT_START
-    )
-  );
 }
