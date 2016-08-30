@@ -55,6 +55,10 @@ class Plate : public Element
   virtual void initWithPhysics() override;
   virtual void initWithBody() override;
 
+  int index;
+
+  bool normal;
+
   /**
    *
    *
@@ -66,6 +70,12 @@ class Plate : public Element
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
+
+  virtual bool setNormal(bool normal);
+  virtual bool getNormal();
+
+  virtual int setIndex(int index);
+  virtual int getIndex();
 
   virtual Plate* deepCopy() override;
 };

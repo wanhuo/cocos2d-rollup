@@ -45,7 +45,6 @@
 #include "Plate.h"
 #include "Character.h"
 #include "Ground.h"
-#include "Ground2.h"
 
 #include "Environment.h"
 #include "Generator.h"
@@ -64,8 +63,6 @@ using namespace cocos2d::experimental;
  *
  */
 #define Application Game::getInstance()
-#define Generators Application->environment->generator
-#define s(parameter) to_string(parameter)
 
 /**
  *

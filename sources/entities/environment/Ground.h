@@ -31,14 +31,18 @@
  *
  *
  */
-class Ground : public Entity3D
+class Ground : public Element
 {
+
   /**
    *
    *
    *
    */
   protected:
+  virtual void initWithPhysics() override;
+  virtual void initWithBody() override;
+
   Entity* texture;
 
   /**

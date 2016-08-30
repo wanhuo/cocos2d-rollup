@@ -61,6 +61,14 @@ class Character : public Element
     STATE_NORMAL
   };
 
+  enum Direction {
+    NONE,
+    LEFT,
+    RIGHT,
+    FORWARD,
+    BACK
+  };
+
   /**
    *
    *
@@ -72,12 +80,19 @@ class Character : public Element
 
   State state = STATE_NONE;
 
+  bool action;
+
+  Vec3 index;
+  Vec3 direction;
+
   virtual void reset();
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
   virtual void onAction();
+
+  virtual void onMove();
 
   virtual void onStart();
   virtual void onNormal();

@@ -47,8 +47,14 @@ class Generator : public Ref
     BACK
   };
 
-  const static int POSITION_MIN = -3;
-  const static int POSITION_MAX = 3;
+  const static int COUNT_START = 15;
+  const static int COUNT_SPECIAL = 10;
+
+  const static int MOVES_MIN_X = 3;
+  const static int MOVES_MIN_Z = 3;
+
+  const static int POSITION_MIN = -10;
+  const static int POSITION_MAX = 10;
 
   const static int POSITION_SIZE = POSITION_MAX * 2 + 1;
 
@@ -57,14 +63,7 @@ class Generator : public Ref
    *
    *
    */
-  private:
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
+  public:
   struct Element {
     bool active = false;
     bool normal = true;
@@ -72,7 +71,7 @@ class Generator : public Ref
     Plate* element;
   };
 
-  Element* elements[POSITION_SIZE][10000];
+  Element elements[POSITION_SIZE][10000];
 
   /**
    *
@@ -84,17 +83,23 @@ class Generator : public Ref
  ~Generator();
 
   int index;
+  int special;
 
-  float x;
-  float y;
-  float z;
+  int x;
+  int y;
+  int z;
+
+  Vec3 direction;
+  Vec3 moves;
+  Vec3 min;
 
   virtual void create();
   virtual void destroy();
 
   virtual void reset();
 
-  virtual Element* element(int x, int y, Plate* element = nullptr);
+  virtual Element element();
+  virtual Element element(int x, int z);
 };
 
 #endif

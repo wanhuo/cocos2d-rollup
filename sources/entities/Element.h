@@ -59,7 +59,8 @@ class Element : public PhysicsEntity3D
    *
    */
   public:
-  Element(const char* file, Node* parent = nullptr);
+  Element(const char* file, Node* parent = nullptr, bool autocreate = false);
+  Element(Node* parent = nullptr, bool autocreate = false);
  ~Element();
 
   virtual void onCreate() override;

@@ -176,9 +176,6 @@
 		78E1E8531D74F42400279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8511D74F42400279A07 /* Ground.cpp */; };
 		78E1E8541D74F42400279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8511D74F42400279A07 /* Ground.cpp */; };
 		78E1E8551D74F42400279A07 /* Ground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8511D74F42400279A07 /* Ground.cpp */; };
-		78E1E8581D74F80900279A07 /* Ground2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8561D74F80900279A07 /* Ground2.cpp */; };
-		78E1E8591D74F80900279A07 /* Ground2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8561D74F80900279A07 /* Ground2.cpp */; };
-		78E1E85A1D74F80900279A07 /* Ground2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78E1E8561D74F80900279A07 /* Ground2.cpp */; };
 		78E24E051CF782F3008B0821 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E24E041CF782F3008B0821 /* GameKit.framework */; };
 		78E24E071CF782F8008B0821 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E24E061CF782F8008B0821 /* StoreKit.framework */; };
 /* End PBXBuildFile section */
@@ -386,8 +383,6 @@
 		78DF64D11D2446660049EB22 /* Element.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Element.h; sourceTree = "<group>"; };
 		78E1E8511D74F42400279A07 /* Ground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ground.cpp; sourceTree = "<group>"; };
 		78E1E8521D74F42400279A07 /* Ground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ground.h; sourceTree = "<group>"; };
-		78E1E8561D74F80900279A07 /* Ground2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Ground2.cpp; sourceTree = "<group>"; };
-		78E1E8571D74F80900279A07 /* Ground2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ground2.h; sourceTree = "<group>"; };
 		78E24E041CF782F3008B0821 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/GameKit.framework; sourceTree = DEVELOPER_DIR; };
 		78E24E061CF782F8008B0821 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS9.2.sdk/System/Library/Frameworks/StoreKit.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -1087,8 +1082,6 @@
 		78E1E8501D74F42400279A07 /* environment */ = {
 			isa = PBXGroup;
 			children = (
-				78E1E8561D74F80900279A07 /* Ground2.cpp */,
-				78E1E8571D74F80900279A07 /* Ground2.h */,
 				78E1E8511D74F42400279A07 /* Ground.cpp */,
 				78E1E8521D74F42400279A07 /* Ground.h */,
 			);
@@ -1350,7 +1343,6 @@
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
-				78E1E8591D74F80900279A07 /* Ground2.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
 				78E1E8541D74F42400279A07 /* Ground.cpp in Sources */,
@@ -1371,7 +1363,6 @@
 				7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
 				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
-				78E1E85A1D74F80900279A07 /* Ground2.cpp in Sources */,
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
@@ -1402,7 +1393,6 @@
 				7891E8961CF21293005C238E /* NSVote.mm in Sources */,
 				7891E88E1CF21293005C238E /* NSMedia.mm in Sources */,
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
-				78E1E8581D74F80900279A07 /* Ground2.cpp in Sources */,
 				7891E8911CF21293005C238E /* NSHeyzap.mm in Sources */,
 				78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,

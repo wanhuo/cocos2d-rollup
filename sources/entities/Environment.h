@@ -47,6 +47,8 @@ class Environment : public Background
    *
    */
   public:
+  Generator* generator;
+  Character* character;
 
   /**
    *

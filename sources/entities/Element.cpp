@@ -34,8 +34,14 @@
  *
  *
  */
-Element::Element(const char* file, Node* parent)
-: PhysicsEntity3D(file, parent)
+Element::Element(const char* file, Node* parent, bool autocreate)
+: PhysicsEntity3D(file, parent, autocreate)
+{
+  this->setScheduleUpdate(true);
+}
+
+Element::Element(Node* parent, bool autocreate)
+: PhysicsEntity3D("plate.obj", parent, autocreate)
 {
   this->setScheduleUpdate(true);
 }
@@ -82,15 +88,4 @@ void Element::onExit()
 void Element::update(float time)
 {
   PhysicsEntity3D::update(time);
-
-  /**
-   *
-   *
-   *
-   */
-  if(Application->state == Game::STATE_GAME)
-  if(this->numberOfRunningActions() < 1 && !Application->getCamera()->isVisibleInFrustum(&this->getAABB()))
-  {
-    this->_destroy();
-  }
 }

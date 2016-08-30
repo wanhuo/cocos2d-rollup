@@ -81,9 +81,9 @@ Game::Game()
   this->cameras.captureBufferCamera->setIndex(4);
 
   this->addChild(this->cameras.defaultCamera);
-  this->addChild(this->cameras.frameBufferCamera);
-  this->addChild(this->cameras.shadowCastCamera);
-  this->addChild(this->cameras.captureBufferCamera);
+  //this->addChild(this->cameras.frameBufferCamera);
+  //this->addChild(this->cameras.shadowCastCamera);
+  //this->addChild(this->cameras.captureBufferCamera);
 
   /**
    *
@@ -94,7 +94,7 @@ Game::Game()
   Director::getInstance()->setAmbientColor1(255, 255, 255);
   Director::getInstance()->setAmbientColor2(150, 150, 150);
   Director::getInstance()->setAmbientDirection(0, -1, 1);
-  Director::getInstance()->setAmbient(false, this);
+  Director::getInstance()->setAmbient(true, this);
 
   /**
    *
@@ -110,7 +110,7 @@ Game::Game()
   Director::getInstance()->setCaptureSize(240, 240);
   Director::getInstance()->setCapturePosition(0, 0);
   Director::getInstance()->setCaptureScale(3);
-  Director::getInstance()->setCapture(true, this);
+  Director::getInstance()->setCapture(false, this);
 
   /**
    *
@@ -178,11 +178,12 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     this->changeState(STATE_GAME);
     break;
     case STATE_GAME:
-    this->environment->onAction();
     break;
     case STATE_FINISH:
     break;
   }
+
+  this->environment->onAction();
 }
 
 void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
@@ -226,11 +227,35 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
 
     /**
      *
+     *
+     *
+     */
+    case EventKeyboard::KeyCode::KEY_UP_ARROW:
+    this->environment->character->direction.x = Character::NONE;
+    this->environment->character->direction.z = Character::FORWARD;
+    break;
+    case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+    this->environment->character->direction.x = Character::NONE;
+    this->environment->character->direction.z = Character::BACK;
+    break;
+    case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+    this->environment->character->direction.x = Character::LEFT;
+    this->environment->character->direction.z = Character::NONE;
+    break;
+    case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+    this->environment->character->direction.x = Character::RIGHT;
+    this->environment->character->direction.z = Character::NONE;
+
+    break;
+
+    /**
+     *
      * @Development
      *
      */
     case EventKeyboard::KeyCode::KEY_SPACE:
     this->getPhysics3DWorld()->setDebugDrawEnable(!this->getPhysics3DWorld()->isDebugDrawEnabled());
+    //this->environment->onAction();
     break;
     case EventKeyboard::KeyCode::KEY_C:
     if(Director::getInstance()->getShadowTexture()->state->create)
@@ -443,8 +468,8 @@ void Game::updateStates(float time)
    *
    *
    */
-  cocos2d::experimental::FrameBuffer::clearAllFBOs();
-  Director::getInstance()->updateCapture();
+  //cocos2d::experimental::FrameBuffer::clearAllFBOs();
+  //Director::getInstance()->updateCapture();
 }
 
 /**

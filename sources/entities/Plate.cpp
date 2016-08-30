@@ -89,6 +89,175 @@ void Plate::onDestroy(bool action)
  *
  *
  */
+bool Plate::setNormal(bool normal)
+{
+  if(normal)
+  {
+    this->setScaleX(1.0);
+    this->setScaleY(random(0.1, 0.5));
+    this->setScaleZ(1.0);
+  }
+  else
+  {
+    this->setScaleX(2.0);
+    this->setScaleY(0.01);
+    this->setScaleZ(2.0);
+    //this->setColor(Color3B::RED);
+
+    /**
+     *
+     *
+     *
+     */
+    auto generator = Application->environment->generator;
+
+    auto x = this->getPositionX();
+    auto y = this->getPositionY();
+    auto z = this->getPositionZ();
+
+    int px = generator->x + Generator::POSITION_MAX;
+    int py = generator->y;
+    int pz = generator->z * -1;
+
+        Generator::Element element;
+
+        element.active = true;
+        element.normal = false;
+        element.element = this;
+
+    /**
+     *
+     *
+     *
+     */
+    switch((int) generator->direction.x)
+    {
+      case Generator::LEFT:
+      {
+        this->setColor(Color3B::MAGENTA);
+        this->setPosition(x - 0.5, y, z - 0.5);
+
+        generator->x--;
+
+        if(probably(50))
+        {
+          generator->z--;
+        }
+        else
+        {
+          if(generator->x <= Generator::POSITION_MIN)
+          {
+            generator->z--;
+          }
+          else
+          {
+            generator->z--;
+            generator->min.z++;
+          }
+        }
+
+        generator->elements[px][pz] = element;
+        generator->elements[px - 1][pz] = element;
+        generator->elements[px][pz + 1] = element;
+        generator->elements[px - 1][pz + 1] = element;
+      }
+      break;
+      case Generator::RIGHT:
+      {
+        this->setColor(Color3B::GREEN);
+        this->setPosition(x + 0.5, y, z - 0.5);
+
+        generator->x++;
+
+        if(probably(50))
+        {
+          generator->z--;
+        }
+        else
+        {
+          if(generator->x >= Generator::POSITION_MAX)
+          {
+            generator->z--;
+          }
+          else
+          {
+            generator->z--;
+            generator->min.z++;
+          }
+        }
+
+        generator->elements[px][pz] = element;
+        generator->elements[px + 1][pz] = element;
+        generator->elements[px][pz + 1] = element;
+        generator->elements[px + 1][pz + 1] = element;
+      }
+      break;
+    }
+
+    switch((int) generator->direction.z)
+    {
+      case Generator::FORWARD:
+      {
+        this->setColor(Color3B::RED);
+        this->setPosition(x + 0.5 * ((generator->x > 0) ? -1 : 1), y, z - 0.5);
+
+        generator->elements[px][pz] = element;
+        generator->elements[px + ((generator->x > 0) ? -1 : 1)][pz] = element;
+        generator->elements[px][pz + 1] = element;
+        generator->elements[px + ((generator->x > 0) ? -1 : 1)][pz + 1] = element;
+
+        generator->z--;
+            generator->min.z++;
+
+        {
+          if(generator->x > 0)
+          {
+            generator->x--;
+          }
+          else
+          {
+            generator->x++;
+          }
+        }
+      }
+      break;
+      case Generator::BACK:
+      this->setColor(Color3B::YELLOW);
+      break;
+    }
+  }
+
+  this->normal = normal;
+
+  return this->normal;
+}
+
+bool Plate::getNormal()
+{
+  return this->normal;
+}
+
+/**
+ *
+ *
+ *
+ */
+int Plate::setIndex(int index)
+{
+  this->index = index;
+  return this->index;
+}
+
+int Plate::getIndex()
+{
+  return this->index;
+}
+
+/**
+ *
+ *
+ *
+ */
 Plate* Plate::deepCopy()
 {
   return new Plate;

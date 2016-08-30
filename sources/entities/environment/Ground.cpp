@@ -29,22 +29,51 @@
  *
  */
 Ground::Ground(Node* parent)
-: Entity3D(parent, true)
+: Element(parent)
 {
+  this->initWithPhysics();
+  this->initWithBody();
+
   this->texture = new Entity("ground-texture.png", this, true);
-  this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
+  this->texture->getTexture()->generateMipmap();
+  this->texture->getTexture()->setTexParameters({GL_NEAREST_MIPMAP_LINEAR, GL_NEAREST_MIPMAP_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
-  this->texture->setOpacity(230);
+  this->texture->setOpacity(190);
   this->texture->setScale(0.002);
 
   this->setRotation(-90, 0, 0);
 
   this->setScheduleUpdate(true);
+  this->_create();
   this->update(0);
 }
 
 Ground::~Ground()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Ground::initWithPhysics()
+{
+  Physics3DRigidBodyDes fixture;
+
+  fixture.mass = 0.0;
+  fixture.shape = Physics3DShape::createBox(Vec3(10.0, 20.0, 0.0));
+
+  this->_physicsComponent = Physics3DComponent::create(Physics3DRigidBody::create(&fixture));
+  this->_physicsComponent->retain();
+
+  this->addComponent(this->_physicsComponent);
+}
+
+void Ground::initWithBody()
+{
+  this->getBody()->setRestitution(0.5);
+  this->getBody()->setFriction(1.0);
 }
 
 /**
@@ -63,5 +92,11 @@ void Ground::reset()
  */
 void Ground::update(float time)
 {
-  this->texture->setTextureRect(Rect(0, 0, 100000, 100000));
+  auto x = Application->getCamera()->getPositionX();
+  auto y = 0;
+  auto z = Application->getCamera()->getPositionZ() - 15.0;
+
+  this->setPosition(x, y, z);
+
+  this->texture->setTextureRect(Rect(x / 0.002, z / 0.002, 5000, 10000));
 }

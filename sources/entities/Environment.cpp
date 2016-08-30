@@ -47,12 +47,16 @@ void Environment::create()
   this->plane = new Entity3D(this, true);
   this->plane->setRotation3D(Vec3(0, 0, 0));
   this->plane->setPosition3D(Vec3(0, 0, 0));
+  //this->plane->setScale(0.25);
 
   /**
    *
    *
    *
    */
+  this->generator = new Generator;
+  this->character = new Character;
+
   this->plates = new Pool(new Plate, this->plane);
 
   /**
@@ -60,7 +64,6 @@ void Environment::create()
    *
    *
    */
-  new Ground2(this->plane);
   this->ground = new Ground(this->plane);
 
   /**
@@ -76,6 +79,8 @@ void Environment::create()
 
 void Environment::reset()
 {
+  this->character->reset();
+  this->generator->reset();
 }
 
 /**
@@ -85,6 +90,7 @@ void Environment::reset()
  */
 void Environment::onAction()
 {
+  this->character->onAction();
 }
 
 /**
