@@ -39,6 +39,14 @@ class Generator : public Ref
    *
    */
   public:
+  enum Direction {
+    NONE,
+    LEFT,
+    RIGHT,
+    FORWARD,
+    BACK
+  };
+
   const static int POSITION_MIN = -3;
   const static int POSITION_MAX = 3;
 
@@ -86,7 +94,7 @@ class Generator : public Ref
 
   virtual void reset();
 
-  virtual Plate* element(int x, int y, Plate* element = nullptr);
+  virtual Element* element(int x, int y, Plate* element = nullptr);
 };
 
 #endif

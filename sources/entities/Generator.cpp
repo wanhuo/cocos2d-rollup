@@ -56,6 +56,12 @@ void Generator::destroy()
  */
 void Generator::reset()
 {
+  this->x = 0;
+  this->y = 0;
+  this->z = 0;
+
+  this->direction.x = true;
+  this->direction.z = 
 }
 
 /**
@@ -63,6 +69,16 @@ void Generator::reset()
  *
  *
  */
-Plate* Generator::element(int y, int x)
+Generator::Element* Generator::element(int y, int x, Plate* element)
 {
+  if(element)
+  {
+    // TODO: Set element;
+  }
+  else
+  {
+    return this->elements[x][y];
+  }
+
+  return nullptr;
 }
