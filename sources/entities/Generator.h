@@ -42,6 +42,8 @@ class Generator : public Ref
   const static int POSITION_MIN = -3;
   const static int POSITION_MAX = 3;
 
+  const static int POSITION_SIZE = POSITION_MAX * 2 + 1;
+
   /**
    *
    *
@@ -55,7 +57,14 @@ class Generator : public Ref
    *
    */
   protected:
-  bool* elements[1][1];
+  struct Element {
+    bool active = false;
+    bool normal = true;
+
+    Plate* element;
+  };
+
+  Element* elements[POSITION_SIZE][10000];
 
   /**
    *
@@ -77,7 +86,7 @@ class Generator : public Ref
 
   virtual void reset();
 
-  virtual Plate* element(int x, int y);
+  virtual Plate* element(int x, int y, Plate* element = nullptr);
 };
 
 #endif

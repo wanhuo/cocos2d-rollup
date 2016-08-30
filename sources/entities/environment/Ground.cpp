@@ -37,10 +37,10 @@ Ground::Ground(Node* parent)
   this->texture->setOpacity(230);
   this->texture->setScale(0.002);
 
-  this->setRotation3D(Vec3(-90, 0, 0));
-  this->setGlobalZOrder(1000);
+  this->setRotation(-90, 0, 0);
 
   this->setScheduleUpdate(true);
+  this->update(0);
 }
 
 Ground::~Ground()

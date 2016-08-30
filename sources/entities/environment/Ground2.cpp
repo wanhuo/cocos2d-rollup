@@ -34,13 +34,13 @@ Ground2::Ground2(Node* parent)
   this->texture = new Entity("sphere-texture.png", this, true);
   this->texture->getTexture()->setTexParameters({GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT});
   this->texture->getTexture()->setAliasTexParameters();
+  this->texture->setGlobalZOrder(-1);
   this->texture->setScale(0.1);
 
   this->setRotation(-90, 0, 0);
-  this->setGlobalZOrder(-1);
-  this->texture->setGlobalZOrder(-1);
 
   this->setScheduleUpdate(true);
+  this->update(0);
 }
 
 Ground2::~Ground2()
