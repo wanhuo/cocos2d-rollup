@@ -46,8 +46,6 @@ class Character : public Element
    *
    */
   protected:
-  virtual void initWithPhysics() override;
-  virtual void initWithBody() override;
 
   /**
    *

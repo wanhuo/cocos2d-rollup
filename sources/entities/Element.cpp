@@ -34,16 +34,14 @@
  *
  *
  */
-Element::Element(const char* file, Node* parent, bool autocreate)
-: PhysicsEntity3D(file, parent, autocreate)
+Element::Element(const char* file, Node* parent)
+: Entity3D(file, parent)
 {
-  this->setScheduleUpdate(true);
 }
 
-Element::Element(Node* parent, bool autocreate)
-: PhysicsEntity3D("plate.obj", parent, autocreate)
+Element::Element(Node* parent)
+: Entity3D(parent)
 {
-  this->setScheduleUpdate(true);
 }
 
 Element::~Element()
@@ -57,12 +55,12 @@ Element::~Element()
  */
 void Element::onCreate()
 {
-  PhysicsEntity3D::onCreate();
+  Entity3D::onCreate();
 }
 
 void Element::onDestroy(bool action)
 {
-  PhysicsEntity3D::onDestroy(action);
+  Entity3D::onDestroy(action);
 }
 
 /**
@@ -72,12 +70,12 @@ void Element::onDestroy(bool action)
  */
 void Element::onEnter()
 {
-  PhysicsEntity3D::onEnter();
+  Entity3D::onEnter();
 }
 
 void Element::onExit()
 {
-  PhysicsEntity3D::onExit();
+  Entity3D::onExit();
 }
 
 /**
@@ -87,5 +85,5 @@ void Element::onExit()
  */
 void Element::update(float time)
 {
-  PhysicsEntity3D::update(time);
+  Entity3D::update(time);
 }

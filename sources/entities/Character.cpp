@@ -31,38 +31,11 @@
 Character::Character()
 : Element("character.obj", Application->environment->plane)
 {
-  this->initWithPhysics();
-  this->initWithBody();
-
   this->setTexture("character-texture.png");
 }
 
 Character::~Character()
 {
-}
-
-/**
- *
- *
- *
- */
-void Character::initWithPhysics()
-{
-  Physics3DRigidBodyDes fixture;
-
-  fixture.mass = 10.0;
-  fixture.shape = Physics3DShape::createSphere(0.25);
-
-  this->_physicsComponent = Physics3DComponent::create(Physics3DRigidBody::create(&fixture));
-  this->_physicsComponent->retain();
-
-  this->addComponent(this->_physicsComponent);
-}
-
-void Character::initWithBody()
-{
-  this->getBody()->setRestitution(0.5);
-  this->getBody()->setFriction(1.0);
 }
 
 /**
@@ -81,7 +54,6 @@ void Character::reset()
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
 
   this->stopAllActions();
-  this->syncNodeToPhysics();
 
   this->action = false;
 
@@ -243,11 +215,11 @@ void Character::onMove()
   Vec3 b;
 
   a.x = 0.5;
-  a.y = 0.3;
+  a.y = 0.9;
   a.z = 0.5;
   
   b.x = 0.5;
-  b.y =-0.3;
+  b.y =-0.9;
   b.z = 0.5;
 
   switch((int) this->direction.x)
@@ -291,8 +263,8 @@ void Character::onMove()
       {
         element.element->runAction(
           Sequence::create(
-            TintTo::create(0.0, Color3B(0, 0, 255)),
-            TintTo::create(0.1, Color3B(255, 255, 255)),
+            TintTo::create(0.0, Color3B(255, 255, 255)),
+            TintTo::create(0.1, Color3B(0, 150, 255)),
             nullptr
           )
         );
@@ -324,15 +296,10 @@ void Character::onMove()
  */
 void Character::onStart()
 {
-  this->getBody()->setLinearFactor(Vec3(0, 1, 0));
-  this->getBody()->setAngularFactor(Vec3(0, 0, 0));
 }
 
 void Character::onNormal()
 {
-  this->getBody()->setLinearFactor(Vec3(0, 0, 0));
-  this->getBody()->setAngularFactor(Vec3(0, 0, 0));
-
   this->runAction(
     RepeatForever::create(
       Sequence::create(

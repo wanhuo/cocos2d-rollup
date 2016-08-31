@@ -46,17 +46,14 @@ class Environment : public Background
    *
    *
    */
-  public:
-  Generator* generator;
-  Character* character;
+  private:
 
   /**
    *
    *
    *
    */
-  private:
-  Ground* ground;
+  protected:
 
   /**
    *
@@ -67,7 +64,14 @@ class Environment : public Background
   Environment(Node* parent);
  ~Environment();
 
+  Entity* background;
+  Entity* foreground;
+
   Entity3D* plane;
+  Entity3D* ground;
+
+  Generator* generator;
+  Character* character;
 
   Pool* plates;
 

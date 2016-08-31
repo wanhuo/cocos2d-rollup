@@ -47,7 +47,7 @@ class Generator : public Ref
     BACK
   };
 
-  const static int COUNT_START = 15;
+  const static int COUNT_START = 105;
   const static int COUNT_SPECIAL = 10;
 
   const static int MOVES_MIN_X = 3;

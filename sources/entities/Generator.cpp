@@ -271,8 +271,6 @@ Generator::Element Generator::element()
     
   this->special = COUNT_SPECIAL;
     plate->setNormal(false);
-
-  plate->syncNodeToPhysics();
   }
   else
   {
@@ -285,8 +283,6 @@ Generator::Element Generator::element()
   element.element = plate;
 
   this->elements[(int) index.x][(int) index.z] = element;
-
-  plate->syncNodeToPhysics();
 
   return this->elements[(int) index.x][(int) index.z];
   }

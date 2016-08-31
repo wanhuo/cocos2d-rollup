@@ -37,36 +37,14 @@
 Plate::Plate()
 : Element("plate.obj")
 {
-  this->initWithPhysics();
-  this->initWithBody();
+  this->setTexture("plate-texture.png");
+  //this->setOpacity(200);
+ // this->setCullFaceEnabled(false);
+ this->setColor(Color3B(0, 150, 255));
 }
 
 Plate::~Plate()
 {
-}
-
-/**
- *
- *
- *
- */
-void Plate::initWithPhysics()
-{
-  Physics3DRigidBodyDes fixture;
-
-  fixture.mass = 0;
-  fixture.shape = Physics3DShape::createBox(Vec3(1.0f, 1.0f, 1.0f));
-
-  this->_physicsComponent = Physics3DComponent::create(Physics3DRigidBody::create(&fixture));
-  this->_physicsComponent->retain();
-
-  this->addComponent(this->_physicsComponent);
-}
-
-void Plate::initWithBody()
-{
-  this->getBody()->setRestitution(1.0);
-  this->getBody()->setFriction(0.0);
 }
 
 /**
@@ -134,7 +112,7 @@ bool Plate::setNormal(bool normal)
     {
       case Generator::LEFT:
       {
-        this->setColor(Color3B::MAGENTA);
+        //this->setColor(Color3B::MAGENTA);
         this->setPosition(x - 0.5, y, z - 0.5);
 
         generator->x--;
@@ -164,7 +142,7 @@ bool Plate::setNormal(bool normal)
       break;
       case Generator::RIGHT:
       {
-        this->setColor(Color3B::GREEN);
+        //this->setColor(Color3B::GREEN);
         this->setPosition(x + 0.5, y, z - 0.5);
 
         generator->x++;
@@ -198,7 +176,7 @@ bool Plate::setNormal(bool normal)
     {
       case Generator::FORWARD:
       {
-        this->setColor(Color3B::RED);
+        //this->setColor(Color3B::RED);
         this->setPosition(x + 0.5 * ((generator->x > 0) ? -1 : 1), y, z - 0.5);
 
         generator->elements[px][pz] = element;
@@ -222,7 +200,7 @@ bool Plate::setNormal(bool normal)
       }
       break;
       case Generator::BACK:
-      this->setColor(Color3B::YELLOW);
+      //this->setColor(Color3B::YELLOW);
       break;
     }
   }

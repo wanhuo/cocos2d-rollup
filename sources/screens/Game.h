@@ -44,7 +44,6 @@
 #include "Element.h"
 #include "Plate.h"
 #include "Character.h"
-#include "Ground.h"
 
 #include "Environment.h"
 #include "Generator.h"
@@ -69,6 +68,18 @@ using namespace cocos2d::experimental;
  *
  *
  */
+enum Index {
+  NONE = 0,
+  ELEMENTS = 1,
+  BACKGROUND = 2,
+  FOREGROUND = 3
+};
+
+/**
+ *
+ *
+ *
+ */
 class Game : public Screen
 {
   /**
@@ -83,11 +94,19 @@ class Game : public Screen
   const static int FAR = 10000;
 
   struct Cameras {
-    Camera* defaultCamera;
-    Camera* shadowCastCamera;
-    Camera* frameBufferCamera;
-    Camera* captureBufferCamera;
+    Camera* cameraElements;
+    Camera* cameraBackground;
+    Camera* cameraForeground;
+    Camera* cameraShadows;
+    Camera* cameraCapture;
+    Camera* cameraBuffer;
   };
+
+  Vec3 startCameraPosition;
+  Vec3 startCameraRotation;
+
+  Vec3 startShadowsCameraPosition;
+  Vec3 startShadowsCameraRotation;
 
   /**
    *
@@ -120,6 +139,7 @@ class Game : public Screen
   State state = STATE_NONE;
 
   virtual Camera* getCamera();
+  virtual Camera* getShadowsCamera();
 
   virtual void onTouchStart(cocos2d::Touch* touch, Event* event);
   virtual void onTouchFinish(cocos2d::Touch* touch, Event* event);

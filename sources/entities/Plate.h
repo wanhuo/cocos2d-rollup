@@ -52,9 +52,6 @@ class Plate : public Element
    *
    */
   protected:
-  virtual void initWithPhysics() override;
-  virtual void initWithBody() override;
-
   int index;
 
   bool normal;

@@ -51,36 +51,68 @@ Game::Game()
 
   /**
    *
-   * Setup cameras
+   *
    *
    */
-  this->cameras.defaultCamera = Camera::createPerspective(50, this->getWidth() / this->getHeight(), 1, 100);
-  this->cameras.defaultCamera->setPosition(0, 14, 9);
-  this->cameras.defaultCamera->setRotation(-50, 0, 0);
+  this->startCameraPosition.x = 0.0;
+  this->startCameraPosition.y = 10.0;
+  this->startCameraPosition.z = 10.0;
 
-  this->cameras.shadowCastCamera = Camera::createOrthographic(this->getWidth() / 70, this->getHeight() / 70, 1, 100);
-  this->cameras.shadowCastCamera->setPosition(-10, 0.5, 10);
-  this->cameras.shadowCastCamera->setRotation(-10, -20, 0);
+  this->startCameraRotation.x = -40.0;
+  this->startCameraRotation.y = 0.0;
+  this->startCameraRotation.z = 0.0;
 
-  this->cameras.frameBufferCamera = Camera::create();
-  this->cameras.captureBufferCamera = Camera::create();
+  this->startShadowsCameraPosition.x = 0.0;
+  this->startShadowsCameraPosition.y = 0.0;
+  this->startShadowsCameraPosition.z = 0.0;
 
-  this->cameras.defaultCamera->setCameraFlag(1);
-  this->cameras.frameBufferCamera->setCameraFlag(2);
-  this->cameras.shadowCastCamera->setCameraFlag(1);
-  this->cameras.captureBufferCamera->setCameraFlag(2);
+  this->startShadowsCameraRotation.x = 0.0;
+  this->startShadowsCameraRotation.y = 0.0;
+  this->startShadowsCameraRotation.z = 0.0;
 
-  this->cameras.defaultCamera->setDepth(2);
-  this->cameras.frameBufferCamera->setDepth(3);
-  this->cameras.shadowCastCamera->setDepth(1);
-  this->cameras.captureBufferCamera->setDepth(4);
+  /**
+   *
+   *
+   *
+   */
+  this->cameras.cameraElements = Camera::createPerspective(60, this->getWidth() / this->getHeight(), 1, 100);
+  this->cameras.cameraElements->setPosition3D(this->startCameraPosition);
+  this->cameras.cameraElements->setRotation3D(this->startCameraRotation);
 
-  this->cameras.defaultCamera->setIndex(1);
-  this->cameras.frameBufferCamera->setIndex(3);
-  this->cameras.shadowCastCamera->setIndex(2);
-  this->cameras.captureBufferCamera->setIndex(4);
+  /*this->cameras.cameraShadows = Camera::createOrthographic(this->getWidth() / 70, this->getHeight() / 70, 1, 100);
+  this->cameras.cameraShadows->setPosition(-10, 0.5, 10);
+  this->cameras.cameraShadows->setRotation(-10, -20, 0);*/
 
-  this->addChild(this->cameras.defaultCamera);
+  this->cameras.cameraBackground = Camera::create();
+  this->cameras.cameraForeground = Camera::create();
+
+  //this->cameras.cameraBuffer = Camera::create();
+  //this->cameras.cameraCapture = Camera::create();
+
+  this->cameras.cameraElements->setCameraFlag(ELEMENTS);
+  this->cameras.cameraBackground->setCameraFlag(BACKGROUND);
+  this->cameras.cameraForeground->setCameraFlag(FOREGROUND);
+  //this->cameras.cameraBuffer->setCameraFlag(2);
+  //this->cameras.cameraShadows->setCameraFlag(1);
+  //this->cameras.cameraCapture->setCameraFlag(2);
+
+  this->cameras.cameraElements->setDepth(2);
+  this->cameras.cameraBackground->setDepth(1);
+  this->cameras.cameraForeground->setDepth(3);
+  /*this->cameras.cameraBuffer->setDepth(3);
+  this->cameras.cameraShadows->setDepth(1);
+  this->cameras.cameraCapture->setDepth(4);*/
+
+  this->cameras.cameraElements->setIndex(ELEMENTS);
+  this->cameras.cameraBackground->setIndex(BACKGROUND);
+  this->cameras.cameraForeground->setIndex(FOREGROUND);
+  /*this->cameras.cameraBuffer->setIndex(3);
+  this->cameras.cameraShadows->setIndex(2);
+  this->cameras.cameraCapture->setIndex(4);*/
+
+  this->addChild(this->cameras.cameraElements);
+  this->addChild(this->cameras.cameraBackground);
+  this->addChild(this->cameras.cameraForeground);
   //this->addChild(this->cameras.frameBufferCamera);
   //this->addChild(this->cameras.shadowCastCamera);
   //this->addChild(this->cameras.captureBufferCamera);
@@ -91,10 +123,10 @@ Game::Game()
    * | @Ambient;
    *
    */
-  Director::getInstance()->setAmbientColor1(255, 255, 255);
+  /*Director::getInstance()->setAmbientColor1(255, 255, 255);
   Director::getInstance()->setAmbientColor2(150, 150, 150);
   Director::getInstance()->setAmbientDirection(0, -1, 1);
-  Director::getInstance()->setAmbient(true, this);
+  Director::getInstance()->setAmbient(false, this);*/
 
   /**
    *
@@ -102,7 +134,7 @@ Game::Game()
    * | @Capture;
    *
    */
-  Director::getInstance()->setCaptureCamera(this->cameras.defaultCamera);
+  Director::getInstance()->setCaptureCamera(this->cameras.cameraElements);
   Director::getInstance()->setCaptureElement(new Entity(true));
   Director::getInstance()->setCaptureCount(60);
   Director::getInstance()->setCaptureTime(2);
@@ -110,7 +142,9 @@ Game::Game()
   Director::getInstance()->setCaptureSize(240, 240);
   Director::getInstance()->setCapturePosition(0, 0);
   Director::getInstance()->setCaptureScale(3);
-  Director::getInstance()->setCapture(false, this);
+  Director::getInstance()->setCapture(true, this);
+
+  Director::getInstance()->getCaptureTexture()->setCameraMask(FOREGROUND);
 
   /**
    *
@@ -118,9 +152,9 @@ Game::Game()
    * | @Shadows;
    *
    */
-  Director::getInstance()->setShadowCamera(this->cameras.shadowCastCamera);
+  /*Director::getInstance()->setShadowCamera(this->cameras.cameraShadows);
   Director::getInstance()->setShadowFactor(1);
-  Director::getInstance()->setShadow(false, this);
+  Director::getInstance()->setShadow(false, this);*/
 
   /**
    *
@@ -136,17 +170,7 @@ Game::Game()
    * | @Shadows;
    *
    */
-  Director::getInstance()->setShadowElement(this->environment->plane);
-
-  /**
-   *
-   *
-   *
-   */
-  if(this->initWithPhysics())
-  {
-    this->getPhysics3DWorld()->setGravity(Vec3(0, -50, 0));
-  }
+  //Director::getInstance()->setShadowElement(this->environment->plane);
 }
 
 Game::~Game()
@@ -160,7 +184,12 @@ Game::~Game()
  */
 Camera* Game::getCamera()
 {
-  return this->cameras.defaultCamera;
+  return this->cameras.cameraElements;
+}
+
+Camera* Game::getShadowsCamera()
+{
+  return this->cameras.cameraShadows;
 }
 
 /**
@@ -375,6 +404,13 @@ void Game::onRestorePurchases()
 void Game::onMenu()
 {
   this->environment->onMenu();
+
+  /**
+   *
+   *
+   *
+   */
+  Music->play("music-1", true);
 }
 
 void Game::onGame()
@@ -462,6 +498,8 @@ void Game::updateStates(float time)
     this->updateFinish(time);
     break;
   }
+
+  this->environment->update(time);
 
   /**
    *

@@ -45,42 +45,34 @@ Environment::~Environment()
 void Environment::create()
 {
   this->plane = new Entity3D(this, true);
-  this->plane->setRotation3D(Vec3(0, 0, 0));
-  this->plane->setPosition3D(Vec3(0, 0, 0));
-  //this->plane->setScale(0.25);
+  this->plane->setPosition(0, 0, 0);
+  this->plane->setRotation(0, 0, 0);
 
-  /**
-   *
-   *
-   *
-   */
+  this->ground = new Entity3D("plane.obj", this->plane, true);
+  this->ground->setPosition(0, 0, 0);
+  this->ground->setRotation(0, 0, 0);
+  this->ground->setColor(Color3B::BLUE);
+
+  this->background = new Entity("environments/1/background.png", this->plane, true);
+  this->background->setPosition(Application->getCenter());
+  this->background->setCameraMask(BACKGROUND);
+  this->background->setColor(Color3B::GREEN);
+
+  this->foreground = new Entity("environments/1/foreground.png", this, true);
+  this->foreground->setPosition(Application->getCenter());
+  this->foreground->setCameraMask(FOREGROUND);
+  this->foreground->setGlobalZOrder(10);
+
   this->generator = new Generator;
   this->character = new Character;
 
   this->plates = new Pool(new Plate, this->plane);
-
-  /**
-   *
-   *
-   *
-   */
-  this->ground = new Ground(this->plane);
-
-  /**
-   *
-   *
-   *
-   */
-  for(int i = 0; i < 1000; i++)
-  {
-    this->plates->_create()->setPosition(0, -10000, 0);
-  }
 }
 
 void Environment::reset()
 {
   this->character->reset();
-  this->generator->reset();
+  //this->generator->reset();
 }
 
 /**
