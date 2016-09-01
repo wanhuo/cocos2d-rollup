@@ -50,7 +50,7 @@ void Character::reset()
     this->_create();
   }
 
-  this->setPosition3D(Vec3(0.0, 2.5, 0.0));
+  this->setPosition3D(Vec3(0.0, 1.75, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
   this->setScale(0.5);
 
@@ -179,6 +179,14 @@ void Character::onMove()
       nullptr
     )
   );
+
+  /*this->runAction(
+    Sequence::create(
+      ScaleTo::create(0.15, 1.0),
+      ScaleTo::create(0.15, 0.5),
+      nullptr
+    )
+  );*/
 
   /**
    *

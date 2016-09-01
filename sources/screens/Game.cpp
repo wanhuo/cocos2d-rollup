@@ -126,7 +126,7 @@ Game::Game()
   Director::getInstance()->setAmbientColor1(255, 255, 255);
   Director::getInstance()->setAmbientColor2(150, 150, 150);
   Director::getInstance()->setAmbientDirection(0, -1, 1);
-  Director::getInstance()->setAmbient(false , this);
+  Director::getInstance()->setAmbient(true , this);
 
   /**
    *

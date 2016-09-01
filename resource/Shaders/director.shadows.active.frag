@@ -32,10 +32,12 @@ void main(void)
   float z = v_texPosition.z;
 
   float f = 1.0;
-  float b = 0.002;
+  float b = 0.0025;
 
-  if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
-    f = 0.8;
+  if(combinedColor.r > 0.75) {
+    if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
+      f = 0.8;
+    }
   }
 
   gl_FragColor = texture2D(CC_Texture0, TextureCoordOut) * u_color * vec4(f, f, f, 1.0);
