@@ -55,10 +55,10 @@ Game::Game()
    *
    */
   this->startCameraPosition.x = 0.0;
-  this->startCameraPosition.y = 10.0;
-  this->startCameraPosition.z = 5.0;
+  this->startCameraPosition.y = 8.0;
+  this->startCameraPosition.z = 7.0;
 
-  this->startCameraRotation.x = -50.0;
+  this->startCameraRotation.x = -40.0;
   this->startCameraRotation.y = 0.0;
   this->startCameraRotation.z = 0.0;
 

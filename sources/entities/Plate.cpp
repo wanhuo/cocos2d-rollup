@@ -37,6 +37,7 @@
 Plate::Plate()
 : Element("plate.obj")
 {
+  this->setCullFaceEnabled(true);
 }
 
 Plate::~Plate()

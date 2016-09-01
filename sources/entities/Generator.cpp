@@ -69,7 +69,7 @@ Plate* Generator::element(int index)
  *
  */
 void Generator::create(bool animation)
-{
+{bool test = false;
   auto elements = Application->environment->plates;
 
   /**
@@ -80,7 +80,7 @@ void Generator::create(bool animation)
   switch(this->direction)
   {
     case NONE:
-    this->parameters.rotation = random(-this->parameters.pullement, this->parameters.pullement);
+    this->parameters.rotation += random(-this->parameters.pullement, this->parameters.pullement);
     break;
     case RIGHT:
     case LEFT:
@@ -107,7 +107,7 @@ void Generator::create(bool animation)
    *
    */
   if((this->parameters.length.current > this->parameters.length.min && probably(this->parameters.probability)) || this->parameters.length.current >= this->parameters.length.max)
-  {
+  {test = true;
     this->direction = random(0, 2);
 
     switch(this->direction)
@@ -118,7 +118,7 @@ void Generator::create(bool animation)
       this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
       this->parameters.probability = random(0, 100);
 
-      this->parameters.escarpment = random(1.0, 1.2);
+      this->parameters.escarpment = random(0.5, 1.0);
       this->parameters.pullement = random(1.0, 40.0);
       break;
       case NONE:
@@ -170,6 +170,7 @@ void Generator::create(bool animation)
     current->rotation = this->rotation;
 
     current->start(animation);
+    if(test) current->setColor(Color3B::BLACK);
   }
 
   /**
