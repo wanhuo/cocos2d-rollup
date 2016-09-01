@@ -205,7 +205,17 @@ void Character::onMove()
          *
          *
          */
-        this->touch->_create();
+        this->touch->_create()->setOpacity(0);
+        this->touch->runAction(
+          Sequence::create(
+            FadeTo::create(0.1, 255),
+            FadeTo::create(0.2, 0),
+            CallFunc::create([=] () {
+            this->touch->_destroy(true);
+            }),
+            nullptr
+          )
+        );
       }),
       CallFunc::create([=] () {
 
@@ -351,6 +361,8 @@ void Character::updateStates(float time)
   {
     this->touch->setPosition3D(this->plates.current->getPosition3D());
     this->touch->setRotation3D(this->plates.current->getRotation3D());
+
+    this->touch->setPositionY(this->plates.current->getPositionY() + 1.5 * this->plates.current->getScaleY());
   }
 }
 
