@@ -9,6 +9,7 @@ uniform sampler2D transformTexture;
 varying vec3 v_texNormal;
 varying vec2 v_texCoord;
 varying vec4 v_texPosition;
+varying vec2 TextureCoordOut;
 
 vec3 computeLighting(vec3 normalVector, vec3 lightDirection, vec3 lightColor, float attenuation)
 {
@@ -31,12 +32,11 @@ void main(void)
   float z = v_texPosition.z;
 
   float f = 1.0;
-  float b = 0.0025;
+  float b = 0.002;
 
   if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
-    f = 0.5;
+    f = 0.8;
   }
 
-  //gl_FragColor = texture2D(CC_Texture0, v_texCoord) * u_color * combinedColor * vec4(f, f, f, 1.0);
-  gl_FragColor = texture2D(CC_Texture0, v_texCoord) * vec4(f, f, f, 1.0);
+  gl_FragColor = texture2D(CC_Texture0, TextureCoordOut) * u_color * vec4(f, f, f, 1.0);
 }

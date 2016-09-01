@@ -50,7 +50,7 @@ void Character::reset()
     this->_create();
   }
 
-  this->setPosition3D(Vec3(0.0, 1.5, 0.0));
+  this->setPosition3D(Vec3(0.0, 2.5, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
   this->setScale(0.5);
 
@@ -190,6 +190,10 @@ void Character::onMove()
   );
 
   Application->getCamera()->runAction(
+    MoveBy::create(0.3, Vec3(x, 0, z))
+  );
+
+  Application->getShadowsCamera()->runAction(
     MoveBy::create(0.3, Vec3(x, 0, z))
   );
 }

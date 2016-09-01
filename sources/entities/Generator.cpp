@@ -69,7 +69,7 @@ Plate* Generator::element(int index)
  *
  */
 void Generator::create(bool animation)
-{bool test = false;
+{
   auto elements = Application->environment->plates;
 
   /**
@@ -107,7 +107,7 @@ void Generator::create(bool animation)
    *
    */
   if((this->parameters.length.current > this->parameters.length.min && probably(this->parameters.probability)) || this->parameters.length.current >= this->parameters.length.max)
-  {test = true;
+  {
     this->direction = random(0, 2);
 
     switch(this->direction)
@@ -153,7 +153,8 @@ void Generator::create(bool animation)
   {
     if(animation)
     {
-      this->previous.rotation.y = -(22.5 - rotation * 2) - elements->last()->getRotation3D().y;
+      // TODO: Optimize this.
+      this->previous.rotation.y = this->element(this->index - 1) ? (-(22.5 - rotation * 2) - (this->element(this->index - 1)->getRotation3D().y)) : 0;
     }
 
     auto current = static_cast<Plate*>(elements->_create());
@@ -170,7 +171,6 @@ void Generator::create(bool animation)
     current->rotation = this->rotation;
 
     current->start(animation);
-    if(test) current->setColor(Color3B::BLACK);
   }
 
   /**

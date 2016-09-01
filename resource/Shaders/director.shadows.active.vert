@@ -10,6 +10,7 @@ varying vec4 v_texPosition;
 
 uniform mat4 cameraTransformMatrix;
 uniform mat4 modelTransformMatrix;
+varying vec2 TextureCoordOut;
 
 void main(void)
 {
@@ -22,4 +23,8 @@ void main(void)
   v_texPosition = transform / transform.w;
   v_texCoord = a_texCoord;
   v_texColor = a_color;
+
+  
+    TextureCoordOut = a_texCoord;
+    TextureCoordOut.y = 1.0 - TextureCoordOut.y;
 }

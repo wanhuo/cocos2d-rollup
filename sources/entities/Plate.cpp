@@ -106,13 +106,12 @@ void Plate::finish()
           ScaleTo::create(0.5, 1.0, 0.0, 1.0)
         ),
         DelayTime::create(1.0),
+        FadeOut::create(1.0),
+        DelayTime::create(1.0),
         CallFunc::create([=] () {
-        //this->_destroy(true);
+        this->_destroy(true);
         }),
         nullptr
-      ),
-      EaseSineIn::create(
-        FadeOut::create(0.5)
       ),
       nullptr
     )

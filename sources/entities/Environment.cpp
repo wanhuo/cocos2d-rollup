@@ -52,6 +52,7 @@ void Environment::create()
   this->ground->setPosition(0, 0, 0);
   this->ground->setRotation(0, 0, 0);
   this->ground->setScale(60.0);
+  this->ground->enableShadow(false);
 
   this->background = new Entity("environments/1/background.png", this, true);
   this->background->setPosition(Application->getCenter().x, Application->getCenter().y);
