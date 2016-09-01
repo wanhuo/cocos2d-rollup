@@ -51,12 +51,11 @@ void Environment::create()
   this->ground = new Entity3D("plane.obj", this->plane, true);
   this->ground->setPosition(0, 0, 0);
   this->ground->setRotation(0, 0, 0);
-  this->ground->setScale(10.5);
+  this->ground->setScale(5.0);
 
   this->background = new Entity("environments/1/background.png", this, true);
-  this->background->setPosition(Application->getCenter().x, Application->getCenter().y - 1280/2/2);
+  this->background->setPosition(Application->getCenter().x, Application->getCenter().y);
   this->background->setCameraMask(BACKGROUND);
-  this->background->setScaleY(1.5);
 
   this->generator = new Generator;
   this->character = new Character;
@@ -74,6 +73,7 @@ void Environment::reset()
   this->background->setTexture(this->getBackgroundTexture());
   this->ground->setTexture(this->getPlaneTexture());
 }
+
 /**
  *
  *

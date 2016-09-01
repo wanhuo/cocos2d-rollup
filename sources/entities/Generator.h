@@ -57,7 +57,7 @@ class Generator : public Ref
    *
    */
   public:
-  const static int COUNT_START = 10;
+  const static int COUNT_START = 6;
 
   Generator();
  ~Generator();

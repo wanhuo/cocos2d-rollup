@@ -43,6 +43,24 @@ Generator::~Generator()
  */
 Plate* Generator::element(int index)
 {
+  auto elements = Application->environment->plates;
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto el : *elements->elements)
+  {
+    auto element = static_cast<Plate*>(el);
+
+    if(element->index == index)
+    {
+      return element;
+    }
+  }
+
+  return nullptr;
 }
 
 /**

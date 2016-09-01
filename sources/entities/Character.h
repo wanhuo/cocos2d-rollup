@@ -59,14 +59,6 @@ class Character : public Element
     STATE_NORMAL
   };
 
-  enum Direction {
-    NONE,
-    LEFT,
-    RIGHT,
-    FORWARD,
-    BACK
-  };
-
   /**
    *
    *
