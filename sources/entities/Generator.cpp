@@ -64,19 +64,31 @@ void Generator::create()
     if(elements->count)
     {
       auto previous = elements->last();
+
+      auto px = previous->getPosition3D().x;
+      auto py = previous->getPosition3D().y;
+      auto pz = previous->getPosition3D().z;
+
+      auto rx = previous->getRotation3D().x;
+      auto ry = previous->getRotation3D().y;
+      auto rz = previous->getRotation3D().z;
+
+      /**
+       *
+       *
+       *
+       */
       auto current = static_cast<Plate*>(elements->_create());
 
-      auto pr = previous->getRotation3D().y;
-
-      auto rotation = 1.0;
+      auto rotation = 180+random(0.0, 45.0);
       auto r = 0.9;
 
-      auto x =  r * sin(CC_DEGREES_TO_RADIANS(rotation));
-      auto z =  r * cos(CC_DEGREES_TO_RADIANS(rotation));
+      auto x =  r * sin(CC_DEGREES_TO_RADIANS(rotation)) + px;
+      auto z =  r * cos(CC_DEGREES_TO_RADIANS(rotation)) + pz;
       auto y = 0;
 
       current->setPosition(x, y, z);
-      current->setRotation(0, - (22.5 - rotation * 2) - pr, 0);
+      current->setRotation(0, - (22.5 - rotation * 2) - ry, 0);
     }
     else
     {
