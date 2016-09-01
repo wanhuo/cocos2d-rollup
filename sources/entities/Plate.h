@@ -52,9 +52,6 @@ class Plate : public Element
    *
    */
   protected:
-  int index;
-
-  bool normal;
 
   /**
    *
@@ -65,14 +62,10 @@ class Plate : public Element
   Plate();
  ~Plate();
 
+  int index;
+
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
-
-  virtual bool setNormal(bool normal);
-  virtual bool getNormal();
-
-  virtual int setIndex(int index);
-  virtual int getIndex();
 
   virtual Plate* deepCopy() override;
 };

@@ -51,17 +51,13 @@ void Environment::create()
   this->ground = new Entity3D("plane.obj", this->plane, true);
   this->ground->setPosition(0, 0, 0);
   this->ground->setRotation(0, 0, 0);
-  this->ground->setColor(Color3B::BLUE);
+  this->ground->setColor(Color3B(47.0, 100.0, 140.0));
+  this->ground->setScale(10.5);
 
   this->background = new Entity("environments/1/background.png", this->plane, true);
-  this->background->setPosition(Application->getCenter());
+  this->background->setPosition(Application->getCenter().x, Application->getCenter().y - 1280/2/2);
   this->background->setCameraMask(BACKGROUND);
-  this->background->setColor(Color3B::GREEN);
-
-  this->foreground = new Entity("environments/1/foreground.png", this, true);
-  this->foreground->setPosition(Application->getCenter());
-  this->foreground->setCameraMask(FOREGROUND);
-  this->foreground->setGlobalZOrder(10);
+  this->background->setScaleY(1.5);
 
   this->generator = new Generator;
   this->character = new Character;
@@ -71,8 +67,32 @@ void Environment::create()
 
 void Environment::reset()
 {
+  this->texture = 1;
+
   this->character->reset();
-  //this->generator->reset();
+  this->generator->reset();
+
+  this->background->setTexture(this->getBackgroundTexture());
+  this->ground->setTexture(this->getPlaneTexture());
+}
+/**
+ *
+ *
+ *
+ */
+string Environment::getBackgroundTexture()
+{
+  return "environments/" + s(this->texture) + "/background.png";
+}
+
+string Environment::getPlaneTexture()
+{
+  return "environments/" + s(this->texture) + "/plane-texture.png";
+}
+
+string Environment::getPlateTexture()
+{
+  return "environments/" + s(this->texture) + "/plate-texture.png";
 }
 
 /**

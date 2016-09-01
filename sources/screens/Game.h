@@ -62,6 +62,7 @@ using namespace cocos2d::experimental;
  *
  */
 #define Application Game::getInstance()
+#define s patch::to_string
 
 /**
  *
@@ -71,8 +72,7 @@ using namespace cocos2d::experimental;
 enum Index {
   NONE = 0,
   ELEMENTS = 1,
-  BACKGROUND = 2,
-  FOREGROUND = 3
+  BACKGROUND = 2
 };
 
 /**
@@ -96,7 +96,6 @@ class Game : public Screen
   struct Cameras {
     Camera* cameraElements;
     Camera* cameraBackground;
-    Camera* cameraForeground;
     Camera* cameraShadows;
     Camera* cameraCapture;
     Camera* cameraBuffer;

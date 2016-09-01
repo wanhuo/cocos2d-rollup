@@ -64,8 +64,9 @@ class Environment : public Background
   Environment(Node* parent);
  ~Environment();
 
+  int texture;
+
   Entity* background;
-  Entity* foreground;
 
   Entity3D* plane;
   Entity3D* ground;
@@ -77,6 +78,10 @@ class Environment : public Background
 
   virtual void create();
   virtual void reset();
+
+  virtual string getBackgroundTexture();
+  virtual string getPlaneTexture();
+  virtual string getPlateTexture();
 
   virtual void onAction();
 

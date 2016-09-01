@@ -41,165 +41,50 @@ Generator::~Generator()
  *
  *
  */
-static int TEST_BACK_DIRECTION;
-static int TEST_BACK_LENGTH_X;
-static int TEST_BACK_LENGTH_Z;
-static int TEST_BACK_MIN_Z;
+Plate* Generator::element(int index)
+{
+}
+
+/**
+ *
+ *
+ *
+ */
 void Generator::create()
 {
-  auto element = this->element();
-
-  /**
-   *
-   * Принимаем решение.
-   *
-   */
-  switch((int) this->direction.x)
+  if(true)
   {
-    case LEFT:
-    if(this->x <= POSITION_MIN || (this->moves.x >= this->min.x && probably(25)))
+    auto elements = Application->environment->plates;
+
+    /**
+     *
+     *
+     *
+     */
+    if(elements->count)
     {
-      ///////////////
-      bool test = true;
-      int length = random(2, 5);
+      auto previous = elements->last();
+      auto current = static_cast<Plate*>(elements->_create());
 
-      // проверяем назад
-      int x = this->x;
-      int z = this->z;
+      auto pr = previous->getRotation3D().y;
 
-      for(int i = 0; i < length; i++)
-      {
-        if(this->element(x, z + i + 3).active || z > 0)
-        {
-          test = false;
-        }
-      }
+      auto rotation = 1.0;
+      auto r = 0.9;
 
-      // проверяем справа
-      x = this->x + 1;
-      z = this->z;
+      auto x =  r * sin(CC_DEGREES_TO_RADIANS(rotation));
+      auto z =  r * cos(CC_DEGREES_TO_RADIANS(rotation));
+      auto y = 0;
 
-      for(int i = 0; i < length; i++)
-      {
-        if(this->element(x, z + i + 1).active || z > 0)
-        {
-          test = false;
-        }
-      }
-
-      // проверяем слева
-      x = this->x - length;
-      z = this->z;
-
-      for(int i = 0; i < length; i++)
-      {
-        if(this->element(x, z + i + 1).active || z > 0 || x < POSITION_MIN)
-        {
-          test = false;
-        }
-      }
-
-      if(test)
-      {
-        if(element.element)
-        {
-          element.element->setColor(Color3B::BLUE);
-        }
-
-        TEST_BACK_DIRECTION = LEFT;
-      }
-      /////////////////
-
-      this->direction.x = NONE;
-      this->direction.z = test ? BACK : FORWARD;
-
-      this->moves.x = 0;
-      this->moves.z = 0;
-      
-
-  this->min.x = MOVES_MIN_X;
-  this->min.z = MOVES_MIN_Z;
-
-      if(test)
-      {
-        TEST_BACK_MIN_Z = length;
-      }
+      current->setPosition(x, y, z);
+      current->setRotation(0, - (22.5 - rotation * 2) - pr, 0);
     }
-    break;
-    case RIGHT:
-    if(this->x >= POSITION_MAX || (this->moves.x >= this->min.x && probably(25)))
+    else
     {
-      this->direction.x = NONE;
-      this->direction.z = FORWARD;
+      auto current = static_cast<Plate*>(elements->_create());
 
-      this->moves.x = 0;
-      this->moves.z = 0;
-
-  this->min.x = MOVES_MIN_X;
-  this->min.z = MOVES_MIN_Z;
+      current->setPosition(0, 0, 0);
+      current->setRotation(0, 0, 0);
     }
-    break;
-  }
-
-  switch((int) this->direction.z)
-  {
-    case FORWARD:
-    if(this->moves.z >= this->min.z + TEST_BACK_MIN_Z)
-    {
-      this->direction.x = (this->x > 0) ? LEFT : RIGHT;
-      this->direction.z = NONE;
-
-      this->moves.x = 0;
-      this->moves.z = 0;
-
-  this->min.x = MOVES_MIN_X;
-  this->min.z = MOVES_MIN_Z;
-
-      TEST_BACK_MIN_Z = 0;
-    }
-    break;
-    case BACK:
-    if(this->moves.z >= this->min.z)
-    {
-      this->direction.x = TEST_BACK_DIRECTION;
-      this->direction.z = NONE;
-
-      this->moves.x = 0;
-      this->moves.z = 0;
-
-  this->min.x = MOVES_MIN_X;
-  this->min.z = MOVES_MIN_Z;
-    }
-    break;
-  }
-
-  /**
-   *
-   * Обрабатываем принятое решение.
-   *
-   */
-  switch((int) this->direction.x)
-  {
-    case LEFT:
-    this->x--;
-    this->moves.x++;
-    break;
-    case RIGHT:
-    this->x++;
-    this->moves.x++;
-    break;
-  }
-
-  switch((int) this->direction.z)
-  {
-    case FORWARD:
-    this->z--;
-    this->moves.z++;
-    break;
-    case BACK:
-    this->z++;
-    this->moves.z++;
-    break;
   }
 }
 
@@ -214,21 +99,7 @@ void Generator::destroy()
  */
 void Generator::reset()
 {
-  this->special = COUNT_SPECIAL;
   this->index = 0;
-
-  this->x = 0;
-  this->y = 0;
-  this->z = 0;
-
-  this->direction.x = RIGHT;
-  this->direction.z = NONE;
-
-  this->moves.x = 0;
-  this->moves.z = 0;
-
-  this->min.x = MOVES_MIN_X;
-  this->min.z = MOVES_MIN_Z;
 
   /**
    *
@@ -239,68 +110,4 @@ void Generator::reset()
   {
     this->create();
   }
-}
-
-/**
- *
- *
- *
- */
-Generator::Element Generator::element()
-{
-  Vec3 index;
-
-  index.x = this->x + POSITION_MAX;
-  index.z = this->z * -1;
-
-  /**
-   *
-   *
-   *
-   */
-  this->special--;
-
-  auto plate = static_cast<Plate*>(Application->environment->plates->_create());
-
-  plate->setPosition(this->x, this->y, this->z);
-  plate->setRotation(0, 0, 0);
-  //plate->setIndex(?);
-
-  if(this->special < 0 && probably(50))
-  {
-    
-  this->special = COUNT_SPECIAL;
-    plate->setNormal(false);
-  }
-  else
-  {
-    plate->setNormal(true);
-
-  Element element;
-
-  element.active = true;
-  element.normal = plate->getNormal();
-  element.element = plate;
-
-  this->elements[(int) index.x][(int) index.z] = element;
-
-  return this->elements[(int) index.x][(int) index.z];
-  }
-
-  //return nullptr;
-}
-
-Generator::Element Generator::element(int x, int z)
-{
-  Vec3 index;
-
-  index.x = x + POSITION_MAX;
-  index.z = z * -1;
-
-  /**
-   *
-   *
-   *
-   */
-  return this->elements[(int) index.x][(int) index.z];
 }

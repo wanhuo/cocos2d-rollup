@@ -38,25 +38,14 @@ class Generator : public Ref
    *
    *
    */
-  public:
-  enum Direction {
-    NONE,
-    LEFT,
-    RIGHT,
-    FORWARD,
-    BACK
-  };
+  private:
 
-  const static int COUNT_START = 105;
-  const static int COUNT_SPECIAL = 10;
-
-  const static int MOVES_MIN_X = 3;
-  const static int MOVES_MIN_Z = 3;
-
-  const static int POSITION_MIN = -10;
-  const static int POSITION_MAX = 10;
-
-  const static int POSITION_SIZE = POSITION_MAX * 2 + 1;
+  /**
+   *
+   *
+   *
+   */
+  protected:
 
   /**
    *
@@ -64,42 +53,19 @@ class Generator : public Ref
    *
    */
   public:
-  struct Element {
-    bool active = false;
-    bool normal = true;
+  const static int COUNT_START = 10;
 
-    Plate* element;
-  };
-
-  Element elements[POSITION_SIZE][10000];
-
-  /**
-   *
-   *
-   *
-   */
-  public:
   Generator();
  ~Generator();
 
   int index;
-  int special;
 
-  int x;
-  int y;
-  int z;
-
-  Vec3 direction;
-  Vec3 moves;
-  Vec3 min;
+  virtual Plate* element(int index);
 
   virtual void create();
   virtual void destroy();
 
   virtual void reset();
-
-  virtual Element element();
-  virtual Element element(int x, int z);
 };
 
 #endif

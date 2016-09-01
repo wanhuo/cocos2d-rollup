@@ -56,9 +56,9 @@ Game::Game()
    */
   this->startCameraPosition.x = 0.0;
   this->startCameraPosition.y = 10.0;
-  this->startCameraPosition.z = 10.0;
+  this->startCameraPosition.z = 5.0;
 
-  this->startCameraRotation.x = -40.0;
+  this->startCameraRotation.x = -50.0;
   this->startCameraRotation.y = 0.0;
   this->startCameraRotation.z = 0.0;
 
@@ -84,35 +84,30 @@ Game::Game()
   this->cameras.cameraShadows->setRotation(-10, -20, 0);*/
 
   this->cameras.cameraBackground = Camera::create();
-  this->cameras.cameraForeground = Camera::create();
 
   //this->cameras.cameraBuffer = Camera::create();
   //this->cameras.cameraCapture = Camera::create();
 
   this->cameras.cameraElements->setCameraFlag(ELEMENTS);
   this->cameras.cameraBackground->setCameraFlag(BACKGROUND);
-  this->cameras.cameraForeground->setCameraFlag(FOREGROUND);
   //this->cameras.cameraBuffer->setCameraFlag(2);
   //this->cameras.cameraShadows->setCameraFlag(1);
   //this->cameras.cameraCapture->setCameraFlag(2);
 
-  this->cameras.cameraElements->setDepth(2);
-  this->cameras.cameraBackground->setDepth(1);
-  this->cameras.cameraForeground->setDepth(3);
+  this->cameras.cameraElements->setDepth(1);
+  this->cameras.cameraBackground->setDepth(2);
   /*this->cameras.cameraBuffer->setDepth(3);
   this->cameras.cameraShadows->setDepth(1);
   this->cameras.cameraCapture->setDepth(4);*/
 
   this->cameras.cameraElements->setIndex(ELEMENTS);
   this->cameras.cameraBackground->setIndex(BACKGROUND);
-  this->cameras.cameraForeground->setIndex(FOREGROUND);
   /*this->cameras.cameraBuffer->setIndex(3);
   this->cameras.cameraShadows->setIndex(2);
   this->cameras.cameraCapture->setIndex(4);*/
 
   this->addChild(this->cameras.cameraElements);
   this->addChild(this->cameras.cameraBackground);
-  this->addChild(this->cameras.cameraForeground);
   //this->addChild(this->cameras.frameBufferCamera);
   //this->addChild(this->cameras.shadowCastCamera);
   //this->addChild(this->cameras.captureBufferCamera);
@@ -142,9 +137,7 @@ Game::Game()
   Director::getInstance()->setCaptureSize(240, 240);
   Director::getInstance()->setCapturePosition(0, 0);
   Director::getInstance()->setCaptureScale(3);
-  Director::getInstance()->setCapture(true, this);
-
-  Director::getInstance()->getCaptureTexture()->setCameraMask(FOREGROUND);
+  Director::getInstance()->setCapture(false, this);
 
   /**
    *
