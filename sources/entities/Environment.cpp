@@ -54,7 +54,7 @@ void Environment::create()
   this->ground->setColor(Color3B(255, 255, 255));
   this->ground->setScale(10.5);
 
-  this->background = new Entity("environments/1/background.png", this->plane, true);
+  this->background = new Entity("environments/1/background.png", this, true);
   this->background->setPosition(Application->getCenter().x, Application->getCenter().y - 1280/2/2);
   this->background->setCameraMask(BACKGROUND);
   this->background->setScaleY(1.5);
@@ -67,9 +67,9 @@ void Environment::create()
 
 void Environment::reset()
 {
-  this->texture = 1;
+  this->texture = 3;
 
-  //this->character->reset();
+  this->character->reset();
   this->generator->reset();
 
   this->background->setTexture(this->getBackgroundTexture());

@@ -46,6 +46,10 @@ class Generator : public Ref
    *
    */
   protected:
+  struct Previous {
+    Vec3 position;
+    Vec3 rotation;
+  };
 
   /**
    *
@@ -60,6 +64,8 @@ class Generator : public Ref
 
   int index;
   int rotation;
+
+  Previous previous;
 
   virtual Plate* element(int index);
 

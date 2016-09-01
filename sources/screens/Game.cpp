@@ -62,11 +62,11 @@ Game::Game()
   this->startCameraRotation.y = 0.0;
   this->startCameraRotation.z = 0.0;
 
-  this->startShadowsCameraPosition.x = 0.0;
-  this->startShadowsCameraPosition.y = 0.0;
-  this->startShadowsCameraPosition.z = 0.0;
+  this->startShadowsCameraPosition.x = -5.0;
+  this->startShadowsCameraPosition.y = 10.0;
+  this->startShadowsCameraPosition.z = 5.0;
 
-  this->startShadowsCameraRotation.x = 0.0;
+  this->startShadowsCameraRotation.x = -90.0;
   this->startShadowsCameraRotation.y = 0.0;
   this->startShadowsCameraRotation.z = 0.0;
 
@@ -79,9 +79,9 @@ Game::Game()
   this->cameras.cameraElements->setPosition3D(this->startCameraPosition);
   this->cameras.cameraElements->setRotation3D(this->startCameraRotation);
 
-  /*this->cameras.cameraShadows = Camera::createOrthographic(this->getWidth() / 70, this->getHeight() / 70, 1, 100);
-  this->cameras.cameraShadows->setPosition(-10, 0.5, 10);
-  this->cameras.cameraShadows->setRotation(-10, -20, 0);*/
+  this->cameras.cameraShadows = Camera::createOrthographic(this->getWidth() / 70, this->getHeight() / 70, 1, 100);
+  this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
+  this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
 
   this->cameras.cameraBackground = Camera::create();
 
@@ -91,7 +91,7 @@ Game::Game()
   this->cameras.cameraElements->setCameraFlag(ELEMENTS);
   this->cameras.cameraBackground->setCameraFlag(BACKGROUND);
   //this->cameras.cameraBuffer->setCameraFlag(2);
-  //this->cameras.cameraShadows->setCameraFlag(1);
+  this->cameras.cameraShadows->setCameraFlag(1);
   //this->cameras.cameraCapture->setCameraFlag(2);
 
   this->cameras.cameraElements->setDepth(1);
@@ -102,14 +102,14 @@ Game::Game()
 
   this->cameras.cameraElements->setIndex(ELEMENTS);
   this->cameras.cameraBackground->setIndex(BACKGROUND);
-  /*this->cameras.cameraBuffer->setIndex(3);
-  this->cameras.cameraShadows->setIndex(2);
-  this->cameras.cameraCapture->setIndex(4);*/
+  //this->cameras.cameraBuffer->setIndex(3);
+  this->cameras.cameraShadows->setIndex(3);
+  //this->cameras.cameraCapture->setIndex(4);
 
   this->addChild(this->cameras.cameraElements);
   this->addChild(this->cameras.cameraBackground);
   //this->addChild(this->cameras.frameBufferCamera);
-  //this->addChild(this->cameras.shadowCastCamera);
+  //this->addChild(this->cameras.cameraShadows);
   //this->addChild(this->cameras.captureBufferCamera);
 
   /**
@@ -118,10 +118,10 @@ Game::Game()
    * | @Ambient;
    *
    */
-  /*Director::getInstance()->setAmbientColor1(255, 255, 255);
+  Director::getInstance()->setAmbientColor1(255, 255, 255);
   Director::getInstance()->setAmbientColor2(150, 150, 150);
   Director::getInstance()->setAmbientDirection(0, -1, 1);
-  Director::getInstance()->setAmbient(false, this);*/
+  Director::getInstance()->setAmbient(false , this);
 
   /**
    *
@@ -145,9 +145,9 @@ Game::Game()
    * | @Shadows;
    *
    */
-  /*Director::getInstance()->setShadowCamera(this->cameras.cameraShadows);
+  Director::getInstance()->setShadowCamera(this->cameras.cameraShadows);
   Director::getInstance()->setShadowFactor(1);
-  Director::getInstance()->setShadow(false, this);*/
+  Director::getInstance()->setShadow(false, this);
 
   /**
    *
@@ -163,7 +163,7 @@ Game::Game()
    * | @Shadows;
    *
    */
-  //Director::getInstance()->setShadowElement(this->environment->plane);
+  Director::getInstance()->setShadowElement(this->environment->plane);
 }
 
 Game::~Game()
@@ -276,10 +276,11 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
      *
      */
     case EventKeyboard::KeyCode::KEY_SPACE:
-    this->getPhysics3DWorld()->setDebugDrawEnable(!this->getPhysics3DWorld()->isDebugDrawEnabled());
     //this->environment->onAction();
     break;
     case EventKeyboard::KeyCode::KEY_C:
+    Director::getInstance()->getShadowTexture()->setCameraMask(BACKGROUND);
+    Director::getInstance()->getShadowTexture()->setPositionX(100);
     if(Director::getInstance()->getShadowTexture()->state->create)
     {
       Director::getInstance()->getShadowTexture()->_destroy();
