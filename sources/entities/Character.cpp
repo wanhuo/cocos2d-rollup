@@ -50,7 +50,7 @@ void Character::reset()
     this->_create();
   }
 
-  this->setPosition3D(Vec3(0.0, 1.0, 0.0));
+  this->setPosition3D(Vec3(0.0, 1.5, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
   this->setScale(0.5);
 

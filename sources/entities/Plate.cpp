@@ -84,13 +84,13 @@ void Plate::start(bool animation)
 
     this->runAction(
       EaseSineOut::create(
-        ScaleTo::create(0.5, 1.0, 1.0, 1.0)
+        ScaleTo::create(0.5, 1.0, 1.5, 1.0)
       )
     );
   }
   else
   {
-    this->setScaleY(1.0);
+    this->setScaleY(1.5);
   }
 }
 

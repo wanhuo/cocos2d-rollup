@@ -87,15 +87,15 @@ void Generator::create(bool animation)
     auto rotation = 0.0;
 
     this->parameters.pullement *= this->parameters.escarpment;
-    rotation += this->parameters.pullement;
+    rotation = this->parameters.pullement;
 
     switch(this->direction)
     {
       case RIGHT:
-      this->parameters.rotation = rotation;
+      this->parameters.rotation += rotation;
       break;
       case LEFT:
-      this->parameters.rotation = rotation;
+      this->parameters.rotation -= rotation;
       break;
     }
     break;
