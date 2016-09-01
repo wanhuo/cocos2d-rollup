@@ -29,9 +29,19 @@
  *
  */
 Character::Character()
-: Element("character.obj", Application->environment->plane)
+: Element("character.obj")
 {
   this->setTexture("characters/1/texture.png");
+
+  this->touch = new Entity3D("touch.obj", Application->environment->plane);
+  this->touch->enableShadow(false);
+  this->touch->enableLight(false);
+
+  this->plane = new Entity3D(Application->environment->plane, true);
+  this->plane->enableShadow(true);
+  this->plane->addChild(this);
+
+  this->setScheduleUpdate(true);
 }
 
 Character::~Character()
@@ -50,9 +60,11 @@ void Character::reset()
     this->_create();
   }
 
-  this->setPosition3D(Vec3(0.0, 1.75, 0.0));
+  this->plane->setPosition3D(Vec3(0.0, 1.5, 0.0));
+  this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
+
+  this->setPosition3D(Vec3(0.0, 0.375 / 2, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
-  this->setScale(0.5);
 
   this->stopAllActions();
 
@@ -144,13 +156,15 @@ void Character::onMove()
    */
   auto element = Application->environment->generator->element(this->index);
 
-  auto x = element->getPositionX() - this->getPositionX();
-  auto z = element->getPositionZ() - this->getPositionZ();
-  auto y = 0.5;
+  auto x = element->getPositionX() - this->plane->getPositionX();
+  auto z = element->getPositionZ() - this->plane->getPositionZ();
+  auto y = 0.75;
 
-  this->runAction(
+  auto time = 0.2;
+
+  this->plane->runAction(
     Sequence::create(
-      MoveBy::create(0.15, Vec3(x / 2, y, z / 2)),
+      MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
       CallFunc::create([=] () {
 
         /**
@@ -163,7 +177,36 @@ void Character::onMove()
           Application->environment->generator->create(true);
         }
       }),
-      MoveBy::create(0.15, Vec3(x / 2, -y, z / 2)),
+      MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
+      CallFunc::create([=] () {
+
+        /**
+         *
+         *
+         *
+         */
+        this->plane->runAction(
+          Sequence::create(
+            ScaleTo::create(0.1, 1.1, 0.7, 1.1),
+            ScaleTo::create(0.13, 1.0, 1.0, 1.0),
+            nullptr
+          )
+        );
+
+        /**
+         *
+         *
+         *
+         */
+        this->plates.current = element;
+
+        /**
+         *
+         *
+         *
+         */
+        this->touch->_create();
+      }),
       CallFunc::create([=] () {
 
         /**
@@ -180,10 +223,22 @@ void Character::onMove()
     )
   );
 
+  this->plane->runAction(
+    Sequence::create(
+      EaseSineOut::create(
+        MoveBy::create(time, Vec3(0, y, 0))
+      ),
+      EaseSineIn::create(
+        MoveBy::create(time, Vec3(0, -y, 0))
+      ),
+      nullptr
+    )
+  );
+
   /*this->runAction(
     Sequence::create(
-      ScaleTo::create(0.15, 1.0),
-      ScaleTo::create(0.15, 0.5),
+      ScaleTo::create(time, 1.0),
+      ScaleTo::create(time, 0.5),
       nullptr
     )
   );*/
@@ -194,15 +249,15 @@ void Character::onMove()
    *
    */
   Application->environment->ground->runAction(
-    MoveBy::create(0.3, Vec3(x, 0, z))
+    MoveBy::create(time * 2, Vec3(x, 0, z))
   );
 
   Application->getCamera()->runAction(
-    MoveBy::create(0.3, Vec3(x, 0, z))
+    MoveBy::create(time * 2, Vec3(x, 0, z))
   );
 
   Application->getShadowsCamera()->runAction(
-    MoveBy::create(0.3, Vec3(x, 0, z))
+    MoveBy::create(time * 2, Vec3(x, 0, z))
   );
 }
 
@@ -223,7 +278,7 @@ void Character::onNormal()
         CallFunc::create([=] () {
         this->onMove();
         }),
-        DelayTime::create(0.3),
+        DelayTime::create(0.2 * 2),
         nullptr
       )
     )
@@ -285,6 +340,17 @@ void Character::updateStates(float time)
     case STATE_NORMAL:
     this->updateNormal(time);
     break;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->touch->state->create)
+  {
+    this->touch->setPosition3D(this->plates.current->getPosition3D());
+    this->touch->setRotation3D(this->plates.current->getRotation3D());
   }
 }
 

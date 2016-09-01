@@ -40,5 +40,5 @@ void main(void)
     }
   }
 
-  gl_FragColor = texture2D(CC_Texture0, TextureCoordOut) * u_color * vec4(f, f, f, 1.0);
+  gl_FragColor = texture2D(CC_Texture0, TextureCoordOut) * u_color* vec4(f, f, f, 1.0);// * combinedColor 
 }

@@ -67,7 +67,7 @@ void Environment::create()
 
 void Environment::reset()
 {
-  this->texture = 1;
+  this->texture = 7;
 
   this->character->reset();
   this->generator->reset();

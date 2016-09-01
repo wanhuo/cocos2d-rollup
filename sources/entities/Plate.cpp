@@ -37,6 +37,9 @@
 Plate::Plate()
 : Element("plate.obj")
 {
+  this->enableShadow(true);
+  this->enableLight(false);
+
   this->setCullFaceEnabled(true);
 }
 
@@ -93,21 +96,25 @@ void Plate::start(bool animation)
   }
   else
   {
-    this->setScaleY(1.5);
+    this->setScaleY(1.0);
   }
 }
 
 void Plate::finish()
 {
+  // TODO: Ахтунг!! Тут какая-то лажа происходит!
   this->runAction(
     Spawn::create(
       Sequence::create(
         EaseSineIn::create(
           ScaleTo::create(0.5, 1.0, 0.0, 1.0)
         ),
+        nullptr
+      ),
+      Sequence::create(
         DelayTime::create(1.0),
-        FadeOut::create(1.0),
-        DelayTime::create(1.0),
+        FadeTo::create(1.0, 0.0),
+        DelayTime::create(10.0),
         CallFunc::create([=] () {
         this->_destroy(true);
         }),

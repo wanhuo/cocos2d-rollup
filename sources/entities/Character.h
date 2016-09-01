@@ -39,6 +39,8 @@ class Character : public Element
    *
    */
   private:
+  Entity3D* plane;
+  Entity3D* touch;
 
   /**
    *
@@ -46,6 +48,9 @@ class Character : public Element
    *
    */
   protected:
+  struct Plates {
+    Plate* current;
+  };
 
   /**
    *
@@ -69,6 +74,8 @@ class Character : public Element
  ~Character();
 
   State state = STATE_NONE;
+
+  Plates plates;
 
   int index;
   int action;

@@ -90,14 +90,14 @@ Game::Game()
   //this->cameras.cameraCapture = Camera::create();
 
   this->cameras.cameraElements->setCameraFlag(ELEMENTS);
+  this->cameras.cameraShadows->setCameraFlag(ELEMENTS);
   this->cameras.cameraForeground->setCameraFlag(FOREGROUND);
   this->cameras.cameraBackground->setCameraFlag(BACKGROUND);
   //this->cameras.cameraBuffer->setCameraFlag(2);
-  this->cameras.cameraShadows->setCameraFlag(1);
   //this->cameras.cameraCapture->setCameraFlag(2);
 
   this->cameras.cameraElements->setDepth(1);
-  this->cameras.cameraForeground->setDepth(2);
+  this->cameras.cameraForeground->setDepth(3);
   this->cameras.cameraBackground->setDepth(2);
   /*this->cameras.cameraBuffer->setDepth(3);
   this->cameras.cameraShadows->setDepth(1);
@@ -145,6 +145,7 @@ Game::Game()
   Director::getInstance()->setCapture(true, this);
 
   //Director::getInstance()->getCaptureTexture()->setCameraMask(FOREGROUND);
+
   this->cameras.cameraBackground->setFrameBufferObject(Director::getInstance()->getCaptureFrameBuffer());
 
   /**
