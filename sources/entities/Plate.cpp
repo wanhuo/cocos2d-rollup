@@ -72,6 +72,8 @@ void Plate::onDestroy(bool action)
  */
 void Plate::start(bool animation)
 {
+  this->setOpacity(255);
+
   this->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, Vec3(0, 90 * (this->rotation == LEFT ? -1 : 1), 0))
@@ -92,6 +94,28 @@ void Plate::start(bool animation)
   {
     this->setScaleY(1.5);
   }
+}
+
+void Plate::finish()
+{
+  this->runAction(
+    Spawn::create(
+      Sequence::create(
+        EaseSineIn::create(
+          ScaleTo::create(0.5, 1.0, 0.0, 1.0)
+        ),
+        DelayTime::create(1.0),
+        CallFunc::create([=] () {
+        //this->_destroy(true);
+        }),
+        nullptr
+      ),
+      EaseSineIn::create(
+        FadeOut::create(0.5)
+      ),
+      nullptr
+    )
+  );
 }
 
 /**

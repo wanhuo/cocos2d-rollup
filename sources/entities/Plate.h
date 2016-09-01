@@ -69,6 +69,7 @@ class Plate : public Element
   virtual void onDestroy(bool action = false) override;
 
   virtual void start(bool animation = false);
+  virtual void finish();
 
   virtual Plate* deepCopy() override;
 };

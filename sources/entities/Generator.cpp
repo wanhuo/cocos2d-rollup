@@ -122,11 +122,11 @@ void Generator::create(bool animation)
       this->parameters.pullement = random(1.0, 40.0);
       break;
       case NONE:
-      this->parameters.length.min = random(2, 10);
+      this->parameters.length.min = random(2, 5);
       this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
       this->parameters.probability = random(0, 100);
 
-      this->parameters.pullement = random(0.0, 50.0);
+      this->parameters.pullement = random(20.0, 50.0);
       break;
     }
 
@@ -181,10 +181,36 @@ void Generator::create(bool animation)
   this->index++;
 
   this->parameters.length.current++;
+
+  /**
+   *
+   *
+   *
+   */
+  this->destroy();
 }
 
 void Generator::destroy()
 {
+  auto elements = Application->environment->plates;
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto el : *elements->elements)
+  {
+    auto element = static_cast<Plate*>(el);
+
+    if(element->index < Application->environment->character->index)
+    {
+      if(element->state->create)
+      {
+        element->finish();
+      }
+    }
+  }
 }
 
 /**
