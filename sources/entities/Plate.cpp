@@ -36,7 +36,7 @@
  */
 Plate::Plate()
 : Element("plate.obj")
-{this->setScaleY(1.5);
+{//this->setScaleY(1.5);
 }
 
 Plate::~Plate()

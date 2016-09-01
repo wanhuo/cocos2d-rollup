@@ -163,7 +163,7 @@ Game::Game()
    * | @Shadows;
    *
    */
-  Director::getInstance()->setShadowElement(this->environment->plane);
+  //Director::getInstance()->setShadowElement(this->environment->plane);
 }
 
 Game::~Game()
