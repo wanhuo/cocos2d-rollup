@@ -80,7 +80,7 @@ void Generator::create()
        */
       auto current = static_cast<Plate*>(elements->_create());
 
-      auto rotation = 180+random(0.0, 45.0);
+      auto rotation = 180 - random(-45.0, 45.0);
       auto r = 0.9;
 
       auto x =  r * sin(CC_DEGREES_TO_RADIANS(rotation)) + px;

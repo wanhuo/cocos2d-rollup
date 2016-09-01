@@ -36,7 +36,7 @@
  */
 Plate::Plate()
 : Element("plate.obj")
-{
+{this->setScaleY(1.5);
 }
 
 Plate::~Plate()
@@ -57,6 +57,11 @@ void Plate::onCreate()
    *
    *
    */
+  this->runAction(
+    RepeatForever::create(
+      RotateBy::create(1.0, Vec3(0, 90, 0))
+    )
+  );
   this->setTexture(Application->environment->getPlateTexture());
 }
 
