@@ -57,17 +57,30 @@ void Plate::onCreate()
    *
    *
    */
-  this->runAction(
-    RepeatForever::create(
-      RotateBy::create(1.0, Vec3(0, 90, 0))
-    )
-  );
   this->setTexture(Application->environment->getPlateTexture());
 }
 
 void Plate::onDestroy(bool action)
 {
   Element::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::start(bool animation)
+{
+  this->runAction(
+    RepeatForever::create(
+      RotateBy::create(1.0, Vec3(0, 90 * (this->rotation ? -1 : 1), 0))
+    )
+  );
+
+  if(animation)
+  {
+  }
 }
 
 /**

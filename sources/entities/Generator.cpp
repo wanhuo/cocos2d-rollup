@@ -50,11 +50,18 @@ Plate* Generator::element(int index)
  *
  *
  */
-void Generator::create()
+void Generator::create(bool animation)
 {
   if(true)
   {
     auto elements = Application->environment->plates;
+
+    /**
+     *
+     *
+     *
+     */
+    Plate* current;
 
     /**
      *
@@ -78,7 +85,7 @@ void Generator::create()
        *
        *
        */
-      auto current = static_cast<Plate*>(elements->_create());
+      current = static_cast<Plate*>(elements->_create());
 
       auto rotation = 180 - random(-45.0, 45.0);
       auto r = 0.9;
@@ -92,11 +99,29 @@ void Generator::create()
     }
     else
     {
-      auto current = static_cast<Plate*>(elements->_create());
+      current = static_cast<Plate*>(elements->_create());
 
       current->setPosition(0, 0, 0);
       current->setRotation(0, 0, 0);
     }
+
+    /**
+     *
+     *
+     *
+     */
+    current->index = this->index;
+    current->rotation = this->rotation;
+
+    current->start(animation);
+
+    /**
+     *
+     *
+     *
+     */
+    this->rotation = this->rotation == LEFT ? RIGHT : LEFT;
+    this->index++;
   }
 }
 
@@ -112,6 +137,7 @@ void Generator::destroy()
 void Generator::reset()
 {
   this->index = 0;
+  this->rotation = 0;
 
   /**
    *

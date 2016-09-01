@@ -51,7 +51,7 @@ void Environment::create()
   this->ground = new Entity3D("plane.obj", this->plane, true);
   this->ground->setPosition(0, 0, 0);
   this->ground->setRotation(0, 0, 0);
-  this->ground->setColor(Color3B(47.0, 100.0, 140.0));
+  this->ground->setColor(Color3B(255, 255, 255));
   this->ground->setScale(10.5);
 
   this->background = new Entity("environments/1/background.png", this->plane, true);
@@ -67,7 +67,7 @@ void Environment::create()
 
 void Environment::reset()
 {
-  this->texture = 2;
+  this->texture = 1;
 
   //this->character->reset();
   this->generator->reset();

@@ -75,6 +75,11 @@ enum Index {
   BACKGROUND = 2
 };
 
+enum Rotation {
+  LEFT,
+  RIGHT
+};
+
 /**
  *
  *

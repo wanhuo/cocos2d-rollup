@@ -63,9 +63,12 @@ class Plate : public Element
  ~Plate();
 
   int index;
+  int rotation;
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
+
+  virtual void start(bool animation = false);
 
   virtual Plate* deepCopy() override;
 };

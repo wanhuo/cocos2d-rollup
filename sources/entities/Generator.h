@@ -59,10 +59,11 @@ class Generator : public Ref
  ~Generator();
 
   int index;
+  int rotation;
 
   virtual Plate* element(int index);
 
-  virtual void create();
+  virtual void create(bool animation = false);
   virtual void destroy();
 
   virtual void reset();
