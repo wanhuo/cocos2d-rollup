@@ -80,21 +80,22 @@ void Generator::create(bool animation)
   switch(this->direction)
   {
     case NONE:
-    this->rotation = random(-this->parameters.pullement, this->parameters.pullement);
+    this->parameters.rotation = random(-this->parameters.pullement, this->parameters.pullement);
     break;
     case RIGHT:
     case LEFT:
     auto rotation = 0.0;
 
-    rotation += (this->parameters.pullement * this->parameters.escarpment);
+    this->parameters.pullement *= this->parameters.escarpment;
+    rotation += this->parameters.pullement;
 
     switch(this->direction)
     {
       case RIGHT:
-      this->rotation = rotation;
+      this->parameters.rotation = rotation;
       break;
       case LEFT:
-      this->rotation = rotation;
+      this->parameters.rotation = rotation;
       break;
     }
     break;
@@ -107,25 +108,25 @@ void Generator::create(bool animation)
    */
   if((this->parameters.length.current > this->parameters.length.min && probably(this->parameters.probability)) || this->parameters.length.current >= this->parameters.length.max)
   {
-    this->direction = 0;//random(0, 2);
+    this->direction = random(0, 2);
 
     switch(this->direction)
     {
       case RIGHT:
       case LEFT:
-      this->parameters.length.min = random(10, 20);
+      this->parameters.length.min = random(2, 20);
       this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
       this->parameters.probability = random(0, 100);
 
-      this->parameters.escarpment = random(1.0, 4.0);
-      this->parameters.pullement = random(1.0, 90.0);
+      this->parameters.escarpment = random(1.0, 1.2);
+      this->parameters.pullement = random(1.0, 40.0);
       break;
       case NONE:
       this->parameters.length.min = random(2, 10);
       this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
       this->parameters.probability = random(0, 100);
 
-      this->parameters.pullement = random(1.0, 90.0);
+      this->parameters.pullement = random(0.0, 50.0);
       break;
     }
 
@@ -137,7 +138,7 @@ void Generator::create(bool animation)
    *
    *
    */
-  auto rotation = 180 + 22.5 / 4 / 2 - this->rotation;
+  auto rotation = 180 + 22.5 / 4 / 2 - this->parameters.rotation;
   auto r = 0.9;
 
   this->previous.position.x =  elements->count ? (r * sin(CC_DEGREES_TO_RADIANS(rotation)) + this->previous.position.x) : 0;
@@ -205,6 +206,7 @@ void Generator::reset()
   this->previous.rotation.y = 0;
   this->previous.rotation.z = 0;
 
+  this->parameters.rotation = 0;
   this->parameters.length.current = 0;
   this->parameters.length.min = 10;
   this->parameters.length.max = 20;

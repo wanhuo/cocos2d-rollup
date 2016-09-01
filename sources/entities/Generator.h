@@ -58,6 +58,8 @@ class Generator : public Ref
     float pullement;
     float probability;
 
+    float rotation;
+
     Length length;
   };
   
