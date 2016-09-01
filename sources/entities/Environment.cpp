@@ -86,7 +86,7 @@ string Environment::getBackgroundTexture()
 
 string Environment::getPlaneTexture()
 {
-  return "environments/" + s(this->texture) + "/plane-texture.png";
+  return "environments/" + s(this->texture) + "/plate-texture.png";
 }
 
 string Environment::getPlateTexture()

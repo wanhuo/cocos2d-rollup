@@ -249,29 +249,6 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
 
     /**
      *
-     *
-     *
-     */
-    case EventKeyboard::KeyCode::KEY_UP_ARROW:
-    this->environment->character->direction.x = Character::NONE;
-    this->environment->character->direction.z = Character::FORWARD;
-    break;
-    case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-    this->environment->character->direction.x = Character::NONE;
-    this->environment->character->direction.z = Character::BACK;
-    break;
-    case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-    this->environment->character->direction.x = Character::LEFT;
-    this->environment->character->direction.z = Character::NONE;
-    break;
-    case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-    this->environment->character->direction.x = Character::RIGHT;
-    this->environment->character->direction.z = Character::NONE;
-
-    break;
-
-    /**
-     *
      * @Development
      *
      */

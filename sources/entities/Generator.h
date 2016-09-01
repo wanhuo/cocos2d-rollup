@@ -46,6 +46,21 @@ class Generator : public Ref
    *
    */
   protected:
+  struct Length {
+    int current;
+
+    int max;
+    int min;
+  };
+
+  struct Parameters {
+    float escarpment;
+    float pullement;
+    float probability;
+
+    Length length;
+  };
+  
   struct Previous {
     Vec3 position;
     Vec3 rotation;
@@ -64,7 +79,9 @@ class Generator : public Ref
 
   int index;
   int rotation;
+  int direction;
 
+  Parameters parameters;
   Previous previous;
 
   virtual Plate* element(int index);

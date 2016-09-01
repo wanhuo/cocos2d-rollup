@@ -76,8 +76,8 @@ enum Index {
 };
 
 enum Rotation {
-  LEFT,
-  RIGHT
+  LEFT = 1,
+  RIGHT = 2
 };
 
 /**

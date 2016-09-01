@@ -36,7 +36,7 @@
  */
 Plate::Plate()
 : Element("plate.obj")
-{this->setScaleY(1.5);
+{
 }
 
 Plate::~Plate()
@@ -74,12 +74,23 @@ void Plate::start(bool animation)
 {
   this->runAction(
     RepeatForever::create(
-      RotateBy::create(1.0, Vec3(0, 90 * (this->rotation ? -1 : 1), 0))
+      RotateBy::create(1.0, Vec3(0, 90 * (this->rotation == LEFT ? -1 : 1), 0))
     )
   );
 
   if(animation)
   {
+    this->setScaleY(0.0);
+
+    this->runAction(
+      EaseSineOut::create(
+        ScaleTo::create(0.5, 1.0, 1.0, 1.0)
+      )
+    );
+  }
+  else
+  {
+    this->setScaleY(1.0);
   }
 }
 

@@ -31,7 +31,7 @@
 Character::Character()
 : Element("character.obj", Application->environment->plane)
 {
-  this->setTexture("character-texture.png");
+  this->setTexture("characters/1/texture.png");
 }
 
 Character::~Character()
@@ -50,21 +50,14 @@ void Character::reset()
     this->_create();
   }
 
-  this->setPosition3D(Vec3(0.0, 3.0, 0.0));
+  this->setPosition3D(Vec3(0.0, 1.0, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
   this->setScale(0.5);
 
   this->stopAllActions();
 
-  this->action = false;
-
-  this->index.x = 0;
-  this->index.y = 0;
-  this->index.z = 0;
-
-  this->direction.x = RIGHT;
-  this->direction.y = NONE;
-  this->direction.z = NONE;
+  this->index = 0;
+  this->action = 0;
 
   /**
    *
@@ -123,11 +116,82 @@ void Character::onAction()
  */
 void Character::onMove()
 {
+  this->index++;
+
+  /**
+   *
+   *
+   *
+   */
+  auto generate = this->action;
+
   if(this->action)
   {
+    this->index++;
   }
 
-  Application->environment->generator->create();
+  /**
+   *
+   *
+   *
+   */
+  this->action = 0;
+
+  /**
+   *
+   *
+   *
+   */
+  auto element = Application->environment->generator->element(this->index);
+
+  auto x = element->getPositionX() - this->getPositionX();
+  auto z = element->getPositionZ() - this->getPositionZ();
+  auto y = 0.5;
+
+  this->runAction(
+    Sequence::create(
+      MoveBy::create(0.15, Vec3(x / 2, y, z / 2)),
+      CallFunc::create([=] () {
+
+        /**
+         *
+         *
+         *
+         */
+        if(generate)
+        {
+          Application->environment->generator->create(true);
+        }
+      }),
+      MoveBy::create(0.15, Vec3(x / 2, -y, z / 2)),
+      CallFunc::create([=] () {
+
+        /**
+         *
+         *
+         *
+         */
+        if(true)
+        {
+          Application->environment->generator->create(true);
+        }
+      }),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Application->environment->ground->runAction(
+    MoveBy::create(0.3, Vec3(x, 0, z))
+  );
+
+  Application->getCamera()->runAction(
+    MoveBy::create(0.3, Vec3(x, 0, z))
+  );
 }
 
 /**

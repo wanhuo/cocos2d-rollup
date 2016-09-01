@@ -70,10 +70,8 @@ class Character : public Element
 
   State state = STATE_NONE;
 
-  bool action;
-
-  Vec3 index;
-  Vec3 direction;
+  int index;
+  int action;
 
   virtual void reset();
 

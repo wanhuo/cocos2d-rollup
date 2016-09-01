@@ -77,7 +77,67 @@ void Generator::create(bool animation)
    *
    *
    */
-  auto rotation = 180 - random(-45.0, 45.0);
+  switch(this->direction)
+  {
+    case NONE:
+    this->rotation = random(-this->parameters.pullement, this->parameters.pullement);
+    break;
+    case RIGHT:
+    case LEFT:
+    auto rotation = 0.0;
+
+    rotation += (this->parameters.pullement * this->parameters.escarpment);
+
+    switch(this->direction)
+    {
+      case RIGHT:
+      this->rotation = rotation;
+      break;
+      case LEFT:
+      this->rotation = rotation;
+      break;
+    }
+    break;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if((this->parameters.length.current > this->parameters.length.min && probably(this->parameters.probability)) || this->parameters.length.current >= this->parameters.length.max)
+  {
+    this->direction = 0;//random(0, 2);
+
+    switch(this->direction)
+    {
+      case RIGHT:
+      case LEFT:
+      this->parameters.length.min = random(10, 20);
+      this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
+      this->parameters.probability = random(0, 100);
+
+      this->parameters.escarpment = random(1.0, 4.0);
+      this->parameters.pullement = random(1.0, 90.0);
+      break;
+      case NONE:
+      this->parameters.length.min = random(2, 10);
+      this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
+      this->parameters.probability = random(0, 100);
+
+      this->parameters.pullement = random(1.0, 90.0);
+      break;
+    }
+
+    this->parameters.length.current = 0;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  auto rotation = 180 + 22.5 / 4 / 2 - this->rotation;
   auto r = 0.9;
 
   this->previous.position.x =  elements->count ? (r * sin(CC_DEGREES_TO_RADIANS(rotation)) + this->previous.position.x) : 0;
@@ -90,6 +150,11 @@ void Generator::create(bool animation)
 
   if(true)
   {
+    if(animation)
+    {
+      this->previous.rotation.y = -(22.5 - rotation * 2) - elements->last()->getRotation3D().y;
+    }
+
     auto current = static_cast<Plate*>(elements->_create());
 
     current->setPosition(this->previous.position.x, this->previous.position.y, this->previous.position.z);
@@ -113,6 +178,8 @@ void Generator::create(bool animation)
    */
   this->rotation = this->rotation == LEFT ? RIGHT : LEFT;
   this->index++;
+
+  this->parameters.length.current++;
 }
 
 void Generator::destroy()
@@ -128,6 +195,7 @@ void Generator::reset()
 {
   this->index = 0;
   this->rotation = 0;
+  this->direction = 0;
 
   this->previous.position.x = 0;
   this->previous.position.y = 0;
@@ -136,6 +204,13 @@ void Generator::reset()
   this->previous.rotation.x = 0;
   this->previous.rotation.y = 0;
   this->previous.rotation.z = 0;
+
+  this->parameters.length.current = 0;
+  this->parameters.length.min = 10;
+  this->parameters.length.max = 20;
+  this->parameters.probability = 50;
+
+  this->parameters.pullement = random(0.0, 50.0);
 
   /**
    *
