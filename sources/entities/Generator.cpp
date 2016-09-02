@@ -275,7 +275,7 @@ void Generator::destroy()
 
     if(element->index < Application->environment->character->index)
     {
-      if(element->state->create)
+      if(element->state->create && !Application->getActionManager()->getActionByTag(10, element))
       {
         element->finish();
       }

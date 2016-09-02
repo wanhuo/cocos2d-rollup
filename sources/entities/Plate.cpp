@@ -35,7 +35,7 @@
  *
  */
 Plate::Plate()
-: Element("plate.obj")
+: Element("plate2.obj")
 {
   this->enableShadow(true);
   this->enableLight(false);
@@ -119,25 +119,25 @@ void Plate::start(bool animation)
 void Plate::finish()
 {
   // TODO: Ахтунг!! Тут какая-то лажа происходит!
-  this->runAction(
+  this->Node::runAction(
     Spawn::create(
       Sequence::create(
         EaseSineIn::create(
-          ScaleTo::create(0.5, 1.0, 0.0, 1.0)
+          ScaleTo::create(0.5, 1.0, 0.01, 1.0)
         ),
         nullptr
       ),
       Sequence::create(
         DelayTime::create(1.0),
         FadeTo::create(1.0, 0.0),
-        DelayTime::create(10.0),
         CallFunc::create([=] () {
         this->_destroy(true);
         }),
         nullptr
       ),
       nullptr
-    )
+    ),
+    10
   );
 }
 

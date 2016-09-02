@@ -273,7 +273,7 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
      *
      */
     case EventKeyboard::KeyCode::KEY_SPACE:
-    //this->environment->onAction();
+    this->environment->onAction();
     break;
     case EventKeyboard::KeyCode::KEY_C:
     if(Director::getInstance()->getShadowTexture()->state->create)

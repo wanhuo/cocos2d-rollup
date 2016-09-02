@@ -88,7 +88,9 @@ void Character::reset()
 
   this->index = 0;
   this->stage = 0;
-  this->action = 0;
+
+  this->action = false;
+  this->bind = false;
 
   streak->reset();
 
@@ -134,6 +136,11 @@ void Character::onDestroy(bool action)
  *
  *
  */
+static Speed* speed1 = nullptr;
+static Speed* speed2 = nullptr;
+static Speed* speed3 = nullptr;
+static Speed* speed4 = nullptr;
+static Speed* speed5 = nullptr;
 void Character::onAction()
 {
   switch(this->state)
@@ -144,10 +151,18 @@ void Character::onAction()
     this->changeState(STATE_NORMAL);
     break;
     case STATE_NORMAL:
-    this->action = true;
+    if(this->bind)
+    {
+      auto t = 1.3;
+      if(speed1) speed1->setSpeed(t);
+      if(speed2) speed2->setSpeed(t);
+      if(speed3) speed3->setSpeed(t);
+      if(speed4) speed4->setSpeed(t);
+      if(speed5) speed5->setSpeed(t);
+      this->action = true;
+    }
     break;
     case STATE_CRASH:
-    this->action = true;
     break;
   }
 }
@@ -159,6 +174,12 @@ void Character::onAction()
  */
 void Character::onMove()
 {
+  speed1 = nullptr;
+  speed2 = nullptr;
+  speed3 = nullptr;
+  speed4 = nullptr;
+  speed5 = nullptr;
+
   this->index++;
 
   /**
@@ -168,6 +189,9 @@ void Character::onMove()
    */
   auto generate = this->action;
   auto d = 0.0;
+  auto a = 0.0;
+
+  auto skip = false;
 
   if(this->action)
   {
@@ -178,11 +202,13 @@ void Character::onMove()
       if(element->stage <= this->plates.current->stage)
       {
         this->index++;
+        skip=true;
       }
     }
     else
     {
       this->index++;
+        skip=true;
     }
   }
 
@@ -191,7 +217,7 @@ void Character::onMove()
    *
    *
    */
-  this->action = 0;
+  this->action = false;
 
   /**
    *
@@ -258,10 +284,22 @@ if(this->plates.current)
     if(this->plates.current->stage > element->stage)
     {
       d = -0.75;
+      a = -0.2;
+
+      if(skip)
+      {
+        a -= 0.25;
+      }
     }
     else
     {
       d = 0.75;
+      a = 0.2;
+
+      if(skip)
+      {
+        a += 0.25;
+      }
     }
   }
 }
@@ -271,9 +309,22 @@ if(this->plates.current)
 
   auto x = element->getPositionX() - this->plane->getPositionX();
   auto z = element->getPositionZ() - this->plane->getPositionZ();
-  auto y = 0.75;
+  auto y = 0.7;
 
-  y += (generate ? 0.5 : 0.0);
+  y += (generate ? 0.3 : 0.0);
+
+  
+
+
+if(skip)
+if(this->plates.current)
+{
+  if(element->stage == 1)
+  if(this->plates.current->stage == element->stage)
+  {
+    y -= 0.4;
+  }
+}
 
   this->plane->setRotation3D(Vec3(0, tt, 0));
 
@@ -282,82 +333,109 @@ if(this->plates.current)
   this->plates.previous = this->plates.current;
   this->plates.current = element;
 
-  this->plane->runAction(
+  speed1 = Speed::create(
     Sequence::create(
       EaseSineOut::create(
-        MoveBy::create(time, Vec3(0, y, 0))
+        MoveBy::create(time, Vec3(0, y + a, 0))
       ),
       EaseSineIn::create(
-        MoveBy::create(time, Vec3(0, -y + d, 0))
+        MoveBy::create(time, Vec3(0, -y + d - a, 0))
       ),
       nullptr
-    )
+    ),
+    1.0
+  );
+
+  speed2 = Speed::create(
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(time / 3),
+        CallFunc::create([=] () {
+          this->bind = true;
+          this->action = false;
+        }),
+        nullptr
+      ),
+
+      Sequence::create(
+        MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
+        CallFunc::create([=] () {
+
+          /**
+           *
+           *
+           *
+           */
+          if(generate)
+          {
+            Application->environment->generator->create(true);
+          }
+        }),
+        MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
+        CallFunc::create([=] () {
+          if(this->plates.current)
+          {
+            this->plates.current->direction = 2.0;
+          }
+
+          /**
+           *
+           *
+           *
+           */
+          if(true)
+          {
+            Application->environment->generator->create(true);
+          }
+        }),
+        CallFunc::create([=] () {
+          this->bind = false;
+
+          /**
+           *
+           *
+           *
+           */
+          this->onMove();
+        }),
+        nullptr
+      ),
+    nullptr
+    ),
+    1.0
+  );
+
+  speed3 = Speed::create(
+    RotateBy::create(time * 2, Vec3(-180, 0, 0)),
+    1.0
+  );
+  
+
+
+  speed4 = Speed::create(
+    Sequence::create(
+      DelayTime::create(time * 2 - 0.035),
+      ScaleTo::create(0.04, 1.2, 0.6, 1.2),
+      ScaleTo::create(0.05, 0.8, 1.3, 0.8),
+      ScaleTo::create(0.13, 1.0, 1.0, 1.0),
+      nullptr
+    ),
+    1.0
   );
 
   this->plane->runAction(
-    Sequence::create(
-      MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
-      CallFunc::create([=] () {
+    speed1
+  );
 
-        /**
-         *
-         *
-         *
-         */
-        if(generate)
-        {
-          Application->environment->generator->create(true);
-        }
-      }),
-      MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
-      CallFunc::create([=] () {
-
-        /**
-         *
-         *
-         *
-         */
-        this->plane->runAction(
-          Sequence::create(
-            ScaleTo::create(0.1, 1.1, 0.7, 1.1),
-            ScaleTo::create(0.17, 0.9, 1.2, 0.9),
-            ScaleTo::create(0.13, 1.0, 1.0, 1.0),
-            nullptr
-          )
-        );
-      }),
-      CallFunc::create([=] () {
-        if(this->plates.current)
-        {
-          this->plates.current->direction = 2.0;
-        }
-
-        /**
-         *
-         *
-         *
-         */
-        if(true)
-        {
-          Application->environment->generator->create(true);
-        }
-      }),
-      CallFunc::create([=] () {
-
-        /**
-         *
-         *
-         *
-         */
-        this->onMove();
-      }),
-      nullptr
-    )
+  this->plane->runAction(
+    speed2
   );
 
   this->runAction(
-    RotateBy::create(time * 2, Vec3(-180, 0, 0))
+    speed3
   );
+  
+  this->plane->runAction(speed4);
 
   this->shadow->setScale(0.2);
   this->shadow->runAction(
@@ -381,13 +459,21 @@ if(this->plates.current)
     MoveBy::create(time * 2, Vec3(x, 0, z))
   );
 
+  speed5 = Speed::create(
+    Sequence::create(
+      MoveBy::create(time * 2, Vec3(x, 0, z)),
+      nullptr
+    ),
+    1.0
+  );
   Application->getCamera()->runAction(
-    MoveBy::create(time * 2, Vec3(x, 0, z))
+    speed5
   );
 
   Application->getShadowsCamera()->runAction(
     MoveBy::create(time * 2, Vec3(x, 0, z))
   );
+
 }
 
 /**

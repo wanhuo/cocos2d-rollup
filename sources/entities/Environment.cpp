@@ -47,6 +47,7 @@ void Environment::create()
   this->plane = new Entity3D(this, true);
   this->plane->setPosition(0, 0, 0);
   this->plane->setRotation(0, 0, 0);
+  //this->plane->setScale(2.0);
 
   this->ground = new Entity3D("plane.obj", this->plane, true);
   this->ground->setPosition(0, 0, 0);
@@ -63,6 +64,9 @@ void Environment::create()
   this->character = new Character;
 
   this->plates = new Pool(new Plate, this->plane);
+  this->dusts = new Pool(new Dust, this);
+
+  this->dusts->_create();
 }
 
 void Environment::reset()
@@ -76,7 +80,7 @@ void Environment::reset()
   this->background->setTexture(this->getBackgroundTexture());
   this->ground->setTexture(this->getPlaneTexture());
 
-  this->ground->setPosition(0, 0, 0);
+  this->ground->setPosition(0, 0, 0.02);
   this->ground->setRotation(0, 0, 0);
 }
 

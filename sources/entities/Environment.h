@@ -75,6 +75,7 @@ class Environment : public Background
   Character* character;
 
   Pool* plates;
+  Pool* dusts;
 
   virtual void create();
   virtual void reset();

@@ -81,7 +81,9 @@ class Character : public Element
 
   int index;
   int stage;
-  int action;
+
+  bool action;
+  bool bind;
 
   virtual void reset();
 

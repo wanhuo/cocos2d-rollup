@@ -45,6 +45,8 @@
 #include "Plate.h"
 #include "Character.h"
 
+#include "Dust.h"
+
 #include "Environment.h"
 #include "Generator.h"
 
