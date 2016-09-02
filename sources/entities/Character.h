@@ -40,7 +40,6 @@ class Character : public Element
    */
   public:
   Entity3D* plane;
-  Entity3D* touch;
   Entity3D* shadow;
 
   /**
@@ -51,6 +50,7 @@ class Character : public Element
   protected:
   struct Plates {
     Plate* current;
+    Plate* previous;
   };
 
   /**
@@ -62,7 +62,8 @@ class Character : public Element
   enum State {
     STATE_NONE,
     STATE_START,
-    STATE_NORMAL
+    STATE_NORMAL,
+    STATE_CRASH,
   };
 
   /**
@@ -79,6 +80,7 @@ class Character : public Element
   Plates plates;
 
   int index;
+  int stage;
   int action;
 
   virtual void reset();
@@ -92,11 +94,13 @@ class Character : public Element
 
   virtual void onStart();
   virtual void onNormal();
+  virtual void onCrash();
 
   virtual void changeState(State state);
 
   virtual void updateStart(float time);
   virtual void updateNormal(float time);
+  virtual void updateCrash(float time);
 
   virtual void updateStates(float time);
 

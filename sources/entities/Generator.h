@@ -66,6 +66,10 @@ class Generator : public Ref
   struct Previous {
     Vec3 position;
     Vec3 rotation;
+
+    int stage;
+
+    bool next;
   };
 
   /**
@@ -74,7 +78,10 @@ class Generator : public Ref
    *
    */
   public:
-  const static int COUNT_START = 9;
+  const static int COUNT_START = 8;
+
+  const static int PROBABILITY_NEXT = 50;
+  const static int PROBABILITY_STAGE = 50;
 
   Generator();
  ~Generator();

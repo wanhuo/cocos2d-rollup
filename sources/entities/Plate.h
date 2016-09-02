@@ -63,13 +63,21 @@ class Plate : public Element
  ~Plate();
 
   int index;
+  int stage;
   int rotation;
+  int flushed;
+
+  float direction;
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
   virtual void start(bool animation = false);
   virtual void finish();
+
+  virtual void flush();
+
+  virtual void update(float time) override;
 
   virtual Plate* deepCopy() override;
 };

@@ -178,7 +178,7 @@ class Game : public Screen
 
   virtual void onRenderStart();
   virtual void onRenderFinish();
-  virtual void onRenderStart(int index);
+  virtual void onRenderStart(int index, int step);
   virtual void onRenderFinish(int index);
 
   virtual void changeState(State state);

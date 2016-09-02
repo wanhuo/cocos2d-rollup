@@ -205,16 +205,27 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
   {
     case STATE_NONE:
     break;
+    case STATE_FINISH:
+    break;
+    case STATE_MENU:
+    case STATE_GAME:
+    this->environment->onAction();
+    break;
+  }
+
+  switch(this->state)
+  {
+    case STATE_NONE:
+    break;
     case STATE_MENU:
     this->changeState(STATE_GAME);
     break;
     case STATE_GAME:
     break;
     case STATE_FINISH:
+    this->changeState(STATE_MENU);
     break;
   }
-
-  this->environment->onAction();
 }
 
 void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
@@ -388,6 +399,17 @@ void Game::onMenu()
    *
    *
    */
+  this->cameras.cameraElements->setPosition3D(this->startCameraPosition);
+  this->cameras.cameraElements->setRotation3D(this->startCameraRotation);
+
+  this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
+  this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
+
+  /**
+   *
+   *
+   *
+   */
   Music->play("music-1", true);
 }
 
@@ -423,19 +445,39 @@ void Game::onRenderFinish()
 {
 }
 
-void Game::onRenderStart(int index)
+void Game::onRenderStart(int index, int step)
 {
   //if(Director::getInstance()->getShadowState())
   {
     if(index == this->getShadowsCamera()->getIndex())
     {
-      this->environment->character->setVisible(false);
-      this->environment->character->shadow->setVisible(true);
+      if(step == 1)
+      {
+        this->environment->character->setVisible(false);
+        this->environment->character->shadow->setVisible(true);
+      }
     }
     else if(index == 1)
     {
-      this->environment->character->setVisible(true);
-      this->environment->character->shadow->setVisible(false);
+      if(step == 1)
+      {
+        this->environment->character->setVisible(true);
+        this->environment->character->shadow->setVisible(false);
+      }
+
+      if(step == 2)
+      {
+        for(auto element : *this->environment->plates->elements)
+        {
+          if(element->state->create)
+          {
+            if(element->getGLProgram())
+            {
+              element->getGLProgramState()->setUniformFloat("u_element", static_cast<Plate*>(element)->direction);
+            }
+          }
+        }
+      }
     }
   }
 }

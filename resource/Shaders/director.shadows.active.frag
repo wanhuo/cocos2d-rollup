@@ -4,6 +4,8 @@ uniform vec3 u_DirLightSourceDirection[1];
 uniform vec3 u_AmbientLightSourceColor;
 uniform vec4 u_color;
 
+uniform float u_element;
+
 uniform sampler2D transformTexture;
 
 varying vec3 v_texNormal;
@@ -32,13 +34,17 @@ void main(void)
   float z = v_texPosition.z;
 
   float f = 1.0;
-  float b = 0.0025;
+  float b = 0.003;
 
-  //if(combinedColor.r > 0.75) {
-    if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
-      f = 0.9;
+  if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
+    f = 0.9;
+  }
+
+  gl_FragColor = texture2D(CC_Texture0, TextureCoordOut) * u_color* vec4(f, f, f, 1.0);
+
+  if(u_element > 0.0) {
+    if(combinedColor.r > 0.75) {
+      gl_FragColor *= vec4(u_element, u_element, u_element, 1.0);
     }
-  //}
-
-  gl_FragColor = texture2D(CC_Texture0, TextureCoordOut) * u_color* vec4(f, f, f, 1.0);// * combinedColor 
+  }
 }

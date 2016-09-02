@@ -54,9 +54,12 @@ Plate* Generator::element(int index)
   {
     auto element = static_cast<Plate*>(el);
 
-    if(element->index == index)
+    if(element->state->create)
     {
-      return element;
+      if(element->index == index)
+      {
+        return element;
+      }
     }
   }
 
@@ -80,12 +83,17 @@ void Generator::create(bool animation)
   switch(this->direction)
   {
     case NONE:
-    this->parameters.rotation += random(-this->parameters.pullement, this->parameters.pullement);
+    if(!this->previous.next)
+    {
+      this->parameters.rotation += random(-this->parameters.pullement, this->parameters.pullement);
+    }
+    log("> %f", this->parameters.rotation );
     break;
     case RIGHT:
     case LEFT:
     auto rotation = 0.0;
 
+    if(this->parameters.pullement > 10 || this->parameters.pullement < -10)
     this->parameters.pullement *= this->parameters.escarpment;
     rotation = this->parameters.pullement;
 
@@ -98,6 +106,7 @@ void Generator::create(bool animation)
       this->parameters.rotation -= rotation;
       break;
     }
+    log("%f", rotation);
     break;
   }
 
@@ -109,24 +118,28 @@ void Generator::create(bool animation)
   if((this->parameters.length.current > this->parameters.length.min && probably(this->parameters.probability)) || this->parameters.length.current >= this->parameters.length.max)
   {
     this->direction = random(0, 2);
+    log(">>>>>>>>>>> %d", this->direction);
 
     switch(this->direction)
     {
       case RIGHT:
       case LEFT:
-      this->parameters.length.min = random(2, 20);
+      this->parameters.length.min = random(2, 10);
       this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
-      this->parameters.probability = random(0, 100);
+      this->parameters.probability = random(0.0, 25.0);
 
       this->parameters.escarpment = random(0.5, 1.0);
-      this->parameters.pullement = random(1.0, 40.0);
+      this->parameters.pullement = random(10.0, 25.0);
+
+      this->parameters.length.min *= this->parameters.pullement;
+      this->parameters.length.max *= this->parameters.pullement;
       break;
       case NONE:
       this->parameters.length.min = random(2, 5);
       this->parameters.length.max = random(this->parameters.length.min, this->parameters.length.min * 2);
-      this->parameters.probability = random(0, 100);
+      this->parameters.probability = random(20, 100);
 
-      this->parameters.pullement = random(20.0, 50.0);
+      this->parameters.pullement = random(40.0, 80.0);
       break;
     }
 
@@ -141,6 +154,9 @@ void Generator::create(bool animation)
   auto rotation = 180 + 22.5 / 4 / 2 - this->parameters.rotation;
   auto r = 0.9;
 
+  auto px = this->previous.position.x;
+  auto pz = this->previous.position.z;
+
   this->previous.position.x =  elements->count ? (r * sin(CC_DEGREES_TO_RADIANS(rotation)) + this->previous.position.x) : 0;
   this->previous.position.z =  elements->count ? (r * cos(CC_DEGREES_TO_RADIANS(rotation)) + this->previous.position.z) : 0;
   this->previous.position.y = 0;
@@ -149,8 +165,18 @@ void Generator::create(bool animation)
   this->previous.rotation.x = 0;
   this->previous.rotation.z = 0;
 
-  if(true)
+  auto tt = CC_RADIANS_TO_DEGREES(atan2(px - this->previous.position.x, pz - this->previous.position.z));
+
+  if(!this->previous.next)
   {
+    if((tt < -35 && tt > -145) || (tt > 35 && tt < 145))
+    {
+      if(elements->count > COUNT_START && probably(PROBABILITY_NEXT))
+      {
+        this->previous.next = true;
+      }
+    }
+
     if(animation)
     {
       // TODO: Optimize this.
@@ -167,10 +193,53 @@ void Generator::create(bool animation)
      *
      *
      */
+    if(elements->count > COUNT_START && ((tt < -45 && tt > -135) || (tt > 45 && tt < 135 )))
+    {
+      if(this->previous.stage == 0)
+      {
+        if(probably(PROBABILITY_STAGE))
+        {
+          this->previous.stage = 1;
+        }
+        else
+        {
+          this->previous.stage = 0;
+        }
+      }
+      else
+      {
+        this->previous.stage = 0;
+      }
+    }
+    else
+    {
+      this->previous.stage = 0;
+    }
+
+    /**
+     *
+     *
+     *
+     */
     current->index = this->index;
     current->rotation = this->rotation;
+    current->stage = this->previous.stage;
 
     current->start(animation);
+  }
+  else
+  {
+    this->previous.next = false;
+    this->previous.stage = random(0, 1);
+
+    if(this->parameters.rotation < 0)
+    {
+      //this->parameters.rotation -= 30.0;
+    }
+    else
+    {
+      //this->parameters.rotation += 30.0;
+    }
   }
 
   /**
@@ -212,6 +281,24 @@ void Generator::destroy()
       }
     }
   }
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto el : *elements->elements)
+  {
+    auto element = static_cast<Plate*>(el);
+
+    if(element->flushed && element->index - Application->environment->character->index < 4)
+    {
+      if(element->state->create)
+      {
+        element->flush();
+      }
+    }
+  }
 }
 
 /**
@@ -233,13 +320,23 @@ void Generator::reset()
   this->previous.rotation.y = 0;
   this->previous.rotation.z = 0;
 
+  this->previous.next = false;
+  this->previous.stage = 0;
+
   this->parameters.rotation = 0;
   this->parameters.length.current = 0;
-  this->parameters.length.min = 10;
-  this->parameters.length.max = 20;
-  this->parameters.probability = 50;
+  this->parameters.length.min = 0;
+  this->parameters.length.max = 10;
+  this->parameters.probability = 100;
 
-  this->parameters.pullement = random(0.0, 50.0);
+  this->parameters.pullement = random(20.0, 50.0);
+
+  /**
+   *
+   *
+   *
+   */
+  Application->environment->plates->clear();
 
   /**
    *

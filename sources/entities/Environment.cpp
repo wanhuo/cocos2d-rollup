@@ -67,13 +67,17 @@ void Environment::create()
 
 void Environment::reset()
 {
-  this->texture = 1;
+  // TODO: Improve this.
+  this->texture = random(1, 7);
 
   this->character->reset();
   this->generator->reset();
 
   this->background->setTexture(this->getBackgroundTexture());
   this->ground->setTexture(this->getPlaneTexture());
+
+  this->ground->setPosition(0, 0, 0);
+  this->ground->setRotation(0, 0, 0);
 }
 
 /**

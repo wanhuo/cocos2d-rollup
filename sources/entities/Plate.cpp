@@ -40,7 +40,7 @@ Plate::Plate()
   this->enableShadow(true);
   this->enableLight(false);
 
-  this->setCullFaceEnabled(true);
+  this->setScheduleUpdate(true);
 }
 
 Plate::~Plate()
@@ -55,6 +55,14 @@ Plate::~Plate()
 void Plate::onCreate()
 {
   Element::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->direction = 1.0;
+  this->flushed = 0;
 
   /**
    *
@@ -86,11 +94,19 @@ void Plate::start(bool animation)
 
   if(animation)
   {
+    if(this->stage)
+    {
+      if(probably(50))
+      {
+        this->flushed = 1;
+      }
+    }
+
     this->setScaleY(0.0);
 
     this->runAction(
       EaseSineOut::create(
-        ScaleTo::create(0.5, 1.0, 1.0, 1.0)
+        ScaleTo::create(0.5, 1.0, 1.0 + (this->stage && !this->flushed ? 0.5 : 0.0), 1.0)
       )
     );
   }
@@ -123,6 +139,30 @@ void Plate::finish()
       nullptr
     )
   );
+}
+
+void Plate::flush()
+{
+  this->flushed = 0;
+
+  this->runAction(
+    EaseSineOut::create(
+      ScaleTo::create(0.5, 1.0, 1.5, 1.0)
+    )
+  );
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::update(float time)
+{
+  if(this->direction > 1.0)
+  {
+    this->direction -= 0.02;
+  }
 }
 
 /**

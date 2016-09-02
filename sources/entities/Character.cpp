@@ -28,6 +28,7 @@
  *
  *
  */
+static MotionStreak3D* streak;
 Character::Character()
 : Element("character.obj")
 {
@@ -40,18 +41,20 @@ Character::Character()
   this->shadow->enableShadow(true);
   this->shadow->enableLight(true);
 
-  this->touch = new Entity3D("touch.obj", Application->environment->plane);
-  this->touch->enableShadow(false);
-  this->touch->enableLight(false);
-  this->touch->setLightMask(0);
-  this->touch->setTexture("touch.png");
-  //this->touch->setBlendFunc((BlendFunc) {GL_COLOR, GL_ALPHA});
-
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->enableShadow(true);
   this->plane->addChild(this);
 
   this->setScheduleUpdate(true);
+
+
+   streak = MotionStreak3D::create(0.25f, 0.0f, 0.6f, Color3B(255, 255, 255), "test.png");
+   //streak->setBlendFunc((BlendFunc) {GL_SRC_COLOR, GL_ONE_MINUS_SRC_ALPHA});
+   streak->setBlendFunc((BlendFunc) {GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA});
+   streak->enableShadow(false);
+   streak->enableLight(false);
+   
+  Application->addChild(streak);
 }
 
 Character::~Character()
@@ -72,14 +75,22 @@ void Character::reset()
 
   this->plane->setPosition3D(Vec3(0.0, 1.5, 0.0));
   this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
+  this->plane->setScale(1.0);
 
   this->setPosition3D(Vec3(0.0, 0.375 / 2, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+  this->setScale(1.0);
 
   this->stopAllActions();
 
+  this->plates.current = nullptr;
+  this->plates.previous = nullptr;
+
   this->index = 0;
+  this->stage = 0;
   this->action = 0;
+
+  streak->reset();
 
   /**
    *
@@ -109,6 +120,13 @@ void Character::onCreate()
 void Character::onDestroy(bool action)
 {
   Element::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  streak->setVisible(false);
 }
 
 /**
@@ -126,6 +144,9 @@ void Character::onAction()
     this->changeState(STATE_NORMAL);
     break;
     case STATE_NORMAL:
+    this->action = true;
+    break;
+    case STATE_CRASH:
     this->action = true;
     break;
   }
@@ -146,10 +167,23 @@ void Character::onMove()
    *
    */
   auto generate = this->action;
+  auto d = 0.0;
 
   if(this->action)
   {
-    this->index++;
+    auto element = Application->environment->generator->element(this->index);
+
+    if(this->plates.current && element)
+    {
+      if(element->stage <= this->plates.current->stage)
+      {
+        this->index++;
+      }
+    }
+    else
+    {
+      this->index++;
+    }
   }
 
   /**
@@ -167,15 +201,98 @@ void Character::onMove()
   auto element = Application->environment->generator->element(this->index);
 ///////
 
+if(!element)
+{
+  this->stopAllActions();
+  this->changeState(STATE_CRASH);
+  ////
+  log("-------");
+  if(generate)
+  {
+    log("успел нажать");
+  }
+  else
+  {
+    log("не успел нажать");
+  }
+    log("в яме");
+  log("-------");
+  ///
+  return;
+}
+
+if(!generate)
+{
+if(this->plates.current)
+{
+  if(this->plates.current->stage != element->stage)
+  {
+    if(this->plates.current->stage < element->stage)
+    {
+      this->stopAllActions();
+      this->changeState(STATE_CRASH);
+      ////
+      log("-------");
+      if(generate)
+      {
+        log("успел нажать");
+      }
+      else
+      {
+        log("не успел нажать");
+      }
+        log("ударился");
+      log("-------");
+      ///
+      return;
+    }
+  }
+}
+}
+
+
+if(this->plates.current)
+{
+  if(this->plates.current->stage != element->stage)
+  {
+    if(this->plates.current->stage > element->stage)
+    {
+      d = -0.75;
+    }
+    else
+    {
+      d = 0.75;
+    }
+  }
+}
+
          auto tt = CC_RADIANS_TO_DEGREES(atan2(element->getPositionX() - this->plane->getPositionX(), element->getPositionZ() - this->plane->getPositionZ())) - 180;
         //this->setRotation(this->getRotation3D().x, tt, this->getRotation3D().z);
 
   auto x = element->getPositionX() - this->plane->getPositionX();
   auto z = element->getPositionZ() - this->plane->getPositionZ();
   auto y = 0.75;
+
+  y += (generate ? 0.5 : 0.0);
+
   this->plane->setRotation3D(Vec3(0, tt, 0));
 
   auto time = 0.2;
+
+  this->plates.previous = this->plates.current;
+  this->plates.current = element;
+
+  this->plane->runAction(
+    Sequence::create(
+      EaseSineOut::create(
+        MoveBy::create(time, Vec3(0, y, 0))
+      ),
+      EaseSineIn::create(
+        MoveBy::create(time, Vec3(0, -y + d, 0))
+      ),
+      nullptr
+    )
+  );
 
   this->plane->runAction(
     Sequence::create(
@@ -208,31 +325,12 @@ void Character::onMove()
             nullptr
           )
         );
-
-        /**
-         *
-         *
-         *
-         */
-        this->plates.current = element;
-
-        /**
-         *
-         *
-         *
-         */
-        this->touch->_create()->setOpacity(255);
-        this->touch->runAction(
-          Sequence::create(
-            FadeTo::create(0.3, 0),
-            CallFunc::create([=] () {
-            this->touch->_destroy(true);
-            }),
-            nullptr
-          )
-        );
       }),
       CallFunc::create([=] () {
+        if(this->plates.current)
+        {
+          this->plates.current->direction = 2.0;
+        }
 
         /**
          *
@@ -244,18 +342,15 @@ void Character::onMove()
           Application->environment->generator->create(true);
         }
       }),
-      nullptr
-    )
-  );
+      CallFunc::create([=] () {
 
-  this->plane->runAction(
-    Sequence::create(
-      EaseSineOut::create(
-        MoveBy::create(time, Vec3(0, y, 0))
-      ),
-      EaseSineIn::create(
-        MoveBy::create(time, Vec3(0, -y, 0))
-      ),
+        /**
+         *
+         *
+         *
+         */
+        this->onMove();
+      }),
       nullptr
     )
   );
@@ -264,14 +359,14 @@ void Character::onMove()
     RotateBy::create(time * 2, Vec3(-180, 0, 0))
   );
 
-  this->shadow->setScale(0.1);
+  this->shadow->setScale(0.2);
   this->shadow->runAction(
     Sequence::create(
       EaseSineOut::create(
         ScaleTo::create(time, 1.2)
       ),
       EaseSineIn::create(
-        ScaleTo::create(time, 0.1)
+        ScaleTo::create(time, 0.2)
       ),
       nullptr
     )
@@ -306,15 +401,23 @@ void Character::onStart()
 
 void Character::onNormal()
 {
+  this->onMove();
+
+  streak->setVisible(true);
+}
+
+void Character::onCrash()
+{
   this->runAction(
-    RepeatForever::create(
-      Sequence::create(
-        CallFunc::create([=] () {
-        this->onMove();
-        }),
-        DelayTime::create(0.2 * 2),
-        nullptr
-      )
+    Sequence::create(
+      ScaleTo::create(0.5, 1.5),
+      CallFunc::create([=] () {
+      this->_destroy(true);
+      }),
+      CallFunc::create([=] () {
+      Application->changeState(Game::STATE_FINISH);
+      }),
+      nullptr
     )
   );
 }
@@ -340,6 +443,9 @@ void Character::changeState(State state)
       case STATE_NORMAL:
       this->onNormal();
       break;
+      case STATE_CRASH:
+      this->onCrash();
+      break;
     }
   }
 }
@@ -354,6 +460,10 @@ void Character::updateStart(float time)
 }
 
 void Character::updateNormal(float time)
+{
+}
+
+void Character::updateCrash(float time)
 {
 }
 
@@ -374,6 +484,9 @@ void Character::updateStates(float time)
     case STATE_NORMAL:
     this->updateNormal(time);
     break;
+    case STATE_CRASH:
+    this->updateCrash(time);
+    break;
   }
 
   /**
@@ -382,19 +495,6 @@ void Character::updateStates(float time)
    *
    */
   this->shadow->setPosition3D(this->plane->getPosition3D());
-
-  /**
-   *
-   *
-   *
-   */
-  if(this->touch->state->create)
-  {
-    this->touch->setPosition3D(this->plates.current->getPosition3D());
-    this->touch->setRotation3D(this->plates.current->getRotation3D());
-
-    this->touch->setPositionY(this->plates.current->getPositionY() + 1.5 * this->plates.current->getScaleY());
-  }
 }
 
 /**
@@ -412,4 +512,6 @@ void Character::update(float time)
    *
    */
   this->updateStates(time);
+  streak->setPosition3D(this->plane->getPosition3D());
+  streak->setPositionY(this->plane->getPositionY() + 0.375/2);
 }

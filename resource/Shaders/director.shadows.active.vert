@@ -10,6 +10,7 @@ varying vec4 v_texPosition;
 
 uniform mat4 cameraTransformMatrix;
 uniform mat4 modelTransformMatrix;
+uniform float u_element;
 varying vec2 TextureCoordOut;
 
 void main(void)
