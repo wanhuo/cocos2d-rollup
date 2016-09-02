@@ -38,7 +38,7 @@ void main(void)
 
   if(combinedColor.r > 0.75) {
   if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
-    f = 0.5;
+    f = 0.75;
   }
   }
 

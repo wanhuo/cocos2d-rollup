@@ -142,11 +142,11 @@ Game::Game()
   Director::getInstance()->setCaptureSize(240, 240);
   Director::getInstance()->setCapturePosition(0, 0);
   Director::getInstance()->setCaptureScale(3);
-  Director::getInstance()->setCapture(true, this);
+  Director::getInstance()->setCapture(false, this);
 
   //Director::getInstance()->getCaptureTexture()->setCameraMask(FOREGROUND);
 
-  this->cameras.cameraBackground->setFrameBufferObject(Director::getInstance()->getCaptureFrameBuffer());
+  //this->cameras.cameraBackground->setFrameBufferObject(Director::getInstance()->getCaptureFrameBuffer());
 
   /**
    *
@@ -448,6 +448,7 @@ void Game::onRenderFinish()
 void Game::onRenderStart(int index, int step)
 {
   //if(Director::getInstance()->getShadowState())
+  if(true)
   {
     if(index == this->getShadowsCamera()->getIndex())
     {

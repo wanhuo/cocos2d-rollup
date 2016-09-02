@@ -47,7 +47,6 @@ void Environment::create()
   this->plane = new Entity3D(this, true);
   this->plane->setPosition(0, 0, 0);
   this->plane->setRotation(0, 0, 0);
-  //this->plane->setScale(2.0);
 
   this->ground = new Entity3D("plane.obj", this->plane, true);
   this->ground->setPosition(0, 0, 0);
@@ -66,7 +65,14 @@ void Environment::create()
   this->plates = new Pool(new Plate, this->plane);
   this->dusts = new Pool(new Dust, this);
 
-  this->dusts->_create();
+  for(float i = -5; i < 5; i += 0.5)
+  {
+    for(float j = -5; j < 5; j += 0.5)
+    {
+      auto dust = this->dusts->_create();
+      dust->setPosition(i, 0, j);
+    }
+  }
 }
 
 void Environment::reset()

@@ -35,7 +35,7 @@
  *
  */
 Plate::Plate()
-: Element("plate2.obj")
+: Element("plate.obj")
 {
   this->enableShadow(true);
   this->enableLight(false);

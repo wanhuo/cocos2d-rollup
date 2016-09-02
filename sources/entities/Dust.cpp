@@ -37,8 +37,10 @@
 Dust::Dust()
 : BillBoard()
 {
-  this->initWithFile("");
+  this->initWithFile("environments/dust.png");
   this->autorelease();
+
+  this->setScale(0.005 * 0.2);
 
   this->enableShadow(false);
   this->enableLight(false);
@@ -56,6 +58,45 @@ Dust::~Dust()
 void Dust::onCreate()
 {
   BillBoard::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+   this->setPositionY(0);
+   this->setOpacity(0);
+  auto delay = random(0.0, 15.0);
+
+  auto move_to = random(0.5, 10.0);
+  auto move_time = random(1.0, 5.0);
+
+  auto alpha_to = random(100, 200);
+  auto alpha_time = move_time;
+
+  this->runAction(
+    Spawn::create(
+      Sequence::create(
+        DelayTime::create(delay),
+        MoveBy::create(move_time, Vec3(0, move_to, 0)),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(delay),
+        FadeTo::create(alpha_time, alpha_to),
+        CallFunc::create([=] () {
+        this->_destroy();
+        this->_create();
+        }),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(delay),
+        nullptr
+      ),
+      nullptr
+    )
+  );
 }
 
 void Dust::onDestroy(bool action)

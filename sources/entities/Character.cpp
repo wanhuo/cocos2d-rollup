@@ -79,6 +79,7 @@ void Character::reset()
 
   this->setPosition3D(Vec3(0.0, 0.375 / 2, 0.0));
   this->setRotation3D(Vec3(0.0, 0.0, 0.0));
+  this->setOpacity(255);
   this->setScale(1.0);
 
   this->stopAllActions();
@@ -229,8 +230,7 @@ void Character::onMove()
 
 if(!element)
 {
-  this->stopAllActions();
-  this->changeState(STATE_CRASH);
+  this->changeState(STATE_CRASH, CRASH_MISS);
   ////
   log("-------");
   if(generate)
@@ -244,18 +244,16 @@ if(!element)
     log("в яме");
   log("-------");
   ///
-  return;
 }
 
 if(!generate)
 {
-if(this->plates.current)
+if(this->plates.current && element)
 {
   if(this->plates.current->stage != element->stage)
   {
     if(this->plates.current->stage < element->stage)
     {
-      this->stopAllActions();
       this->changeState(STATE_CRASH);
       ////
       log("-------");
@@ -277,7 +275,7 @@ if(this->plates.current)
 }
 
 
-if(this->plates.current)
+if(this->plates.current && element)
 {
   if(this->plates.current->stage != element->stage)
   {
@@ -304,20 +302,14 @@ if(this->plates.current)
   }
 }
 
-         auto tt = CC_RADIANS_TO_DEGREES(atan2(element->getPositionX() - this->plane->getPositionX(), element->getPositionZ() - this->plane->getPositionZ())) - 180;
-        //this->setRotation(this->getRotation3D().x, tt, this->getRotation3D().z);
+float x;
+float z;
+float y = 0.7;
 
-  auto x = element->getPositionX() - this->plane->getPositionX();
-  auto z = element->getPositionZ() - this->plane->getPositionZ();
-  auto y = 0.7;
-
-  y += (generate ? 0.3 : 0.0);
-
-  
 
 
 if(skip)
-if(this->plates.current)
+if(this->plates.current && element)
 {
   if(element->stage == 1)
   if(this->plates.current->stage == element->stage)
@@ -326,12 +318,33 @@ if(this->plates.current)
   }
 }
 
-  this->plane->setRotation3D(Vec3(0, tt, 0));
+if(element)
+{
 
-  auto time = 0.2;
+  x = element->getPositionX() - this->plane->getPositionX();
+  z = element->getPositionZ() - this->plane->getPositionZ();
 
   this->plates.previous = this->plates.current;
   this->plates.current = element;
+  }
+  else
+  {
+    
+  element = Application->environment->generator->element(this->index+1);
+  x = (element->getPositionX() - this->plane->getPositionX()) / 2;
+  z = (element->getPositionZ() - this->plane->getPositionZ()) / 2;
+  }
+
+  y += (generate ? 0.3 : 0.0);
+
+  
+
+         auto tt = CC_RADIANS_TO_DEGREES(atan2(element->getPositionX() - this->plane->getPositionX(), element->getPositionZ() - this->plane->getPositionZ())) - 180;
+        this->plane->setRotation3D(Vec3(0, tt, 0));
+
+
+
+  auto time = 0.2;
 
   speed1 = Speed::create(
     Sequence::create(
@@ -396,7 +409,35 @@ if(this->plates.current)
            *
            *
            */
-          this->onMove();
+          switch(this->state)
+          {
+            case STATE_NORMAL:
+            this->onMove();
+            break;
+            case STATE_CRASH:
+            // ??
+            this->plane->runAction(
+              Spawn::create(
+                Sequence::create(
+                  MoveTo::create(0.175, Vec3(this->plane->getPosition3D().x, 0.0, this->plane->getPosition3D().z)),
+                  CallFunc::create([=] () {
+                  Application->changeState(Game::STATE_FINISH);
+                  this->_destroy(true);
+                  }),
+                  nullptr
+                ),
+                nullptr
+              )
+            );
+            this->runAction(
+              Sequence::create(
+                DelayTime::create(0.175 / 2.0),
+                FadeOut::create(0.175 / 2.0),
+                nullptr
+              )
+            );
+            break;
+          }
         }),
         nullptr
       ),
@@ -474,6 +515,19 @@ if(this->plates.current)
     MoveBy::create(time * 2, Vec3(x, 0, z))
   );
 
+  /**
+   *
+   *
+   *
+   */
+  switch(this->state)
+  {
+    default:
+    if(speed4) {speed4->setSpeed(0.0); speed4= nullptr;}
+    break;
+    case STATE_NORMAL:
+    break;
+  }
 }
 
 /**
@@ -492,20 +546,27 @@ void Character::onNormal()
   streak->setVisible(true);
 }
 
-void Character::onCrash()
+void Character::onCrash(int parameter)
 {
-  this->runAction(
-    Sequence::create(
-      ScaleTo::create(0.5, 1.5),
-      CallFunc::create([=] () {
-      this->_destroy(true);
-      }),
-      CallFunc::create([=] () {
-      Application->changeState(Game::STATE_FINISH);
-      }),
-      nullptr
-    )
-  );
+  switch(parameter)
+  {
+    default:
+    this->runAction(
+      Sequence::create(
+        ScaleTo::create(0.5, 1.5),
+        CallFunc::create([=] () {
+        this->_destroy(true);
+        }),
+        CallFunc::create([=] () {
+        Application->changeState(Game::STATE_FINISH);
+        }),
+        nullptr
+      )
+    );
+    break;
+    case CRASH_MISS:
+    break;
+  }
 }
 
 /**
@@ -513,7 +574,7 @@ void Character::onCrash()
  *
  *
  */
-void Character::changeState(State state)
+void Character::changeState(State state, int parameter)
 {
   if(this->state != state)
   {
@@ -530,7 +591,7 @@ void Character::changeState(State state)
       this->onNormal();
       break;
       case STATE_CRASH:
-      this->onCrash();
+      this->onCrash(parameter);
       break;
     }
   }

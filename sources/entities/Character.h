@@ -66,6 +66,10 @@ class Character : public Element
     STATE_CRASH,
   };
 
+  enum Crash {
+    CRASH_MISS
+  };
+
   /**
    *
    *
@@ -96,9 +100,9 @@ class Character : public Element
 
   virtual void onStart();
   virtual void onNormal();
-  virtual void onCrash();
+  virtual void onCrash(int parameter = -1);
 
-  virtual void changeState(State state);
+  virtual void changeState(State state, int parameter = -1);
 
   virtual void updateStart(float time);
   virtual void updateNormal(float time);
