@@ -31,11 +31,21 @@
 Character::Character()
 : Element("character.obj")
 {
-  this->setTexture("characters/1/texture.png");
+  this->enableShadow(true);
+  this->enableLight(true);
+
+  this->setTexture("characters/2/character-texture.png");
+
+  this->shadow = new Entity3D("character.obj",  Application->environment->plane, true);
+  this->shadow->enableShadow(true);
+  this->shadow->enableLight(true);
 
   this->touch = new Entity3D("touch.obj", Application->environment->plane);
   this->touch->enableShadow(false);
   this->touch->enableLight(false);
+  this->touch->setLightMask(0);
+  this->touch->setTexture("touch.png");
+  //this->touch->setBlendFunc((BlendFunc) {GL_COLOR, GL_ALPHA});
 
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->enableShadow(true);
@@ -155,10 +165,15 @@ void Character::onMove()
    *
    */
   auto element = Application->environment->generator->element(this->index);
+///////
+
+         auto tt = CC_RADIANS_TO_DEGREES(atan2(element->getPositionX() - this->plane->getPositionX(), element->getPositionZ() - this->plane->getPositionZ())) - 180;
+        //this->setRotation(this->getRotation3D().x, tt, this->getRotation3D().z);
 
   auto x = element->getPositionX() - this->plane->getPositionX();
   auto z = element->getPositionZ() - this->plane->getPositionZ();
   auto y = 0.75;
+  this->plane->setRotation3D(Vec3(0, tt, 0));
 
   auto time = 0.2;
 
@@ -188,6 +203,7 @@ void Character::onMove()
         this->plane->runAction(
           Sequence::create(
             ScaleTo::create(0.1, 1.1, 0.7, 1.1),
+            ScaleTo::create(0.17, 0.9, 1.2, 0.9),
             ScaleTo::create(0.13, 1.0, 1.0, 1.0),
             nullptr
           )
@@ -205,11 +221,10 @@ void Character::onMove()
          *
          *
          */
-        this->touch->_create()->setOpacity(0);
+        this->touch->_create()->setOpacity(255);
         this->touch->runAction(
           Sequence::create(
-            FadeTo::create(0.1, 255),
-            FadeTo::create(0.2, 0),
+            FadeTo::create(0.3, 0),
             CallFunc::create([=] () {
             this->touch->_destroy(true);
             }),
@@ -245,13 +260,22 @@ void Character::onMove()
     )
   );
 
-  /*this->runAction(
+  this->runAction(
+    RotateBy::create(time * 2, Vec3(-180, 0, 0))
+  );
+
+  this->shadow->setScale(0.1);
+  this->shadow->runAction(
     Sequence::create(
-      ScaleTo::create(time, 1.0),
-      ScaleTo::create(time, 0.5),
+      EaseSineOut::create(
+        ScaleTo::create(time, 1.2)
+      ),
+      EaseSineIn::create(
+        ScaleTo::create(time, 0.1)
+      ),
       nullptr
     )
-  );*/
+  );
 
   /**
    *
@@ -351,6 +375,13 @@ void Character::updateStates(float time)
     this->updateNormal(time);
     break;
   }
+
+  /**
+   *
+   *
+   *
+   */
+  this->shadow->setPosition3D(this->plane->getPosition3D());
 
   /**
    *

@@ -415,6 +415,40 @@ void Game::onNoad()
  *
  *
  */
+void Game::onRenderStart()
+{
+}
+
+void Game::onRenderFinish()
+{
+}
+
+void Game::onRenderStart(int index)
+{
+  //if(Director::getInstance()->getShadowState())
+  {
+    if(index == this->getShadowsCamera()->getIndex())
+    {
+      this->environment->character->setVisible(false);
+      this->environment->character->shadow->setVisible(true);
+    }
+    else if(index == 1)
+    {
+      this->environment->character->setVisible(true);
+      this->environment->character->shadow->setVisible(false);
+    }
+  }
+}
+
+void Game::onRenderFinish(int index)
+{
+}
+
+/**
+ *
+ *
+ *
+ */
 void Game::changeState(State state)
 {
   if(this->state != state)

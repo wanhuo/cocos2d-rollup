@@ -176,6 +176,11 @@ class Game : public Screen
 
   virtual void onNoad();
 
+  virtual void onRenderStart();
+  virtual void onRenderFinish();
+  virtual void onRenderStart(int index);
+  virtual void onRenderFinish(int index);
+
   virtual void changeState(State state);
 
   virtual void updateMenu(float time);

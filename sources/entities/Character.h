@@ -38,9 +38,10 @@ class Character : public Element
    *
    *
    */
-  private:
+  public:
   Entity3D* plane;
   Entity3D* touch;
+  Entity3D* shadow;
 
   /**
    *
