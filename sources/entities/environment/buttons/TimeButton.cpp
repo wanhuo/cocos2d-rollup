@@ -37,6 +37,7 @@
 TimeButton::TimeButton(const char* textureFileName, int horizontalFramesCount, int verticalFramesCount, Node* parent, const function<void()>& action, bool autocreate)
 : Button(textureFileName, horizontalFramesCount, verticalFramesCount, parent, action, autocreate)
 {
+  this->text = new Text("test", this);
 }
 
 TimeButton::~TimeButton()
@@ -66,11 +67,90 @@ void TimeButton::onDestroy(bool action)
 void TimeButton::onEnter()
 {
   Button::onEnter();
+
+  /**
+   *
+   *
+   *
+   */
+  this->updateState();
 }
 
 void TimeButton::onExit()
 {
   Button::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void TimeButton::onNormal()
+{
+  this->text->_destroy();
+}
+
+void TimeButton::onWait()
+{
+  this->text->_create();
+
+  if(this->time - Times::now() < 0)
+  {
+    this->updateTime();
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void TimeButton::changeState(int state)
+{
+  if(this->state != state)
+  {
+    this->state = state;
+
+    switch(this->state)
+    {
+      case STATE_NORMAL:
+      this->onNormal();
+      break;
+      case STATE_WAIT:
+      this->onWait();
+      break;
+    }
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void TimeButton::updateState()
+{
+  this->time = Times::parse(Storage::get(this->id, true));
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->time - Times::now() < 0)
+  {
+    this->changeState(STATE_NORMAL);
+  }
+  {
+    this->changeState(STATE_WAIT);
+  }
+}
+
+void TimeButton::updateTime()
+{
+  this->time = Times::now() + Times::minute() * 1;
+  Storage::set(this->id, convert(this->time));
 }
 
 /**
@@ -87,4 +167,24 @@ void TimeButton::update(float time)
    *
    *
    */
+  switch(this->state)
+  {
+    case STATE_WAIT:
+    if(this->time - Times::now() > 0)
+    {
+      auto data = Times::format(this->time - Times::now());
+
+      /**
+       *
+       *
+       *
+       */
+      this->text->data(data.m, data.s, 0);
+    }
+    else
+    {
+      this->changeState(STATE_NORMAL);
+    }
+    break;
+  }
 }

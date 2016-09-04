@@ -38,6 +38,7 @@ PresentButton::PresentButton(Node* parent, bool autocreate)
 : TimeButton("ui/button-present-1.png", 2, 1, parent, [=] () {
   }, autocreate)
 {
+  this->id = "timers.time.present";
 }
 
 PresentButton::~PresentButton()

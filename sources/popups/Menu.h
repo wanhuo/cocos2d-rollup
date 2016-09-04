@@ -49,6 +49,8 @@ class Menu : public Popup
     Button* restart;
     Button* store;
     Button* rate;
+    Button* social;
+    Button* settings;
     Button* video;
     Button* present;
   };

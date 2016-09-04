@@ -73,6 +73,10 @@ Menu::Menu()
   });
   this->buttons.rate = new Button("ui/button-rate.png", 2, 1, this, [=] () {
   });
+  this->buttons.social = new Button("ui/button-social.png", 2, 1, this, [=] () {
+  });
+  this->buttons.settings = new Button("ui/button-settings.png", 2, 1, this, [=] () {
+  });
   this->buttons.video = new VideoButton(this);
   this->buttons.present = new PresentButton(this);
 }
@@ -119,6 +123,9 @@ void Menu::onEnter()
   this->buttons.store->_create()->setPosition(position.x - 256, position.y);
   this->buttons.video->_create()->setPosition(position.x + 128, position.y);
   this->buttons.present->_create()->setPosition(position.x + 256, position.y);
+
+  this->buttons.social->_create()->setPosition(position.x * 2 - 128 * 1.35, Application->getHeight() - 64);
+  this->buttons.settings->_create()->setPosition(position.x * 2 - 64, Application->getHeight() - 64);
 }
 
 void Menu::onExit()
@@ -134,6 +141,10 @@ void Menu::onExit()
   this->buttons.restart->_destroy();
   this->buttons.store->_destroy();
   this->buttons.rate->_destroy();
+  this->buttons.social->_destroy();
+  this->buttons.settings->_destroy();
+  this->buttons.video->_destroy();
+  this->buttons.present->_destroy();
 }
 
 /**

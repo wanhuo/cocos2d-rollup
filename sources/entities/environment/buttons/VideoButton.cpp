@@ -38,6 +38,7 @@ VideoButton::VideoButton(Node* parent, bool autocreate)
 : TimeButton("ui/button-video.png", 2, 1, parent, [=] () {
   }, autocreate)
 {
+  this->id = "timers.time.video";
 }
 
 VideoButton::~VideoButton()

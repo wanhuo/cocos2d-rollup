@@ -71,7 +71,7 @@ using namespace cocos2d::experimental;
  *
  */
 #define Application Game::getInstance()
-#define s patch::to_string
+#define convert patch::to_string
 
 #define CC_LOOP(elements) \
   for(int i = 0; i < elements->count; i++)

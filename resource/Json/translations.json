@@ -21,6 +21,13 @@
     0
   ],
   "languages": {
+    "test": [
+      {
+        "title": "$1:$2",
+        "font": "square",
+        "size": 100
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

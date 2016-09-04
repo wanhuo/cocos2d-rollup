@@ -89,7 +89,7 @@ void Environment::reset()
  */
 Environment::Texture Environment::getTextures()
 {
-  auto path = "environments/" + s(this->texture);
+  auto path = "environments/" + convert(this->texture);
 
   return {
     path + "/texture.png",
