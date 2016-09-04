@@ -35,12 +35,49 @@
  *
  */
 VideoButton::VideoButton(Node* parent, bool autocreate)
-: TimeButton("ui/button-video.png", 2, 1, parent, [=] () {
-  }, autocreate)
+: TimeButton("ui/button-video.png", 2, 1, parent, autocreate)
 {
   this->id = "timers.time.video";
 }
 
 VideoButton::~VideoButton()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void VideoButton::onNormal()
+{
+  TimeButton::onNormal();
+
+  /**
+   *
+   *
+   *
+   */
+}
+
+void VideoButton::onWait()
+{
+  TimeButton::onWait();
+
+  /**
+   *
+   *
+   *
+   */
+  this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
+}
+
+/**
+ *
+ *
+ *
+ */
+void VideoButton::onAction()
+{
+  this->updateTime(1);
 }

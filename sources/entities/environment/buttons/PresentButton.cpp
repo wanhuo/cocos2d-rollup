@@ -35,12 +35,59 @@
  *
  */
 PresentButton::PresentButton(Node* parent, bool autocreate)
-: TimeButton("ui/button-present-1.png", 2, 1, parent, [=] () {
-  }, autocreate)
+: TimeButton("ui/button-present-1.png", 2, 1, parent, autocreate)
 {
   this->id = "timers.time.present";
 }
 
 PresentButton::~PresentButton()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void PresentButton::onNormal()
+{
+  TimeButton::onNormal();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setTexture("ui/button-present-1.png");
+  this->updateTexturePoistion();
+}
+
+void PresentButton::onWait()
+{
+  TimeButton::onWait();
+
+  /**
+   *
+   *
+   *
+   */
+  this->setTexture("ui/button-present-2.png");
+  this->updateTexturePoistion();
+
+  /**
+   *
+   *
+   *
+   */
+  this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
+}
+
+/**
+ *
+ *
+ *
+ */
+void PresentButton::onAction()
+{
+  this->updateTime(1);
 }

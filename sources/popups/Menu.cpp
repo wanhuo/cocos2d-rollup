@@ -55,7 +55,9 @@ Menu::Menu()
    *
    *
    */
-  this->setOpacity(200);
+  this->background = new Entity("ui/background-menu.png", this, true);
+  this->background->setPosition(Application->getCenter());
+  this->background->setScale(2.0);
 
   /**
    *
@@ -145,6 +147,48 @@ void Menu::onExit()
   this->buttons.settings->_destroy();
   this->buttons.video->_destroy();
   this->buttons.present->_destroy();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Menu::show()
+{
+  this->_create();
+
+  this->background->setOpacity(0);
+  this->background->runAction(
+    Spawn::create(
+      Sequence::create(
+        ScaleTo::create(0.5, 1.0),
+        CallFunc::create([=] () {
+        this->onShow();
+        }),
+        nullptr
+      ),
+      FadeTo::create(0.5 * 3, 200.0),
+      nullptr
+    )
+  );
+}
+
+void Menu::hide()
+{
+  this->background->runAction(
+    Spawn::create(
+      Sequence::create(
+        ScaleTo::create(0.5, 2.0),
+        CallFunc::create([=] () {
+        this->onHide();
+        }),
+        nullptr
+      ),
+      FadeTo::create(0.5, 0.0),
+      nullptr
+    )
+  );
 }
 
 /**

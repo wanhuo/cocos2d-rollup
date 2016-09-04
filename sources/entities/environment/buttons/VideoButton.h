@@ -61,6 +61,11 @@ class VideoButton : public TimeButton
   public:
   VideoButton(Node* parent, bool autocreate = false);
  ~VideoButton();
+
+  virtual void onNormal() override;
+  virtual void onWait() override;
+
+  virtual void onAction() override;
 };
 
 #endif
