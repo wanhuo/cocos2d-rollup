@@ -1,52 +1,61 @@
+varying vec3 v_texNormal;
+varying vec2 v_texCoord;
+varying vec4 v_texColor;
+varying vec4 v_texPosition;
+
 uniform vec3 u_DirLightSourceColor[1];
 uniform vec3 u_DirLightSourceDirection[1];
 
 uniform vec3 u_AmbientLightSourceColor;
-uniform vec4 u_color;
 
-uniform float u_element;
-
+uniform float common;
 uniform sampler2D transformTexture;
 
-varying vec3 v_texNormal;
-varying vec2 v_texCoord;
-varying vec4 v_texPosition;
-varying vec2 TextureCoordOut;
-
-vec3 computeLighting(vec3 normalVector, vec3 lightDirection, vec3 lightColor, float attenuation)
-{
-  float diffuse = max(dot(normalVector, lightDirection), 0.0);
-  vec3 diffuseColor = lightColor  * diffuse * attenuation;
-
-  return diffuseColor;
-}
-
+/**
+ *
+ *
+ *
+ */
 void main(void)
 {
-  vec3 normal  = normalize(v_texNormal);
-  vec4 combinedColor = vec4(u_AmbientLightSourceColor, 1.0);
+  vec2 position = vec2(v_texCoord.x, 1.0 - v_texCoord.y);
 
-  vec3 lightDirection = normalize(u_DirLightSourceDirection[0] * 2.0);
-  combinedColor.xyz += computeLighting(normal, -lightDirection, u_DirLightSourceColor[0], 1.0);
+  /**
+   *
+   *
+   *
+   */
+  gl_FragColor = texture2D(CC_Texture0, position) * v_texColor;
 
-  float x = v_texPosition.x;
-  float y = v_texPosition.y;
-  float z = v_texPosition.z;
+  vec3 direction = u_DirLightSourceDirection[0];
+  vec3 color = u_DirLightSourceColor[0];
 
-  float f = 1.0;
-  float b = 0.0025;
+  vec3 index = max(
+    dot(
+      normalize(v_texNormal),
+      -normalize(direction * 2.0)
+    ),
+    0.0
+  ) * color + u_AmbientLightSourceColor;
 
-  if(combinedColor.r > 0.75) {
-  if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
-    f = 0.75;
-  }
-  }
+  /**
+   *
+   *
+   *
+   */
+  if(index.r > 0.75) {
+    float x = v_texPosition.x;
+    float y = v_texPosition.y;
+    float z = v_texPosition.z;
 
-  gl_FragColor = texture2D(CC_Texture0, TextureCoordOut) * u_color* vec4(f, f, f, 1.0);
+    float b = 0.0025;
+    float shadow = 1.0;
 
-  if(u_element > 0.0) {
-    if(combinedColor.r > 0.75) {
-      gl_FragColor *= vec4(u_element, u_element, u_element, 1.0);
+    if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
+      shadow = 0.75;
     }
+
+    if(shadow < 1.0) gl_FragColor *= vec4(shadow, shadow, shadow, 1.0);
+    if(common > 1.0) gl_FragColor *= vec4(common, common, common, 1.0);
   }
 }

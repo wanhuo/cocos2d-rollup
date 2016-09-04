@@ -41,6 +41,18 @@ class Generator;
  */
 class Environment : public Background
 {
+
+  /**
+   *
+   *
+   *
+   */
+  public:
+  struct Texture {
+    string environments;
+    string background;
+  };
+
   /**
    *
    *
@@ -80,9 +92,7 @@ class Environment : public Background
   virtual void create();
   virtual void reset();
 
-  virtual string getBackgroundTexture();
-  virtual string getPlaneTexture();
-  virtual string getPlateTexture();
+  virtual Texture getTextures();
 
   virtual void onAction();
 

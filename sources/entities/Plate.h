@@ -67,7 +67,10 @@ class Plate : public Element
   int rotation;
   int flushed;
 
-  float direction;
+  float common;
+
+  virtual void onEnter() override;
+  virtual void onExit() override;
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
@@ -77,6 +80,7 @@ class Plate : public Element
 
   virtual void flush();
 
+  virtual void update();
   virtual void update(float time) override;
 
   virtual Plate* deepCopy() override;

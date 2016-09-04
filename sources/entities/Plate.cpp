@@ -36,15 +36,41 @@
  */
 Plate::Plate()
 : Element("plate.obj")
-{
-  this->enableShadow(true);
-  this->enableLight(false);
-
+{this->enableShadow(true);
   this->setScheduleUpdate(true);
+
+  /**
+   *
+   *
+   *
+   */
+  if(!Director::getInstance()->getShadowState())
+  {
+    this->enableLight(false);
+
+    this->setGLProgram(
+      GLProgramCache::getInstance()->getGLProgram("@element.direction")
+    );
+  }
 }
 
 Plate::~Plate()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::onEnter()
+{
+  Element::onEnter();
+}
+
+void Plate::onExit()
+{
+  Element::onExit();
 }
 
 /**
@@ -61,7 +87,7 @@ void Plate::onCreate()
    *
    *
    */
-  this->direction = 1.0;
+  this->common = 1.0;
   this->flushed = 0;
 
   /**
@@ -69,7 +95,10 @@ void Plate::onCreate()
    *
    *
    */
-  this->setTexture(Application->environment->getPlateTexture());
+  if(!Director::getInstance()->getShadowState())
+  {
+    this->update();
+  }
 }
 
 void Plate::onDestroy(bool action)
@@ -84,6 +113,7 @@ void Plate::onDestroy(bool action)
  */
 void Plate::start(bool animation)
 {
+  this->setTexture(Application->environment->getTextures().environments);
   this->setOpacity(255);
 
   this->runAction(
@@ -157,11 +187,26 @@ void Plate::flush()
  *
  *
  */
+void Plate::update()
+{
+  if(this->getGLProgram())
+  {
+    this->getGLProgramState()->setUniformFloat("common", this->common);
+  }
+}
+
 void Plate::update(float time)
 {
-  if(this->direction > 1.0)
+  if(this->common > 1.0)
   {
-    this->direction -= 0.02;
+    this->common -= 0.02;
+
+    /**
+     *
+     *
+     *
+     */
+    this->update();
   }
 }
 

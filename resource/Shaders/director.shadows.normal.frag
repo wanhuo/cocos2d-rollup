@@ -1,6 +1,9 @@
+/**
+ *
+ *
+ *
+ */
 void main()
 {
-  float r = gl_FragCoord.z;
-
-  gl_FragColor = vec4(r, r, r, 1.0);
+  gl_FragColor = vec4(vec3(1.0, 1.0, 1.0) * gl_FragCoord.z, 1.0);
 }

@@ -37,13 +37,16 @@ Character::Character()
 
   this->setTexture("characters/2/character-texture.png");
 
-  this->shadow = new Entity3D("character.obj",  Application->environment->plane, true);
-  this->shadow->enableShadow(true);
-  this->shadow->enableLight(true);
-
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->enableShadow(true);
   this->plane->addChild(this);
+
+  if(Director::getInstance()->getShadowState())
+  {
+    this->shadow = new Entity3D("character.obj",  Application->environment->plane, true);
+    this->shadow->enableShadow(true);
+    this->shadow->enableLight(true);
+  }
 
   this->setScheduleUpdate(true);
 
@@ -388,7 +391,7 @@ if(element)
         CallFunc::create([=] () {
           if(this->plates.current)
           {
-            this->plates.current->direction = 2.0;
+            this->plates.current->common = 2.0;
           }
 
           /**
@@ -478,18 +481,21 @@ if(element)
   
   this->plane->runAction(speed4);
 
-  this->shadow->setScale(0.2);
-  this->shadow->runAction(
-    Sequence::create(
-      EaseSineOut::create(
-        ScaleTo::create(time, 1.2)
-      ),
-      EaseSineIn::create(
-        ScaleTo::create(time, 0.2)
-      ),
-      nullptr
-    )
-  );
+  if(Director::getInstance()->getShadowState())
+  {
+    this->shadow->setScale(0.2);
+    this->shadow->runAction(
+      Sequence::create(
+        EaseSineOut::create(
+          ScaleTo::create(time, 1.2)
+        ),
+        EaseSineIn::create(
+          ScaleTo::create(time, 0.2)
+        ),
+        nullptr
+      )
+    );
+  }
 
   /**
    *
@@ -511,9 +517,12 @@ if(element)
     speed5
   );
 
-  Application->getShadowsCamera()->runAction(
-    MoveBy::create(time * 2, Vec3(x, 0, z))
-  );
+  if(Director::getInstance()->getShadowState())
+  {
+    Application->getShadowsCamera()->runAction(
+      MoveBy::create(time * 2, Vec3(x, 0, z))
+    );
+  }
 
   /**
    *
@@ -641,7 +650,10 @@ void Character::updateStates(float time)
    *
    *
    */
-  this->shadow->setPosition3D(this->plane->getPosition3D());
+  if(Director::getInstance()->getShadowState())
+  {
+    this->shadow->setPosition3D(this->plane->getPosition3D());
+  }
 }
 
 /**

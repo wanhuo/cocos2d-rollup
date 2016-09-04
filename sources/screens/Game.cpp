@@ -83,39 +83,23 @@ Game::Game()
   this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
   this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
 
-  this->cameras.cameraForeground = Camera::create();
   this->cameras.cameraBackground = Camera::create();
-
-  //this->cameras.cameraBuffer = Camera::create();
-  //this->cameras.cameraCapture = Camera::create();
 
   this->cameras.cameraElements->setCameraFlag(ELEMENTS);
   this->cameras.cameraShadows->setCameraFlag(ELEMENTS);
-  this->cameras.cameraForeground->setCameraFlag(FOREGROUND);
   this->cameras.cameraBackground->setCameraFlag(BACKGROUND);
-  //this->cameras.cameraBuffer->setCameraFlag(2);
-  //this->cameras.cameraCapture->setCameraFlag(2);
 
-  this->cameras.cameraElements->setDepth(1);
-  this->cameras.cameraForeground->setDepth(3);
-  this->cameras.cameraBackground->setDepth(2);
-  /*this->cameras.cameraBuffer->setDepth(3);
+  this->cameras.cameraElements->setDepth(2);
+  this->cameras.cameraBackground->setDepth(3);
   this->cameras.cameraShadows->setDepth(1);
-  this->cameras.cameraCapture->setDepth(4);*/
 
   this->cameras.cameraElements->setIndex(ELEMENTS);
-  this->cameras.cameraForeground->setIndex(FOREGROUND);
   this->cameras.cameraBackground->setIndex(BACKGROUND);
-  //this->cameras.cameraBuffer->setIndex(3);
-  this->cameras.cameraShadows->setIndex(3);
-  //this->cameras.cameraCapture->setIndex(4);
+  this->cameras.cameraShadows->setIndex(SHADOWS);
 
   this->addChild(this->cameras.cameraElements);
-  this->addChild(this->cameras.cameraForeground);
   this->addChild(this->cameras.cameraBackground);
   this->addChild(this->cameras.cameraShadows);
-  //this->addChild(this->cameras.frameBufferCamera);
-  //this->addChild(this->cameras.captureBufferCamera);
 
   /**
    *
@@ -142,11 +126,7 @@ Game::Game()
   Director::getInstance()->setCaptureSize(240, 240);
   Director::getInstance()->setCapturePosition(0, 0);
   Director::getInstance()->setCaptureScale(3);
-  Director::getInstance()->setCapture(false, this);
-
-  //Director::getInstance()->getCaptureTexture()->setCameraMask(FOREGROUND);
-
-  //this->cameras.cameraBackground->setFrameBufferObject(Director::getInstance()->getCaptureFrameBuffer());
+  Director::getInstance()->setCapture(true, this);
 
   /**
    *
@@ -157,6 +137,16 @@ Game::Game()
   Director::getInstance()->setShadowCamera(this->cameras.cameraShadows);
   Director::getInstance()->setShadowFactor(1);
   Director::getInstance()->setShadow(true, this);
+
+  if(!Director::getInstance()->getShadowState())
+  {
+    this->cameras.cameraShadows->removeFromParent();
+
+    GLProgramCache::getInstance()->addGLProgram(
+      GLProgram::createWithFilenames("element.direction.vert", "element.direction.frag"),
+      "@element.direction"
+    );
+  }
 
   /**
    *
@@ -172,7 +162,17 @@ Game::Game()
    * | @Shadows;
    *
    */
-  Director::getInstance()->setShadowElement(this->environment->plane);
+  if(Director::getInstance()->getShadowState())
+  {
+    Director::getInstance()->setShadowElement(this->environment->plane);
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  Music->play("music-1", true);
 }
 
 Game::~Game()
@@ -402,15 +402,11 @@ void Game::onMenu()
   this->cameras.cameraElements->setPosition3D(this->startCameraPosition);
   this->cameras.cameraElements->setRotation3D(this->startCameraRotation);
 
-  this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
-  this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
-
-  /**
-   *
-   *
-   *
-   */
-  Music->play("music-1", true);
+  if(Director::getInstance()->getShadowState())
+  {
+    this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
+    this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
+  }
 }
 
 void Game::onGame()
@@ -447,9 +443,19 @@ void Game::onRenderFinish()
 
 void Game::onRenderStart(int index, int step)
 {
-  //if(Director::getInstance()->getShadowState())
-  if(true)
+  /**
+   *
+   * @Director
+   * | @Shadows;
+   *
+   */
+  if(Director::getInstance()->getShadowState())
   {
+    /**
+     *
+     *
+     *
+     */
     if(index == this->getShadowsCamera()->getIndex())
     {
       if(step == 1)
@@ -458,7 +464,13 @@ void Game::onRenderStart(int index, int step)
         this->environment->character->shadow->setVisible(true);
       }
     }
-    else if(index == 1)
+
+    /**
+     *
+     *
+     *
+     */
+    else if(index == ELEMENTS)
     {
       if(step == 1)
       {
@@ -468,15 +480,9 @@ void Game::onRenderStart(int index, int step)
 
       if(step == 2)
       {
-        for(auto element : *this->environment->plates->elements)
+        loop(this->environment->plates)
         {
-          if(element->state->create)
-          {
-            if(element->getGLProgram())
-            {
-              element->getGLProgramState()->setUniformFloat("u_element", static_cast<Plate*>(element)->direction);
-            }
-          }
+          ((Plate*) this->environment->plates->element(i))->update();
         }
       }
     }
@@ -561,8 +567,10 @@ void Game::updateStates(float time)
    *
    *
    */
-  cocos2d::experimental::FrameBuffer::clearAllFBOs();
-  //Director::getInstance()->updateCapture();
+  if(Director::getInstance()->getCaptureState())
+  {
+    //Director::getInstance()->updateCapture();
+  }
 }
 
 /**

@@ -65,6 +65,7 @@ using namespace cocos2d::experimental;
  */
 #define Application Game::getInstance()
 #define s patch::to_string
+#define loop(elements) for(int i = 0; i < elements->count; i++)
 
 /**
  *
@@ -75,7 +76,7 @@ enum Index {
   NONE = 0,
   ELEMENTS = 1,
   BACKGROUND = 2,
-  FOREGROUND = 3,
+  SHADOWS = 3,
   UI = 4
 };
 
@@ -105,10 +106,7 @@ class Game : public Screen
   struct Cameras {
     Camera* cameraElements;
     Camera* cameraBackground;
-    Camera* cameraForeground;
     Camera* cameraShadows;
-    Camera* cameraCapture;
-    Camera* cameraBuffer;
   };
 
   Vec3 startCameraPosition;
