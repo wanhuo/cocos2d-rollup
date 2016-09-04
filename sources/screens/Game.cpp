@@ -462,6 +462,8 @@ void Game::onRenderStart(int index, int step)
       {
         this->environment->character->setVisible(false);
         this->environment->character->shadow->setVisible(true);
+
+        this->environment->status->setVisible(false);
       }
     }
 
@@ -476,6 +478,8 @@ void Game::onRenderStart(int index, int step)
       {
         this->environment->character->setVisible(true);
         this->environment->character->shadow->setVisible(false);
+
+        this->environment->status->setVisible(true);
       }
 
       if(step == 2)

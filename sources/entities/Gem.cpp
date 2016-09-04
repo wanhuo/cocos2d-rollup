@@ -27,9 +27,6 @@
  *
  */
 
-#ifndef _PLATE_H_
-#define _PLATE_H_
-
 #include "Game.h"
 
 /**
@@ -37,56 +34,42 @@
  *
  *
  */
-class Plate : public Element
+Gem::Gem(Node* parent)
+: Entity3D("gem.obj", parent)
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
+  this->setColor(Color3B(255, 0, 0));
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
+Gem::~Gem()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Plate();
- ~Plate();
+/**
+ *
+ *
+ *
+ */
+void Gem::onCreate()
+{
+  Entity3D::onCreate();
+}
 
-  Gem* gem;
+void Gem::onDestroy(bool action)
+{
+  Entity3D::onDestroy(action);
+}
 
-  int index;
-  int stage;
-  int rotation;
-  int flushed;
-  int dusts;
+/**
+ *
+ *
+ *
+ */
+void Gem::onEnter()
+{
+  Entity3D::onEnter();
+}
 
-  float common;
-
-  virtual void onEnter() override;
-  virtual void onExit() override;
-
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
-
-  virtual void start(bool animation = false);
-  virtual void finish();
-
-  virtual void flush();
-
-  virtual void update();
-  virtual void update(float time) override;
-
-  virtual Plate* deepCopy() override;
-};
-
-#endif
+void Gem::onExit()
+{
+  Entity3D::onExit();
+}

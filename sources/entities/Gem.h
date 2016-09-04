@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _PLATE_H_
-#define _PLATE_H_
+#ifndef _GEM_H_
+#define _GEM_H_
 
 #include "Game.h"
 
@@ -37,7 +37,7 @@
  *
  *
  */
-class Plate : public Element
+class Gem : public Entity3D
 {
   /**
    *
@@ -59,34 +59,14 @@ class Plate : public Element
    *
    */
   public:
-  Plate();
- ~Plate();
-
-  Gem* gem;
-
-  int index;
-  int stage;
-  int rotation;
-  int flushed;
-  int dusts;
-
-  float common;
-
-  virtual void onEnter() override;
-  virtual void onExit() override;
+  Gem(Node* parent);
+ ~Gem();
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void start(bool animation = false);
-  virtual void finish();
-
-  virtual void flush();
-
-  virtual void update();
-  virtual void update(float time) override;
-
-  virtual Plate* deepCopy() override;
+  virtual void onEnter() override;
+  virtual void onExit() override;
 };
 
 #endif

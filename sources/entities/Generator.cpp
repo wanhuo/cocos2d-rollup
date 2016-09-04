@@ -226,6 +226,9 @@ void Generator::create(bool animation)
     current->stage = this->previous.stage;
 
     current->start(animation);
+
+
+
   }
   else
   {

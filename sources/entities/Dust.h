@@ -52,6 +52,7 @@ class Dust : public BillBoard
    *
    */
   protected:
+  Plate* element;
 
   /**
    *
@@ -62,11 +63,17 @@ class Dust : public BillBoard
   Dust();
  ~Dust();
 
+  Speed* action;
+
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
   virtual void onEnter() override;
   virtual void onExit() override;
+
+  virtual void setElement(Plate* element);
+
+  virtual void update(float time) override;
 
   virtual Dust* deepCopy() override;
 };

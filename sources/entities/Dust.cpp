@@ -39,8 +39,6 @@ Dust::Dust()
 {
   this->initWithFile("environments/1/dust.png");
   this->autorelease();
-
-  this->setScale(0.005 * 0.2);
 }
 
 Dust::~Dust()
@@ -62,41 +60,91 @@ void Dust::onCreate()
    *
    */
   this->setOpacity(0);
+  this->setScale(0.005 * 0.2);
 
   /**
    *
    *
    *
    */
-  //this->setOpacity(255);
+  auto time = 3.0;//random(1.0, 10.0);
+  auto move = random(0.5, 1.0);
+  auto scale = 1.0;
 
-  /**
-   *
-   *
-   *
-   */
-  this->runAction(
+  if(probably(10))
+  {
+    move = 10.0;
+    time = 1.0;
+    scale = 1.3;
+  }
+  else if(probably(20))
+  {
+    move = random(1.0, 5.0);
+    time = random(3.0, 5.0);
+    scale = 1.3;
+  }
+
+  this->action = Speed::create(
     Spawn::create(
       Sequence::create(
-        FadeTo::create(0.5, random(100, 200)),
-        FadeTo::create(0.5, 0),
+        MoveBy::create(time, Vec3(0.0, move, 0.0)),
         CallFunc::create([=] () {
-        this->_destroy();
+        this->_destroy(true);
         }),
         nullptr
       ),
+      FadeTo::create(time / 2, random(100, 255)),
       Sequence::create(
-        MoveBy::create(1.0, Vec3(0.0, random(2.0, 10.0), 0.0)),
+        ScaleTo::create(time / 4 * 2, 0.005 * 0.2),
+        ScaleTo::create(time / 4 * 2, 0.005 * 0.2 * scale),
+        nullptr
+      ),
+      Sequence::create(
+        DelayTime::create(random(2.0, 5.0)),
+        CallFunc::create([=] () {
+        this->action->setSpeed(1.0);
+        }),
         nullptr
       ),
       nullptr
-    )
+    ),
+    1.0
   );
+
+  if(probably(50))
+  {
+    this->runAction(
+      RepeatForever::create(
+        Sequence::create(
+          DelayTime::create(0.2),
+          CallFunc::create([=] () {
+          this->setOpacity(this->getOpacity() + random(-100.0, 100.0));
+          }),
+          nullptr
+        )
+      )
+    );
+  }
+
+  this->runAction(this->action);
 }
 
 void Dust::onDestroy(bool action)
 {
   BillBoard::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  if(action)
+  {
+    if(this->element)
+    {
+      this->element->dusts--;
+    }
+  }
 }
 
 /**
@@ -112,6 +160,26 @@ void Dust::onEnter()
 void Dust::onExit()
 {
   BillBoard::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Dust::setElement(Plate* element)
+{
+  this->element = element;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Dust::update(float time)
+{
+  BillBoard::update(time);
 }
 
 /**

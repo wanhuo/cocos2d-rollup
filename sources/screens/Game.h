@@ -45,6 +45,7 @@
 #include "Plate.h"
 #include "Character.h"
 
+#include "Gem.h"
 #include "Dust.h"
 
 #include "Environment.h"

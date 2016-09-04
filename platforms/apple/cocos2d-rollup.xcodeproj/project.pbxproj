@@ -15,6 +15,9 @@
 		7828E3B81D79F12200AA66D9 /* Dust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828E3B61D79F12200AA66D9 /* Dust.cpp */; };
 		7828E3B91D79F12200AA66D9 /* Dust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828E3B61D79F12200AA66D9 /* Dust.cpp */; };
 		7828E3BA1D79F12200AA66D9 /* Dust.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828E3B61D79F12200AA66D9 /* Dust.cpp */; };
+		7828E3BD1D7C617200AA66D9 /* Gem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828E3BB1D7C617200AA66D9 /* Gem.cpp */; };
+		7828E3BE1D7C617200AA66D9 /* Gem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828E3BB1D7C617200AA66D9 /* Gem.cpp */; };
+		7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7828E3BB1D7C617200AA66D9 /* Gem.cpp */; };
 		7832A8A31D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8911D10B5370059BFE3 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
 		7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8911D10B5370059BFE3 /* AFHTTPRequestOperation.m */; };
 		7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7832A8931D10B5370059BFE3 /* AFHTTPRequestOperationManager.m */; settings = {COMPILER_FLAGS = " -fobjc-arc"; }; };
@@ -188,6 +191,8 @@
 		78283FA31CE1D5750010CAB7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CoreBluetooth.framework; sourceTree = DEVELOPER_DIR; };
 		7828E3B61D79F12200AA66D9 /* Dust.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Dust.cpp; sourceTree = "<group>"; };
 		7828E3B71D79F12200AA66D9 /* Dust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dust.h; sourceTree = "<group>"; };
+		7828E3BB1D7C617200AA66D9 /* Gem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gem.cpp; sourceTree = "<group>"; };
+		7828E3BC1D7C617200AA66D9 /* Gem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gem.h; sourceTree = "<group>"; };
 		7832A8901D10B5370059BFE3 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		7832A8911D10B5370059BFE3 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		7832A8921D10B5370059BFE3 /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -993,6 +998,8 @@
 				78DF64CC1D24463B0049EB22 /* Character.h */,
 				7828E3B61D79F12200AA66D9 /* Dust.cpp */,
 				7828E3B71D79F12200AA66D9 /* Dust.h */,
+				7828E3BB1D7C617200AA66D9 /* Gem.cpp */,
+				7828E3BC1D7C617200AA66D9 /* Gem.h */,
 			);
 			name = entities;
 			path = ../../sources/entities;
@@ -1335,6 +1342,7 @@
 				78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */,
+				7828E3BE1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
@@ -1358,6 +1366,7 @@
 				7828E3BA1D79F12200AA66D9 /* Dust.cpp in Sources */,
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
+				7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
@@ -1403,6 +1412,7 @@
 				78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */,
 				7891E8901CF21293005C238E /* NSBatch.mm in Sources */,
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
+				7828E3BD1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,
 				78DF64D21D2446660049EB22 /* Element.cpp in Sources */,
 				7832A8A91D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,

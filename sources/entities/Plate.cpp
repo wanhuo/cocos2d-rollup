@@ -36,8 +36,15 @@
  */
 Plate::Plate()
 : Element("plate.obj")
-{this->enableShadow(true);
+{
   this->setScheduleUpdate(true);
+
+  /**
+   *
+   *
+   *
+   */
+  this->gem = new Gem(this);
 
   /**
    *
@@ -89,6 +96,8 @@ void Plate::onCreate()
    */
   this->common = 1.0;
   this->flushed = 0;
+  this->dusts = 0;
+  this->gem->_create();
 
   /**
    *
@@ -208,6 +217,57 @@ void Plate::update(float time)
      */
     this->update();
   }
+
+
+  
+
+    ///////////
+    
+
+  /**
+   *
+   *
+   *
+   */
+  int ss = 0;
+  int n = 0;
+  int i = 20;
+  //while(i > 0)
+  {
+  i--;
+  if(this->dusts < 5)
+  if(probably(10))
+  {ss++;
+  this->dusts++;
+    auto r = random(1.0, 10.0);
+    auto a = random(0.0, 360.0);
+
+    auto x = this->getPositionX() + r * cos(a);
+    auto z = this->getPositionZ()+ r * sin(a);// - random(0.0, 10.0);
+    auto y = 0;
+
+    auto element = (Dust*) Application->environment->dusts->_create();
+
+    element->setPosition3D(Vec3(x, y, z));
+    element->setElement(this);
+
+    /**
+     *
+     *
+     *
+     */
+    /*if(!Application->getCamera()->isVisibleInFrustum(&element->getAABB()))
+    {
+    n++;
+      element->action->setSpeed(random(2.0, 10.0));
+    }
+    else
+    {
+      element->action->setSpeed(1.0);
+    }*/
+  }
+  }
+    //////////
 }
 
 /**

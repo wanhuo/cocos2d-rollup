@@ -81,6 +81,7 @@ class Environment : public Background
   Entity* background;
 
   Entity3D* plane;
+  Entity3D* status;
   Entity3D* ground;
 
   Generator* generator;

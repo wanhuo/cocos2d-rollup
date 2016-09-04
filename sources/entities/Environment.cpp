@@ -48,6 +48,10 @@ void Environment::create()
   this->plane->setPosition(0, 0, 0);
   this->plane->setRotation(0, 0, 0);
 
+  this->status = new Entity3D(this, true);
+  this->status->setPosition(0, 0, 0);
+  this->status->setRotation(0, 0, 0);
+
   this->ground = new Entity3D("ground.obj", this->plane, true);
   this->ground->enableLight(false);
   this->ground->enableShadow(false);
@@ -61,7 +65,7 @@ void Environment::create()
   this->character = new Character;
 
   this->plates = new Pool(new Plate, this->plane);
-  this->dusts = new Pool(new Dust, this);
+  this->dusts = new Pool(new Dust, this->status);
 }
 
 void Environment::reset()
@@ -158,22 +162,5 @@ void Environment::update(float time)
     case Game::STATE_FINISH:
     this->updateFinish(time);
     break;
-  }
-
-  /**
-   *
-   *
-   *
-   */
-  if(this->dusts->count < 2000.0)
-  {
-    auto r = random(0.0, 5.0);
-    auto a = random(0.0, 360.0);
-
-    auto x = this->character->plane->getPositionX() + r * cos(a);
-    auto z = this->character->plane->getPositionZ() + r * sin(a);
-    auto y = 0;
-
-    this->dusts->_create()->setPosition(x, y, z);
   }
 }
