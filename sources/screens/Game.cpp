@@ -212,20 +212,6 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     this->environment->onAction();
     break;
   }
-
-  switch(this->state)
-  {
-    case STATE_NONE:
-    break;
-    case STATE_MENU:
-    this->changeState(STATE_GAME);
-    break;
-    case STATE_GAME:
-    break;
-    case STATE_FINISH:
-    this->changeState(STATE_MENU);
-    break;
-  }
 }
 
 void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
@@ -259,31 +245,6 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
     case STATE_GAME:
     break;
     case STATE_FINISH:
-    break;
-  }
-
-  switch(key)
-  {
-    default:
-    break;
-
-    /**
-     *
-     * @Development
-     *
-     */
-    case EventKeyboard::KeyCode::KEY_SPACE:
-    this->environment->onAction();
-    break;
-    case EventKeyboard::KeyCode::KEY_C:
-    if(Director::getInstance()->getShadowTexture()->state->create)
-    {
-      Director::getInstance()->getShadowTexture()->_destroy();
-    }
-    else
-    {
-      Director::getInstance()->getShadowTexture()->_create();
-    }
     break;
   }
 }
@@ -407,14 +368,7 @@ void Game::onMenu()
    *
    *
    */
-  this->cameras.cameraElements->setPosition3D(this->startCameraPosition);
-  this->cameras.cameraElements->setRotation3D(this->startCameraRotation);
-
-  if(Director::getInstance()->getShadowState())
-  {
-    this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
-    this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
-  }
+  this->reset();
 }
 
 void Game::onGame()
@@ -518,6 +472,30 @@ void Game::onRenderStart(int index, int step)
 
 void Game::onRenderFinish(int index)
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Game::reset()
+{
+  this->environment->reset();
+
+  /**
+   *
+   *
+   *
+   */
+  this->cameras.cameraElements->setPosition3D(this->startCameraPosition);
+  this->cameras.cameraElements->setRotation3D(this->startCameraRotation);
+
+  if(Director::getInstance()->getShadowState())
+  {
+    this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
+    this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
+  }
 }
 
 /**

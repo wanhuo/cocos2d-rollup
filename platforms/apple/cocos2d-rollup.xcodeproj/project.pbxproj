@@ -140,6 +140,15 @@
 		78A20B251D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
 		78A20B261D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
 		78A20B271D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
+		78A20B2C1D7C7B4600789617 /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2A1D7C7B4600789617 /* TimeButton.cpp */; };
+		78A20B2D1D7C7B4600789617 /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2A1D7C7B4600789617 /* TimeButton.cpp */; };
+		78A20B2E1D7C7B4600789617 /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2A1D7C7B4600789617 /* TimeButton.cpp */; };
+		78A20B331D7C7D6800789617 /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2F1D7C7D6800789617 /* PresentButton.cpp */; };
+		78A20B341D7C7D6800789617 /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2F1D7C7D6800789617 /* PresentButton.cpp */; };
+		78A20B351D7C7D6800789617 /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2F1D7C7D6800789617 /* PresentButton.cpp */; };
+		78A20B361D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
+		78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
+		78A20B381D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
@@ -362,6 +371,12 @@
 		78A20B1F1D7C6C3300789617 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		78A20B201D7C6C3300789617 /* Popup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
 		78A20B211D7C6C3300789617 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
+		78A20B2A1D7C7B4600789617 /* TimeButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeButton.cpp; sourceTree = "<group>"; };
+		78A20B2B1D7C7B4600789617 /* TimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeButton.h; sourceTree = "<group>"; };
+		78A20B2F1D7C7D6800789617 /* PresentButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PresentButton.cpp; sourceTree = "<group>"; };
+		78A20B301D7C7D6800789617 /* PresentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentButton.h; sourceTree = "<group>"; };
+		78A20B311D7C7D6800789617 /* VideoButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoButton.cpp; sourceTree = "<group>"; };
+		78A20B321D7C7D6800789617 /* VideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoButton.h; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -996,6 +1011,7 @@
 		7894C02E1BC9282F00363FC9 /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				78A20B281D7C7B4600789617 /* environment */,
 				78DF64C11D24460A0049EB22 /* Environment.cpp */,
 				78DF64C21D24460A0049EB22 /* Environment.h */,
 				78DF64C31D24460A0049EB22 /* Generator.cpp */,
@@ -1044,6 +1060,27 @@
 			);
 			name = Services;
 			path = ../../resource/Services;
+			sourceTree = "<group>";
+		};
+		78A20B281D7C7B4600789617 /* environment */ = {
+			isa = PBXGroup;
+			children = (
+				78A20B291D7C7B4600789617 /* buttons */,
+			);
+			path = environment;
+			sourceTree = "<group>";
+		};
+		78A20B291D7C7B4600789617 /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				78A20B2A1D7C7B4600789617 /* TimeButton.cpp */,
+				78A20B2B1D7C7B4600789617 /* TimeButton.h */,
+				78A20B2F1D7C7D6800789617 /* PresentButton.cpp */,
+				78A20B301D7C7D6800789617 /* PresentButton.h */,
+				78A20B311D7C7D6800789617 /* VideoButton.cpp */,
+				78A20B321D7C7D6800789617 /* VideoButton.h */,
+			);
+			path = buttons;
 			sourceTree = "<group>";
 		};
 		78BF8F7B1CF13FF600DBBF62 /* tv */ = {
@@ -1354,12 +1391,15 @@
 				7828E3B91D79F12200AA66D9 /* Dust.cpp in Sources */,
 				78C3F6851D528D980031E5B1 /* Plate.cpp in Sources */,
 				78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */,
+				78A20B341D7C7D6800789617 /* PresentButton.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */,
 				78A20B231D7C6C3300789617 /* Menu.cpp in Sources */,
 				78A20B261D7C6C3300789617 /* Popup.cpp in Sources */,
 				7828E3BE1D7C617200AA66D9 /* Gem.cpp in Sources */,
+				78A20B2D1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
+				78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1380,6 +1420,7 @@
 				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				7828E3BA1D79F12200AA66D9 /* Dust.cpp in Sources */,
+				78A20B2E1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */,
@@ -1388,8 +1429,10 @@
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
 				78A20B241D7C6C3300789617 /* Menu.cpp in Sources */,
+				78A20B381D7C7D6800789617 /* VideoButton.cpp in Sources */,
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
+				78A20B351D7C7D6800789617 /* PresentButton.cpp in Sources */,
 				78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */,
 				7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78C35A511CEE84E200F10068 /* main.m in Sources */,
@@ -1420,6 +1463,7 @@
 				7891E88B1CF21293005C238E /* AppController.mm in Sources */,
 				7891E88F1CF21293005C238E /* NSModal.mm in Sources */,
 				7832A8A31D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
+				78A20B331D7C7D6800789617 /* PresentButton.cpp in Sources */,
 				78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */,
 				7832A8AF1D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
 				78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */,
@@ -1438,8 +1482,10 @@
 				78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */,
 				78C3F6841D528D980031E5B1 /* Plate.cpp in Sources */,
 				7891E8941CF21293005C238E /* NSServices.mm in Sources */,
+				78A20B361D7C7D6800789617 /* VideoButton.cpp in Sources */,
 				78A20B251D7C6C3300789617 /* Popup.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
+				78A20B2C1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

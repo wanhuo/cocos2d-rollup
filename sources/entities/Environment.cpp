@@ -59,7 +59,6 @@ void Environment::create()
   this->background = new Entity("environments/1/background.png", this, true);
   this->background->setPosition(Application->getCenter().x, Application->getCenter().y);
   this->background->setCameraMask(BACKGROUND);
-  this->background->setGlobalZOrder(10);
 
   this->generator = new Generator;
   this->character = new Character;
@@ -115,7 +114,6 @@ void Environment::onAction()
  */
 void Environment::onMenu()
 {
-  this->reset();
 }
 
 void Environment::onGame()

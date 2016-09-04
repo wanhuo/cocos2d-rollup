@@ -44,6 +44,17 @@ class Menu : public Popup
     STATE_FINISH
   };
 
+  struct Buttons {
+    Button* play;
+    Button* restart;
+    Button* store;
+    Button* rate;
+    Button* video;
+    Button* present;
+  };
+
+  Buttons buttons;
+
   /**
    *
    *
@@ -70,7 +81,10 @@ class Menu : public Popup
   Menu();
  ~Menu();
 
-  int state;
+  int state = STATE_MENU;
+
+  virtual void onEnter() override;
+  virtual void onExit() override;
 
   virtual void changeState(int state);
 };

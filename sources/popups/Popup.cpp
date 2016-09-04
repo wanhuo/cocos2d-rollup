@@ -54,7 +54,6 @@ void Popup::onEnter()
    *
    */
   this->setCameraMask(BACKGROUND);
-  this->setGlobalZOrder(20);
 }
 
 void Popup::onExit()

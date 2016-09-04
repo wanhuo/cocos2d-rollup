@@ -50,6 +50,10 @@
 #include "Environment.h"
 #include "Generator.h"
 
+#include "TimeButton.h"
+#include "PresentButton.h"
+#include "VideoButton.h"
+
 #include "Popup.h"
 #include "Menu.h"
 
@@ -189,6 +193,8 @@ class Game : public Screen
   virtual void onRenderFinish();
   virtual void onRenderStart(int index, int step);
   virtual void onRenderFinish(int index);
+
+  virtual void reset();
 
   virtual void changeState(State state);
 

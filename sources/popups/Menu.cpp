@@ -56,10 +56,84 @@ Menu::Menu()
    *
    */
   this->setOpacity(200);
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.play = new Button("ui/button-play.png", 2, 1, this, [=] () {
+    Application->changeState(Game::STATE_GAME);
+  });
+  this->buttons.restart = new Button("ui/button-restart.png", 2, 1, this, [=] () {
+    Application->reset();
+    Application->changeState(Game::STATE_GAME);
+  });
+  this->buttons.store = new Button("ui/button-store.png", 2, 1, this, [=] () {
+  });
+  this->buttons.rate = new Button("ui/button-rate.png", 2, 1, this, [=] () {
+  });
+  this->buttons.video = new VideoButton(this);
+  this->buttons.present = new PresentButton(this);
 }
 
 Menu::~Menu()
 {
+}
+
+/**
+ *
+ *
+ *
+ */
+void Menu::onEnter()
+{
+  Popup::onEnter();
+
+  /**
+   *
+   *
+   *
+   */
+  Vec2 position;
+
+  position.x = Application->getCenter().x;
+  position.y = 200.0;
+
+  /**
+   *
+   *
+   *
+   */
+  switch(this->state)
+  {
+    case STATE_MENU:
+    this->buttons.play->_create()->setPosition(position.x, position.y);
+    break;
+    case STATE_FINISH:
+    this->buttons.restart->_create()->setPosition(position.x, position.y);
+    break;
+  }
+
+  this->buttons.rate->_create()->setPosition(position.x - 128, position.y);
+  this->buttons.store->_create()->setPosition(position.x - 256, position.y);
+  this->buttons.video->_create()->setPosition(position.x + 128, position.y);
+  this->buttons.present->_create()->setPosition(position.x + 256, position.y);
+}
+
+void Menu::onExit()
+{
+  Popup::onExit();
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.play->_destroy();
+  this->buttons.restart->_destroy();
+  this->buttons.store->_destroy();
+  this->buttons.rate->_destroy();
 }
 
 /**
