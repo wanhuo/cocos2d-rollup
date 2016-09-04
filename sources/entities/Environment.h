@@ -89,6 +89,7 @@ class Environment : public Background
 
   Pool* plates;
   Pool* dusts;
+  Pool* gems;
 
   virtual void create();
   virtual void reset();

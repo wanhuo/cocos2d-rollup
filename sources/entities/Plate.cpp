@@ -44,19 +44,12 @@ Plate::Plate()
    *
    *
    */
-  this->gem = new Gem(this);
-
-  /**
-   *
-   *
-   *
-   */
   if(!Director::getInstance()->getShadowState())
   {
     this->enableLight(false);
 
     this->setGLProgram(
-      GLProgramCache::getInstance()->getGLProgram("@element.direction")
+      GLProgramCache::getInstance()->getGLProgram("@element.common")
     );
   }
 }
@@ -97,7 +90,8 @@ void Plate::onCreate()
   this->common = 1.0;
   this->flushed = 0;
   this->dusts = 0;
-  this->gem->_create();
+
+  if(probably(10)) this->gem = (Gem*) Application->environment->gems->_create();
 
   /**
    *
@@ -113,6 +107,16 @@ void Plate::onCreate()
 void Plate::onDestroy(bool action)
 {
   Element::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->gem)
+  {
+    CC_DESTROY(this->gem);
+  }
 }
 
 /**
@@ -216,6 +220,20 @@ void Plate::update(float time)
      *
      */
     this->update();
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(this->gem)
+  {
+    auto x = this->getPositionX();
+    auto z = this->getPositionZ();
+    auto y = this->getPositionY() + 1.5 + 1.5 * (this->getScaleY() - 1.0) + 0.2;
+
+    this->gem->setPosition(x, y, z);
   }
 
 

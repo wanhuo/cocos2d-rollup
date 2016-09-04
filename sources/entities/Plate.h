@@ -62,7 +62,7 @@ class Plate : public Element
   Plate();
  ~Plate();
 
-  Gem* gem;
+  Gem* gem = nullptr;
 
   int index;
   int stage;

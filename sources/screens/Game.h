@@ -42,14 +42,16 @@
 #include "Shake.h"
 
 #include "Element.h"
+#include "Gem.h"
 #include "Plate.h"
 #include "Character.h"
-
-#include "Gem.h"
 #include "Dust.h"
 
 #include "Environment.h"
 #include "Generator.h"
+
+#include "Popup.h"
+#include "Menu.h"
 
 /**
  *
@@ -66,7 +68,13 @@ using namespace cocos2d::experimental;
  */
 #define Application Game::getInstance()
 #define s patch::to_string
-#define loop(elements) for(int i = 0; i < elements->count; i++)
+
+#define CC_LOOP(elements) \
+  for(int i = 0; i < elements->count; i++)
+
+#define CC_DESTROY(element) \
+  element->_destroy(); \
+  element = nullptr;
 
 /**
  *

@@ -65,6 +65,7 @@ void Environment::create()
   this->character = new Character;
 
   this->plates = new Pool(new Plate, this->plane);
+  this->gems = new Pool(new Gem, this->plane);
   this->dusts = new Pool(new Dust, this->status);
 }
 

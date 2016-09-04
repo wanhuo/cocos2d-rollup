@@ -34,10 +34,9 @@
  *
  *
  */
-Gem::Gem(Node* parent)
-: Entity3D("gem.obj", parent)
+Gem::Gem()
+: Element("gem.obj")
 {
-  this->setColor(Color3B(255, 0, 0));
 }
 
 Gem::~Gem()
@@ -51,12 +50,23 @@ Gem::~Gem()
  */
 void Gem::onCreate()
 {
-  Entity3D::onCreate();
+  Element::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    RepeatForever::create(
+      RotateBy::create(1.0, Vec3(0.0, 180.0, 0.0))
+    )
+  );
 }
 
 void Gem::onDestroy(bool action)
 {
-  Entity3D::onDestroy(action);
+  Element::onDestroy(action);
 }
 
 /**
@@ -66,10 +76,20 @@ void Gem::onDestroy(bool action)
  */
 void Gem::onEnter()
 {
-  Entity3D::onEnter();
+  Element::onEnter();
 }
 
 void Gem::onExit()
 {
-  Entity3D::onExit();
+  Element::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+Gem* Gem::deepCopy()
+{
+  return new Gem;
 }

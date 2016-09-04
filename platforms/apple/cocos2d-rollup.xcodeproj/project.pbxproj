@@ -134,6 +134,12 @@
 		7894C0341BC9282F00363FC9 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
 		7899D44E1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
 		7899D44F1BF48194008080B5 /* services.json in Resources */ = {isa = PBXBuildFile; fileRef = 7899D44D1BF48194008080B5 /* services.json */; };
+		78A20B221D7C6C3300789617 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B1E1D7C6C3300789617 /* Menu.cpp */; };
+		78A20B231D7C6C3300789617 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B1E1D7C6C3300789617 /* Menu.cpp */; };
+		78A20B241D7C6C3300789617 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B1E1D7C6C3300789617 /* Menu.cpp */; };
+		78A20B251D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
+		78A20B261D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
+		78A20B271D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
@@ -352,6 +358,10 @@
 		7894C02B1BC925FA00363FC9 /* Json */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Json; path = ../../resource/Json; sourceTree = "<group>"; };
 		7894C0311BC9282F00363FC9 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		7899D44D1BF48194008080B5 /* services.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = services.json; path = apple/services.json; sourceTree = "<group>"; };
+		78A20B1E1D7C6C3300789617 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
+		78A20B1F1D7C6C3300789617 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
+		78A20B201D7C6C3300789617 /* Popup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
+		78A20B211D7C6C3300789617 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -976,8 +986,8 @@
 		7894C0181BC9245800363FC9 /* support */ = {
 			isa = PBXGroup;
 			children = (
-				783DE9571D1C096B009706B7 /* Events.mm */,
 				7894C0191BC9245800363FC9 /* Events.cpp */,
+				783DE9571D1C096B009706B7 /* Events.mm */,
 			);
 			name = support;
 			path = ../../Sources/support;
@@ -1008,6 +1018,10 @@
 		7894C02F1BC9282F00363FC9 /* popups */ = {
 			isa = PBXGroup;
 			children = (
+				78A20B201D7C6C3300789617 /* Popup.cpp */,
+				78A20B211D7C6C3300789617 /* Popup.h */,
+				78A20B1E1D7C6C3300789617 /* Menu.cpp */,
+				78A20B1F1D7C6C3300789617 /* Menu.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1342,6 +1356,8 @@
 				78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
 				78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */,
+				78A20B231D7C6C3300789617 /* Menu.cpp in Sources */,
+				78A20B261D7C6C3300789617 /* Popup.cpp in Sources */,
 				7828E3BE1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
@@ -1367,9 +1383,11 @@
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */,
+				78A20B271D7C6C3300789617 /* Popup.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
+				78A20B241D7C6C3300789617 /* Menu.cpp in Sources */,
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */,
@@ -1396,6 +1414,7 @@
 				7828E3B81D79F12200AA66D9 /* Dust.cpp in Sources */,
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				7891E8911CF21293005C238E /* NSHeyzap.mm in Sources */,
+				78A20B221D7C6C3300789617 /* Menu.cpp in Sources */,
 				78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
 				7891E88B1CF21293005C238E /* AppController.mm in Sources */,
@@ -1419,6 +1438,7 @@
 				78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */,
 				78C3F6841D528D980031E5B1 /* Plate.cpp in Sources */,
 				7891E8941CF21293005C238E /* NSServices.mm in Sources */,
+				78A20B251D7C6C3300789617 /* Popup.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,
 			);

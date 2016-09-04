@@ -37,7 +37,7 @@
  *
  *
  */
-class Gem : public Entity3D
+class Gem : public Element
 {
   /**
    *
@@ -59,7 +59,7 @@ class Gem : public Entity3D
    *
    */
   public:
-  Gem(Node* parent);
+  Gem();
  ~Gem();
 
   virtual void onCreate() override;
@@ -67,6 +67,8 @@ class Gem : public Entity3D
 
   virtual void onEnter() override;
   virtual void onExit() override;
+
+  virtual Gem* deepCopy() override;
 };
 
 #endif

@@ -143,8 +143,8 @@ Game::Game()
     this->cameras.cameraShadows->removeFromParent();
 
     GLProgramCache::getInstance()->addGLProgram(
-      GLProgram::createWithFilenames("element.direction.vert", "element.direction.frag"),
-      "@element.direction"
+      GLProgram::createWithFilenames("element.common.vert", "element.common.frag"),
+      "@element.common"
     );
   }
 
@@ -392,6 +392,14 @@ void Game::onRestorePurchases()
  */
 void Game::onMenu()
 {
+  Menu::getInstance()->changeState(Menu::STATE_MENU);
+  Menu::getInstance()->show();
+
+  /**
+   *
+   *
+   *
+   */
   this->environment->onMenu();
 
   /**
@@ -411,11 +419,26 @@ void Game::onMenu()
 
 void Game::onGame()
 {
+  Menu::getInstance()->hide();
+
+  /**
+   *
+   *
+   *
+   */
   this->environment->onGame();
 }
 
 void Game::onFinish()
 {
+  Menu::getInstance()->changeState(Menu::STATE_FINISH);
+  Menu::getInstance()->show();
+
+  /**
+   *
+   *
+   *
+   */
   this->environment->onFinish();
 }
 
@@ -484,7 +507,7 @@ void Game::onRenderStart(int index, int step)
 
       if(step == 2)
       {
-        loop(this->environment->plates)
+        CC_LOOP(this->environment->plates)
         {
           ((Plate*) this->environment->plates->element(i))->update();
         }

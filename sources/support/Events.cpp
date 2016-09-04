@@ -31,11 +31,8 @@
  */
 void Events::onStart()
 {
-  Director::getInstance()->setDisplayStats(true);
-
   new Game;
-
-  Events::updateMissions();
+  new Menu;
 
   Director::getInstance()->runWithScene(Application);
 
