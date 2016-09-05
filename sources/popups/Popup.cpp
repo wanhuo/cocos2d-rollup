@@ -88,7 +88,7 @@ void Popup::show()
 
   this->runAction(
     Sequence::create(
-      FadeTo::create(0.5, 200),
+      FadeTo::create(0.5, 70),
       CallFunc::create([=] () {
       this->onShow();
       }),

@@ -51,6 +51,8 @@ Counter::Counter()
   this->currency.background = new Entity(true);
   this->currency.handler = new Coins(this->currency.background);
 
+  this->currency.background->setCascadeOpacityEnabled(true);
+
   this->currency.text = new Text("@counter.currency", this->currency.background, TextHAlignment::LEFT, true);
   this->currency.icon = new Entity("ui/counter-currency-icon.png", this->currency.background, true);
 

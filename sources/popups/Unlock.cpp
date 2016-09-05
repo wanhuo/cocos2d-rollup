@@ -64,8 +64,39 @@ Unlock::Unlock()
    */
   this->buttons.action = new UnlockButton(this);
   this->buttons.play = new Button("ui/button-play.png", 2, 1, this, [=] () {
-    Application->changeState(Game::STATE_GAME);
+    Unlock::getInstance()->hide();
+
+    /**
+     *
+     *
+     *
+     */
+    Application->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        Application->changeState(Game::STATE_FINISH);
+        }),
+        nullptr
+      )
+    );
   });
+  this->buttons.share = new Button("ui/button-share.png", 2, 1, this, [=] () {
+  });
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.play->setPosition(Application->getCenter().x + 64, 200);
+  this->buttons.share->setPosition(Application->getCenter().x - 64, 200);
+
+  this->buttons.play->setScale(0.8);
+  this->buttons.share->setScale(0.8);
+
+  this->buttons.play->setOpacity(0);
+  this->buttons.share->setOpacity(0);
 }
 
 Unlock::~Unlock()
@@ -86,30 +117,7 @@ void Unlock::onEnter()
    *
    *
    */
-  auto time = 0.5;
-
-  /**
-   *
-   *
-   *
-   */
-  auto action = Spawn::create(
-    EaseSineOut::create(
-      ScaleTo::create(time, 1.0)
-    ),
-    EaseSineOut::create(
-      FadeTo::create(time, 255.0)
-    ),
-    nullptr
-  );
-
-  /**
-   *
-   *
-   *
-   */
-  this->buttons.play->runAction(action->clone());
-  //this->buttons.share->runAction(action->clone());
+  this->buttons.action->_create();
 }
 
 void Unlock::onExit()
@@ -125,11 +133,37 @@ void Unlock::onExit()
 void Unlock::show()
 {
   Popup::show();
+
+  /**
+   *
+   *
+   *
+   */
+  Application->counter->runAction(
+    FadeTo::create(0.5, 0)
+  );
+
+  Director::getInstance()->getNotificationNode()->runAction(
+    FadeTo::create(0.5, 0)
+  );
 }
 
 void Unlock::hide()
 {
   Popup::hide();
+
+  /**
+   *
+   *
+   *
+   */
+  Application->counter->runAction(
+    FadeTo::create(0.5, 255)
+  );
+
+  Director::getInstance()->getNotificationNode()->runAction(
+    FadeTo::create(0.5, 255)
+  );
 
   /**
    *
@@ -158,6 +192,7 @@ void Unlock::hide()
    *
    *
    */
+  this->buttons.action->runAction(action->clone());
   this->buttons.play->runAction(action->clone());
   this->buttons.share->runAction(action->clone());
 
@@ -170,12 +205,41 @@ void Unlock::hide()
     Sequence::create(
       DelayTime::create(time),
       CallFunc::create([=] () {
+      this->buttons.action->_destroy();
       this->buttons.play->_destroy();
       this->buttons.share->_destroy();
       }),
       nullptr
     )
   );
+}
+
+void Unlock::showButtons()
+{
+  auto time = 0.5;
+
+  /**
+   *
+   *
+   *
+   */
+  auto action = Spawn::create(
+    EaseSineOut::create(
+      ScaleTo::create(time, 1.0)
+    ),
+    EaseSineOut::create(
+      FadeTo::create(time, 255.0)
+    ),
+    nullptr
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.play->_create()->runAction(action->clone());
+  this->buttons.share->_create()->runAction(action->clone());
 }
 
 /**

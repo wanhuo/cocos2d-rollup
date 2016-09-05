@@ -86,6 +86,8 @@ class Unlock : public Popup
   virtual void show();
   virtual void hide();
 
+  virtual void showButtons();
+
   virtual void changeState(int state);
 };
 
