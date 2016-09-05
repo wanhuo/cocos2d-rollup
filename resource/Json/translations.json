@@ -23,9 +23,9 @@
   "languages": {
     "test": [
       {
-        "title": "$1:$2",
-        "font": "square",
-        "size": 100
+        "title": "$1:$2$3",
+        "font": "msyi",
+        "size": 28
       }
     ],
     "vote-title": [

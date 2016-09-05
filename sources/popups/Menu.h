@@ -71,6 +71,7 @@ class Menu : public Popup
    *
    */
   protected:
+  Entity* background;
 
   /**
    *
@@ -87,6 +88,9 @@ class Menu : public Popup
 
   virtual void onEnter() override;
   virtual void onExit() override;
+
+  virtual void show();
+  virtual void hide();
 
   virtual void changeState(int state);
 };

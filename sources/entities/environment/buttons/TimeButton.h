@@ -68,7 +68,7 @@ class TimeButton : public Button
    *
    */
   public:
-  TimeButton(const char* textureFileName, int horizontalFramesCount, int verticalFramesCount, Node* parent, const function<void()>& action, bool autocreate = false);
+  TimeButton(const char* textureFileName, int horizontalFramesCount, int verticalFramesCount, Node* parent, bool autocreate = false);
  ~TimeButton();
 
   int state;
@@ -82,10 +82,12 @@ class TimeButton : public Button
   virtual void onNormal();
   virtual void onWait();
 
+  virtual void onAction();
+
   virtual void changeState(int state);
 
   virtual void updateState();
-  virtual void updateTime();
+  virtual void updateTime(int time);
 
   virtual void update(float time) override;
 };

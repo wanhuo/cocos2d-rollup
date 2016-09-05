@@ -61,6 +61,11 @@ class PresentButton : public TimeButton
   public:
   PresentButton(Node* parent, bool autocreate = false);
  ~PresentButton();
+
+  virtual void onNormal() override;
+  virtual void onWait() override;
+
+  virtual void onAction() override;
 };
 
 #endif
