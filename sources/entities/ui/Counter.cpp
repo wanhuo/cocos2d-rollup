@@ -121,6 +121,14 @@ void Counter::onCoin(int count)
    *
    *
    */
+  auto id = Sound->play("gem");
+  Sound->volume(id, 0.7);
+
+  /**
+   *
+   *
+   *
+   */
   this->updateData();
 }
 

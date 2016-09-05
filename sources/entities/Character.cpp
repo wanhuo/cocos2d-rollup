@@ -406,22 +406,6 @@ if(element)
         }),
         MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
         CallFunc::create([=] () {
-          //////////////////////
-          if(Environment::special.size() < 1)
-          {
-            Environment::special = Environment::all;
-            log("заново");
-          }
-          int sss = random(0, (int) Environment::special.size() - 1);
-          //int id = Sound->play("bounce-" + convert(Environment::special.at(sss)), false, 5.0);
-          if(this->action)
-          Sound->play("bounce-7");
-          else
-          Sound->play("bounce-1", false, 0.4);
-          //Sound->volume(id, this->action ? 1.0 : 0.3);
-          //log("%d", Environment::special.at(sss));
-          Environment::special.erase(Environment::special.begin() + sss);
-          //////////////////////
           if(this->plates.current)
           {
             this->plates.current->onAction();
@@ -448,6 +432,14 @@ if(element)
           switch(this->state)
           {
             case STATE_NORMAL:
+            if(this->action){
+          auto id = Sound->play("bounce-7");
+          Sound->volume(id, 0.7);}
+          else{
+          auto id = Sound->play("bounce-1");
+          Sound->volume(id, 0.2);
+          }
+
             this->onMove();
             break;
             case STATE_CRASH:
@@ -457,7 +449,17 @@ if(element)
                 Sequence::create(
                   MoveTo::create(0.175, Vec3(this->plane->getPosition3D().x, 0.0, this->plane->getPosition3D().z)),
                   CallFunc::create([=] () {
+
+                  ////
+                  if(true)
+                  {
+                  Application->changeState(Game::STATE_UNLOCK);
+                  }
+                  else
+                  {
                   Application->changeState(Game::STATE_FINISH);
+                  }
+                  ///
                   this->_destroy(true);
                   }),
                   nullptr

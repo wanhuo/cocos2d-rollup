@@ -28,7 +28,7 @@
  *
  *
  */
- Menu* Menu::instance;
+Menu* Menu::instance;
 
 /**
  *

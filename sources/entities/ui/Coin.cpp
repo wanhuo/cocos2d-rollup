@@ -51,6 +51,26 @@ Coin::~Coin()
 void Coin::onCreate()
 {
   Entity::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  Application->counter->currency.icon->runAction(
+    Sequence::create(
+      ScaleTo::create(0.0, 1.1),
+      ScaleTo::create(0.1, 1.0),
+      nullptr
+    )
+  );
+
+  Application->counter->onCoin();
+}
+
+void Coin::onDestroy(bool action)
+{
+  Entity::onDestroy(action);
 }
 
 /**
@@ -119,29 +139,6 @@ void Coin::animate(Node* element)
       nullptr
     )
   );
-}
-
-void Coin::onDestroy(bool action)
-{
-  Entity::onDestroy(action);
-
-  /**
-   *
-   *
-   *
-   */
-  if(action)
-  {
-    Application->counter->currency.icon->runAction(
-      Sequence::create(
-        ScaleTo::create(0.0, 1.1),
-        ScaleTo::create(0.1, 1.0),
-        nullptr
-      )
-    );
-
-    Application->counter->onCoin();
-  }
 }
 
 /**

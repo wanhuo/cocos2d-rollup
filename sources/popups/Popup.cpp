@@ -33,6 +33,8 @@ Popup::Popup()
 {
   this->setCascadeOpacityEnabled(false);
   this->bind(true);
+
+  this->_destroy();
 }
 
 Popup::~Popup()

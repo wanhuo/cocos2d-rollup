@@ -57,9 +57,11 @@
 #include "TimeButton.h"
 #include "PresentButton.h"
 #include "VideoButton.h"
+#include "UnlockButton.h"
 
 #include "Popup.h"
 #include "Menu.h"
+#include "Unlock.h"
 
 /**
  *
@@ -144,7 +146,8 @@ class Game : public Screen
     STATE_NONE,
     STATE_MENU,
     STATE_GAME,
-    STATE_FINISH
+    STATE_FINISH,
+    STATE_UNLOCK
   };
 
   /**
@@ -193,6 +196,7 @@ class Game : public Screen
   virtual void onMenu();
   virtual void onGame();
   virtual void onFinish();
+  virtual void onUnlock();
 
   virtual void onNoad();
 
@@ -208,6 +212,7 @@ class Game : public Screen
   virtual void updateMenu(float time);
   virtual void updateGame(float time);
   virtual void updateFinish(float time);
+  virtual void updateUnlock(float time);
 
   virtual void updateStates(float time);
 

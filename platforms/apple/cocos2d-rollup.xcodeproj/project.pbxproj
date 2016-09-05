@@ -105,6 +105,12 @@
 		787B53A51D7DCB1200C1C17D /* Coins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A31D7DCB1200C1C17D /* Coins.cpp */; };
 		787B53A61D7DCB1200C1C17D /* Coins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A31D7DCB1200C1C17D /* Coins.cpp */; };
 		787B53A71D7DCB1200C1C17D /* Coins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A31D7DCB1200C1C17D /* Coins.cpp */; };
+		787B53AA1D7DF59900C1C17D /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A81D7DF59900C1C17D /* Unlock.cpp */; };
+		787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A81D7DF59900C1C17D /* Unlock.cpp */; };
+		787B53AC1D7DF59900C1C17D /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A81D7DF59900C1C17D /* Unlock.cpp */; };
+		787B53AF1D7DF8A200C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */; };
+		787B53B01D7DF8A200C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */; };
+		787B53B11D7DF8A200C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */; };
 		7891E8641CF2125F005C238E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8631CF2125F005C238E /* main.cpp */; };
 		7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8681CF21293005C238E /* NSAnalytics.mm */; };
 		7891E88B1CF21293005C238E /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7891E86A1CF21293005C238E /* AppController.mm */; };
@@ -345,6 +351,10 @@
 		787B539A1D7DCA7000C1C17D /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
 		787B53A31D7DCB1200C1C17D /* Coins.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coins.cpp; sourceTree = "<group>"; };
 		787B53A41D7DCB1200C1C17D /* Coins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coins.h; sourceTree = "<group>"; };
+		787B53A81D7DF59900C1C17D /* Unlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unlock.cpp; sourceTree = "<group>"; };
+		787B53A91D7DF59900C1C17D /* Unlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unlock.h; sourceTree = "<group>"; };
+		787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnlockButton.cpp; sourceTree = "<group>"; };
+		787B53AE1D7DF8A200C1C17D /* UnlockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockButton.h; sourceTree = "<group>"; };
 		7891E8631CF2125F005C238E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7891E8671CF21293005C238E /* NSAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAnalytics.h; sourceTree = "<group>"; };
 		7891E8681CF21293005C238E /* NSAnalytics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSAnalytics.mm; sourceTree = "<group>"; };
@@ -1059,6 +1069,8 @@
 				78A20B211D7C6C3300789617 /* Popup.h */,
 				78A20B1E1D7C6C3300789617 /* Menu.cpp */,
 				78A20B1F1D7C6C3300789617 /* Menu.h */,
+				787B53A81D7DF59900C1C17D /* Unlock.cpp */,
+				787B53A91D7DF59900C1C17D /* Unlock.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1100,6 +1112,8 @@
 				78A20B301D7C7D6800789617 /* PresentButton.h */,
 				78A20B311D7C7D6800789617 /* VideoButton.cpp */,
 				78A20B321D7C7D6800789617 /* VideoButton.h */,
+				787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */,
+				787B53AE1D7DF8A200C1C17D /* UnlockButton.h */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -1439,7 +1453,9 @@
 				78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */,
 				787B53A61D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
+				787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
+				787B53B01D7DF8A200C1C17D /* UnlockButton.cpp in Sources */,
 				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1450,6 +1466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787B53AC1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78C3F6861D528D980031E5B1 /* Plate.cpp in Sources */,
@@ -1458,6 +1475,7 @@
 				78C352D91CEE7DB000F10068 /* Events.cpp in Sources */,
 				7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
 				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
+				787B53B11D7DF8A200C1C17D /* UnlockButton.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				7828E3BA1D79F12200AA66D9 /* Dust.cpp in Sources */,
 				78A20B2E1D7C7B4600789617 /* TimeButton.cpp in Sources */,
@@ -1488,6 +1506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */,
+				787B53AA1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				7832A8AC1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				7832A8B51D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				7891E88D1CF21293005C238E /* main.m in Sources */,
@@ -1521,6 +1540,7 @@
 				7832A8B81D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */,
 				7891E8901CF21293005C238E /* NSBatch.mm in Sources */,
+				787B53AF1D7DF8A200C1C17D /* UnlockButton.cpp in Sources */,
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
 				7828E3BD1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,

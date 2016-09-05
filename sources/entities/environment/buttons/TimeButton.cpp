@@ -90,6 +90,14 @@ void TimeButton::onEnter()
    *
    *
    */
+  this->setScale(1.0);
+  this->setRotation(0.0);
+
+  /**
+   *
+   *
+   *
+   */
   this->updateState();
 }
 
@@ -112,12 +120,86 @@ void TimeButton::onNormal()
    *
    *
    */
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(random(1.0, 5.0)),
+      CallFunc::create([=] () {
+
+      /**
+       *
+       *
+       *
+       */
+      auto count = random(2, 5);
+      auto d = random(2.0, 5.0);
+      auto time = 0.1;
+
+      /**
+       *
+       *
+       *
+       */
+      this->runAction(
+        RepeatForever::create(
+          Spawn::create(
+            Sequence::create(
+              DelayTime::create(d),
+              Repeat::create(
+                Sequence::create(
+                  EaseSineIn::create(
+                    RotateTo::create(time, -15.0)
+                  ),
+                  EaseSineIn::create(
+                    RotateTo::create(time, 15.0)
+                  ),
+                  nullptr
+                ),
+                count
+              ),
+              EaseSineIn::create(
+                RotateTo::create(time, 0.0)
+              ),
+              nullptr
+            ),
+            Sequence::create(
+              DelayTime::create(d),
+              ScaleTo::create(time * (count + 1) * 2, 1.1),
+              ScaleTo::create(time, 1.0),
+              nullptr
+            ),
+            nullptr
+            )
+          )
+        );
+      }),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
   this->bind(true);
 }
 
 void TimeButton::onWait()
 {
-  this->text->_create();
+  if(!Application->getActionManager()->getActionByTag(1, this->text))
+  {
+    this->text->_create();
+    this->text->setText("@buttons.time");
+    this->text->setOpacity(255);
+    this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
+
+    /**
+     *
+     *
+     *
+     */
+    this->icon->_destroy();
+  }
 
   /**
    *
@@ -139,6 +221,13 @@ void TimeButton::onAction()
 void TimeButton::onAction(int count, Node* element)
 {
   Application->counter->currency.handler->add(count, element);
+
+  /**
+   *
+   *
+   *
+   */
+  this->stopAllActions();
 
   /**
    *
@@ -179,6 +268,19 @@ void TimeButton::onAction(int count, Node* element)
    */
   this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 19);
   this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 22);
+
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    Spawn::create(
+      RotateTo::create(0.1, 0.0),
+      ScaleTo::create(0.1, 1.0),
+      nullptr
+    )
+  );
 
   /**
    *
@@ -238,7 +340,6 @@ void TimeButton::onAction(int count, Node* element)
  */
 void TimeButton::changeState(int state)
 {
-  if(this->state != state)
   {
     this->state = state;
 

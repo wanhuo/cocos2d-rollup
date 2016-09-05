@@ -58,6 +58,40 @@ void VideoButton::onNormal()
    *
    *
    */
+  this->text->_create();
+  this->text->setText("@buttons.currency");
+  this->text->data(100);
+  this->text->setOpacity(0);
+  this->text->runAction(
+    Sequence::create(
+      FadeTo::create(0.5, 255),
+      DelayTime::create(5.5),
+      nullptr
+    ),
+    1
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->icon->_create();
+  this->icon->setOpacity(0);
+  this->icon->runAction(
+    Sequence::create(
+      FadeTo::create(0.5, 255),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 19);
+  this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 22);
 }
 
 void VideoButton::onWait()
@@ -72,7 +106,7 @@ void VideoButton::onWait()
  */
 void VideoButton::onAction()
 {
-  TimeButton::onAction(150, Menu::getInstance()->buttons.video);
+  TimeButton::onAction(100, Menu::getInstance()->buttons.video);
 
   /**
    *

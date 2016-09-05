@@ -35,6 +35,7 @@ void Events::onStart()
 
   new Game;
   new Menu;
+  new Unlock;
 
   Director::getInstance()->runWithScene(Application);
 

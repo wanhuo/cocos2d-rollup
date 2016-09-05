@@ -423,6 +423,11 @@ void Game::onFinish()
   this->environment->onFinish();
 }
 
+void Game::onUnlock()
+{
+  Unlock::getInstance()->show();
+}
+
 /**
  *
  *
@@ -556,6 +561,9 @@ void Game::changeState(State state)
       case STATE_FINISH:
       this->onFinish();
       break;
+      case STATE_UNLOCK:
+      this->onUnlock();
+      break;
     }
   }
 }
@@ -574,6 +582,10 @@ void Game::updateGame(float time)
 }
 
 void Game::updateFinish(float time)
+{
+}
+
+void Game::updateUnlock(float time)
 {
 }
 
@@ -596,6 +608,9 @@ void Game::updateStates(float time)
     break;
     case STATE_FINISH:
     this->updateFinish(time);
+    break;
+    case STATE_UNLOCK:
+    this->updateUnlock(time);
     break;
   }
 
