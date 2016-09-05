@@ -73,13 +73,6 @@ void PresentButton::onWait()
    */
   this->setTexture("ui/button-present-2.png");
   this->updateTexturePoistion();
-
-  /**
-   *
-   *
-   *
-   */
-  this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
 }
 
 /**
@@ -89,7 +82,7 @@ void PresentButton::onWait()
  */
 void PresentButton::onAction()
 {
-  Application->counter->currency.handler->add(50);
+  TimeButton::onAction(50, Menu::getInstance()->buttons.present);
 
   /**
    *

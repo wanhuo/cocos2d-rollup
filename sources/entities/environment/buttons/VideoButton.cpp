@@ -63,13 +63,6 @@ void VideoButton::onNormal()
 void VideoButton::onWait()
 {
   TimeButton::onWait();
-
-  /**
-   *
-   *
-   *
-   */
-  this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
 }
 
 /**
@@ -79,5 +72,12 @@ void VideoButton::onWait()
  */
 void VideoButton::onAction()
 {
+  TimeButton::onAction(150, Menu::getInstance()->buttons.video);
+
+  /**
+   *
+   *
+   *
+   */
   this->updateTime(1);
 }

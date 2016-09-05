@@ -52,7 +52,7 @@ Counter::Counter()
   this->currency.handler = new Coins(this->currency.background);
 
   this->currency.text = new Text("@counter.currency", this->currency.background, TextHAlignment::LEFT, true);
-  this->currency.icon = new Entity("ui/counter-coins-icon.png", this->currency.background, true);
+  this->currency.icon = new Entity("ui/counter-currency-icon.png", this->currency.background, true);
 
   this->currency.text->setPosition(64, Application->getHeight() - 38);
   this->currency.icon->setPosition(42, Application->getHeight() - 42);

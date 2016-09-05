@@ -21,9 +21,16 @@
     0
   ],
   "languages": {
-    "test": [
+    "@buttons.time": [
       {
-        "title": "$1:$2$3",
+        "title": "$1:$2",
+        "font": "msyi",
+        "size": 28
+      }
+    ],
+    "@buttons.currency": [
+      {
+        "title": "+$1",
         "font": "msyi",
         "size": 28
       }

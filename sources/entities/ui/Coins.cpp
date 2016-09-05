@@ -63,11 +63,11 @@ void Coins::onDestroy(bool action)
  *
  *
  */
-void Coins::add(int count)
+void Coins::add(int count, Node* element)
 {
   for(int i = 0; i < count; i++)
   {
-    this->elements->_create();
+    ((Coin*) this->elements->_create())->animate(element);
   }
 }
 

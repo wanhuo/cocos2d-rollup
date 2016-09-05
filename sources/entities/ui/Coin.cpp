@@ -35,7 +35,7 @@
  *
  */
 Coin::Coin()
-: Entity("ui/counter-coins-icon.png")
+: Entity("ui/counter-currency-icon.png")
 {
 }
 
@@ -51,16 +51,19 @@ Coin::~Coin()
 void Coin::onCreate()
 {
   Entity::onCreate();
+}
 
-  /**
-   *
-   *
-   *
-   */
+/**
+ *
+ *
+ *
+ */
+void Coin::animate(Node* element)
+{
   auto v = Vec2(0, 0);
-  auto c = Menu::getInstance()->buttons.present->getPosition();
+  auto c = element->getPosition();
 
-  auto r = random(30.0, 70.0);
+  auto r = random(30.0, 100.0);
   auto a = random(0.0, 360.0);
   auto x = c.x + r * cos(a);
   auto y = c.y + r * sin(a);
@@ -139,15 +142,6 @@ void Coin::onDestroy(bool action)
 
     Application->counter->onCoin();
   }
-}
-
-/**
- *
- *
- *
- */
-void Coin::update(float time)
-{
 }
 
 /**

@@ -65,7 +65,7 @@ class Coin : public Entity
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void update(float time) override;
+  virtual void animate(Node* element);
 
   virtual Coin* deepCopy() override;
 };

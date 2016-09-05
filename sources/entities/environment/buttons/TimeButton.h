@@ -60,6 +60,7 @@ class TimeButton : public Button
 
   const char* id;
 
+  Entity* icon;
   Text* text;
 
   /**
@@ -83,6 +84,7 @@ class TimeButton : public Button
   virtual void onWait();
 
   virtual void onAction();
+  virtual void onAction(int count, Node* element);
 
   virtual void changeState(int state);
 

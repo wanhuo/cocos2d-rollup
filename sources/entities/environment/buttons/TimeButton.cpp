@@ -35,9 +35,19 @@
  *
  */
 TimeButton::TimeButton(const char* textureFileName, int horizontalFramesCount, int verticalFramesCount, Node* parent, bool autocreate)
-: Button(textureFileName, horizontalFramesCount, verticalFramesCount, parent, std::bind(&TimeButton::onAction, this), autocreate)
+: Button(textureFileName, horizontalFramesCount, verticalFramesCount, parent, [=] () {
+this->onAction();
+}, autocreate)
 {
-  this->text = new Text("test", this);
+  this->icon = new Entity("ui/button-currency-icon.png", this);
+  this->text = new Text("@buttons.time", this);
+
+  /**
+   *
+   *
+   *
+   */
+  this->icon->setScale(0.5);
 
   /**
    *
@@ -108,6 +118,7 @@ void TimeButton::onNormal()
 void TimeButton::onWait()
 {
   this->text->_create();
+
   /**
    *
    *
@@ -123,6 +134,101 @@ void TimeButton::onWait()
  */
 void TimeButton::onAction()
 {
+}
+
+void TimeButton::onAction(int count, Node* element)
+{
+  Application->counter->currency.handler->add(count, element);
+
+  /**
+   *
+   *
+   *
+   */
+  this->text->_create();
+  this->text->setText("@buttons.currency");
+  this->text->data(count);
+  this->text->setOpacity(0);
+  this->text->runAction(
+    Sequence::create(
+      FadeTo::create(0.5, 255),
+      DelayTime::create(5.5),
+      nullptr
+    ),
+    1
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->icon->_create();
+  this->icon->setOpacity(0);
+  this->icon->runAction(
+    Sequence::create(
+      FadeTo::create(0.5, 255),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 19);
+  this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 22);
+
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(6.0),
+      CallFunc::create([=] () {
+
+      /**
+       *
+       *
+       *
+       */
+      this->text->runAction(
+        Sequence::create(
+          FadeTo::create(0.5, 0),
+          CallFunc::create([=] () {
+          this->text->setText("@buttons.time");
+          this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
+          this->text->runAction(
+            FadeTo::create(0.5, 255)
+          );
+          }),
+          nullptr
+        ),
+        1
+      );
+
+      /**
+       *
+       *
+       *
+       */
+      this->icon->runAction(
+        Sequence::create(
+          FadeTo::create(0.5, 0),
+          CallFunc::create([=] () {
+          this->icon->_destroy();
+          }),
+          nullptr
+        )
+      );
+
+      }),
+      nullptr
+    )
+  );
 }
 
 /**
@@ -176,7 +282,7 @@ void TimeButton::updateState()
 
 void TimeButton::updateTime(int time)
 {
-  this->time = Times::now() + Times::minute() * time;
+  this->time = Times::now() + Times::minute() * time + 6000;
   Storage::set(this->id, convert(this->time));
 
   /**
@@ -204,20 +310,23 @@ void TimeButton::update(float time)
   switch(this->state)
   {
     case STATE_WAIT:
-    if(this->time - Times::now() > 1000)
+    if(!Application->getActionManager()->getActionByTag(1, this->text))
     {
-      auto data = Times::format(this->time - Times::now());
+      if(this->time - Times::now() > 1000)
+      {
+        auto data = Times::format(this->time - Times::now());
 
-      /**
-       *
-       *
-       *
-       */
-      this->text->data(data.m, data.s, "");
-    }
-    else
-    {
-      this->changeState(STATE_NORMAL);
+        /**
+         *
+         *
+         *
+         */
+        this->text->data(data.m, data.s);
+      }
+      else
+      {
+        this->changeState(STATE_NORMAL);
+      }
     }
     break;
   }

@@ -414,9 +414,12 @@ if(element)
           }
           int sss = random(0, (int) Environment::special.size() - 1);
           //int id = Sound->play("bounce-" + convert(Environment::special.at(sss)), false, 5.0);
-          int id = Sound->play("bounce-2", false, 5.0);
-          Sound->volume(id, this->action ? 1.0 : 0.3);
-          log("%d", Environment::special.at(sss));
+          if(this->action)
+          Sound->play("bounce-7");
+          else
+          Sound->play("bounce-1", false, 0.4);
+          //Sound->volume(id, this->action ? 1.0 : 0.3);
+          //log("%d", Environment::special.at(sss));
           Environment::special.erase(Environment::special.begin() + sss);
           //////////////////////
           if(this->plates.current)
