@@ -44,6 +44,18 @@ class Plate : public Element
    *
    *
    */
+  public:
+  enum State {
+    STATE_NONE,
+    STATE_NORMAL,
+    STATE_COIN
+  };
+
+  /**
+   *
+   *
+   *
+   */
   private:
 
   /**
@@ -52,6 +64,9 @@ class Plate : public Element
    *
    */
   protected:
+  int index;
+
+  Node* coin = nullptr;
 
   /**
    *
@@ -62,9 +77,8 @@ class Plate : public Element
   Plate();
  ~Plate();
 
-  Gem* gem = nullptr;
+  int state = STATE_NONE;
 
-  int index;
   int stage;
   int rotation;
   int flushed;
@@ -78,12 +92,25 @@ class Plate : public Element
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
+  virtual void onAction();
+
+  virtual void onNormal();
+  virtual void onCoin();
+
+  virtual void setIndex(int index);
+
+  virtual int getIndex();
+
   virtual void start(bool animation = false);
   virtual void finish();
 
   virtual void flush();
 
+  virtual void changeState(int state);
+
   virtual void update();
+
+  virtual void updateStates(float time);
   virtual void update(float time) override;
 
   virtual Plate* deepCopy() override;

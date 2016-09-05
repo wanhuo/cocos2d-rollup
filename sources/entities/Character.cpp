@@ -413,13 +413,14 @@ if(element)
             log("заново");
           }
           int sss = random(0, (int) Environment::special.size() - 1);
-          Sound->play("bounce-" + convert(Environment::special.at(sss)));
+          //Sound->play("bounce-1" + convert(Environment::special.at(sss)));
+          Sound->play("bounce-1");
           log("%d", Environment::special.at(sss));
           Environment::special.erase(Environment::special.begin() + sss);
           //////////////////////
           if(this->plates.current)
           {
-            this->plates.current->common = 2.0;
+            this->plates.current->onAction();
           }
 
           /**
@@ -704,20 +705,6 @@ void Character::updateStart(float time)
 
 void Character::updateNormal(float time)
 {
-  CC_LOOP(Application->environment->gems)
-  {
-    auto element = (Element*) Application->environment->gems->element(i);
-
-    /**
-     *
-     *
-     *
-     */
-    if(this->getAABB().containPoint(element->getPosition3D()))
-    {
-      element->_destroy(true);
-    }
-  }
 }
 
 void Character::updateCrash(float time)

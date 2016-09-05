@@ -42,6 +42,24 @@ Counter::Counter()
   this->setPosition(Application->getCenter().x - 25, Application->getHeight() - 256);
   this->setCascadeOpacityEnabled(true);
   this->setOpacity(0);
+
+  /**
+   *
+   *
+   *
+   */
+  this->coins.background = new Entity(true);
+  this->coins.text = new Text("@counter.coins", this->coins.background, true);
+  this->coins.text->setPosition(76, Application->getHeight() - 38);
+  this->coins.icon = new Entity("ui/counter-coins-icon.png", this->coins.background, true);
+  this->coins.icon->setPosition(42, Application->getHeight() - 42);
+
+  /**
+   *
+   *
+   *
+   */
+  Director::getInstance()->setNotificationNode(this->coins.background);
 }
 
 Counter::~Counter()
@@ -79,7 +97,128 @@ void Counter::onDestroy(bool action)
  *
  *
  */
-void Counter::onCount(int c)
+void Counter::onCount(int count)
+{
+  this->values.score.count += count;
+
+  /**
+   *
+   *
+   *
+   */
+  this->updateData();
+}
+
+void Counter::onCoin(int count)
+{
+  this->values.coins.count += count;
+
+  /**
+   *
+   *
+   *
+   */
+  this->updateData();
+}
+
+/**
+ *
+ *
+ *
+ */
+int Counter::numbers(int number, int *elements)
+{
+  int count = 0;
+  int max = 10;
+
+  /**
+   *
+   *
+   *
+   */
+  if(number == 0)
+  {
+    elements[0] = 0;
+    return 1;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  while(number > 0 && max)
+  {
+    elements[count++] = number % 10;
+    number /= 10;
+
+    max--;
+   }
+
+   return number ? 0 : count;
+}
+
+/**
+ *
+ *
+ *
+ */
+void Counter::reset()
+{
+  this->elements->clear();
+
+  /**
+   *
+   *
+   *
+   */
+  this->animation.count = 1;
+  this->values.score.count = 0;
+  this->values.coins.count = Storage::get("@counter.values.coins");
+
+  /**
+   *
+   *
+   *
+   */
+  auto element = (Text*) this->elements->_create();
+  element->data(0);
+  element->setScaleX(1.0);
+  element->setPosition(0, 0, 0);
+  element->setRotation(0, 0, 0);
+
+  /**
+   *
+   *
+   *
+   */
+  this->setCameraMask(BACKGROUND);
+
+  /**
+   *
+   *
+   *
+   */
+  this->updateData();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Counter::updateData()
+{
+  this->updateScoreData();
+  this->updateCoinsData();
+}
+
+void Counter::updateCoinsData()
+{
+  this->coins.text->data(this->values.coins.count);
+}
+
+void Counter::updateScoreData()
 {
   int numbers[10];
 
@@ -88,7 +227,7 @@ void Counter::onCount(int c)
    *
    *
    */
-  auto count = this->numbers(this->values.score.count += c, numbers);
+  auto count = this->numbers(this->values.score.count, numbers);
 
   /**
    *
@@ -165,83 +304,6 @@ void Counter::onCount(int c)
       )
     );
   }
-}
-
-void Counter::onCoin(int c)
-{
-}
-
-/**
- *
- *
- *
- */
-int Counter::numbers(int number, int *elements)
-{
-  int count = 0;
-  int max = 10;
-
-  /**
-   *
-   *
-   *
-   */
-  if(number == 0)
-  {
-    elements[0] = 0;
-    return 1;
-  }
-
-  /**
-   *
-   *
-   *
-   */
-  while(number > 0 && max)
-  {
-    elements[count++] = number % 10;
-    number /= 10;
-
-    max--;
-   }
-
-   return number ? 0 : count;
-}
-
-/**
- *
- *
- *
- */
-void Counter::reset()
-{
-  this->elements->clear();
-
-  /**
-   *
-   *
-   *
-   */
-  this->animation.count = 1;
-  this->values.score.count = 0;
-
-  /**
-   *
-   *
-   *
-   */
-  auto element = (Text*) this->elements->_create();
-  element->data(0);
-  element->setScaleX(1.0);
-  element->setPosition(0, 0, 0);
-  element->setRotation(0, 0, 0);
-
-  /**
-   *
-   *
-   *
-   */
-  this->setCameraMask(BACKGROUND);
 }
 
 /**

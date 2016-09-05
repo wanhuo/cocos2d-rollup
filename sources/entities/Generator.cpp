@@ -54,9 +54,9 @@ Plate* Generator::element(int index)
   {
     auto element = static_cast<Plate*>(el);
 
-    if(element->state->create)
+    if(element->Node::state->create)
     {
-      if(element->index == index)
+      if(element->getIndex() == index)
       {
         return element;
       }
@@ -221,9 +221,22 @@ void Generator::create(bool animation)
      *
      *
      */
-    current->index = this->index;
+    current->setIndex(this->index);
     current->rotation = this->rotation;
     current->stage = this->previous.stage;
+
+    /**
+     *
+     *
+     *
+     */
+    if(elements->count > COUNT_START)
+    {
+      if(probably(20))
+      {
+        current->changeState(Plate::STATE_COIN);
+      }
+    }
 
     current->start(animation);
 
@@ -276,9 +289,9 @@ void Generator::destroy()
   {
     auto element = static_cast<Plate*>(el);
 
-    if(element->index < Application->environment->character->index)
+    if(element->getIndex() < Application->environment->character->index)
     {
-      if(element->state->create && !Application->getActionManager()->getActionByTag(10, element))
+      if(element->Node::state->create && !Application->getActionManager()->getActionByTag(10, element))
       {
         element->finish();
       }
@@ -294,9 +307,9 @@ void Generator::destroy()
   {
     auto element = static_cast<Plate*>(el);
 
-    if(element->flushed && element->index - Application->environment->character->index < 4)
+    if(element->flushed && element->getIndex() - Application->environment->character->index < 4)
     {
-      if(element->state->create)
+      if(element->Node::state->create)
       {
         element->flush();
       }

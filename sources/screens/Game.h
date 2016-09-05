@@ -79,9 +79,11 @@ using namespace cocos2d::experimental;
 #define CC_LOOP(elements) \
   for(int i = 0; i < elements->count; i++)
 
-#define CC_DESTROY(element) \
-  element->_destroy(); \
-  element = nullptr;
+#define CC_DESTROY(element, action) \
+  if(element) { \
+    element->_destroy(action); \
+    element = nullptr; \
+  }
 
 /**
  *

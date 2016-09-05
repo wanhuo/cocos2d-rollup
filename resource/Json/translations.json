@@ -35,6 +35,13 @@
         "size": 120
       }
     ],
+    "@counter.coins": [
+      {
+        "title": "$1",
+        "font": "msyi",
+        "size": 54
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

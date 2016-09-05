@@ -45,18 +45,27 @@ class Counter : public Entity
    *
    */
   public:
-  struct Score {
+  struct Coins {
+    Entity* background;
+    Entity* icon;
+
+    Text* text;
+  };
+
+  struct Value {
     int count;
   };
 
   struct Values {
-    Score score;
+    Value score;
+    Value coins;
   };
 
   struct Animation {
     int count;
   };
 
+  Coins coins;
   Values values;
   Animation animation;
 
@@ -88,10 +97,15 @@ class Counter : public Entity
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void onCount(int c = 1);
-  virtual void onCoin(int c = 1);
+  virtual void onCount(int count = 1);
+  virtual void onCoin(int count = 1);
 
   virtual void reset();
+
+  virtual void updateData();
+
+  virtual void updateScoreData();
+  virtual void updateCoinsData();
 
   virtual void update(float time) override;
 };

@@ -87,11 +87,20 @@ void Plate::onCreate()
    *
    *
    */
+  this->index = 0;
+
   this->common = 1.0;
   this->flushed = 0;
   this->dusts = 0;
 
-  if(probably(10)) this->gem = (Gem*) Application->environment->gems->_create();
+  this->coin = nullptr;
+
+  /**
+   *
+   *
+   *
+   */
+  this->changeState(STATE_NORMAL);
 
   /**
    *
@@ -113,10 +122,67 @@ void Plate::onDestroy(bool action)
    *
    *
    */
-  if(this->gem)
+  switch(this->state)
   {
-    CC_DESTROY(this->gem);
+    case STATE_NORMAL:
+    break;
+    case STATE_COIN:
+    CC_DESTROY(this->coin, false);
+    break;
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::onAction()
+{
+  this->common = 2.0;
+
+  switch(this->state)
+  {
+    case STATE_NORMAL:
+    break;
+    case STATE_COIN:
+    CC_DESTROY(this->coin, true);
+    break;
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::onNormal()
+{
+}
+
+void Plate::onCoin()
+{
+  this->coin = Application->environment->gems->_create();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::setIndex(int index)
+{
+  this->index = index;
+}
+
+/**
+ *
+ *
+ *
+ */
+int Plate::getIndex()
+{
+  return this->index;
 }
 
 /**
@@ -200,11 +266,58 @@ void Plate::flush()
  *
  *
  */
+void Plate::changeState(int state)
+{
+  if(true)
+  {
+    this->state = state;
+
+    switch(this->state)
+    {
+      case STATE_NORMAL:
+      this->onNormal();
+      break;
+      case STATE_COIN:
+      this->onCoin();
+      break;
+    }
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 void Plate::update()
 {
   if(this->getGLProgram())
   {
     this->getGLProgramState()->setUniformFloat("common", this->common);
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Plate::updateStates(float time)
+{
+  switch(this->state)
+  {
+    case STATE_NORMAL:
+    break;
+    case STATE_COIN:
+    if(this->coin)
+    {
+      auto x = this->getPositionX();
+      auto z = this->getPositionZ();
+      auto y = this->getPositionY() + 1.5 + 1.5 * (this->getScaleY() - 1.0) + 0.2;
+
+      this->coin->setPosition(x, y, z);
+    }
+    break;
   }
 }
 
@@ -227,14 +340,7 @@ void Plate::update(float time)
    *
    *
    */
-  if(this->gem)
-  {
-    auto x = this->getPositionX();
-    auto z = this->getPositionZ();
-    auto y = this->getPositionY() + 1.5 + 1.5 * (this->getScaleY() - 1.0) + 0.2;
-
-    this->gem->setPosition(x, y, z);
-  }
+  this->updateStates(time);
 
 
   
