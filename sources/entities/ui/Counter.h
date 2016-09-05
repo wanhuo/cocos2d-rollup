@@ -44,12 +44,14 @@ class Counter : public Entity
    *
    *
    */
-  public:
-  struct Coins {
+  protected:
+  struct Currency {
     Entity* background;
     Entity* icon;
 
     Text* text;
+
+    Coins* handler;
   };
 
   struct Value {
@@ -58,16 +60,12 @@ class Counter : public Entity
 
   struct Values {
     Value score;
-    Value coins;
+    Value currency;
   };
 
   struct Animation {
     int count;
   };
-
-  Coins coins;
-  Values values;
-  Animation animation;
 
   /**
    *
@@ -94,6 +92,10 @@ class Counter : public Entity
   Counter();
  ~Counter();
 
+  Values values;
+  Currency currency;
+  Animation animation;
+
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
@@ -105,7 +107,7 @@ class Counter : public Entity
   virtual void updateData();
 
   virtual void updateScoreData();
-  virtual void updateCoinsData();
+  virtual void updateCurrencyData();
 
   virtual void update(float time) override;
 };

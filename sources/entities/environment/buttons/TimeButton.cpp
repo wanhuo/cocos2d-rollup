@@ -96,11 +96,24 @@ void TimeButton::onExit()
 void TimeButton::onNormal()
 {
   this->text->_destroy();
+
+  /**
+   *
+   *
+   *
+   */
+  this->bind(true);
 }
 
 void TimeButton::onWait()
 {
   this->text->_create();
+  /**
+   *
+   *
+   *
+   */
+  this->bind(false);
 }
 
 /**

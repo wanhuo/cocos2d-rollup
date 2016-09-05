@@ -50,9 +50,10 @@
 #include "Environment.h"
 #include "Generator.h"
 
+#include "Coin.h"
+#include "Coins.h"
 #include "Counter.h"
 #include "Number.h"
-
 #include "TimeButton.h"
 #include "PresentButton.h"
 #include "VideoButton.h"

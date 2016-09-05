@@ -89,5 +89,12 @@ void PresentButton::onWait()
  */
 void PresentButton::onAction()
 {
+  Application->counter->currency.handler->add(50);
+
+  /**
+   *
+   *
+   *
+   */
   this->updateTime(1);
 }

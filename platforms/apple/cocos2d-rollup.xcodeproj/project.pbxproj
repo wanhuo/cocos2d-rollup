@@ -99,6 +99,12 @@
 		787239781D521E36007BD010 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239751D521E36007BD010 /* Bolts.framework */; };
 		787239791D521E36007BD010 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239761D521E36007BD010 /* FBSDKCoreKit.framework */; };
 		7872397A1D521E36007BD010 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239771D521E36007BD010 /* FBSDKLoginKit.framework */; };
+		787B539D1D7DCA7000C1C17D /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53991D7DCA7000C1C17D /* Coin.cpp */; };
+		787B539E1D7DCA7000C1C17D /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53991D7DCA7000C1C17D /* Coin.cpp */; };
+		787B539F1D7DCA7000C1C17D /* Coin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53991D7DCA7000C1C17D /* Coin.cpp */; };
+		787B53A51D7DCB1200C1C17D /* Coins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A31D7DCB1200C1C17D /* Coins.cpp */; };
+		787B53A61D7DCB1200C1C17D /* Coins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A31D7DCB1200C1C17D /* Coins.cpp */; };
+		787B53A71D7DCB1200C1C17D /* Coins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A31D7DCB1200C1C17D /* Coins.cpp */; };
 		7891E8641CF2125F005C238E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8631CF2125F005C238E /* main.cpp */; };
 		7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8681CF21293005C238E /* NSAnalytics.mm */; };
 		7891E88B1CF21293005C238E /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7891E86A1CF21293005C238E /* AppController.mm */; };
@@ -335,6 +341,10 @@
 		787239761D521E36007BD010 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		787239771D521E36007BD010 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		787622B21D53870E005A803E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		787B53991D7DCA7000C1C17D /* Coin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coin.cpp; sourceTree = "<group>"; };
+		787B539A1D7DCA7000C1C17D /* Coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coin.h; sourceTree = "<group>"; };
+		787B53A31D7DCB1200C1C17D /* Coins.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Coins.cpp; sourceTree = "<group>"; };
+		787B53A41D7DCB1200C1C17D /* Coins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coins.h; sourceTree = "<group>"; };
 		7891E8631CF2125F005C238E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7891E8671CF21293005C238E /* NSAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAnalytics.h; sourceTree = "<group>"; };
 		7891E8681CF21293005C238E /* NSAnalytics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSAnalytics.mm; sourceTree = "<group>"; };
@@ -1101,6 +1111,10 @@
 				78A20B3B1D7C9CC500789617 /* Counter.h */,
 				78A20B3F1D7C9F0F00789617 /* Number.cpp */,
 				78A20B401D7C9F0F00789617 /* Number.h */,
+				787B53A31D7DCB1200C1C17D /* Coins.cpp */,
+				787B53A41D7DCB1200C1C17D /* Coins.h */,
+				787B53991D7DCA7000C1C17D /* Coin.cpp */,
+				787B539A1D7DCA7000C1C17D /* Coin.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1410,6 +1424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787B539E1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				7828E3B91D79F12200AA66D9 /* Dust.cpp in Sources */,
 				78C3F6851D528D980031E5B1 /* Plate.cpp in Sources */,
 				78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */,
@@ -1422,6 +1437,7 @@
 				78A20B2D1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
 				78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */,
+				787B53A61D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
@@ -1446,9 +1462,11 @@
 				7828E3BA1D79F12200AA66D9 /* Dust.cpp in Sources */,
 				78A20B2E1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
+				787B539F1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78A20B271D7C6C3300789617 /* Popup.cpp in Sources */,
+				787B53A71D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
@@ -1477,6 +1495,7 @@
 				78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */,
 				783DE9581D1C096B009706B7 /* Events.mm in Sources */,
 				7891E8951CF21293005C238E /* NSSocial.mm in Sources */,
+				787B539D1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				7891E8961CF21293005C238E /* NSVote.mm in Sources */,
 				7891E88E1CF21293005C238E /* NSMedia.mm in Sources */,
@@ -1496,6 +1515,7 @@
 				78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */,
 				7832A8BB1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */,
+				787B53A51D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78DF64CD1D24463B0049EB22 /* Character.cpp in Sources */,
 				7891E8921CF21293005C238E /* NSPurchase.mm in Sources */,
 				7832A8B81D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,

@@ -162,7 +162,7 @@ void Plate::onNormal()
 
 void Plate::onCoin()
 {
-  this->coin = Application->environment->gems->_create();
+  this->coin = Application->environment->coins->_create();
 }
 
 /**
@@ -316,6 +316,7 @@ void Plate::updateStates(float time)
       auto y = this->getPositionY() + 1.5 + 1.5 * (this->getScaleY() - 1.0) + 0.2;
 
       this->coin->setPosition(x, y, z);
+      this->coin->setOpacity(this->getOpacity());
     }
     break;
   }

@@ -72,13 +72,6 @@ Menu::Menu()
    *
    */
   this->buttons.play = new Button("ui/button-play.png", 2, 1, this, [=] () {
-    Application->counter->_create();
-
-    /**
-     *
-     *
-     *
-     */
     Application->changeState(Game::STATE_GAME);
   });
   this->buttons.restart = new Button("ui/button-restart.png", 2, 1, this, [=] () {

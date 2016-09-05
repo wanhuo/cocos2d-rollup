@@ -94,7 +94,7 @@ static vector<int> special;
 
   Pool* plates;
   Pool* dusts;
-  Pool* gems;
+  Pool* coins;
 
   virtual void create();
   virtual void reset();

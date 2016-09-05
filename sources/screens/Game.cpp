@@ -400,6 +400,13 @@ void Game::onGame()
    *
    *
    */
+  this->counter->_create();
+
+  /**
+   *
+   *
+   *
+   */
   this->environment->onGame();
 }
 

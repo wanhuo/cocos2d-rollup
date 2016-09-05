@@ -46,7 +46,7 @@ vector<int> Environment::all;
 vector<int> Environment::special;
 void Environment::create()
 {
-  for(int i = 1; i < 57; i++)
+  for(int i = 2; i < 7; i++)
   {
     all.push_back(i);
   }
@@ -76,7 +76,7 @@ void Environment::create()
   this->character = new Character;
 
   this->plates = new Pool(new Plate, this->plane);
-  this->gems = new Pool(new Gem, this->plane);
+  this->coins = new Pool(new Gem, this->plane);
   this->dusts = new Pool(new Dust, this->status);
 }
 

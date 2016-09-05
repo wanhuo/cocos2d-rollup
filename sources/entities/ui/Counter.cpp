@@ -48,18 +48,21 @@ Counter::Counter()
    *
    *
    */
-  this->coins.background = new Entity(true);
-  this->coins.text = new Text("@counter.coins", this->coins.background, true);
-  this->coins.text->setPosition(76, Application->getHeight() - 38);
-  this->coins.icon = new Entity("ui/counter-coins-icon.png", this->coins.background, true);
-  this->coins.icon->setPosition(42, Application->getHeight() - 42);
+  this->currency.background = new Entity(true);
+  this->currency.handler = new Coins(this->currency.background);
+
+  this->currency.text = new Text("@counter.currency", this->currency.background, TextHAlignment::LEFT, true);
+  this->currency.icon = new Entity("ui/counter-coins-icon.png", this->currency.background, true);
+
+  this->currency.text->setPosition(64, Application->getHeight() - 38);
+  this->currency.icon->setPosition(42, Application->getHeight() - 42);
 
   /**
    *
    *
    *
    */
-  Director::getInstance()->setNotificationNode(this->coins.background);
+  Director::getInstance()->setNotificationNode(this->currency.background);
 }
 
 Counter::~Counter()
@@ -111,7 +114,7 @@ void Counter::onCount(int count)
 
 void Counter::onCoin(int count)
 {
-  this->values.coins.count += count;
+  this->values.currency.count += count;
 
   /**
    *
@@ -174,7 +177,7 @@ void Counter::reset()
    */
   this->animation.count = 1;
   this->values.score.count = 0;
-  this->values.coins.count = Storage::get("@counter.values.coins");
+  this->values.currency.count = Storage::get("@counter.values.currency");
 
   /**
    *
@@ -210,12 +213,12 @@ void Counter::reset()
 void Counter::updateData()
 {
   this->updateScoreData();
-  this->updateCoinsData();
+  this->updateCurrencyData();
 }
 
-void Counter::updateCoinsData()
+void Counter::updateCurrencyData()
 {
-  this->coins.text->data(this->values.coins.count);
+  this->currency.text->data(this->values.currency.count);
 }
 
 void Counter::updateScoreData()

@@ -413,8 +413,9 @@ if(element)
             log("заново");
           }
           int sss = random(0, (int) Environment::special.size() - 1);
-          //Sound->play("bounce-1" + convert(Environment::special.at(sss)));
-          Sound->play("bounce-1");
+          //int id = Sound->play("bounce-" + convert(Environment::special.at(sss)), false, 5.0);
+          int id = Sound->play("bounce-2", false, 5.0);
+          Sound->volume(id, this->action ? 1.0 : 0.3);
           log("%d", Environment::special.at(sss));
           Environment::special.erase(Environment::special.begin() + sss);
           //////////////////////
