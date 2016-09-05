@@ -28,6 +28,13 @@
         "size": 28
       }
     ],
+    "@counter.number": [
+      {
+        "title": "$1",
+        "font": "msyi",
+        "size": 120
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

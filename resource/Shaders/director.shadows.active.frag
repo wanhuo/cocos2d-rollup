@@ -52,7 +52,7 @@ void main(void)
     float shadow = 1.0;
 
     if(texture2D(transformTexture, vec2(x, y)).z < z - b) {
-      shadow = 0.75;
+      shadow = 0.9;
     }
 
     if(shadow < 1.0) gl_FragColor *= vec4(shadow, shadow, shadow, 1.0);

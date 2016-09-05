@@ -41,6 +41,11 @@ Character::Character()
   this->plane->enableShadow(true);
   this->plane->addChild(this);
 
+  /**
+   *
+   *
+   *
+   */
   if(Director::getInstance()->getShadowState())
   {
     this->shadow = new Entity3D("character.obj",  Application->environment->plane, true);
@@ -49,7 +54,6 @@ Character::Character()
   }
 
   this->setScheduleUpdate(true);
-
 
    streak = MotionStreak3D::create(0.25f, 0.0f, 0.6f, Color3B(255, 255, 255), "test.png");
    //streak->setBlendFunc((BlendFunc) {GL_SRC_COLOR, GL_ONE_MINUS_SRC_ALPHA});
@@ -76,7 +80,7 @@ void Character::reset()
     this->_create();
   }
 
-  this->plane->setPosition3D(Vec3(0.0, 1.5, 0.0));
+  this->plane->setPosition3D(Vec3(0.0, 10.0, 0.0));
   this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
   this->plane->setScale(1.0);
 
@@ -97,6 +101,11 @@ void Character::reset()
   this->bind = false;
 
   streak->reset();
+
+  if(Director::getInstance()->getShadowState())
+  {
+    this->shadow->setScale(0.0);
+  }
 
   /**
    *
@@ -152,7 +161,10 @@ void Character::onAction()
     case STATE_NONE:
     break;
     case STATE_START:
-    this->changeState(STATE_NORMAL);
+    if(!Application->getActionManager()->getNumberOfRunningActionsInTarget(this->plane))
+    {
+      this->changeState(STATE_NORMAL);
+    }
     break;
     case STATE_NORMAL:
     if(this->bind)
@@ -192,6 +204,11 @@ void Character::onMove()
    *
    */
   auto generate = this->action;
+        ///////////
+        if(generate)
+        {
+          Application->counter->onCount();
+        }
   auto d = 0.0;
   auto a = 0.0;
 
@@ -389,6 +406,17 @@ if(element)
         }),
         MoveBy::create(time, Vec3(x / 2, 0, z / 2)),
         CallFunc::create([=] () {
+          //////////////////////
+          if(Environment::special.size() < 1)
+          {
+            Environment::special = Environment::all;
+            log("заново");
+          }
+          int sss = random(0, (int) Environment::special.size() - 1);
+          Sound->play("bounce-" + convert(Environment::special.at(sss)));
+          log("%d", Environment::special.at(sss));
+          Environment::special.erase(Environment::special.begin() + sss);
+          //////////////////////
           if(this->plates.current)
           {
             this->plates.current->common = 2.0;
@@ -546,6 +574,65 @@ if(element)
  */
 void Character::onStart()
 {
+  switch(Application->state)
+  {
+    /**
+     *
+     *
+     *
+     */
+    case Game::STATE_GAME:
+    this->plane->runAction(
+      Sequence::create(
+        EaseSineIn::create(
+          MoveTo::create(0.5, Vec3(0.0, 1.5, 0.0))
+        ),
+        CallFunc::create([=] () {
+        this->changeState(STATE_NORMAL);
+        }),
+        nullptr
+      )
+    );
+    
+    if(Director::getInstance()->getShadowState())
+    {
+      this->shadow->runAction(
+        ScaleTo::create(0.5, 1.0)
+      );
+    }
+    break;
+
+    /**
+     *
+     *
+     *
+     */
+    case Game::STATE_MENU:
+    this->plane->runAction(
+      Sequence::create(
+        EaseBounceOut::create(
+          MoveTo::create(2.0, Vec3(0.0, 1.5, 0.0))
+        ),
+        CallFunc::create([=] () {
+        if(Application->state == Game::STATE_GAME)
+        {
+          this->changeState(STATE_NORMAL);
+        }
+        }),
+        nullptr
+      )
+    );
+    
+    if(Director::getInstance()->getShadowState())
+    {
+      this->shadow->runAction(
+        EaseBounceOut::create(
+          ScaleTo::create(2.0, 1.9)
+        )
+      );
+    }
+    break;
+  }
 }
 
 void Character::onNormal()
@@ -617,6 +704,20 @@ void Character::updateStart(float time)
 
 void Character::updateNormal(float time)
 {
+  CC_LOOP(Application->environment->gems)
+  {
+    auto element = (Element*) Application->environment->gems->element(i);
+
+    /**
+     *
+     *
+     *
+     */
+    if(this->getAABB().containPoint(element->getPosition3D()))
+    {
+      element->_destroy(true);
+    }
+  }
 }
 
 void Character::updateCrash(float time)

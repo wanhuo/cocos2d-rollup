@@ -149,6 +149,12 @@
 		78A20B361D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
 		78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
 		78A20B381D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
+		78A20B3C1D7C9CC500789617 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3A1D7C9CC500789617 /* Counter.cpp */; };
+		78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3A1D7C9CC500789617 /* Counter.cpp */; };
+		78A20B3E1D7C9CC500789617 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3A1D7C9CC500789617 /* Counter.cpp */; };
+		78A20B411D7C9F0F00789617 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3F1D7C9F0F00789617 /* Number.cpp */; };
+		78A20B421D7C9F0F00789617 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3F1D7C9F0F00789617 /* Number.cpp */; };
+		78A20B431D7C9F0F00789617 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3F1D7C9F0F00789617 /* Number.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
@@ -377,6 +383,10 @@
 		78A20B301D7C7D6800789617 /* PresentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentButton.h; sourceTree = "<group>"; };
 		78A20B311D7C7D6800789617 /* VideoButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoButton.cpp; sourceTree = "<group>"; };
 		78A20B321D7C7D6800789617 /* VideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoButton.h; sourceTree = "<group>"; };
+		78A20B3A1D7C9CC500789617 /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
+		78A20B3B1D7C9CC500789617 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
+		78A20B3F1D7C9F0F00789617 /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Number.cpp; sourceTree = "<group>"; };
+		78A20B401D7C9F0F00789617 /* Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -1012,6 +1022,7 @@
 			isa = PBXGroup;
 			children = (
 				78A20B281D7C7B4600789617 /* environment */,
+				78A20B391D7C9CC500789617 /* ui */,
 				78DF64C11D24460A0049EB22 /* Environment.cpp */,
 				78DF64C21D24460A0049EB22 /* Environment.h */,
 				78DF64C31D24460A0049EB22 /* Generator.cpp */,
@@ -1081,6 +1092,17 @@
 				78A20B321D7C7D6800789617 /* VideoButton.h */,
 			);
 			path = buttons;
+			sourceTree = "<group>";
+		};
+		78A20B391D7C9CC500789617 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				78A20B3A1D7C9CC500789617 /* Counter.cpp */,
+				78A20B3B1D7C9CC500789617 /* Counter.h */,
+				78A20B3F1D7C9F0F00789617 /* Number.cpp */,
+				78A20B401D7C9F0F00789617 /* Number.h */,
+			);
+			path = ui;
 			sourceTree = "<group>";
 		};
 		78BF8F7B1CF13FF600DBBF62 /* tv */ = {
@@ -1400,7 +1422,9 @@
 				78A20B2D1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
 				78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */,
+				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
+				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 			);
@@ -1430,9 +1454,11 @@
 				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
 				78A20B241D7C6C3300789617 /* Menu.cpp in Sources */,
 				78A20B381D7C7D6800789617 /* VideoButton.cpp in Sources */,
+				78A20B431D7C9F0F00789617 /* Number.cpp in Sources */,
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				78A20B351D7C7D6800789617 /* PresentButton.cpp in Sources */,
+				78A20B3E1D7C9CC500789617 /* Counter.cpp in Sources */,
 				78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */,
 				7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78C35A511CEE84E200F10068 /* main.m in Sources */,
@@ -1457,6 +1483,7 @@
 				7828E3B81D79F12200AA66D9 /* Dust.cpp in Sources */,
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				7891E8911CF21293005C238E /* NSHeyzap.mm in Sources */,
+				78A20B3C1D7C9CC500789617 /* Counter.cpp in Sources */,
 				78A20B221D7C6C3300789617 /* Menu.cpp in Sources */,
 				78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
@@ -1484,6 +1511,7 @@
 				7891E8941CF21293005C238E /* NSServices.mm in Sources */,
 				78A20B361D7C7D6800789617 /* VideoButton.cpp in Sources */,
 				78A20B251D7C6C3300789617 /* Popup.cpp in Sources */,
+				78A20B411D7C9F0F00789617 /* Number.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				78A20B2C1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,

@@ -48,6 +48,9 @@ class Environment : public Background
    *
    */
   public:
+  
+static vector<int> all;
+static vector<int> special;
   struct Texture {
     string environments;
     string background;
@@ -77,6 +80,8 @@ class Environment : public Background
  ~Environment();
 
   int texture;
+
+  BackgroundColor* clear;
 
   Entity* background;
 

@@ -42,8 +42,16 @@ Environment::~Environment()
  *
  *
  */
+vector<int> Environment::all;
+vector<int> Environment::special;
 void Environment::create()
 {
+  for(int i = 1; i < 57; i++)
+  {
+    all.push_back(i);
+  }
+  special = all;
+
   this->plane = new Entity3D(this, true);
   this->plane->setPosition(0, 0, 0);
   this->plane->setRotation(0, 0, 0);
@@ -57,8 +65,12 @@ void Environment::create()
   this->ground->enableShadow(false);
 
   this->background = new Entity("environments/1/background.png", this, true);
-  this->background->setPosition(Application->getCenter().x, Application->getCenter().y);
+  this->background->setPosition(Application->getCenter());
   this->background->setCameraMask(BACKGROUND);
+
+  this->clear = new BackgroundColor(this, Color4B(255, 255, 255, 0));
+  this->clear->setCameraMask(BACKGROUND);
+  this->clear->setGlobalZOrder(100);
 
   this->generator = new Generator;
   this->character = new Character;
@@ -118,6 +130,7 @@ void Environment::onMenu()
 
 void Environment::onGame()
 {
+  this->character->onAction();
 }
 
 void Environment::onFinish()

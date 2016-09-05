@@ -158,6 +158,13 @@ Game::Game()
 
   /**
    *
+   *
+   *
+   */
+  this->counter = new Counter;
+
+  /**
+   *
    * @Director
    * | @Shadows;
    *
@@ -172,7 +179,7 @@ Game::Game()
    *
    *
    */
-  Music->play("music-1", true);
+  //Music->play("music-1", true);
 }
 
 Game::~Game()
@@ -201,6 +208,19 @@ Camera* Game::getShadowsCamera()
  */
 void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
 {
+  switch(this->state)
+  {
+    case STATE_NONE:
+    break;
+    case STATE_FINISH:
+    break;
+    case STATE_MENU:
+    this->changeState(STATE_GAME);
+    break;
+    case STATE_GAME:
+    break;
+  }
+
   switch(this->state)
   {
     case STATE_NONE:
@@ -482,6 +502,13 @@ void Game::onRenderFinish(int index)
 void Game::reset()
 {
   this->environment->reset();
+
+  /**
+   *
+   *
+   *
+   */
+  this->counter->reset();
 
   /**
    *

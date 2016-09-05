@@ -37,6 +37,7 @@
 Gem::Gem()
 : Element("gem.obj")
 {
+  this->setTexture("environments/gem-texture.png");
 }
 
 Gem::~Gem()
@@ -67,6 +68,16 @@ void Gem::onCreate()
 void Gem::onDestroy(bool action)
 {
   Element::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  if(action)
+  {
+    Application->counter->onCoin();
+  }
 }
 
 /**

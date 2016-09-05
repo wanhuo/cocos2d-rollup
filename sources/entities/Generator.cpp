@@ -87,7 +87,7 @@ void Generator::create(bool animation)
     {
       this->parameters.rotation += random(-this->parameters.pullement, this->parameters.pullement);
     }
-    log("> %f", this->parameters.rotation );
+    //log("> %f", this->parameters.rotation );
     break;
     case RIGHT:
     case LEFT:
@@ -106,7 +106,7 @@ void Generator::create(bool animation)
       this->parameters.rotation -= rotation;
       break;
     }
-    log("%f", rotation);
+    //log("%f", rotation);
     break;
   }
 
@@ -118,7 +118,7 @@ void Generator::create(bool animation)
   if((this->parameters.length.current > this->parameters.length.min && probably(this->parameters.probability)) || this->parameters.length.current >= this->parameters.length.max)
   {
     this->direction = random(0, 2);
-    log(">>>>>>>>>>> %d", this->direction);
+    //log(">>>>>>>>>>> %d", this->direction);
 
     switch(this->direction)
     {
