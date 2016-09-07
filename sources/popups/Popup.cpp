@@ -32,8 +32,12 @@ Popup::Popup()
 : BackgroundColor(Application, Color4B(0, 0, 0, 0))
 {
   this->setCascadeOpacityEnabled(false);
-  this->bind(true);
 
+  /**
+   *
+   *
+   *
+   */
   this->_destroy();
 }
 

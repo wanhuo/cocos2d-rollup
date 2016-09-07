@@ -54,6 +54,7 @@
 #include "Coins.h"
 #include "Counter.h"
 #include "Number.h"
+#include "ExtendedButton.h"
 #include "TimeButton.h"
 #include "PresentButton.h"
 #include "VideoButton.h"
@@ -62,6 +63,8 @@
 #include "Popup.h"
 #include "Menu.h"
 #include "Unlock.h"
+#include "Settings.h"
+#include "Store.h"
 
 /**
  *
@@ -147,7 +150,9 @@ class Game : public Screen
     STATE_MENU,
     STATE_GAME,
     STATE_FINISH,
-    STATE_UNLOCK
+    STATE_UNLOCK,
+    STATE_SETTINGS,
+    STATE_STORE
   };
 
   /**
@@ -197,6 +202,8 @@ class Game : public Screen
   virtual void onGame();
   virtual void onFinish();
   virtual void onUnlock();
+  virtual void onSettings();
+  virtual void onStore();
 
   virtual void onNoad();
 
@@ -213,6 +220,8 @@ class Game : public Screen
   virtual void updateGame(float time);
   virtual void updateFinish(float time);
   virtual void updateUnlock(float time);
+  virtual void updateSettings(float time);
+  virtual void updateStore(float time);
 
   virtual void updateStates(float time);
 

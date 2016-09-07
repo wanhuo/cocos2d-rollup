@@ -49,6 +49,37 @@
         "size": 54
       }
     ],
+    "@store.more": [
+      {
+        "title": "+$1 more",
+        "font": "msyi",
+        "size": 36
+      }
+    ],
+    "@store.separator.1": [
+      {
+        "title": "rare",
+        "font": "msyi",
+        "size": 38,
+        "color": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "@store.separator.2": [
+      {
+        "title": "mythical",
+        "font": "msyi",
+        "size": 38,
+        "color": [
+          0,
+          0,
+          0
+        ]
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

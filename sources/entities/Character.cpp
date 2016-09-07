@@ -35,8 +35,6 @@ Character::Character()
   this->enableShadow(true);
   this->enableLight(true);
 
-  this->setTexture("characters/2/character-texture.png");
-
   this->plane = new Entity3D(Application->environment->plane, true);
   this->plane->enableShadow(true);
   this->plane->addChild(this);
@@ -79,6 +77,8 @@ void Character::reset()
   {
     this->_create();
   }
+
+  this->setTexture("characters/" + convert(random(2, 9)) +"/texture.png");
 
   this->plane->setPosition3D(Vec3(0.0, 10.0, 0.0));
   this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));

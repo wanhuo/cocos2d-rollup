@@ -45,14 +45,14 @@ class Menu : public Popup
   };
 
   struct Buttons {
-    Button* play;
-    Button* restart;
-    Button* store;
-    Button* rate;
-    Button* social;
-    Button* settings;
-    Button* video;
-    Button* present;
+    ExtendedButton* play;
+    ExtendedButton* restart;
+    ExtendedButton* store;
+    ExtendedButton* rate;
+    ExtendedButton* social;
+    ExtendedButton* settings;
+    ExtendedButton* video;
+    ExtendedButton* present;
   };
 
   Buttons buttons;
@@ -89,8 +89,8 @@ class Menu : public Popup
   virtual void onEnter() override;
   virtual void onExit() override;
 
-  virtual void show();
-  virtual void hide();
+  virtual void show() override;
+  virtual void hide() override;
 
   virtual void changeState(int state);
 };

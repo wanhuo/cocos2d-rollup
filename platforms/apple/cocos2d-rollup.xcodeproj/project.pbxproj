@@ -108,9 +108,27 @@
 		787B53AA1D7DF59900C1C17D /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A81D7DF59900C1C17D /* Unlock.cpp */; };
 		787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A81D7DF59900C1C17D /* Unlock.cpp */; };
 		787B53AC1D7DF59900C1C17D /* Unlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53A81D7DF59900C1C17D /* Unlock.cpp */; };
-		787B53AF1D7DF8A200C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */; };
-		787B53B01D7DF8A200C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */; };
-		787B53B11D7DF8A200C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */; };
+		787B53B61D7EB49400C1C17D /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53B21D7EB49400C1C17D /* Settings.cpp */; };
+		787B53B71D7EB49400C1C17D /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53B21D7EB49400C1C17D /* Settings.cpp */; };
+		787B53B81D7EB49400C1C17D /* Settings.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53B21D7EB49400C1C17D /* Settings.cpp */; };
+		787B53B91D7EB49400C1C17D /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53B41D7EB49400C1C17D /* Store.cpp */; };
+		787B53BA1D7EB49400C1C17D /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53B41D7EB49400C1C17D /* Store.cpp */; };
+		787B53BB1D7EB49400C1C17D /* Store.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53B41D7EB49400C1C17D /* Store.cpp */; };
+		787B53C51D7EC4E100C1C17D /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53BD1D7EC4E100C1C17D /* PresentButton.cpp */; };
+		787B53C61D7EC4E100C1C17D /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53BD1D7EC4E100C1C17D /* PresentButton.cpp */; };
+		787B53C71D7EC4E100C1C17D /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53BD1D7EC4E100C1C17D /* PresentButton.cpp */; };
+		787B53C81D7EC4E100C1C17D /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53BF1D7EC4E100C1C17D /* TimeButton.cpp */; };
+		787B53C91D7EC4E100C1C17D /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53BF1D7EC4E100C1C17D /* TimeButton.cpp */; };
+		787B53CA1D7EC4E100C1C17D /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53BF1D7EC4E100C1C17D /* TimeButton.cpp */; };
+		787B53CB1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53C11D7EC4E100C1C17D /* UnlockButton.cpp */; };
+		787B53CC1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53C11D7EC4E100C1C17D /* UnlockButton.cpp */; };
+		787B53CD1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53C11D7EC4E100C1C17D /* UnlockButton.cpp */; };
+		787B53CE1D7EC4E100C1C17D /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53C31D7EC4E100C1C17D /* VideoButton.cpp */; };
+		787B53CF1D7EC4E100C1C17D /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53C31D7EC4E100C1C17D /* VideoButton.cpp */; };
+		787B53D01D7EC4E100C1C17D /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53C31D7EC4E100C1C17D /* VideoButton.cpp */; };
+		787B53D31D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53D11D7EC50A00C1C17D /* ExtendedButton.cpp */; };
+		787B53D41D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53D11D7EC50A00C1C17D /* ExtendedButton.cpp */; };
+		787B53D51D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 787B53D11D7EC50A00C1C17D /* ExtendedButton.cpp */; };
 		7891E8641CF2125F005C238E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8631CF2125F005C238E /* main.cpp */; };
 		7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7891E8681CF21293005C238E /* NSAnalytics.mm */; };
 		7891E88B1CF21293005C238E /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7891E86A1CF21293005C238E /* AppController.mm */; };
@@ -152,15 +170,6 @@
 		78A20B251D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
 		78A20B261D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
 		78A20B271D7C6C3300789617 /* Popup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B201D7C6C3300789617 /* Popup.cpp */; };
-		78A20B2C1D7C7B4600789617 /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2A1D7C7B4600789617 /* TimeButton.cpp */; };
-		78A20B2D1D7C7B4600789617 /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2A1D7C7B4600789617 /* TimeButton.cpp */; };
-		78A20B2E1D7C7B4600789617 /* TimeButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2A1D7C7B4600789617 /* TimeButton.cpp */; };
-		78A20B331D7C7D6800789617 /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2F1D7C7D6800789617 /* PresentButton.cpp */; };
-		78A20B341D7C7D6800789617 /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2F1D7C7D6800789617 /* PresentButton.cpp */; };
-		78A20B351D7C7D6800789617 /* PresentButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B2F1D7C7D6800789617 /* PresentButton.cpp */; };
-		78A20B361D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
-		78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
-		78A20B381D7C7D6800789617 /* VideoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B311D7C7D6800789617 /* VideoButton.cpp */; };
 		78A20B3C1D7C9CC500789617 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3A1D7C9CC500789617 /* Counter.cpp */; };
 		78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3A1D7C9CC500789617 /* Counter.cpp */; };
 		78A20B3E1D7C9CC500789617 /* Counter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3A1D7C9CC500789617 /* Counter.cpp */; };
@@ -353,8 +362,20 @@
 		787B53A41D7DCB1200C1C17D /* Coins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coins.h; sourceTree = "<group>"; };
 		787B53A81D7DF59900C1C17D /* Unlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Unlock.cpp; sourceTree = "<group>"; };
 		787B53A91D7DF59900C1C17D /* Unlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unlock.h; sourceTree = "<group>"; };
-		787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnlockButton.cpp; sourceTree = "<group>"; };
-		787B53AE1D7DF8A200C1C17D /* UnlockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockButton.h; sourceTree = "<group>"; };
+		787B53B21D7EB49400C1C17D /* Settings.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Settings.cpp; sourceTree = "<group>"; };
+		787B53B31D7EB49400C1C17D /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		787B53B41D7EB49400C1C17D /* Store.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Store.cpp; sourceTree = "<group>"; };
+		787B53B51D7EB49400C1C17D /* Store.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Store.h; sourceTree = "<group>"; };
+		787B53BD1D7EC4E100C1C17D /* PresentButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PresentButton.cpp; sourceTree = "<group>"; };
+		787B53BE1D7EC4E100C1C17D /* PresentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentButton.h; sourceTree = "<group>"; };
+		787B53BF1D7EC4E100C1C17D /* TimeButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeButton.cpp; sourceTree = "<group>"; };
+		787B53C01D7EC4E100C1C17D /* TimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeButton.h; sourceTree = "<group>"; };
+		787B53C11D7EC4E100C1C17D /* UnlockButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnlockButton.cpp; sourceTree = "<group>"; };
+		787B53C21D7EC4E100C1C17D /* UnlockButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnlockButton.h; sourceTree = "<group>"; };
+		787B53C31D7EC4E100C1C17D /* VideoButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoButton.cpp; sourceTree = "<group>"; };
+		787B53C41D7EC4E100C1C17D /* VideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoButton.h; sourceTree = "<group>"; };
+		787B53D11D7EC50A00C1C17D /* ExtendedButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExtendedButton.cpp; sourceTree = "<group>"; };
+		787B53D21D7EC50A00C1C17D /* ExtendedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendedButton.h; sourceTree = "<group>"; };
 		7891E8631CF2125F005C238E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7891E8671CF21293005C238E /* NSAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSAnalytics.h; sourceTree = "<group>"; };
 		7891E8681CF21293005C238E /* NSAnalytics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSAnalytics.mm; sourceTree = "<group>"; };
@@ -397,12 +418,6 @@
 		78A20B1F1D7C6C3300789617 /* Menu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Menu.h; sourceTree = "<group>"; };
 		78A20B201D7C6C3300789617 /* Popup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Popup.cpp; sourceTree = "<group>"; };
 		78A20B211D7C6C3300789617 /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
-		78A20B2A1D7C7B4600789617 /* TimeButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeButton.cpp; sourceTree = "<group>"; };
-		78A20B2B1D7C7B4600789617 /* TimeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeButton.h; sourceTree = "<group>"; };
-		78A20B2F1D7C7D6800789617 /* PresentButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PresentButton.cpp; sourceTree = "<group>"; };
-		78A20B301D7C7D6800789617 /* PresentButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresentButton.h; sourceTree = "<group>"; };
-		78A20B311D7C7D6800789617 /* VideoButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VideoButton.cpp; sourceTree = "<group>"; };
-		78A20B321D7C7D6800789617 /* VideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoButton.h; sourceTree = "<group>"; };
 		78A20B3A1D7C9CC500789617 /* Counter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Counter.cpp; sourceTree = "<group>"; };
 		78A20B3B1D7C9CC500789617 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
 		78A20B3F1D7C9F0F00789617 /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Number.cpp; sourceTree = "<group>"; };
@@ -879,6 +894,23 @@
 			path = Facebook;
 			sourceTree = "<group>";
 		};
+		787B53BC1D7EC4E100C1C17D /* buttons */ = {
+			isa = PBXGroup;
+			children = (
+				787B53D11D7EC50A00C1C17D /* ExtendedButton.cpp */,
+				787B53D21D7EC50A00C1C17D /* ExtendedButton.h */,
+				787B53BD1D7EC4E100C1C17D /* PresentButton.cpp */,
+				787B53BE1D7EC4E100C1C17D /* PresentButton.h */,
+				787B53BF1D7EC4E100C1C17D /* TimeButton.cpp */,
+				787B53C01D7EC4E100C1C17D /* TimeButton.h */,
+				787B53C11D7EC4E100C1C17D /* UnlockButton.cpp */,
+				787B53C21D7EC4E100C1C17D /* UnlockButton.h */,
+				787B53C31D7EC4E100C1C17D /* VideoButton.cpp */,
+				787B53C41D7EC4E100C1C17D /* VideoButton.h */,
+			);
+			path = buttons;
+			sourceTree = "<group>";
+		};
 		7891E8581CF210DE005C238E /* mac */ = {
 			isa = PBXGroup;
 			children = (
@@ -1041,7 +1073,6 @@
 		7894C02E1BC9282F00363FC9 /* entities */ = {
 			isa = PBXGroup;
 			children = (
-				78A20B281D7C7B4600789617 /* environment */,
 				78A20B391D7C9CC500789617 /* ui */,
 				78DF64C11D24460A0049EB22 /* Environment.cpp */,
 				78DF64C21D24460A0049EB22 /* Environment.h */,
@@ -1071,6 +1102,10 @@
 				78A20B1F1D7C6C3300789617 /* Menu.h */,
 				787B53A81D7DF59900C1C17D /* Unlock.cpp */,
 				787B53A91D7DF59900C1C17D /* Unlock.h */,
+				787B53B21D7EB49400C1C17D /* Settings.cpp */,
+				787B53B31D7EB49400C1C17D /* Settings.h */,
+				787B53B41D7EB49400C1C17D /* Store.cpp */,
+				787B53B51D7EB49400C1C17D /* Store.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1095,32 +1130,10 @@
 			path = ../../resource/Services;
 			sourceTree = "<group>";
 		};
-		78A20B281D7C7B4600789617 /* environment */ = {
-			isa = PBXGroup;
-			children = (
-				78A20B291D7C7B4600789617 /* buttons */,
-			);
-			path = environment;
-			sourceTree = "<group>";
-		};
-		78A20B291D7C7B4600789617 /* buttons */ = {
-			isa = PBXGroup;
-			children = (
-				78A20B2A1D7C7B4600789617 /* TimeButton.cpp */,
-				78A20B2B1D7C7B4600789617 /* TimeButton.h */,
-				78A20B2F1D7C7D6800789617 /* PresentButton.cpp */,
-				78A20B301D7C7D6800789617 /* PresentButton.h */,
-				78A20B311D7C7D6800789617 /* VideoButton.cpp */,
-				78A20B321D7C7D6800789617 /* VideoButton.h */,
-				787B53AD1D7DF8A200C1C17D /* UnlockButton.cpp */,
-				787B53AE1D7DF8A200C1C17D /* UnlockButton.h */,
-			);
-			path = buttons;
-			sourceTree = "<group>";
-		};
 		78A20B391D7C9CC500789617 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				787B53BC1D7EC4E100C1C17D /* buttons */,
 				78A20B3A1D7C9CC500789617 /* Counter.cpp */,
 				78A20B3B1D7C9CC500789617 /* Counter.h */,
 				78A20B3F1D7C9F0F00789617 /* Number.cpp */,
@@ -1438,26 +1451,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787B53D41D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */,
 				787B539E1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				7828E3B91D79F12200AA66D9 /* Dust.cpp in Sources */,
 				78C3F6851D528D980031E5B1 /* Plate.cpp in Sources */,
 				78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */,
-				78A20B341D7C7D6800789617 /* PresentButton.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
+				787B53B71D7EB49400C1C17D /* Settings.cpp in Sources */,
 				78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */,
 				78A20B231D7C6C3300789617 /* Menu.cpp in Sources */,
 				78A20B261D7C6C3300789617 /* Popup.cpp in Sources */,
 				7828E3BE1D7C617200AA66D9 /* Gem.cpp in Sources */,
-				78A20B2D1D7C7B4600789617 /* TimeButton.cpp in Sources */,
+				787B53BA1D7EB49400C1C17D /* Store.cpp in Sources */,
+				787B53C61D7EC4E100C1C17D /* PresentButton.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
-				78A20B371D7C7D6800789617 /* VideoButton.cpp in Sources */,
+				787B53CC1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
 				787B53A61D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
 				787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */,
+				787B53CF1D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
-				787B53B01D7DF8A200C1C17D /* UnlockButton.cpp in Sources */,
 				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
+				787B53C91D7EC4E100C1C17D /* TimeButton.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1468,34 +1484,37 @@
 			files = (
 				787B53AC1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
+				787B53CD1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
 				7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
+				787B53BB1D7EB49400C1C17D /* Store.cpp in Sources */,
 				78C3F6861D528D980031E5B1 /* Plate.cpp in Sources */,
 				78C352D01CEE7DB000F10068 /* Game.cpp in Sources */,
 				78DF64CF1D24463B0049EB22 /* Character.cpp in Sources */,
 				78C352D91CEE7DB000F10068 /* Events.cpp in Sources */,
 				7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
 				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
-				787B53B11D7DF8A200C1C17D /* UnlockButton.cpp in Sources */,
+				787B53CA1D7EC4E100C1C17D /* TimeButton.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				7828E3BA1D79F12200AA66D9 /* Dust.cpp in Sources */,
-				78A20B2E1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				7832A8A81D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
+				787B53C71D7EC4E100C1C17D /* PresentButton.cpp in Sources */,
 				787B539F1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				78C35A571CEE84E200F10068 /* RootViewController.mm in Sources */,
 				7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */,
+				787B53D51D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */,
+				787B53B81D7EB49400C1C17D /* Settings.cpp in Sources */,
 				78A20B271D7C6C3300789617 /* Popup.cpp in Sources */,
 				787B53A71D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
 				78A20B241D7C6C3300789617 /* Menu.cpp in Sources */,
-				78A20B381D7C7D6800789617 /* VideoButton.cpp in Sources */,
 				78A20B431D7C9F0F00789617 /* Number.cpp in Sources */,
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
-				78A20B351D7C7D6800789617 /* PresentButton.cpp in Sources */,
 				78A20B3E1D7C9CC500789617 /* Counter.cpp in Sources */,
 				78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */,
+				787B53D01D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
 				7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78C35A511CEE84E200F10068 /* main.m in Sources */,
 			);
@@ -1508,8 +1527,10 @@
 				78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */,
 				787B53AA1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				7832A8AC1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
+				787B53C51D7EC4E100C1C17D /* PresentButton.cpp in Sources */,
 				7832A8B51D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				7891E88D1CF21293005C238E /* main.m in Sources */,
+				787B53B61D7EB49400C1C17D /* Settings.cpp in Sources */,
 				7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */,
 				78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */,
 				783DE9581D1C096B009706B7 /* Events.mm in Sources */,
@@ -1522,13 +1543,13 @@
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,
 				7891E8911CF21293005C238E /* NSHeyzap.mm in Sources */,
 				78A20B3C1D7C9CC500789617 /* Counter.cpp in Sources */,
+				787B53CE1D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
 				78A20B221D7C6C3300789617 /* Menu.cpp in Sources */,
 				78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
 				7891E88B1CF21293005C238E /* AppController.mm in Sources */,
 				7891E88F1CF21293005C238E /* NSModal.mm in Sources */,
 				7832A8A31D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
-				78A20B331D7C7D6800789617 /* PresentButton.cpp in Sources */,
 				78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */,
 				7832A8AF1D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
 				78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */,
@@ -1536,25 +1557,26 @@
 				78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */,
 				787B53A51D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78DF64CD1D24463B0049EB22 /* Character.cpp in Sources */,
+				787B53C81D7EC4E100C1C17D /* TimeButton.cpp in Sources */,
 				7891E8921CF21293005C238E /* NSPurchase.mm in Sources */,
 				7832A8B81D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */,
 				7891E8901CF21293005C238E /* NSBatch.mm in Sources */,
-				787B53AF1D7DF8A200C1C17D /* UnlockButton.cpp in Sources */,
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
+				787B53CB1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
 				7828E3BD1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,
 				78DF64D21D2446660049EB22 /* Element.cpp in Sources */,
 				7832A8A91D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78CEEB431D0C44D5000A85D4 /* YYImageCoder.m in Sources */,
+				787B53D31D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */,
 				78C3F6841D528D980031E5B1 /* Plate.cpp in Sources */,
 				7891E8941CF21293005C238E /* NSServices.mm in Sources */,
-				78A20B361D7C7D6800789617 /* VideoButton.cpp in Sources */,
 				78A20B251D7C6C3300789617 /* Popup.cpp in Sources */,
 				78A20B411D7C9F0F00789617 /* Number.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
-				78A20B2C1D7C7B4600789617 /* TimeButton.cpp in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,
+				787B53B91D7EB49400C1C17D /* Store.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

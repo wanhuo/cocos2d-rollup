@@ -42,16 +42,8 @@ Environment::~Environment()
  *
  *
  */
-vector<int> Environment::all;
-vector<int> Environment::special;
 void Environment::create()
 {
-  for(int i = 2; i < 7; i++)
-  {
-    all.push_back(i);
-  }
-  special = all;
-
   this->plane = new Entity3D(this, true);
   this->plane->setPosition(0, 0, 0);
   this->plane->setRotation(0, 0, 0);
@@ -126,6 +118,10 @@ void Environment::onAction()
  */
 void Environment::onMenu()
 {
+  this->showElements({
+    ELEMENT_COUNTER,
+    ELEMENT_NOTIFICATION_NODE
+  });
 }
 
 void Environment::onGame()
@@ -135,6 +131,82 @@ void Environment::onGame()
 
 void Environment::onFinish()
 {
+  this->showElements({
+    ELEMENT_COUNTER,
+    ELEMENT_NOTIFICATION_NODE
+  });
+}
+
+void Environment::onUnlock()
+{
+  this->hideElements({
+    ELEMENT_COUNTER,
+    ELEMENT_NOTIFICATION_NODE
+  });
+}
+
+void Environment::onSettings()
+{
+  this->hideElements({
+    ELEMENT_COUNTER,
+    ELEMENT_NOTIFICATION_NODE
+  });
+}
+
+void Environment::onStore()
+{
+  this->hideElements({
+    ELEMENT_COUNTER
+  });
+}
+
+/**
+ *
+ *
+ *
+ */
+void Environment::applyElements(ActionInterval* action, initializer_list<int> elements)
+{
+  for(int element : elements)
+  {
+    switch(element)
+    {
+      case ELEMENT_COUNTER:
+      Application->counter->runAction(action->clone());
+      break;
+      case ELEMENT_NOTIFICATION_NODE:
+      Director::getInstance()->getNotificationNode()->runAction(action->clone());
+      break;
+    }
+  }
+}
+
+void Environment::showElements(initializer_list<int> elements)
+{
+  auto action = EaseSineInOut::create(
+    FadeTo::create(0.5, 255)
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->applyElements(action, elements);
+}
+
+void Environment::hideElements(initializer_list<int> elements)
+{
+  auto action = EaseSineInOut::create(
+    FadeTo::create(0.5, 0)
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->applyElements(action, elements);
 }
 
 /**

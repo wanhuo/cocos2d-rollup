@@ -1,0 +1,151 @@
+{
+  "@characters": {
+    "@regular": [
+      {
+        "index": 1000,
+        "category": 1,
+        "state": 1,
+        "action": 1
+      },
+      {
+        "index": 1001,
+        "category": 1,
+        "action": 2
+      },
+      {
+        "index": 1002,
+        "category": 1,
+        "action": 3
+      },
+      {
+        "index": 1003,
+        "category": 1,
+        "action": 4
+      },
+      {
+        "index": 1004,
+        "category": 1
+      },
+      {
+        "index": 1005,
+        "category": 1
+      }
+    ],
+    "@rare": [
+      {
+        "index": 2000,
+        "category": 2
+      }
+    ],
+    "@mythical": [
+      {
+        "index": 3000,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3001,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3002,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3003,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3004,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3005,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3006,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3007,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3008,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3009,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3010,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3011,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3012,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3013,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3014,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3015,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3016,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      },
+      {
+        "index": 3017,
+        "category": 3,
+        "action": 5,
+        "price": 1.99
+      }
+    ]
+  }
+}

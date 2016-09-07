@@ -45,9 +45,9 @@ class Unlock : public Popup
   };
 
   struct Buttons {
-    Button* action;
-    Button* play;
-    Button* share;
+    ExtendedButton* action;
+    ExtendedButton* play;
+    ExtendedButton* share;
   };
 
   Buttons buttons;
@@ -83,8 +83,8 @@ class Unlock : public Popup
   virtual void onEnter() override;
   virtual void onExit() override;
 
-  virtual void show();
-  virtual void hide();
+  virtual void show() override;
+  virtual void hide() override;
 
   virtual void showButtons();
 

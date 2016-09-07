@@ -55,13 +55,6 @@ Menu::Menu()
    *
    *
    */
-  this->bind(false);
-
-  /**
-   *
-   *
-   *
-   */
   this->background = new Entity("ui/background-menu.png", this, true);
   this->background->setPosition(Application->getCenter());
   this->background->setScale(2.0);
@@ -71,10 +64,10 @@ Menu::Menu()
    *
    *
    */
-  this->buttons.play = new Button("ui/button-play.png", 2, 1, this, [=] () {
+  this->buttons.play = new ExtendedButton("ui/button-play.png", 2, 1, this, [=] () {
     Application->changeState(Game::STATE_GAME);
   });
-  this->buttons.restart = new Button("ui/button-restart.png", 2, 1, this, [=] () {
+  this->buttons.restart = new ExtendedButton("ui/button-restart.png", 2, 1, this, [=] () {
     Application->changeState(Game::STATE_GAME);
 
     Application->environment->clear->runAction(
@@ -88,13 +81,39 @@ Menu::Menu()
       )
     );
   });
-  this->buttons.store = new Button("ui/button-store.png", 2, 1, this, [=] () {
+  this->buttons.store = new ExtendedButton("ui/button-store.png", 2, 1, this, [=] () {
+    Application->environment->onStore();
+
+    this->hide();
+
+    Application->environment->clear->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        Application->changeState(Game::STATE_STORE);
+        }),
+        nullptr
+      )
+    );
   });
-  this->buttons.rate = new Button("ui/button-rate.png", 2, 1, this, [=] () {
+  this->buttons.settings = new ExtendedButton("ui/button-settings.png", 2, 1, this, [=] () {
+    Application->environment->onSettings();
+
+    this->hide();
+
+    Application->environment->clear->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        Application->changeState(Game::STATE_SETTINGS);
+        }),
+        nullptr
+      )
+    );
   });
-  this->buttons.social = new Button("ui/button-social.png", 2, 1, this, [=] () {
+  this->buttons.rate = new ExtendedButton("ui/button-rate.png", 2, 1, this, [=] () {
   });
-  this->buttons.settings = new Button("ui/button-settings.png", 2, 1, this, [=] () {
+  this->buttons.social = new ExtendedButton("ui/button-social.png", 2, 1, this, [=] () {
   });
   this->buttons.video = new VideoButton(this);
   this->buttons.present = new PresentButton(this);
@@ -131,56 +150,19 @@ void Menu::onEnter()
   switch(this->state)
   {
     case STATE_MENU:
-    this->buttons.play->_create()->setPosition(position.x, position.y);
+    this->buttons.play->add(position.x, position.y);
     break;
     case STATE_FINISH:
-    this->buttons.restart->_create()->setPosition(position.x, position.y);
+    this->buttons.restart->add(position.x, position.y);
     break;
   }
 
-  this->buttons.rate->_create()->setPosition(position.x - 128, position.y);
-  this->buttons.store->_create()->setPosition(position.x - 256, position.y);
-  this->buttons.video->_create()->setPosition(position.x + 128, position.y);
-  this->buttons.present->_create()->setPosition(position.x + 256, position.y);
-
-  this->buttons.social->_create()->setPosition(position.x * 2 - 128 * 1.35, Application->getHeight() - 64);
-  this->buttons.settings->_create()->setPosition(position.x * 2 - 64, Application->getHeight() - 64);
-
-  /**
-   *
-   *
-   *
-   */
-  auto time = 0.5;
-
-  /**
-   *
-   *
-   *
-   */
-  auto action = Spawn::create(
-    EaseSineOut::create(
-      ScaleTo::create(time, 1.0)
-    ),
-    EaseSineOut::create(
-      FadeTo::create(time, 255.0)
-    ),
-    nullptr
-  );
-
-  /**
-   *
-   *
-   *
-   */
-  this->buttons.play->runAction(action->clone());
-  this->buttons.restart->runAction(action->clone());
-  this->buttons.store->runAction(action->clone());
-  this->buttons.rate->runAction(action->clone());
-  this->buttons.social->runAction(action->clone());
-  this->buttons.settings->runAction(action->clone());
-  this->buttons.video->runAction(action->clone());
-  this->buttons.present->runAction(action->clone());
+  this->buttons.rate->add(position.x - 128, position.y);
+  this->buttons.store->add(position.x - 256, position.y);
+  this->buttons.video->add(position.x + 128, position.y);
+  this->buttons.present->add(position.x + 256, position.y);
+  this->buttons.social->add(position.x * 2 - 128 * 1.35, Application->getHeight() - 64);
+  this->buttons.settings->add(position.x * 2 - 64, Application->getHeight() - 64);
 }
 
 void Menu::onExit()
@@ -234,58 +216,14 @@ void Menu::hide()
    *
    *
    */
-  auto time = 0.4;
-
-  /**
-   *
-   *
-   *
-   */
-  auto action = Spawn::create(
-    EaseSineIn::create(
-      ScaleTo::create(time, 0.8)
-    ),
-    EaseSineIn::create(
-      FadeTo::create(time, 0.0)
-    ),
-    nullptr
-  );
-
-  /**
-   *
-   *
-   *
-   */
-  this->buttons.play->runAction(action->clone());
-  this->buttons.restart->runAction(action->clone());
-  this->buttons.store->runAction(action->clone());
-  this->buttons.rate->runAction(action->clone());
-  this->buttons.social->runAction(action->clone());
-  this->buttons.settings->runAction(action->clone());
-  this->buttons.video->runAction(action->clone());
-  this->buttons.present->runAction(action->clone());
-
-  /**
-   *
-   *
-   *
-   */
-  this->runAction(
-    Sequence::create(
-      DelayTime::create(time),
-      CallFunc::create([=] () {
-      this->buttons.play->_destroy();
-      this->buttons.restart->_destroy();
-      this->buttons.store->_destroy();
-      this->buttons.rate->_destroy();
-      this->buttons.social->_destroy();
-      this->buttons.settings->_destroy();
-      this->buttons.video->_destroy();
-      this->buttons.present->_destroy();
-      }),
-      nullptr
-    )
-  );
+  this->buttons.play->remove();
+  this->buttons.restart->remove();
+  this->buttons.store->remove();
+  this->buttons.rate->remove();
+  this->buttons.social->remove();
+  this->buttons.settings->remove();
+  this->buttons.video->remove();
+  this->buttons.present->remove();
 }
 
 /**

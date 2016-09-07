@@ -48,9 +48,11 @@ class Environment : public Background
    *
    */
   public:
-  
-static vector<int> all;
-static vector<int> special;
+  enum Elements {
+    ELEMENT_COUNTER,
+    ELEMENT_NOTIFICATION_NODE
+  };
+
   struct Texture {
     string environments;
     string background;
@@ -106,6 +108,13 @@ static vector<int> special;
   virtual void onMenu();
   virtual void onGame();
   virtual void onFinish();
+  virtual void onUnlock();
+  virtual void onSettings();
+  virtual void onStore();
+
+  virtual void applyElements(ActionInterval* action, initializer_list<int> elements);
+  virtual void showElements(initializer_list<int> elements);
+  virtual void hideElements(initializer_list<int> elements);
 
   virtual void updateMenu(float time);
   virtual void updateGame(float time);

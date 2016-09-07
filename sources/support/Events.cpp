@@ -31,11 +31,15 @@
  */
 void Events::onStart()
 {
+  Director::getInstance()->setDisplayStats(true);
+
   Storage::clear();
 
   new Game;
   new Menu;
   new Unlock;
+  new Settings;
+  new Store;
 
   Director::getInstance()->runWithScene(Application);
 

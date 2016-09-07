@@ -176,6 +176,17 @@ Game::Game()
 
   /**
    *
+   * @Shaders
+   * | @Create various shaders and add them to the shaders cache;
+   *
+   */
+  GLProgramCache::getInstance()->addGLProgram(
+    GLProgram::createWithFilenames("shader.opacity.vertical.vert", "shader.opacity.vertical.frag"),
+    "@shader.opacity.vertical"
+  );
+
+  /**
+   *
    *
    *
    */
@@ -214,10 +225,19 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     break;
     case STATE_FINISH:
     break;
-    case STATE_MENU:
-    this->changeState(STATE_GAME);
-    break;
     case STATE_GAME:
+    break;
+    case STATE_UNLOCK:
+    break;
+    case STATE_SETTINGS:
+    break;
+    case STATE_STORE:
+    break;
+    case STATE_MENU:
+    if(Menu::getInstance()->state == Menu::STATE_MENU)
+    {
+      this->changeState(STATE_GAME);
+    }
     break;
   }
 
@@ -226,6 +246,12 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     case STATE_NONE:
     break;
     case STATE_FINISH:
+    break;
+    case STATE_UNLOCK:
+    break;
+    case STATE_SETTINGS:
+    break;
+    case STATE_STORE:
     break;
     case STATE_MENU:
     case STATE_GAME:
@@ -246,6 +272,12 @@ void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
     break;
     case STATE_FINISH:
     break;
+    case STATE_UNLOCK:
+    break;
+    case STATE_SETTINGS:
+    break;
+    case STATE_STORE:
+    break;
   }
 }
 
@@ -265,6 +297,12 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
     case STATE_GAME:
     break;
     case STATE_FINISH:
+    break;
+    case STATE_UNLOCK:
+    break;
+    case STATE_SETTINGS:
+    break;
+    case STATE_STORE:
     break;
   }
 }
@@ -295,6 +333,13 @@ void Game::onEnter()
    *
    */
    this->changeState(STATE_MENU);
+
+  /**
+   *
+   *
+   *
+   */
+  this->reset();
 }
 
 void Game::onExit()
@@ -373,7 +418,6 @@ void Game::onRestorePurchases()
  */
 void Game::onMenu()
 {
-  Menu::getInstance()->changeState(Menu::STATE_MENU);
   Menu::getInstance()->show();
 
   /**
@@ -382,13 +426,6 @@ void Game::onMenu()
    *
    */
   this->environment->onMenu();
-
-  /**
-   *
-   *
-   *
-   */
-  this->reset();
 }
 
 void Game::onGame()
@@ -426,6 +463,37 @@ void Game::onFinish()
 void Game::onUnlock()
 {
   Unlock::getInstance()->show();
+
+  /**
+   *
+   *
+   *
+   */
+  this->environment->onUnlock();
+}
+
+void Game::onSettings()
+{
+  Settings::getInstance()->show();
+
+  /**
+   *
+   *
+   *
+   */
+  this->environment->onSettings();
+}
+
+void Game::onStore()
+{
+  Store::getInstance()->show();
+
+  /**
+   *
+   *
+   *
+   */
+  this->environment->onStore();
 }
 
 /**
@@ -564,6 +632,12 @@ void Game::changeState(State state)
       case STATE_UNLOCK:
       this->onUnlock();
       break;
+      case STATE_SETTINGS:
+      this->onSettings();
+      break;
+      case STATE_STORE:
+      this->onStore();
+      break;
     }
   }
 }
@@ -589,6 +663,14 @@ void Game::updateUnlock(float time)
 {
 }
 
+void Game::updateSettings(float time)
+{
+}
+
+void Game::updateStore(float time)
+{
+}
+
 /**
  *
  *
@@ -611,6 +693,12 @@ void Game::updateStates(float time)
     break;
     case STATE_UNLOCK:
     this->updateUnlock(time);
+    break;
+    case STATE_SETTINGS:
+    this->updateSettings(time);
+    break;
+    case STATE_STORE:
+    this->updateStore(time);
     break;
   }
 
