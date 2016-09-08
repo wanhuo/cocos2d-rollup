@@ -44,7 +44,7 @@ Game* Game::getInstance()
  *
  *
  *
- */
+ */static Vec2 test;
 Game::Game()
 {
   instance = this;
@@ -184,6 +184,23 @@ Game::Game()
     GLProgram::createWithFilenames("shader.opacity.vertical.vert", "shader.opacity.vertical.frag"),
     "@shader.opacity.vertical"
   );
+  GLProgramCache::getInstance()->addGLProgram(
+    GLProgram::createWithFilenames("shader.main.blur.vert", "shader.main.blur.frag"),
+    "@shader.main.blur"
+  );
+
+  /**
+   *
+   * @Director
+   * | @Capture;
+   *
+   */
+  if(Director::getInstance()->getCaptureState())
+  {
+    Director::getInstance()->getCaptureTexture()->setGLProgram(
+      GLProgramCache::getInstance()->getGLProgram("@shader.main.blur")
+    );
+  }
 
   /**
    *

@@ -71,6 +71,8 @@ Store::Store()
   this->buttons.services = new ExtendedButton("ui/button-services.png", 2, 1, this, std::bind(&Store::onServices, this));
   this->buttons.menu = new ExtendedButton("ui/button-menu.png", 2, 1, this, std::bind(&Store::onMenu, this));
   this->buttons.share = new ExtendedButton("ui/button-share.png", 2, 1, this, std::bind(&Store::onShare, this));
+  this->buttons.next = new ExtendedButton("ui/button-next.png", 2, 1, this, std::bind(&Store::onNext, this));
+  this->buttons.announce = new ExtendedButton("ui/button-announce.png", 2, 1, this, std::bind(&Store::onShare, this));
   this->buttons.present = new PresentButton(this);
   this->buttons.video = new VideoButton(this);
 
@@ -103,6 +105,8 @@ Store::Store()
    */
   this->texts.more1 = new Text("@store.more", this->scroll);
   this->texts.more2 = new Text("@store.more", this->scroll);
+  this->texts.connect = new Text("@store.connect", this->scroll);
+  this->texts.character = new Text("@store.new.character", this->scroll);
 
   this->texts.separator2 = new Text("@store.separator.1", this->separator2, true);
   this->texts.separator3 = new Text("@store.separator.2", this->separator3, true);
@@ -140,7 +144,8 @@ Store::Store()
         category,
         state,
         action,
-        price
+        price,
+        false
       });
     }
   }
@@ -157,18 +162,7 @@ Store::~Store()
  */
 void Store::onEnter()
 {
-  auto position = Vec2(Application->getCenter().x, 200.0);
-
-  /**
-   *
-   *
-   *
-   */
-  this->buttons.menu->add(position.x, position.y);
-  this->buttons.services->add(position.x - 128, position.y);
-  this->buttons.share->add(position.x - 256, position.y);
-  this->buttons.video->add(position.x + 128, position.y);
-  this->buttons.present->add(position.x + 256, position.y);
+  this->showButtons();
 
   /**
    *
@@ -234,7 +228,8 @@ void Store::onEnter()
      *
      */
     auto handler = [&] (Data state) {
-      state.state = Storage::get("@store.states." + convert(state.index)) || state.state;
+      state.state = state.update ? state.state : max(Storage::get("@store.states." + convert(state.index)), state.state);
+      state.update = false;
 
       /**
        *
@@ -250,9 +245,9 @@ void Store::onEnter()
          *
          *
          */
+        element->setIndex(state.index);
         element->setState(state.state);
         element->setAction(state.action);
-        element->setIndex(state.index);
         element->setPrice(state.price);
         element->setCategory(state.category);
 
@@ -299,7 +294,7 @@ void Store::onEnter()
      * | @1;
      *
      */
-    for(auto state : this->states)
+    for(auto &state : this->states)
     {
       if(state.category == CATEGORY_REGULAR)
       {
@@ -310,9 +305,13 @@ void Store::onEnter()
          *
          *
          */
-        if(this->count(CATEGORY_REGULAR, true) == 4)
+        if(this->elements->count == 4)
         {
-          position.y += 0.1;
+          auto a = ((Element*) this->elements->element(1))->getState();
+          auto b = ((Element*) this->elements->element(2))->getState();
+          auto c = ((Element*) this->elements->element(3))->getState();
+
+          if(!a || !b || !c) position.y += 0.1;
         }
       }
     }
@@ -409,7 +408,7 @@ void Store::onEnter()
        * | @2;
        *
        */
-      for(auto state : this->states)
+      for(auto &state : this->states)
       {
         if(state.category == CATEGORY_RARE)
         {
@@ -426,6 +425,7 @@ void Store::onEnter()
       if(this->count(CATEGORY_RARE))
       {
         this->texts.more2->_create();
+        this->texts.more2->data(this->count(CATEGORY_RARE));
         this->texts.more2->setOpacity(0);
         this->texts.more2->setScale(0.8);
         this->texts.more2->setPosition(Application->getCenter().x, reset().y - 90);
@@ -506,7 +506,7 @@ void Store::onEnter()
        * | @3;
        *
        */
-      for(auto state : this->states)
+      for(auto &state : this->states)
       {
         if(state.category == CATEGORY_MYTHICAL)
         {
@@ -522,6 +522,16 @@ void Store::onEnter()
     *
     */
   auto size = max(Application->getHeight() - 300, Application->getHeight() - this->elements->last()->getPositionY() + 200);
+  auto position = Application->getHeight() - size - 300;
+
+  /**
+   *
+   *
+   *
+   */
+  this->scroll->stopAutoScroll();
+  this->scroll->setTouchEnabled(true);
+  this->scroll->getInnerContainer()->setPosition(Vec2(0, position));
 
    /**
     *
@@ -550,7 +560,34 @@ void Store::onEnter()
    *
    *
    */
-  this->scroll->getInnerContainer()->setPosition(Vec2(0, Application->getHeight() - size - 300));
+  CC_LOOP(this->elements)
+  {
+    auto element = (Element*) this->elements->element(i);
+
+    /**
+     *
+     *
+     *
+     */
+    if(element->getState() == Element::STATE_SELECTED)
+    {
+      auto p = max(position, position + (size - element->getPositionY() - Application->getHeight() / 2 + 150));
+
+      /**
+       *
+       *
+       *
+       */
+      this->scroll->getInnerContainer()->setPosition(Vec2(0, p));
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  Application->environment->showElements({Environment::ELEMENT_NOTIFICATION_NODE});
 
   /**
    *
@@ -590,6 +627,61 @@ void Store::onServices()
 {
 }
 
+void Store::onNext()
+{
+  this->buttons.announce->remove();
+  this->buttons.next->remove();
+
+  /**
+   *
+   *
+   *
+   */
+  this->texts.character->runAction(
+    Spawn::create(
+      EaseSineIn::create(
+        FadeTo::create(0.2, 0.0)
+      ),
+      EaseSineIn::create(
+        ScaleTo::create(0.2, 0.8)
+      ),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->active->runAction(
+    Spawn::create(
+      EaseSineIn::create(
+        FadeTo::create(0.2, 0.0)
+      ),
+      EaseSineIn::create(
+        ScaleTo::create(0.2, 1.3)
+      ),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    Sequence::create(
+      DelayTime::create(0.2),
+      CallFunc::create([=] () {
+      this->onEnter();
+      }),
+      nullptr
+    )
+  );
+}
+
 /**
  *
  *
@@ -609,11 +701,7 @@ void Store::hide()
    *
    *
    */
-  this->buttons.menu->remove();
-  this->buttons.share->remove();
-  this->buttons.services->remove();
-  this->buttons.video->remove();
-  this->buttons.present->remove();
+  this->hideButtons();
 
   /**
    *
@@ -633,7 +721,39 @@ void Store::hide()
         nullptr
       )
     );
+
+    element->bind(false);
   }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Store::showButtons()
+{
+  auto position = Vec2(Application->getCenter().x, 200.0);
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.menu->add(position.x, position.y);
+  this->buttons.services->add(position.x - 128, position.y);
+  this->buttons.share->add(position.x - 256, position.y);
+  this->buttons.video->add(position.x + 128, position.y);
+  this->buttons.present->add(position.x + 256, position.y);
+}
+
+void Store::hideButtons()
+{
+  this->buttons.menu->remove();
+  this->buttons.share->remove();
+  this->buttons.services->remove();
+  this->buttons.video->remove();
+  this->buttons.present->remove();
 }
 
 /**
@@ -652,11 +772,9 @@ int Store::count(int category, bool create)
    */
   if(create)
   {
-    CC_LOOP(this->elements)
+   for(auto element : this->states)
     {
-      auto element = (Store::Element*) this->elements->element(i);
-
-      if(element->getCategory() == category)
+      if(element.category == category && (element.state || element.action))
       {
         count++;
       }
@@ -666,7 +784,7 @@ int Store::count(int category, bool create)
   {
    for(auto element : this->states)
     {
-      if(element.category== category)
+      if(element.category == category)
       {
         count++;
       }
@@ -737,8 +855,7 @@ void Store::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t pare
  */
 
 Store::Element::Element()
-: Button("ui/store-element-1.png", 2, 1, nullptr, [=] () {
-})
+: Button("ui/store-element-1.png", 2, 1, nullptr, std::bind(&Store::Element::onAction, this))
 {
   this->icon = new TiledEntity("ui/store-element-icon.png", 4, 1, this);
   this->icon->setPosition(this->getWidth() / 2, 12.0);
@@ -749,13 +866,6 @@ Store::Element::Element()
    *
    */
   this->setCascadeOpacityEnabled(true);
-
-  /**
-   *
-   *
-   *
-   */
-  this->bind(true, false);
 }
 
 Store::Element::~Element()
@@ -776,14 +886,321 @@ void Store::Element::onCreate()
    *
    *
    */
+  this->bind(true, false);
+
+  /**
+   *
+   *
+   *
+   */
   this->setScale(0.8);
   this->setOpacity(0.0);
-  this->setRotation(0.0);
+  this->setRotation3D(Vec3(0, 0, 0));
 }
 
 void Store::Element::onDestroy(bool action)
 {
   Button::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Store::Element::onAction()
+{
+  Store::getInstance()->active = this;
+
+  /**
+   *
+   *
+   *
+   */
+  switch(this->state)
+  {
+    case STATE_NORMAL:
+    this->setState(STATE_SELECTED);return;
+    break;
+    case STATE_SELECTED:
+    this->bind(false);
+
+    /**
+     *
+     *
+     *
+     */
+    Store::getInstance()->hide();return;
+    break;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  switch(this->action)
+  {
+    case ACTION_FACEBOOK:
+    case ACTION_TWITTER:
+    case ACTION_INSTAGRAM:
+    case ACTION_INAPP:
+    switch(this->state)
+    {
+      case STATE_NORMAL:
+      break;
+      case STATE_LOCKED:
+      for(auto element : Store::getInstance()->scroll->getChildren())
+      {
+        if(element != this)
+        {
+          auto v = Vec2(0, 0);
+
+          v.x = element->getPositionX() - this->getPositionX();
+          v.y = element->getPositionY() - this->getPositionY();
+
+          v.normalize();
+
+          /**
+           *
+           *
+           *
+           */
+          element->runAction(
+            Spawn::create(
+              EaseSineIn::create(
+                MoveBy::create(0.2, v * 50)
+              ),
+              EaseSineIn::create(
+                ScaleTo::create(0.2, 1.1)
+              ),
+              EaseSineIn::create(
+                FadeTo::create(0.2, 0.0)
+              ),
+              nullptr
+            )
+          );
+        }
+
+        /**
+         *
+         *
+         *
+         */
+        Store::getInstance()->scroll->setTouchEnabled(false);
+        Store::getInstance()->scroll->getInnerContainer()->stopAllActions();
+
+        /**
+         *
+         *
+         *
+         */
+        element->bind(false);
+      }
+
+      /**
+       *
+       *
+       *
+       */
+      this->runAction(
+        Spawn::create(
+          EaseSineIn::create(
+            FadeTo::create(0.2, 0.0)
+          ),
+          Sequence::create(
+            EaseSineIn::create(
+              ScaleTo::create(0.2, 0.8)
+            ),
+            CallFunc::create([=] () {
+              auto position = Vec2(Application->getCenter().x, -Store::getInstance()->scroll->getInnerContainer()->getPositionY() + Store::getInstance()->scroll->getInnerContainer()->getContentSize().height / 2 - 300);
+
+              /**
+               *
+               *
+               *
+               */
+              this->setPosition(position);
+
+              /**
+               *
+               *
+               *
+               */
+              Store::getInstance()->texts.connect->_create();
+              Store::getInstance()->texts.connect->setCameraMask(BACKGROUND);
+              Store::getInstance()->texts.connect->setScale(0.8);
+              Store::getInstance()->texts.connect->setOpacity(0.0);
+              Store::getInstance()->texts.connect->setText("@store.connect." + convert(this->action));
+              Store::getInstance()->texts.connect->setPosition(position.x, position.y - 180);
+              Store::getInstance()->texts.connect->runAction(
+                Spawn::create(
+                  EaseSineOut::create(
+                    FadeTo::create(0.2, 255.0)
+                  ),
+                  EaseSineOut::create(
+                    ScaleTo::create(0.2, 1.0)
+                  ),
+                  nullptr
+                )
+              );
+
+              /**
+               *
+               *
+               *
+               */
+              this->runAction(
+                Spawn::create(
+                  EaseSineOut::create(
+                    ScaleTo::create(0.2, 1.5)
+                  ),
+                  EaseSineOut::create(
+                    FadeTo::create(0.2, 255.0)
+                  ),
+                  Sequence::create(
+                    EaseSineOut::create(
+                      RotateTo::create(2.0, Vec3(0.0, 360.0 * 5, 0.0))
+                    ),
+                    DelayTime::create(0.5),
+                    CallFunc::create([=] () {
+
+                      /**
+                       *
+                       *
+                       *
+                       */
+                      if(true)
+                      {
+                        /**
+                         *
+                         * @Action
+                         * |@Action successful;
+                         *
+                         */
+                        Application->environment->clear->runAction(
+                          Sequence::create(
+                            FadeTo::create(0.1, 255.0),
+                            CallFunc::create([=] () {
+
+                              /**
+                               *
+                               *
+                               *
+                               */
+                              this->setState(STATE_SELECTED);
+
+                              /**
+                               *
+                               *
+                               *
+                               */
+                              this->icon->_destroy();
+
+                              /**
+                               *
+                               *
+                               *
+                               */
+                              Store::getInstance()->texts.connect->_destroy();
+
+                              /**
+                               *
+                               *
+                               *
+                               */
+                              Store::getInstance()->texts.character->_create();
+                              Store::getInstance()->texts.character->setCameraMask(BACKGROUND);
+                              Store::getInstance()->texts.character->setScale(1.0);
+                              Store::getInstance()->texts.character->setOpacity(255.0);
+                              Store::getInstance()->texts.character->setPosition(this->getPositionX(), this->getPositionY() + 160);
+
+                              /**
+                               *
+                               *
+                               *
+                               */
+                              Store::getInstance()->buttons.announce->add(Application->getCenter().x - 100, 200);
+                              Store::getInstance()->buttons.next->add(Application->getCenter().x + 100, 200);
+                            }),
+                            FadeTo::create(0.3, 0.0),
+                            nullptr
+                          )
+                        );
+                      }
+                      else
+                      {
+                        /**
+                         *
+                         * @Action
+                         * |@Action failed;
+                         *
+                         */
+                        Store::getInstance()->texts.connect->runAction(
+                          Spawn::create(
+                            EaseSineIn::create(
+                              FadeTo::create(0.2, 0.0)
+                            ),
+                            EaseSineIn::create(
+                              ScaleTo::create(0.2, 0.8)
+                            ),
+                            nullptr
+                          )
+                        );
+
+                        /**
+                         *
+                         *
+                         *
+                         */
+                        this->runAction(
+                          Spawn::create(
+                            EaseSineIn::create(
+                              FadeTo::create(0.2, 0.0)
+                            ),
+                            Sequence::create(
+                              EaseSineIn::create(
+                                ScaleTo::create(0.2, 1.2)
+                              ),
+                              CallFunc::create([=] () {
+                              Store::getInstance()->onEnter();
+                              }),
+                              nullptr
+                            ),
+                            nullptr
+                          )
+                        );
+                      }
+                    }),
+                    nullptr
+                  ),
+                  nullptr
+                )
+              );
+            }),
+            nullptr
+          ),
+          nullptr
+        )
+      );
+
+      /**
+       *
+       *
+       *
+       */
+      Application->environment->hideElements({Environment::ELEMENT_NOTIFICATION_NODE});
+
+      /**
+       *
+       *
+       *
+       */
+      Store::getInstance()->hideButtons();
+      break;
+    }
+    break;
+  }
 }
 
 /**
@@ -800,13 +1217,63 @@ void Store::Element::setState(int state)
    *
    *
    */
+  Storage::set("@store.states." + convert(this->index), this->state);
+
+  /**
+   *
+   *
+   *
+   */
   switch(this->state)
   {
-    case STATE_LOCKED:
-    this->setTexture("ui/store-element-1.png");
-    break;
+    case STATE_SELECTED:
+      this->setAction(ACTION_NONE);
+
+      /**
+       *
+       *
+       *
+       */
+      for(auto &element : Store::getInstance()->states)
+      {
+        if(element.index == this->index)
+        {
+          element.state = STATE_SELECTED;
+          element.update = false;
+        }
+
+        if(element.state == STATE_SELECTED)
+        {
+          if(element.index != this->index)
+          {
+            element.state = STATE_NORMAL;
+            element.update = true;
+          }
+        }
+      }
+
+      /**
+       *
+       *
+       *
+       */
+      CC_LOOP(Store::getInstance()->elements)
+      {
+        auto element = (Store::Element*) Store::getInstance()->elements->element(i);
+
+        if(element->index != this->index)
+        {
+          if(element->state == STATE_SELECTED)
+          {
+            element->setState(STATE_NORMAL);
+          }
+        }
+      }
     case STATE_NORMAL:
     this->setTexture("ui/store-element-2.png");
+    break;
+    case STATE_LOCKED:
+    this->setTexture("ui/store-element-1.png");
     break;
   }
 
@@ -822,7 +1289,15 @@ void Store::Element::setState(int state)
    *
    *
    */
-  this->icon->_destroy();
+  switch(this->state)
+  {
+    case STATE_SELECTED:
+    break;
+    case STATE_NORMAL:
+    this->icon->_destroy();
+    case STATE_LOCKED:
+    break;
+  }
 }
 
 void Store::Element::setAction(int action)
@@ -834,16 +1309,50 @@ void Store::Element::setAction(int action)
    *
    *
    */
-  switch(this->action)
+  this->icon->_destroy();
+
+  /**
+   *
+   *
+   *
+   */
+  switch(this->state)
   {
-    case ACTION_NORMAL:
+    case STATE_NORMAL:
     break;
-    case ACTION_SELECTED:
-    case ACTION_FACEBOOK:
-    case ACTION_TWITTER:
-    case ACTION_INSTAGRAM:
+
+    case STATE_SELECTED:
     this->icon->_create();
-    this->icon->setCurrentFrameIndex(this->action - 1);
+    this->icon->setCameraMask(BACKGROUND);
+    this->icon->setCurrentFrameIndex(0);
+    this->icon->setScale(0.8);
+    this->icon->setOpacity(0.0);
+    this->icon->runAction(
+      Spawn::create(
+        EaseSineOut::create(
+          ScaleTo::create(0.2, 1.0)
+        ),
+        EaseSineOut::create(
+          FadeTo::create(0.2, 255.0)
+        ),
+        nullptr
+      )
+    );
+    break;
+
+    case STATE_LOCKED:
+    switch(this->action)
+    {
+      case ACTION_INAPP:
+      // TODO: Price?
+      break;
+      case ACTION_FACEBOOK:
+      case ACTION_TWITTER:
+      case ACTION_INSTAGRAM:
+      this->icon->_create();
+      this->icon->setCurrentFrameIndex(this->action);
+      break;
+    }
     break;
   }
 }
@@ -868,6 +1377,21 @@ void Store::Element::setCategory(int category)
  *
  *
  */
+int Store::Element::getIndex()
+{
+  return this->index;
+}
+
+int Store::Element::getState()
+{
+  return this->state;
+}
+
+int Store::Element::getAction()
+{
+  return this->action;
+}
+
 int Store::Element::getCategory()
 {
   return this->category;

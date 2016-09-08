@@ -71,6 +71,7 @@ class Environment : public Background
    *
    */
   protected:
+  float backgroundIndex = 0;
 
   /**
    *
@@ -111,6 +112,8 @@ class Environment : public Background
   virtual void onUnlock();
   virtual void onSettings();
   virtual void onStore();
+
+  virtual void onBackground(bool state);
 
   virtual void applyElements(ActionInterval* action, initializer_list<int> elements);
   virtual void showElements(initializer_list<int> elements);

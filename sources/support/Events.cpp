@@ -31,7 +31,7 @@
  */
 void Events::onStart()
 {
-  Director::getInstance()->setDisplayStats(true);
+  //Director::getInstance()->setDisplayStats(true);
 
   Storage::clear();
 

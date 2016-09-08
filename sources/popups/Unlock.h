@@ -46,8 +46,8 @@ class Unlock : public Popup
 
   struct Buttons {
     ExtendedButton* action;
-    ExtendedButton* play;
-    ExtendedButton* share;
+    ExtendedButton* next;
+    ExtendedButton* announce;
   };
 
   Buttons buttons;

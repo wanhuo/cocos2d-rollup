@@ -80,6 +80,48 @@
         ]
       }
     ],
+    "@store.connect": [
+      {
+        "title": "",
+        "font": "msyi",
+        "size": 36
+      }
+    ],
+    "@store.connect.1": [
+      {
+        "title": "Connecting to Facebook...",
+        "font": "msyi",
+        "size": 36
+      }
+    ],
+    "@store.connect.2": [
+      {
+        "title": "Connecting to Twitter...",
+        "font": "msyi",
+        "size": 36
+      }
+    ],
+    "@store.connect.3": [
+      {
+        "title": "Connecting to Instagram...",
+        "font": "msyi",
+        "size": 36
+      }
+    ],
+    "@store.connect.4": [
+      {
+        "title": "Connecting to App Store...",
+        "font": "msyi",
+        "size": 36
+      }
+    ],
+    "@store.new.character": [
+      {
+        "title": "New character",
+        "font": "msyi",
+        "size": 64
+      }
+    ],
     "vote-title": [
       {
         "title": "Please rate us",

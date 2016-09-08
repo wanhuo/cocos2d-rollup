@@ -56,10 +56,10 @@ Unlock::Unlock()
    *
    */
   this->buttons.action = new UnlockButton(this);
-  this->buttons.play = new ExtendedButton("ui/button-play.png", 2, 1, this, [=] () {
+  this->buttons.next = new ExtendedButton("ui/button-next.png", 2, 1, this, [=] () {
     this->hide();
   });
-  this->buttons.share = new ExtendedButton("ui/button-share.png", 2, 1, this, [=] () {
+  this->buttons.announce = new ExtendedButton("ui/button-announce.png", 2, 1, this, [=] () {
   });
 }
 
@@ -116,14 +116,14 @@ void Unlock::hide()
    *
    */
   this->buttons.action->remove();
-  this->buttons.play->remove();
-  this->buttons.share->remove();
+  this->buttons.next->remove();
+  this->buttons.announce->remove();
 }
 
 void Unlock::showButtons()
 {
-  this->buttons.play->add(Application->getCenter().x + 64, 200);
-  this->buttons.share->add(Application->getCenter().x - 64, 200);
+  this->buttons.next->add(Application->getCenter().x + 64, 200);
+  this->buttons.announce->add(Application->getCenter().x - 64, 200);
 }
 
 /**

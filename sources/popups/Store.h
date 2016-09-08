@@ -56,12 +56,12 @@ class Store : public Popup
     public:
     enum State {
       STATE_LOCKED,
-      STATE_NORMAL
+      STATE_NORMAL,
+      STATE_SELECTED
     };
 
     enum Action {
-      ACTION_NORMAL,
-      ACTION_SELECTED,
+      ACTION_NONE,
       ACTION_FACEBOOK,
       ACTION_TWITTER,
       ACTION_INSTAGRAM,
@@ -102,12 +102,17 @@ class Store : public Popup
     virtual void onCreate() override;
     virtual void onDestroy(bool action = false) override;
 
+    virtual void onAction();
+
     virtual void setIndex(int index);
     virtual void setState(int state);
     virtual void setAction(int action);
     virtual void setPrice(float price);
     virtual void setCategory(int category);
 
+    virtual int getIndex();
+    virtual int getState();
+    virtual int getAction();
     virtual int getCategory();
 
     virtual Element* deepCopy() override;
@@ -152,6 +157,8 @@ class Store : public Popup
     int action;
 
     float price;
+
+    bool update;
   };
 
   vector<Data> states;
@@ -163,6 +170,8 @@ class Store : public Popup
     ExtendedButton* services;
     ExtendedButton* video;
     ExtendedButton* present;
+    ExtendedButton* next;
+    ExtendedButton* announce;
   };
 
   struct Texts {
@@ -171,6 +180,9 @@ class Store : public Popup
 
     Text* separator2;
     Text* separator3;
+
+    Text* connect;
+    Text* character;
   };
 
   Buttons buttons;
@@ -181,6 +193,8 @@ class Store : public Popup
 
   BackgroundScroll* scroll;
   RenderTexture* texture;
+
+  Node* active;
 
   /**
    *
@@ -201,6 +215,7 @@ class Store : public Popup
   virtual void onMenu();
   virtual void onShare();
   virtual void onServices();
+  virtual void onNext();
 
   /**
    *
@@ -218,6 +233,9 @@ class Store : public Popup
 
   virtual void show() override;
   virtual void hide() override;
+
+  virtual void showButtons();
+  virtual void hideButtons();
 
   virtual int count(int category, bool create = false);
 

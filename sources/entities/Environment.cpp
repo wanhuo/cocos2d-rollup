@@ -122,11 +122,25 @@ void Environment::onMenu()
     ELEMENT_COUNTER,
     ELEMENT_NOTIFICATION_NODE
   });
+
+  /**
+   *
+   *
+   *
+   */
+  this->onBackground(false);
 }
 
 void Environment::onGame()
 {
   this->character->onAction();
+
+  /**
+   *
+   *
+   *
+   */
+  this->onBackground(false);
 }
 
 void Environment::onFinish()
@@ -135,6 +149,13 @@ void Environment::onFinish()
     ELEMENT_COUNTER,
     ELEMENT_NOTIFICATION_NODE
   });
+
+  /**
+   *
+   *
+   *
+   */
+  this->onBackground(false);
 }
 
 void Environment::onUnlock()
@@ -143,6 +164,13 @@ void Environment::onUnlock()
     ELEMENT_COUNTER,
     ELEMENT_NOTIFICATION_NODE
   });
+
+  /**
+   *
+   *
+   *
+   */
+  this->onBackground(true);
 }
 
 void Environment::onSettings()
@@ -151,6 +179,13 @@ void Environment::onSettings()
     ELEMENT_COUNTER,
     ELEMENT_NOTIFICATION_NODE
   });
+
+  /**
+   *
+   *
+   *
+   */
+  this->onBackground(true);
 }
 
 void Environment::onStore()
@@ -158,6 +193,71 @@ void Environment::onStore()
   this->hideElements({
     ELEMENT_COUNTER
   });
+
+  /**
+   *
+   *
+   *
+   */
+  this->onBackground(true);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Environment::onBackground(bool state)
+{
+  if(Director::getInstance()->getCaptureState())
+  {
+    auto index = 20;
+    auto max = 0.002;
+    auto min = 0.0;
+
+    /**
+     *
+     *
+     *
+     */
+    Director::getInstance()->getCaptureTexture()->stopAllActions();
+    Director::getInstance()->getCaptureTexture()->runAction(
+      Repeat::create(
+        Sequence::create(
+          DelayTime::create(1.0 / 60.0),
+          CallFunc::create([=] () {
+          this->backgroundIndex += (max / index) * (state ? 1 : -1);
+
+          /**
+           *
+           *
+           *
+           */
+          if(this->backgroundIndex <= min)
+          {
+            this->backgroundIndex = min;
+            Director::getInstance()->getCaptureTexture()->stopAllActions();
+          }
+
+          if(this->backgroundIndex >= max)
+          {
+            this->backgroundIndex = max;
+            Director::getInstance()->getCaptureTexture()->stopAllActions();
+          }
+
+          /**
+           *
+           *
+           *
+           */
+          Director::getInstance()->getCaptureTexture()->getGLProgramState()->setUniformFloat("index", this->backgroundIndex);
+          }),
+          nullptr
+        ),
+        index
+      )
+    );
+  }
 }
 
 /**
