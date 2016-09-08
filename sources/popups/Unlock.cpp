@@ -55,11 +55,28 @@ Unlock::Unlock()
    *
    *
    */
+  this->icon = new Entity("ui/button-currency-icon.png", this);
+  this->texts.currency = new Text("@buttons.unlock.currency", this);
+  this->texts.text = new Text("@buttons.unlock.character", this);
+
+  this->texts.text->setPosition(Application->getCenter().x, Application->getCenter().y + 200);
+
+  this->texts.currency->data(100);
+  this->texts.currency->setPosition(Application->getCenter().x - this->icon->getWidthScaled() / 2 - 2.0, Application->getCenter().y - 147);
+  this->icon->setPosition(this->texts.currency->getPositionX() + this->texts.currency->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 7.0, Application->getCenter().y - 151);
+
+  /**
+   *
+   *
+   *
+   */
   this->buttons.action = new UnlockButton(this);
   this->buttons.next = new ExtendedButton("ui/button-next.png", 2, 1, this, [=] () {
     this->hide();
   });
-  this->buttons.announce = new ExtendedButton("ui/button-announce.png", 2, 1, this, [=] () {
+  this->buttons.announce = new AnnounceButton(this, [=] () {
+    // TODO: Add share;
+    Application->counter->currency.handler->add(50, this->buttons.announce);
   });
 }
 
@@ -118,6 +135,23 @@ void Unlock::hide()
   this->buttons.action->remove();
   this->buttons.next->remove();
   this->buttons.announce->remove();
+
+  /**
+   *
+   *
+   *
+   */
+  Unlock::getInstance()->texts.text->runAction(
+    Spawn::create(
+      EaseSineOut::create(
+        ScaleTo::create(0.2, 0.8)
+      ),
+      EaseSineOut::create(
+        FadeTo::create(0.2, 0.0)
+      ),
+      nullptr
+    )
+  );
 }
 
 void Unlock::showButtons()

@@ -50,6 +50,11 @@ class Unlock : public Popup
     ExtendedButton* announce;
   };
 
+  struct Texts {
+    Text* text;
+    Text* currency;
+  };
+
   Buttons buttons;
 
   /**
@@ -79,6 +84,10 @@ class Unlock : public Popup
  ~Unlock();
 
   int state = STATE_NORMAL;
+
+  Entity* icon;
+
+  Texts texts;
 
   virtual void onEnter() override;
   virtual void onExit() override;

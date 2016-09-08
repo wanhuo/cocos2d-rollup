@@ -65,7 +65,7 @@ void Coin::onCreate()
     )
   );
 
-  Application->counter->onCoin();
+  Application->counter->onCoin(1, false);
 }
 
 void Coin::onDestroy(bool action)

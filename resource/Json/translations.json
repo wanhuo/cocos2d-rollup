@@ -35,6 +35,13 @@
         "size": 28
       }
     ],
+    "@buttons.unlock.currency": [
+      {
+        "title": "$1",
+        "font": "msyi",
+        "size": 56
+      }
+    ],
     "@counter.number": [
       {
         "title": "$1",
@@ -115,11 +122,53 @@
         "size": 36
       }
     ],
-    "@store.new.character": [
+    "@buttons.unlock.character": [
       {
-        "title": "New character",
+        "title": "",
         "font": "msyi",
         "size": 64
+      }
+    ],
+    "@buttons.unlock.character.1": [
+      {
+        "title": "What is inside?",
+        "font": "msyi",
+        "size": 64
+      }
+    ],
+    "@buttons.unlock.character.2": [
+      {
+        "title": "Oh, new character?",
+        "font": "msyi",
+        "size": 64
+      }
+    ],
+    "@store.new.character": [
+      {
+        "title": "",
+        "font": "msyi",
+        "size": 64
+      }
+    ],
+    "@store.new.character.1": [
+      {
+        "title": "I've got new character!",
+        "font": "msyi",
+        "size": 64
+      }
+    ],
+    "@store.new.character.2": [
+      {
+        "title": "Look! This is new character!",
+        "font": "msyi",
+        "size": 64
+      }
+    ],
+    "@store.element.currency": [
+      {
+        "title": "$1 $2",
+        "font": "msyi",
+        "size": 24
       }
     ],
     "vote-title": [

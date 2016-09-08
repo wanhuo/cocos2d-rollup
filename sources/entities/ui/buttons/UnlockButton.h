@@ -65,6 +65,9 @@ class UnlockButton : public ExtendedButton
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
+  virtual void onAdd() override;
+  virtual void onRemove() override;
+
   virtual void onAction();
 };
 

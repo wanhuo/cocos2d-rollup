@@ -59,6 +59,8 @@
 #include "PresentButton.h"
 #include "VideoButton.h"
 #include "UnlockButton.h"
+#include "AnnounceButton.h"
+#include "SoundButton.h"
 
 #include "Popup.h"
 #include "Menu.h"

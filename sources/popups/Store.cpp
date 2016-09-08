@@ -68,13 +68,16 @@ Store::Store()
    *
    *
    */
-  this->buttons.services = new ExtendedButton("ui/button-services.png", 2, 1, this, std::bind(&Store::onServices, this));
+  this->buttons.rate = new ExtendedButton("ui/button-rate.png", 2, 1, this, std::bind(&Store::onRate, this));
   this->buttons.menu = new ExtendedButton("ui/button-menu.png", 2, 1, this, std::bind(&Store::onMenu, this));
   this->buttons.share = new ExtendedButton("ui/button-share.png", 2, 1, this, std::bind(&Store::onShare, this));
   this->buttons.next = new ExtendedButton("ui/button-next.png", 2, 1, this, std::bind(&Store::onNext, this));
-  this->buttons.announce = new ExtendedButton("ui/button-announce.png", 2, 1, this, std::bind(&Store::onShare, this));
   this->buttons.present = new PresentButton(this);
   this->buttons.video = new VideoButton(this);
+  this->buttons.announce = new AnnounceButton(this, [=] () {
+    // TODO: Add share;
+    Application->counter->currency.handler->add(50, this->buttons.announce);
+  });
 
   /**
    *
@@ -204,7 +207,7 @@ void Store::onEnter()
      * | @Position Update;
      *
      */
-    auto update = [&] () -> Vec2 {
+    auto update = [&] (int category) -> Vec2 {
       time += 0.02;
 
       /**
@@ -216,6 +219,11 @@ void Store::onEnter()
       {
         position.x = 1;
         position.y++;
+
+        if(category == CATEGORY_MYTHICAL)
+        {
+          position.y += 0.2;
+        }
       }
 
       return Vec2(Application->getCenter().x + (position.x - 2.5) * 160, Application->getHeight() - 200 - position.y * 160);
@@ -246,17 +254,17 @@ void Store::onEnter()
          *
          */
         element->setIndex(state.index);
+        element->setCategory(state.category);
         element->setState(state.state);
         element->setAction(state.action);
         element->setPrice(state.price);
-        element->setCategory(state.category);
 
         /**
          *
          *
          *
          */
-        element->setPosition(update());
+        element->setPosition(update(state.category));
 
         /**
          *
@@ -623,7 +631,7 @@ void Store::onShare()
 {
 }
 
-void Store::onServices()
+void Store::onRate()
 {
 }
 
@@ -741,7 +749,7 @@ void Store::showButtons()
    *
    */
   this->buttons.menu->add(position.x, position.y);
-  this->buttons.services->add(position.x - 128, position.y);
+  this->buttons.rate->add(position.x - 128, position.y);
   this->buttons.share->add(position.x - 256, position.y);
   this->buttons.video->add(position.x + 128, position.y);
   this->buttons.present->add(position.x + 256, position.y);
@@ -751,7 +759,7 @@ void Store::hideButtons()
 {
   this->buttons.menu->remove();
   this->buttons.share->remove();
-  this->buttons.services->remove();
+  this->buttons.rate->remove();
   this->buttons.video->remove();
   this->buttons.present->remove();
 }
@@ -857,6 +865,13 @@ void Store::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t pare
 Store::Element::Element()
 : Button("ui/store-element-1.png", 2, 1, nullptr, std::bind(&Store::Element::onAction, this))
 {
+  this->currency = new Text("@store.element.currency", this);
+
+  /**
+   *
+   *
+   *
+   */
   this->icon = new TiledEntity("ui/store-element-icon.png", 4, 1, this);
   this->icon->setPosition(this->getWidth() / 2, 12.0);
 
@@ -1013,7 +1028,7 @@ void Store::Element::onAction()
               ScaleTo::create(0.2, 0.8)
             ),
             CallFunc::create([=] () {
-              auto position = Vec2(Application->getCenter().x, -Store::getInstance()->scroll->getInnerContainer()->getPositionY() + Store::getInstance()->scroll->getInnerContainer()->getContentSize().height / 2 - 300);
+              auto position = Vec2(Application->getCenter().x, -Store::getInstance()->scroll->getInnerContainer()->getPositionY() + Store::getInstance()->scroll->getInnerContainer()->getContentSize().height / 2 - 495);
 
               /**
                *
@@ -1032,7 +1047,7 @@ void Store::Element::onAction()
               Store::getInstance()->texts.connect->setScale(0.8);
               Store::getInstance()->texts.connect->setOpacity(0.0);
               Store::getInstance()->texts.connect->setText("@store.connect." + convert(this->action));
-              Store::getInstance()->texts.connect->setPosition(position.x, position.y - 180);
+              Store::getInstance()->texts.connect->setPosition(position.x, position.y - (this->action < ACTION_INAPP ? 180 : 180));
               Store::getInstance()->texts.connect->runAction(
                 Spawn::create(
                   EaseSineOut::create(
@@ -1082,6 +1097,7 @@ void Store::Element::onAction()
                           Sequence::create(
                             FadeTo::create(0.1, 255.0),
                             CallFunc::create([=] () {
+                              Application->environment->showElements({Environment::ELEMENT_NOTIFICATION_NODE});
 
                               /**
                                *
@@ -1095,6 +1111,7 @@ void Store::Element::onAction()
                                *
                                *
                                */
+                              this->currency->_destroy();
                               this->icon->_destroy();
 
                               /**
@@ -1110,8 +1127,10 @@ void Store::Element::onAction()
                                *
                                */
                               Store::getInstance()->texts.character->_create();
+                              Store::getInstance()->texts.character->setText("@store.new.character." + convert(random(1, 2)));
                               Store::getInstance()->texts.character->setCameraMask(BACKGROUND);
                               Store::getInstance()->texts.character->setScale(1.0);
+                              Store::getInstance()->texts.character->setScaleX(0.9);
                               Store::getInstance()->texts.character->setOpacity(255.0);
                               Store::getInstance()->texts.character->setPosition(this->getPositionX(), this->getPositionY() + 160);
 
@@ -1120,8 +1139,8 @@ void Store::Element::onAction()
                                *
                                *
                                */
-                              Store::getInstance()->buttons.announce->add(Application->getCenter().x - 100, 200);
-                              Store::getInstance()->buttons.next->add(Application->getCenter().x + 100, 200);
+                              Store::getInstance()->buttons.announce->add(Application->getCenter().x - 64, 200);
+                              Store::getInstance()->buttons.next->add(Application->getCenter().x + 64, 200);
                             }),
                             FadeTo::create(0.3, 0.0),
                             nullptr
@@ -1292,10 +1311,20 @@ void Store::Element::setState(int state)
   switch(this->state)
   {
     case STATE_SELECTED:
+    this->currency->_destroy();
     break;
     case STATE_NORMAL:
+    this->currency->_destroy();
     this->icon->_destroy();
+    break;
     case STATE_LOCKED:
+    if(this->category == CATEGORY_MYTHICAL)
+    {
+      this->currency->_create();
+      this->currency->data(convert(1.99), "USD");
+      this->currency->setCameraMask(BACKGROUND);
+      this->currency->setPosition(this->getWidth() / 2, -10);
+    }
     break;
   }
 }

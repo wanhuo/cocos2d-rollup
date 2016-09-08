@@ -41,10 +41,10 @@ class Settings : public Popup
   public:
   struct Buttons {
     ExtendedButton* menu;
-    ExtendedButton* store;
-    ExtendedButton* rate;
-    ExtendedButton* video;
-    ExtendedButton* present;
+    ExtendedButton* sound;
+    ExtendedButton* services;
+    ExtendedButton* restore;
+    ExtendedButton* noad;
   };
 
   Buttons buttons;
@@ -63,6 +63,10 @@ class Settings : public Popup
    *
    */
   protected:
+  virtual void onMenu();
+  virtual void onServices();
+  virtual void onRestore();
+  virtual void onNoad();
 
   /**
    *

@@ -27,9 +27,6 @@
  *
  */
 
-#ifndef _COUNTER_H_
-#define _COUNTER_H_
-
 #include "Game.h"
 
 /**
@@ -37,79 +34,90 @@
  *
  *
  */
-class Counter : public Entity
+SoundButton::SoundButton(Node* parent, bool autocreate)
+: ExtendedButton("ui/button-sound-1.png", 2, 1, parent, std::bind(&SoundButton::updateState, this, true), autocreate)
 {
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  struct Currency {
-    Entity* background;
-    Entity* icon;
+}
 
-    Text* text;
+SoundButton::~SoundButton()
+{
+}
 
-    Coins* handler;
-  };
+/**
+ *
+ *
+ *
+ */
+void SoundButton::onCreate()
+{
+  ExtendedButton::onCreate();
+}
 
-  struct Value {
-    int count;
-  };
+void SoundButton::onDestroy(bool action)
+{
+  ExtendedButton::onDestroy(action);
+}
 
-  struct Values {
-    Value score;
-    Value currency;
-  };
-
-  struct Animation {
-    int count;
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  private:
-  virtual int numbers(int number, int *elements);
+/**
+ *
+ *
+ *
+ */
+void SoundButton::onEnter()
+{
+  ExtendedButton::onEnter();
 
   /**
    *
    *
    *
    */
-  protected:
-  Pool* elements;
+  this->updateState();
+}
+
+void SoundButton::onExit()
+{
+  ExtendedButton::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void SoundButton::updateState(bool state)
+{
+  if(state)
+  {
+    Music->changeState();
+    Sound->changeState();
+  }
 
   /**
    *
    *
    *
    */
-  public:
-  Counter();
- ~Counter();
+  if(Music->enabled || Sound->enabled)
+  {
+    this->setTexture("ui/button-sound-1.png");
+  }
+  else
+  {
+    this->setTexture("ui/button-sound-2.png");
+  }
 
-  Values values;
-  Currency currency;
-  Animation animation;
+  /**
+   *
+   *
+   *
+   */
+  this->updateTexturePoistion();
 
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
-
-  virtual void onCount(int count = 1);
-  virtual void onCoin(int count = 1, bool sound = true);
-
-  virtual void reset();
-
-  virtual void updateData();
-
-  virtual void updateScoreData();
-  virtual void updateCurrencyData();
-
-  virtual void update(float time) override;
-};
-
-#endif
+  /**
+   *
+   *
+   *
+   */
+  this->setCurrentFrameIndex(0);
+}

@@ -176,6 +176,12 @@
 		78A20B411D7C9F0F00789617 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3F1D7C9F0F00789617 /* Number.cpp */; };
 		78A20B421D7C9F0F00789617 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3F1D7C9F0F00789617 /* Number.cpp */; };
 		78A20B431D7C9F0F00789617 /* Number.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78A20B3F1D7C9F0F00789617 /* Number.cpp */; };
+		78B93DCF1D819356004FA0DE /* AnnounceButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DCD1D819356004FA0DE /* AnnounceButton.cpp */; };
+		78B93DD01D819356004FA0DE /* AnnounceButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DCD1D819356004FA0DE /* AnnounceButton.cpp */; };
+		78B93DD11D819356004FA0DE /* AnnounceButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DCD1D819356004FA0DE /* AnnounceButton.cpp */; };
+		78B93DD41D81D274004FA0DE /* SoundButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DD21D81D274004FA0DE /* SoundButton.cpp */; };
+		78B93DD51D81D274004FA0DE /* SoundButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DD21D81D274004FA0DE /* SoundButton.cpp */; };
+		78B93DD61D81D274004FA0DE /* SoundButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DD21D81D274004FA0DE /* SoundButton.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
@@ -422,6 +428,10 @@
 		78A20B3B1D7C9CC500789617 /* Counter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Counter.h; sourceTree = "<group>"; };
 		78A20B3F1D7C9F0F00789617 /* Number.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Number.cpp; sourceTree = "<group>"; };
 		78A20B401D7C9F0F00789617 /* Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
+		78B93DCD1D819356004FA0DE /* AnnounceButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnnounceButton.cpp; sourceTree = "<group>"; };
+		78B93DCE1D819356004FA0DE /* AnnounceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceButton.h; sourceTree = "<group>"; };
+		78B93DD21D81D274004FA0DE /* SoundButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundButton.cpp; sourceTree = "<group>"; };
+		78B93DD31D81D274004FA0DE /* SoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundButton.h; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -907,6 +917,10 @@
 				787B53C21D7EC4E100C1C17D /* UnlockButton.h */,
 				787B53C31D7EC4E100C1C17D /* VideoButton.cpp */,
 				787B53C41D7EC4E100C1C17D /* VideoButton.h */,
+				78B93DCD1D819356004FA0DE /* AnnounceButton.cpp */,
+				78B93DCE1D819356004FA0DE /* AnnounceButton.h */,
+				78B93DD21D81D274004FA0DE /* SoundButton.cpp */,
+				78B93DD31D81D274004FA0DE /* SoundButton.h */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -1462,6 +1476,7 @@
 				78A20B231D7C6C3300789617 /* Menu.cpp in Sources */,
 				78A20B261D7C6C3300789617 /* Popup.cpp in Sources */,
 				7828E3BE1D7C617200AA66D9 /* Gem.cpp in Sources */,
+				78B93DD51D81D274004FA0DE /* SoundButton.cpp in Sources */,
 				787B53BA1D7EB49400C1C17D /* Store.cpp in Sources */,
 				787B53C61D7EC4E100C1C17D /* PresentButton.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
@@ -1469,6 +1484,7 @@
 				787B53A61D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
 				787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */,
+				78B93DD01D819356004FA0DE /* AnnounceButton.cpp in Sources */,
 				787B53CF1D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
@@ -1488,10 +1504,12 @@
 				7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				787B53BB1D7EB49400C1C17D /* Store.cpp in Sources */,
 				78C3F6861D528D980031E5B1 /* Plate.cpp in Sources */,
+				78B93DD61D81D274004FA0DE /* SoundButton.cpp in Sources */,
 				78C352D01CEE7DB000F10068 /* Game.cpp in Sources */,
 				78DF64CF1D24463B0049EB22 /* Character.cpp in Sources */,
 				78C352D91CEE7DB000F10068 /* Events.cpp in Sources */,
 				7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
+				78B93DD11D819356004FA0DE /* AnnounceButton.cpp in Sources */,
 				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
 				787B53CA1D7EC4E100C1C17D /* TimeButton.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
@@ -1552,6 +1570,7 @@
 				7832A8A31D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */,
 				7832A8AF1D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
+				78B93DCF1D819356004FA0DE /* AnnounceButton.cpp in Sources */,
 				78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */,
 				7832A8BB1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
 				78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */,
@@ -1577,6 +1596,7 @@
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,
 				787B53B91D7EB49400C1C17D /* Store.cpp in Sources */,
+				78B93DD41D81D274004FA0DE /* SoundButton.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

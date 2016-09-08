@@ -81,6 +81,8 @@ class Store : public Popup
      *
      */
     protected:
+    Text* currency;
+
     int index;
     int state;
     int action;
@@ -167,7 +169,7 @@ class Store : public Popup
   struct Buttons {
     ExtendedButton* menu;
     ExtendedButton* share;
-    ExtendedButton* services;
+    ExtendedButton* rate;
     ExtendedButton* video;
     ExtendedButton* present;
     ExtendedButton* next;
@@ -214,7 +216,7 @@ class Store : public Popup
 
   virtual void onMenu();
   virtual void onShare();
-  virtual void onServices();
+  virtual void onRate();
   virtual void onNext();
 
   /**

@@ -55,15 +55,11 @@ Settings::Settings()
    *
    *
    */
-  this->buttons.menu = new ExtendedButton("ui/button-menu.png", 2, 1, this, [=] () {
-    this->hide();
-  });
-  this->buttons.store = new ExtendedButton("ui/button-store.png", 2, 1, this, [=] () {
-  });
-  this->buttons.rate = new ExtendedButton("ui/button-rate.png", 2, 1, this, [=] () {
-  });
-  this->buttons.video = new VideoButton(this);
-  this->buttons.present = new PresentButton(this);
+  this->buttons.menu = new ExtendedButton("ui/button-menu.png", 2, 1, this, std::bind(&Settings::onMenu, this));
+  this->buttons.services = new ExtendedButton("ui/button-services.png", 2, 1, this, std::bind(&Settings::onServices, this));
+  this->buttons.restore = new ExtendedButton("ui/button-restore.png", 2, 1, this, std::bind(&Settings::onRestore, this));
+  this->buttons.noad = new ExtendedButton("ui/button-noad.png", 2, 1, this, std::bind(&Settings::onNoad, this));
+  this->buttons.sound = new SoundButton(this);
 }
 
 Settings::~Settings()
@@ -95,8 +91,8 @@ void Settings::onEnter()
    *
    */
   this->buttons.menu->add(position.x, position.y);
-  this->buttons.rate->add(position.x - 128, position.y);
-  this->buttons.store->add(position.x - 256, position.y);
+  this->buttons.services->add(position.x - 128, position.y);
+  this->buttons.sound->add(position.x - 256, position.y);
   this->buttons.video->add(position.x + 128, position.y);
   this->buttons.present->add(position.x + 256, position.y);
 }
@@ -111,6 +107,28 @@ void Settings::onExit()
    *
    */
   Application->changeState(Game::STATE_MENU);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Settings::onMenu()
+{
+  this->hide();
+}
+
+void Settings::onServices()
+{
+}
+
+void Settings::onRestore()
+{
+}
+
+void Settings::onNoad()
+{
 }
 
 /**
@@ -133,8 +151,8 @@ void Settings::hide()
    *
    */
   this->buttons.menu->remove();
-  this->buttons.store->remove();
-  this->buttons.rate->remove();
+  this->buttons.services->remove();
+  this->buttons.sound->remove();
   this->buttons.video->remove();
   this->buttons.present->remove();
 }

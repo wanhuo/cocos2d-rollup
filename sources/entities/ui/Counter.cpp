@@ -114,7 +114,7 @@ void Counter::onCount(int count)
   this->updateData();
 }
 
-void Counter::onCoin(int count)
+void Counter::onCoin(int count, bool sound)
 {
   this->values.currency.count += count;
 
@@ -123,15 +123,17 @@ void Counter::onCoin(int count)
    *
    *
    */
-  auto id = Sound->play("gem");
-  Sound->volume(id, 0.7);
+  this->updateData();
 
   /**
    *
    *
    *
    */
-  this->updateData();
+  if(sound)
+  {
+    Sound->play("coin");
+  }
 }
 
 /**

@@ -27,9 +27,6 @@
  *
  */
 
-#ifndef _COUNTER_H_
-#define _COUNTER_H_
-
 #include "Game.h"
 
 /**
@@ -37,79 +34,43 @@
  *
  *
  */
-class Counter : public Entity
+AnnounceButton::AnnounceButton(Node* parent, const function<void()>& action, bool autocreate)
+: ExtendedButton("ui/button-announce.png", 2, 1, parent, [=] () {
+  action();
+}, autocreate)
 {
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  struct Currency {
-    Entity* background;
-    Entity* icon;
+  this->icon = new Entity("ui/button-currency-icon.png", this, true);
+  this->icon->setScale(0.5);
 
-    Text* text;
+  this->text = new Text("@buttons.currency", this, true);
 
-    Coins* handler;
-  };
-
-  struct Value {
-    int count;
-  };
-
-  struct Values {
-    Value score;
-    Value currency;
-  };
-
-  struct Animation {
-    int count;
-  };
+  this->text->data(50);
+  this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 27);
+  this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 30);
 
   /**
    *
    *
    *
    */
-  private:
-  virtual int numbers(int number, int *elements);
+  this->setCascadeOpacityEnabled(true);
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Pool* elements;
+AnnounceButton::~AnnounceButton()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Counter();
- ~Counter();
+/**
+ *
+ *
+ *
+ */
+void AnnounceButton::onCreate()
+{
+  ExtendedButton::onCreate();
+}
 
-  Values values;
-  Currency currency;
-  Animation animation;
-
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
-
-  virtual void onCount(int count = 1);
-  virtual void onCoin(int count = 1, bool sound = true);
-
-  virtual void reset();
-
-  virtual void updateData();
-
-  virtual void updateScoreData();
-  virtual void updateCurrencyData();
-
-  virtual void update(float time) override;
-};
-
-#endif
+void AnnounceButton::onDestroy(bool action)
+{
+  ExtendedButton::onDestroy(action);
+}

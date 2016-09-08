@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _COUNTER_H_
-#define _COUNTER_H_
+#ifndef _SOUND_BUTTON_H_
+#define _SOUND_BUTTON_H_
 
 #include "Game.h"
 
@@ -37,43 +37,14 @@
  *
  *
  */
-class Counter : public Entity
+class SoundButton : public ExtendedButton
 {
   /**
    *
    *
    *
    */
-  protected:
-  struct Currency {
-    Entity* background;
-    Entity* icon;
-
-    Text* text;
-
-    Coins* handler;
-  };
-
-  struct Value {
-    int count;
-  };
-
-  struct Values {
-    Value score;
-    Value currency;
-  };
-
-  struct Animation {
-    int count;
-  };
-
-  /**
-   *
-   *
-   *
-   */
   private:
-  virtual int numbers(int number, int *elements);
 
   /**
    *
@@ -81,7 +52,6 @@ class Counter : public Entity
    *
    */
   protected:
-  Pool* elements;
 
   /**
    *
@@ -89,27 +59,16 @@ class Counter : public Entity
    *
    */
   public:
-  Counter();
- ~Counter();
-
-  Values values;
-  Currency currency;
-  Animation animation;
+  SoundButton(Node* parent, bool autocreate = false);
+ ~SoundButton();
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void onCount(int count = 1);
-  virtual void onCoin(int count = 1, bool sound = true);
+  virtual void onEnter() override;
+  virtual void onExit() override;
 
-  virtual void reset();
-
-  virtual void updateData();
-
-  virtual void updateScoreData();
-  virtual void updateCurrencyData();
-
-  virtual void update(float time) override;
+  virtual void updateState(bool state = false);
 };
 
 #endif
