@@ -64,57 +64,13 @@ Menu::Menu()
    *
    *
    */
-  this->buttons.play = new ExtendedButton("ui/button-play.png", 2, 1, this, [=] () {
-    Application->changeState(Game::STATE_GAME);
-  });
-  this->buttons.restart = new ExtendedButton("ui/button-restart.png", 2, 1, this, [=] () {
-    Application->changeState(Game::STATE_GAME);
-
-    Application->environment->clear->runAction(
-      Sequence::create(
-        FadeTo::create(0.3, 255.0),
-        CallFunc::create([=] () {
-        Application->reset();
-        }),
-        FadeTo::create(0.3, 0.0),
-        nullptr
-      )
-    );
-  });
-  this->buttons.store = new ExtendedButton("ui/button-store.png", 2, 1, this, [=] () {
-    Application->environment->onStore();
-
-    this->hide();
-
-    Application->environment->clear->runAction(
-      Sequence::create(
-        DelayTime::create(0.5),
-        CallFunc::create([=] () {
-        Application->changeState(Game::STATE_STORE);
-        }),
-        nullptr
-      )
-    );
-  });
-  this->buttons.settings = new ExtendedButton("ui/button-settings.png", 2, 1, this, [=] () {
-    Application->environment->onSettings();
-
-    this->hide();
-
-    Application->environment->clear->runAction(
-      Sequence::create(
-        DelayTime::create(0.5),
-        CallFunc::create([=] () {
-        Application->changeState(Game::STATE_SETTINGS);
-        }),
-        nullptr
-      )
-    );
-  });
-  this->buttons.rate = new ExtendedButton("ui/button-rate.png", 2, 1, this, [=] () {
-  });
-  this->buttons.social = new ExtendedButton("ui/button-social.png", 2, 1, this, [=] () {
-  });
+  this->buttons.play = new ExtendedButton("ui/button-play.png", 2, 1, this, std::bind(&Menu::onPlay, this));
+  this->buttons.restart = new ExtendedButton("ui/button-restart.png", 2, 1, this, std::bind(&Menu::onRestart, this));
+  this->buttons.store = new ExtendedButton("ui/button-store.png", 2, 1, this, std::bind(&Menu::onStore, this));
+  this->buttons.settings = new ExtendedButton("ui/button-settings.png", 2, 1, this, std::bind(&Menu::onSettings, this));
+  this->buttons.rate = new ExtendedButton("ui/button-rate.png", 2, 1, this, std::bind(&Menu::onRate, this));
+  this->buttons.social = new ExtendedButton("ui/button-social.png", 2, 1, this, std::bind(&Menu::onSocial, this));
+  this->buttons.share = new ExtendedButton("ui/button-share.png", 2, 1, this, std::bind(&Menu::onShare, this));
   this->buttons.video = new VideoButton(this);
   this->buttons.present = new PresentButton(this);
 }
@@ -131,6 +87,23 @@ Menu::~Menu()
 void Menu::onEnter()
 {
   Popup::onEnter();
+
+  /**
+   *
+   *
+   *
+   */
+  switch(this->state)
+  {
+    case STATE_MENU:
+    break;
+    case STATE_FINISH:
+    if(Director::getInstance()->getCaptureState())
+    {
+      Application->environment->capture->add();
+    }
+    break;
+  }
 
   /**
    *
@@ -157,9 +130,27 @@ void Menu::onEnter()
     break;
   }
 
+  /**
+   *
+   *
+   *
+   */
+  if(Heyzap::available(AD_TYPE_VIDEO))
+  {
+    this->buttons.video->add(position.x + 128, position.y);
+  }
+  else
+  {
+    this->buttons.share->add(position.x + 128, position.y);
+  }
+
+  /**
+   *
+   *
+   *
+   */
   this->buttons.rate->add(position.x - 128, position.y);
   this->buttons.store->add(position.x - 256, position.y);
-  this->buttons.video->add(position.x + 128, position.y);
   this->buttons.present->add(position.x + 256, position.y);
   this->buttons.social->add(position.x * 2 - 128 * 1.35, Application->getHeight() - 64);
   this->buttons.settings->add(position.x * 2 - 64, Application->getHeight() - 64);
@@ -168,6 +159,90 @@ void Menu::onEnter()
 void Menu::onExit()
 {
   Popup::onExit();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Menu::onPlay()
+{
+  Application->changeState(Game::STATE_GAME);
+}
+
+void Menu::onRestart()
+{
+  Application->changeState(Game::STATE_GAME);
+
+  Application->environment->clear->runAction(
+    Sequence::create(
+      FadeTo::create(0.3, 255.0),
+      CallFunc::create([=] () {
+      Application->reset();
+      }),
+      DelayTime::create(0.1),
+      FadeTo::create(0.3, 0.0),
+      nullptr
+    )
+  );
+}
+
+void Menu::onStore()
+{
+  Application->environment->onStore();
+
+  this->hide();
+
+  Application->environment->clear->runAction(
+    Sequence::create(
+      DelayTime::create(0.5),
+      CallFunc::create([=] () {
+      Application->changeState(Game::STATE_STORE);
+      }),
+      nullptr
+    )
+  );
+}
+
+void Menu::onSettings()
+{
+  Application->environment->onSettings();
+
+  this->hide();
+
+  Application->environment->clear->runAction(
+    Sequence::create(
+      DelayTime::create(0.5),
+      CallFunc::create([=] () {
+      Application->changeState(Game::STATE_SETTINGS);
+      }),
+      nullptr
+    )
+  );
+}
+
+void Menu::onRate()
+{
+  Application->onRate();
+}
+
+void Menu::onSocial()
+{
+}
+
+void Menu::onShare()
+{
+  Application->onShare(
+    Application->getFrameWidth(),
+    Application->getFrameHeight(),
+    0,
+    0,
+    false,
+    "", // @TODO: Add share text;
+    [=] (int a) {
+    }
+  );
 }
 
 /**
@@ -221,9 +296,17 @@ void Menu::hide()
   this->buttons.store->remove();
   this->buttons.rate->remove();
   this->buttons.social->remove();
+  this->buttons.share->remove();
   this->buttons.settings->remove();
   this->buttons.video->remove();
   this->buttons.present->remove();
+
+  /**
+   *
+   *
+   *
+   */
+  Application->environment->capture->remove();
 }
 
 /**

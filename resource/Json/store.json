@@ -33,23 +33,19 @@
     "@rare": [
       {
         "index": 2000,
-        "category": 2,
-        "state": 1
+        "category": 2
       },
       {
         "index": 2001,
-        "category": 2,
-        "state": 1
+        "category": 2
       },
       {
         "index": 2002,
-        "category": 2,
-        "state": 1
+        "category": 2
       },
       {
         "index": 2003,
-        "category": 2,
-        "state": 1
+        "category": 2
       },
       {
         "index": 2004,
@@ -58,6 +54,7 @@
     ],
     "@mythical": [
       {
+        "id": "com.tooflya.gamename.characters.3000",
         "index": 3000,
         "category": 3,
         "action": 4,

@@ -59,7 +59,7 @@ Character::Character()
    streak->enableShadow(false);
    streak->enableLight(false);
    
-  Application->addChild(streak);
+  Application->environment->status->addChild(streak);
 }
 
 Character::~Character()
@@ -451,7 +451,7 @@ if(element)
                   CallFunc::create([=] () {
 
                   ////
-                  if(true)
+                  if(Store::getInstance()->element().index)
                   {
                   Application->changeState(Game::STATE_UNLOCK);
                   }

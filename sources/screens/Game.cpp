@@ -44,7 +44,7 @@ Game* Game::getInstance()
  *
  *
  *
- */static Vec2 test;
+ */
 Game::Game()
 {
   instance = this;
@@ -119,13 +119,13 @@ Game::Game()
    *
    */
   Director::getInstance()->setCaptureCamera(this->cameras.cameraElements);
-  Director::getInstance()->setCaptureElement(new Entity(true));
+  Director::getInstance()->setCaptureElement(new Capture::Element);
   Director::getInstance()->setCaptureCount(60);
   Director::getInstance()->setCaptureTime(2);
   Director::getInstance()->setCaptureFactor(1);
-  Director::getInstance()->setCaptureSize(240, 240);
+  Director::getInstance()->setCaptureSize(320, 320);
   Director::getInstance()->setCapturePosition(0, 0);
-  Director::getInstance()->setCaptureScale(3);
+  Director::getInstance()->setCaptureScale(2);
   Director::getInstance()->setCapture(true, this);
 
   /**
@@ -142,10 +142,13 @@ Game::Game()
   {
     this->cameras.cameraShadows->removeFromParent();
 
-    GLProgramCache::getInstance()->addGLProgram(
-      GLProgram::createWithFilenames("element.common.vert", "element.common.frag"),
-      "@element.common"
-    );
+    if(Support::shaders(SHADER_SIMPLE))
+    {
+      GLProgramCache::getInstance()->addGLProgram(
+        GLProgram::createWithFilenames("element.common.vert", "element.common.frag"),
+        "@element.common"
+      );
+    }
   }
 
   /**
@@ -180,14 +183,17 @@ Game::Game()
    * | @Create various shaders and add them to the shaders cache;
    *
    */
-  GLProgramCache::getInstance()->addGLProgram(
-    GLProgram::createWithFilenames("shader.opacity.vertical.vert", "shader.opacity.vertical.frag"),
-    "@shader.opacity.vertical"
-  );
-  GLProgramCache::getInstance()->addGLProgram(
-    GLProgram::createWithFilenames("shader.main.blur.vert", "shader.main.blur.frag"),
-    "@shader.main.blur"
-  );
+  if(Support::shaders(SHADER_COMPLEX))
+  {
+    GLProgramCache::getInstance()->addGLProgram(
+      GLProgram::createWithFilenames("shader.opacity.vertical.vert", "shader.opacity.vertical.frag"),
+      "@shader.opacity.vertical"
+    );
+    GLProgramCache::getInstance()->addGLProgram(
+      GLProgram::createWithFilenames("shader.main.blur.vert", "shader.main.blur.frag"),
+      "@shader.main.blur"
+    );
+  }
 
   /**
    *
@@ -197,9 +203,12 @@ Game::Game()
    */
   if(Director::getInstance()->getCaptureState())
   {
-    Director::getInstance()->getCaptureTexture()->setGLProgram(
-      GLProgramCache::getInstance()->getGLProgram("@shader.main.blur")
-    );
+    if(Support::shaders(SHADER_COMPLEX))
+    {
+      Director::getInstance()->getCaptureTexture()->setGLProgram(
+        GLProgramCache::getInstance()->getGLProgram("@shader.main.blur")
+      );
+    }
   }
 
   /**
@@ -207,7 +216,7 @@ Game::Game()
    *
    *
    */
-  //Music->play("music-1", true);
+  Music->play("music-1", true);
 }
 
 Game::~Game()
@@ -393,39 +402,101 @@ void Game::onRate()
   Events::onRate();
 }
 
-void Game::onFacebookLike()
-{
-  Events::onFacebookLike();
-}
-
-void Game::onTwitterLike()
-{
-  Events::onTwitterLike();
-}
-
-void Game::onShare(bool action, bool complete, const std::function<void(int)>& callback, const std::function<void(int, int)>& update)
-{
-  Events::onShare(action, complete, callback, update);
-}
-
-void Game::onTwitter()
-{
-  Events::onTwitter();
-}
-
-void Game::onFacebook()
-{
-  Events::onFacebook();
-}
-
 void Game::onMail()
 {
   Events::onMail();
 }
 
+void Game::onSound()
+{
+  Events::onSound();
+}
+
 void Game::onRestorePurchases()
 {
   Events::onRestorePurchases();
+}
+
+void Game::onShare(
+  int width,
+  int height,
+  int x,
+  int y,
+  bool animation,
+  string text,
+  const std::function<void(int)>& callback,
+  const std::function<void(int, int)>& update
+)
+{
+  Screenshot::save(
+    width,
+    height,
+    x,
+    y,
+    [=] (bool state, const string filename) {
+
+      /**
+       *
+       *
+       *
+       */
+      Social::share(animation, text + " ?", callback, update);
+    }
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Events::onShare();
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->play("capture");
+}
+
+/**
+ *
+ *
+ *
+ */
+bool Game::onFacebookLike()
+{
+  return Events::onFacebookLike();
+}
+
+bool Game::onTwitterLike()
+{
+  return Events::onTwitterLike();
+}
+
+bool Game::onInstagramLike()
+{
+  return Events::onInstagramLike();
+}
+
+/**
+ *
+ *
+ *
+ */
+bool Game::onTwitter()
+{
+  return Events::onTwitter();
+}
+
+bool Game::onFacebook()
+{
+  return Events::onFacebook();
+}
+
+bool Game::onInstagram()
+{
+  return Events::onInstagram();
 }
 
 /**
@@ -596,6 +667,21 @@ void Game::onRenderFinish(int index)
  *
  *
  */
+int Game::getFrameWidth()
+{
+  return Director::getInstance()->getOpenGLView()->getFrameSize().width * Director::getInstance()->getOpenGLView()->getFrameZoomFactor() * Director::getInstance()->getOpenGLView()->getRetinaFactor();
+}
+
+int Game::getFrameHeight()
+{
+  return Director::getInstance()->getOpenGLView()->getFrameSize().height * Director::getInstance()->getOpenGLView()->getFrameZoomFactor() * Director::getInstance()->getOpenGLView()->getRetinaFactor();
+}
+
+/**
+ *
+ *
+ *
+ */
 void Game::reset()
 {
   this->environment->reset();
@@ -726,9 +812,29 @@ void Game::updateStates(float time)
    *
    *
    */
-  if(Director::getInstance()->getCaptureState())
+  switch(this->state)
   {
-    //Director::getInstance()->updateCapture();
+    case STATE_NONE:
+    break;
+    case STATE_MENU:
+    break;
+    case STATE_FINISH:
+    break;
+    case STATE_UNLOCK:
+    break;
+    case STATE_SETTINGS:
+    break;
+    case STATE_STORE:
+    break;
+    case STATE_GAME:
+    if(Director::getInstance()->getCaptureState())
+    {
+      if(!Application->environment->capture->state->create)
+      {
+        Director::getInstance()->updateCapture();
+      }
+    }
+    break;
   }
 }
 

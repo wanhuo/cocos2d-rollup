@@ -66,6 +66,8 @@ class AnnounceButton : public ExtendedButton
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
+
+  virtual void onAction();
 };
 
 #endif

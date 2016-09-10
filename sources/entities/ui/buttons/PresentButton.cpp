@@ -37,7 +37,7 @@
 PresentButton::PresentButton(Node* parent, bool autocreate)
 : TimeButton("ui/button-present-1.png", 2, 1, parent, autocreate)
 {
-  this->id = "timers.time.present";
+  this->id = "timers.present";
 }
 
 PresentButton::~PresentButton()
@@ -82,12 +82,12 @@ void PresentButton::onWait()
  */
 void PresentButton::onAction()
 {
-  TimeButton::onAction(50, Menu::getInstance()->buttons.present);
+  TimeButton::onAction(random(this->min, this->max) * 10, this);
 
   /**
    *
    *
    *
    */
-  this->updateTime(1);
+  this->updateTime(std::min(60.0, pow(this->count, 2)));
 }

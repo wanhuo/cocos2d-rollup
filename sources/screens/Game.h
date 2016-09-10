@@ -41,11 +41,21 @@
 #include "RotateGlobalBy.h"
 #include "Shake.h"
 
+#include "ExtendedButton.h"
+#include "TimeButton.h"
+#include "PresentButton.h"
+#include "VideoButton.h"
+#include "UnlockButton.h"
+#include "AnnounceButton.h"
+#include "SoundButton.h"
+
 #include "Element.h"
 #include "Gem.h"
 #include "Plate.h"
 #include "Character.h"
 #include "Dust.h"
+
+#include "Capture.h"
 
 #include "Environment.h"
 #include "Generator.h"
@@ -54,13 +64,6 @@
 #include "Coins.h"
 #include "Counter.h"
 #include "Number.h"
-#include "ExtendedButton.h"
-#include "TimeButton.h"
-#include "PresentButton.h"
-#include "VideoButton.h"
-#include "UnlockButton.h"
-#include "AnnounceButton.h"
-#include "SoundButton.h"
 
 #include "Popup.h"
 #include "Menu.h"
@@ -87,11 +90,17 @@ using namespace cocos2d::experimental;
 #define CC_LOOP(elements) \
   for(int i = 0; i < elements->count; i++)
 
+#define CC_VOOP(elements) \
+  for(auto &element : elements)
+
 #define CC_DESTROY(element, action) \
   if(element) { \
     element->_destroy(action); \
     element = nullptr; \
   }
+
+#define CC_RANDOM(elements) \
+  elements.at(random<int>(0, elements.size() - 1));
 
 /**
  *
@@ -102,8 +111,7 @@ enum Index {
   NONE = 0,
   ELEMENTS = 1,
   BACKGROUND = 2,
-  SHADOWS = 3,
-  UI = 4
+  SHADOWS = 3
 };
 
 enum Rotation {
@@ -191,14 +199,28 @@ class Game : public Screen
 
   virtual void onLeaderboards();
   virtual void onAchievements();
-  virtual void onRate();
-  virtual void onFacebookLike();
-  virtual void onTwitterLike();
-  virtual void onShare(bool action, bool complete, const std::function<void(int)>& callback, const std::function<void(int, int)>& update);
-  virtual void onTwitter();
-  virtual void onFacebook();
-  virtual void onMail();
   virtual void onRestorePurchases();
+  virtual void onRate();
+  virtual void onSound();
+  virtual void onMail();
+  virtual void onShare(
+    int width,
+    int height,
+    int x,
+    int y,
+    bool animation,
+    string text,
+    const std::function<void(int)>& callback,
+    const std::function<void(int, int)>& update = nullptr
+  );
+
+  virtual bool onFacebookLike();
+  virtual bool onTwitterLike();
+  virtual bool onInstagramLike();
+
+  virtual bool onTwitter();
+  virtual bool onFacebook();
+  virtual bool onInstagram();
 
   virtual void onMenu();
   virtual void onGame();
@@ -213,6 +235,9 @@ class Game : public Screen
   virtual void onRenderFinish();
   virtual void onRenderStart(int index, int step);
   virtual void onRenderFinish(int index);
+
+  virtual int getFrameWidth();
+  virtual int getFrameHeight();
 
   virtual void reset();
 

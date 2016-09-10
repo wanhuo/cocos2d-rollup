@@ -45,6 +45,8 @@ class PresentButton : public TimeButton
    *
    */
   private:
+  int min = 2;
+  int max = 9;
 
   /**
    *

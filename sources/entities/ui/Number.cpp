@@ -37,7 +37,6 @@
 Number::Number()
 : Text("@counter.number", nullptr, TextHAlignment::CENTER)
 {
-  this->setGlobalZOrder(10);
   this->ignoreAnchorPointForPosition(true);
 }
 

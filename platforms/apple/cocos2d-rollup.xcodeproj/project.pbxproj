@@ -182,6 +182,9 @@
 		78B93DD41D81D274004FA0DE /* SoundButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DD21D81D274004FA0DE /* SoundButton.cpp */; };
 		78B93DD51D81D274004FA0DE /* SoundButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DD21D81D274004FA0DE /* SoundButton.cpp */; };
 		78B93DD61D81D274004FA0DE /* SoundButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DD21D81D274004FA0DE /* SoundButton.cpp */; };
+		78B93DE61D82EAE4004FA0DE /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE41D82EAE4004FA0DE /* Capture.cpp */; };
+		78B93DE71D82EAE4004FA0DE /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE41D82EAE4004FA0DE /* Capture.cpp */; };
+		78B93DE81D82EAE4004FA0DE /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE41D82EAE4004FA0DE /* Capture.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
@@ -204,7 +207,6 @@
 		78C3F6861D528D980031E5B1 /* Plate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78C3F6821D528D980031E5B1 /* Plate.cpp */; };
 		78CEEB2C1D0B8FB0000A85D4 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */; };
 		78CEEB2D1D0B8FCD000A85D4 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */; };
-		78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */; };
 		78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB371D0C44D5000A85D4 /* YYAnimatedImageView.m */; };
 		78CEEB411D0C44D5000A85D4 /* YYFrameImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB391D0C44D5000A85D4 /* YYFrameImage.m */; };
 		78CEEB421D0C44D5000A85D4 /* YYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB3B1D0C44D5000A85D4 /* YYImage.m */; };
@@ -432,6 +434,8 @@
 		78B93DCE1D819356004FA0DE /* AnnounceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceButton.h; sourceTree = "<group>"; };
 		78B93DD21D81D274004FA0DE /* SoundButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundButton.cpp; sourceTree = "<group>"; };
 		78B93DD31D81D274004FA0DE /* SoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundButton.h; sourceTree = "<group>"; };
+		78B93DE41D82EAE4004FA0DE /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
+		78B93DE51D82EAE4004FA0DE /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -443,8 +447,6 @@
 		78CA6D031C202CAB00BF8416 /* Purchases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Purchases.h; sourceTree = "<group>"; };
 		78CEEA5D1D0A2700000A85D4 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		78CEEB2B1D0B8FB0000A85D4 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/AssetsLibrary.framework; sourceTree = DEVELOPER_DIR; };
-		78CEEB321D0C44CD000A85D4 /* UIImage+ImageScale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageScale.h"; sourceTree = "<group>"; };
-		78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageScale.m"; sourceTree = "<group>"; };
 		78CEEB361D0C44D5000A85D4 /* YYAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAnimatedImageView.h; sourceTree = "<group>"; };
 		78CEEB371D0C44D5000A85D4 /* YYAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAnimatedImageView.m; sourceTree = "<group>"; };
 		78CEEB381D0C44D5000A85D4 /* YYFrameImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFrameImage.h; sourceTree = "<group>"; };
@@ -719,7 +721,6 @@
 				7832A88F1D10B5370059BFE3 /* AFNetworking */,
 				78CEEB511D0C93D6000A85D4 /* UIActivityViewController */,
 				78CEEB351D0C44D5000A85D4 /* YYImage */,
-				78CEEB311D0C44CD000A85D4 /* UIImage */,
 				7843AC631C2242AA0011F47C /* AdColony */,
 				7843AC651C2242AA0011F47C /* Batch */,
 				7843AC681C2242AA0011F47C /* ChartBoost */,
@@ -1156,6 +1157,8 @@
 				787B53A41D7DCB1200C1C17D /* Coins.h */,
 				787B53991D7DCA7000C1C17D /* Coin.cpp */,
 				787B539A1D7DCA7000C1C17D /* Coin.h */,
+				78B93DE41D82EAE4004FA0DE /* Capture.cpp */,
+				78B93DE51D82EAE4004FA0DE /* Capture.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1178,15 +1181,6 @@
 				78C35A321CEE84E200F10068 /* main.m */,
 			);
 			path = tv;
-			sourceTree = "<group>";
-		};
-		78CEEB311D0C44CD000A85D4 /* UIImage */ = {
-			isa = PBXGroup;
-			children = (
-				78CEEB331D0C44CD000A85D4 /* UIImage+ImageScale.m */,
-				78CEEB321D0C44CD000A85D4 /* UIImage+ImageScale.h */,
-			);
-			path = UIImage;
 			sourceTree = "<group>";
 		};
 		78CEEB351D0C44D5000A85D4 /* YYImage */ = {
@@ -1486,6 +1480,7 @@
 				787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				78B93DD01D819356004FA0DE /* AnnounceButton.cpp in Sources */,
 				787B53CF1D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
+				78B93DE71D82EAE4004FA0DE /* Capture.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
@@ -1530,6 +1525,7 @@
 				78A20B431D7C9F0F00789617 /* Number.cpp in Sources */,
 				7832A8A51D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
 				7832A8AE1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
+				78B93DE81D82EAE4004FA0DE /* Capture.cpp in Sources */,
 				78A20B3E1D7C9CC500789617 /* Counter.cpp in Sources */,
 				78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */,
 				787B53D01D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
@@ -1550,7 +1546,6 @@
 				7891E88D1CF21293005C238E /* main.m in Sources */,
 				787B53B61D7EB49400C1C17D /* Settings.cpp in Sources */,
 				7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */,
-				78CEEB341D0C44CD000A85D4 /* UIImage+ImageScale.m in Sources */,
 				783DE9581D1C096B009706B7 /* Events.mm in Sources */,
 				7891E8951CF21293005C238E /* NSSocial.mm in Sources */,
 				787B539D1D7DCA7000C1C17D /* Coin.cpp in Sources */,
@@ -1578,6 +1573,7 @@
 				78DF64CD1D24463B0049EB22 /* Character.cpp in Sources */,
 				787B53C81D7EC4E100C1C17D /* TimeButton.cpp in Sources */,
 				7891E8921CF21293005C238E /* NSPurchase.mm in Sources */,
+				78B93DE61D82EAE4004FA0DE /* Capture.cpp in Sources */,
 				7832A8B81D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */,
 				7891E8901CF21293005C238E /* NSBatch.mm in Sources */,
@@ -1627,7 +1623,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tooflya.rollup;
 				PRODUCT_NAME = application;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external/glfw3/include/mac $(SRCROOT)/../../../cocos2d/external/json $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/storage $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external/glfw3/include/mac $(SRCROOT)/../../../cocos2d/external/json $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/storage $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote";
 			};
 			name = Debug;
 		};
@@ -1654,7 +1650,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tooflya.rollup;
 				PRODUCT_NAME = application;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external/glfw3/include/mac $(SRCROOT)/../../../cocos2d/external/json $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/storage $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external/glfw3/include/mac $(SRCROOT)/../../../cocos2d/external/json $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/storage $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote";
 			};
 			name = Release;
 		};
@@ -1852,7 +1848,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -1910,7 +1906,7 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics";
+				USER_HEADER_SEARCH_PATHS = "$(inherited) $(SRCROOT)/../../../cocos2d $(SRCROOT)/../../../cocos2d/cocos $(SRCROOT)/../../../cocos2d/cocos/base $(SRCROOT)/../../../cocos2d/cocos/audio $(SRCROOT)/../../../cocos2d/cocos/audio/include $(SRCROOT)/../../../cocos2d/cocos/editor-support $(SRCROOT)/../../../cocos2d/extensions $(SRCROOT)/../../../cocos2d/external $(SRCROOT)/../../../cocos2d-tooflya-sdk $(SRCROOT)/../../../cocos2d-tooflya-sdk/actions $(SRCROOT)/../../../cocos2d-tooflya-sdk/audio $(SRCROOT)/../../../cocos2d-tooflya-sdk/backgrounds $(SRCROOT)/../../../cocos2d-tooflya-sdk/entities $(SRCROOT)/../../../cocos2d-tooflya-sdk/screens $(SRCROOT)/../../../cocos2d-tooflya-sdk/parallax $(SRCROOT)/../../../cocos2d-tooflya-sdk/pools $(SRCROOT)/../../../cocos2d-tooflya-sdk/translate $(SRCROOT)/../../../cocos2d-tooflya-sdk/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/analytics $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/batch $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/facebook $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/heyzap $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/internal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/media $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/modal $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/purchase $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/services $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/social $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/screenshot $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/support $(SRCROOT)/../../../cocos2d-tooflya-sdk/platform/include/vote $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/Ketchapp $(SRCROOT)/../../../cocos2d-apple-library/Sources/Libraries/GoogleAnalytics";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

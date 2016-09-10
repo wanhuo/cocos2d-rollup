@@ -233,6 +233,13 @@ void TimeButton::onAction(int count, Node* element)
    *
    *
    */
+  this->count = Storage::get(this->id + ".count") + 1;
+
+  /**
+   *
+   *
+   *
+   */
   this->stopAllActions();
 
   /**
@@ -298,45 +305,51 @@ void TimeButton::onAction(int count, Node* element)
       DelayTime::create(2.0),
       CallFunc::create([=] () {
 
-      /**
-       *
-       *
-       *
-       */
-      this->text->runAction(
-        Sequence::create(
-          FadeTo::create(0.5, 0),
-          CallFunc::create([=] () {
-          this->text->setText("@buttons.time");
-          this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
-          this->text->runAction(
-            FadeTo::create(0.5, 255)
-          );
-          }),
-          nullptr
-        ),
-        1
-      );
+        /**
+         *
+         *
+         *
+         */
+        this->text->runAction(
+          Sequence::create(
+            FadeTo::create(0.5, 0),
+            CallFunc::create([=] () {
+            this->text->setText("@buttons.time");
+            this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 19);
+            this->text->runAction(
+              FadeTo::create(0.5, 255)
+            );
+            }),
+            nullptr
+          ),
+          1
+        );
 
-      /**
-       *
-       *
-       *
-       */
-      this->icon->runAction(
-        Sequence::create(
-          FadeTo::create(0.5, 0),
-          CallFunc::create([=] () {
-          this->icon->_destroy();
-          }),
-          nullptr
-        )
-      );
-
+        /**
+         *
+         *
+         *
+         */
+        this->icon->runAction(
+          Sequence::create(
+            FadeTo::create(0.5, 0),
+            CallFunc::create([=] () {
+            this->icon->_destroy();
+            }),
+            nullptr
+          )
+        );
       }),
       nullptr
     )
   );
+
+  /**
+   *
+   *
+   *
+   */
+  Storage::set(this->id + ".count", this->count);
 }
 
 /**
@@ -370,7 +383,7 @@ void TimeButton::changeState(int state)
  */
 void TimeButton::updateState()
 {
-  this->time = Times::parse(Storage::get(this->id, true));
+  this->time = Times::parse(Storage::get(this->id + ".time", true));
 
   /**
    *
@@ -390,7 +403,7 @@ void TimeButton::updateState()
 void TimeButton::updateTime(int time)
 {
   this->time = Times::now() + Times::minute() * time + 3000;
-  Storage::set(this->id, convert(this->time));
+  Storage::set(this->id + ".time", convert(this->time));
 
   /**
    *

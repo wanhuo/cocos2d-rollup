@@ -49,6 +49,7 @@ class Menu : public Popup
     ExtendedButton* restart;
     ExtendedButton* store;
     ExtendedButton* rate;
+    ExtendedButton* share;
     ExtendedButton* social;
     ExtendedButton* settings;
     ExtendedButton* video;
@@ -72,6 +73,14 @@ class Menu : public Popup
    */
   protected:
   Entity* background;
+
+  virtual void onPlay();
+  virtual void onRestart();
+  virtual void onStore();
+  virtual void onSettings();
+  virtual void onRate();
+  virtual void onSocial();
+  virtual void onShare();
 
   /**
    *

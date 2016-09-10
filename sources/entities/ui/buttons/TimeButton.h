@@ -58,7 +58,9 @@ class TimeButton : public ExtendedButton
     STATE_WAIT
   };
 
-  const char* id;
+  string id;
+
+  int count;
 
   Entity* icon;
   Text* text;

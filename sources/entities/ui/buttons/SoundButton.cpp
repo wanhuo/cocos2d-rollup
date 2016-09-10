@@ -89,8 +89,7 @@ void SoundButton::updateState(bool state)
 {
   if(state)
   {
-    Music->changeState();
-    Sound->changeState();
+    Application->onSound();
   }
 
   /**

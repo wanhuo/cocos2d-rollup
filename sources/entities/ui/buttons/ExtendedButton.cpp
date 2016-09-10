@@ -105,78 +105,84 @@ void ExtendedButton::onRemove()
  */
 void ExtendedButton::add(float x, float y)
 {
-  this->_create()->stopAllActions();
-
-  /**
-   *
-   *
-   *
-   */
-  if(x || y)
+  if(!this->state->create)
   {
-    this->setPosition(x, y);
-  }
+    this->_create()->stopAllActions();
 
-  /**
-   *
-   *
-   *
-   */
-  this->runAction(
-    Spawn::create(
-      EaseSineOut::create(
-        ScaleTo::create(0.5, 1.0)
-      ),
-      Sequence::create(
+    /**
+     *
+     *
+     *
+     */
+    if(x || y)
+    {
+      this->setPosition(x, y);
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    this->runAction(
+      Spawn::create(
         EaseSineOut::create(
-          FadeTo::create(0.5, 255.0)
+          ScaleTo::create(0.5, 1.0)
         ),
-        CallFunc::create([=] () {
+        Sequence::create(
+          EaseSineOut::create(
+            FadeTo::create(0.5, 255.0)
+          ),
+          CallFunc::create([=] () {
 
-          /**
-           *
-           *
-           *
-           */
-          this->onAdd();
-        }),
+            /**
+             *
+             *
+             *
+             */
+            this->onAdd();
+          }),
+          nullptr
+        ),
         nullptr
-      ),
-      nullptr
-    )
-  );
+      )
+    );
+  }
 }
 
 void ExtendedButton::remove(bool action)
 {
-  this->onRemove();
+  if(this->state->create)
+  {
+    this->onRemove();
 
-  /**
-   *
-   *
-   *
-   */
-  this->runAction(
-    Spawn::create(
-      EaseSineIn::create(
-        ScaleTo::create(0.5, 0.8)
-      ),
-      Sequence::create(
+    /**
+     *
+     *
+     *
+     */
+    this->runAction(
+      Spawn::create(
         EaseSineIn::create(
-          FadeTo::create(0.5 - 0.1, 0.0)
+          ScaleTo::create(0.5, 0.8)
         ),
-        CallFunc::create([=] () {
+        Sequence::create(
+          EaseSineIn::create(
+            FadeTo::create(0.5 - 0.1, 0.0)
+          ),
+          CallFunc::create([=] () {
 
-          /**
-           *
-           *
-           *
-           */
-          this->_destroy(action);
-        }),
+            /**
+             *
+             *
+             *
+             */
+            this->_destroy(action);
+          }),
+          nullptr
+        ),
         nullptr
-      ),
-      nullptr
-    )
-  );
+      )
+    );
+  }
 }

@@ -66,6 +66,7 @@ void Environment::create()
 
   this->generator = new Generator;
   this->character = new Character;
+  this->capture = new Capture;
 
   this->plates = new Pool(new Plate, this->plane);
   this->coins = new Pool(new Gem, this->plane);
@@ -128,7 +129,15 @@ void Environment::onMenu()
    *
    *
    */
-  this->onBackground(false);
+  switch(Menu::getInstance()->state)
+  {
+    case Menu::STATE_MENU:
+    this->onBackground(false);
+    break;
+    case Menu::STATE_FINISH:
+    this->onBackground(true);
+    break;
+  }
 }
 
 void Environment::onGame()
@@ -155,7 +164,7 @@ void Environment::onFinish()
    *
    *
    */
-  this->onBackground(false);
+  this->onBackground(true);
 }
 
 void Environment::onUnlock()
@@ -209,6 +218,13 @@ void Environment::onStore()
  */
 void Environment::onBackground(bool state)
 {
+  if(!Support::shaders(SHADER_COMPLEX)) return;
+
+  /**
+   *
+   *
+   *
+   */
   if(Director::getInstance()->getCaptureState())
   {
     auto index = 20;
@@ -345,6 +361,12 @@ void Environment::update(float time)
     break;
     case Game::STATE_FINISH:
     this->updateFinish(time);
+    break;
+    case Game::STATE_UNLOCK:
+    break;
+    case Game::STATE_SETTINGS:
+    break;
+    case Game::STATE_STORE:
     break;
   }
 }

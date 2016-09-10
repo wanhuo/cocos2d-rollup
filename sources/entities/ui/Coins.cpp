@@ -69,8 +69,23 @@ void Coins::add(int count, Node* element)
   {
     ((Coin*) this->elements->_create())->animate(element);
   }
+
+  /**
+   *
+   *
+   *
+   */
+  Storage::set("@counter.values.currency", Application->counter->values.currency.count);
 }
 
 void Coins::remove(int count)
 {
+  Application->counter->values.currency.count -= count;
+
+  /**
+   *
+   *
+   *
+   */
+  Storage::set("@counter.values.currency", Application->counter->values.currency.count);
 }

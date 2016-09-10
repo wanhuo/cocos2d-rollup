@@ -37,7 +37,7 @@
 VideoButton::VideoButton(Node* parent, bool autocreate)
 : TimeButton("ui/button-video.png", 2, 1, parent, autocreate)
 {
-  this->id = "timers.time.video";
+  this->id = "timers.video";
 }
 
 VideoButton::~VideoButton()
@@ -106,12 +106,21 @@ void VideoButton::onWait()
  */
 void VideoButton::onAction()
 {
-  TimeButton::onAction(100, Menu::getInstance()->buttons.video);
+  if(Heyzap::available(AD_TYPE_VIDEO))
+  {
+    Heyzap::show(AD_TYPE_VIDEO, [&] (bool state) {
+      TimeButton::onAction(100, this);
 
-  /**
-   *
-   *
-   *
-   */
-  this->updateTime(1);
+      /**
+       *
+       *
+       *
+       */
+      this->updateTime(5);
+    });
+  }
+  else
+  {
+    // @TODO: Error message;
+  }
 }

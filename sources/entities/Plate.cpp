@@ -48,9 +48,12 @@ Plate::Plate()
   {
     this->enableLight(false);
 
-    this->setGLProgram(
-      GLProgramCache::getInstance()->getGLProgram("@element.common")
-    );
+    if(Support::shaders(SHADER_SIMPLE))
+    {
+      this->setGLProgram(
+        GLProgramCache::getInstance()->getGLProgram("@element.common")
+      );
+    }
   }
 }
 
@@ -227,7 +230,6 @@ void Plate::start(bool animation)
 
 void Plate::finish()
 {
-  // TODO: Ахтунг!! Тут какая-то лажа происходит!
   this->Node::runAction(
     Spawn::create(
       Sequence::create(
@@ -291,9 +293,12 @@ void Plate::changeState(int state)
  */
 void Plate::update()
 {
-  if(this->getGLProgram())
+  if(Support::shaders(SHADER_SIMPLE))
   {
-    this->getGLProgramState()->setUniformFloat("common", this->common);
+    if(this->getGLProgram())
+    {
+      this->getGLProgramState()->setUniformFloat("common", this->common);
+    }
   }
 }
 

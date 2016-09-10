@@ -35,9 +35,7 @@
  *
  */
 AnnounceButton::AnnounceButton(Node* parent, const function<void()>& action, bool autocreate)
-: ExtendedButton("ui/button-announce.png", 2, 1, parent, [=] () {
-  action();
-}, autocreate)
+: ExtendedButton("ui/button-announce.png", 2, 1, parent, action, autocreate)
 {
   this->icon = new Entity("ui/button-currency-icon.png", this, true);
   this->icon->setScale(0.5);
@@ -73,4 +71,14 @@ void AnnounceButton::onCreate()
 void AnnounceButton::onDestroy(bool action)
 {
   ExtendedButton::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void AnnounceButton::onAction()
+{
+  this->action();
 }

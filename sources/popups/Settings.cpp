@@ -93,8 +93,8 @@ void Settings::onEnter()
   this->buttons.menu->add(position.x, position.y);
   this->buttons.services->add(position.x - 128, position.y);
   this->buttons.sound->add(position.x - 256, position.y);
-  this->buttons.video->add(position.x + 128, position.y);
-  this->buttons.present->add(position.x + 256, position.y);
+  this->buttons.restore->add(position.x + 128, position.y);
+  this->buttons.noad->add(position.x + 256, position.y);
 }
 
 void Settings::onExit()
@@ -121,14 +121,17 @@ void Settings::onMenu()
 
 void Settings::onServices()
 {
+  Application->onLeaderboards();
 }
 
 void Settings::onRestore()
 {
+  Application->onRestorePurchases();
 }
 
 void Settings::onNoad()
 {
+  Application->onNoad();
 }
 
 /**
@@ -153,6 +156,6 @@ void Settings::hide()
   this->buttons.menu->remove();
   this->buttons.services->remove();
   this->buttons.sound->remove();
-  this->buttons.video->remove();
-  this->buttons.present->remove();
+  this->buttons.restore->remove();
+  this->buttons.noad->remove();
 }

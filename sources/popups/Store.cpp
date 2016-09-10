@@ -75,8 +75,20 @@ Store::Store()
   this->buttons.present = new PresentButton(this);
   this->buttons.video = new VideoButton(this);
   this->buttons.announce = new AnnounceButton(this, [=] () {
-    // TODO: Add share;
-    Application->counter->currency.handler->add(50, this->buttons.announce);
+    Application->onShare(
+      Application->getFrameWidth(),
+      Application->getFrameWidth(),
+      0,
+      Application->getFrameHeight() / 2 - Application->getFrameWidth() / 2,
+      false,
+      this->texts.character->getString(),
+      [=] (int state) {
+        if(state)
+        {
+          Application->counter->currency.handler->add(50, this->buttons.announce);
+        }
+      }
+    );
   });
 
   /**
@@ -100,6 +112,9 @@ Store::Store()
    */
   this->separator2 = new Entity("ui/store-separator.png", this->scroll);
   this->separator3 = new Entity("ui/store-separator.png", this->scroll);
+
+  this->separator2->setCascadeOpacityEnabled(true);
+  this->separator3->setCascadeOpacityEnabled(true);
 
   /**
    *
@@ -141,6 +156,8 @@ Store::Store()
       auto state = Json_getInt(element, "state", 0);
       auto action = Json_getInt(element, "action", 0);
       auto price = Json_getFloat(element, "price", 0.0);
+
+      state = Storage::get("@store.states." + convert(index)) || state;
 
       this->states.push_back({
         index,
@@ -235,7 +252,7 @@ void Store::onEnter()
      * | @New Element;
      *
      */
-    auto handler = [&] (Data state) {
+    auto handler = [&] (State state) {
       state.state = state.update ? state.state : max(Storage::get("@store.states." + convert(state.index)), state.state);
       state.update = false;
 
@@ -302,11 +319,11 @@ void Store::onEnter()
      * | @1;
      *
      */
-    for(auto &state : this->states)
+    CC_VOOP(this->states)
     {
-      if(state.category == CATEGORY_REGULAR)
+      if(element.category == CATEGORY_REGULAR)
       {
-        handler(state);
+        handler(element);
 
         /**
          *
@@ -416,11 +433,11 @@ void Store::onEnter()
        * | @2;
        *
        */
-      for(auto &state : this->states)
+      CC_VOOP(this->states)
       {
-        if(state.category == CATEGORY_RARE)
+        if(element.category == CATEGORY_RARE)
         {
-          handler(state);
+          handler(element);
         }
       }
 
@@ -514,11 +531,11 @@ void Store::onEnter()
        * | @3;
        *
        */
-      for(auto &state : this->states)
+      CC_VOOP(this->states)
       {
-        if(state.category == CATEGORY_MYTHICAL)
+        if(element.category == CATEGORY_MYTHICAL)
         {
-          handler(state);
+          handler(element);
         }
       }
     }
@@ -629,10 +646,21 @@ void Store::onMenu()
 
 void Store::onShare()
 {
+  Application->onShare(
+    Application->getFrameWidth(),
+    Application->getFrameHeight(),
+    0,
+    0,
+    false,
+    "", // @TODO: Add share text;
+    [=] (int a) {
+    }
+  );
 }
 
 void Store::onRate()
 {
+  Application->onRate();
 }
 
 void Store::onNext()
@@ -662,13 +690,41 @@ void Store::onNext()
    *
    *
    */
-  this->active->runAction(
+  this->current->runAction(
     Spawn::create(
       EaseSineIn::create(
         FadeTo::create(0.2, 0.0)
       ),
       EaseSineIn::create(
         ScaleTo::create(0.2, 1.3)
+      ),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  this->separator2->runAction(
+    Spawn::create(
+      EaseSineIn::create(
+        FadeTo::create(0.2, 0.0)
+      ),
+      EaseSineIn::create(
+        ScaleTo::create(0.2, 0.8)
+      ),
+      nullptr
+    )
+  );
+  this->separator3->runAction(
+    Spawn::create(
+      EaseSineIn::create(
+        FadeTo::create(0.2, 0.0)
+      ),
+      EaseSineIn::create(
+        ScaleTo::create(0.2, 0.8)
       ),
       nullptr
     )
@@ -780,7 +836,7 @@ int Store::count(int category, bool create)
    */
   if(create)
   {
-   for(auto element : this->states)
+   CC_VOOP(this->states)
     {
       if(element.category == category && (element.state || element.action))
       {
@@ -790,7 +846,7 @@ int Store::count(int category, bool create)
   }
   else
   {
-   for(auto element : this->states)
+   CC_VOOP(this->states)
     {
       if(element.category == category)
       {
@@ -814,9 +870,89 @@ int Store::count(int category, bool create)
  *
  *
  */
+Store::State Store::element(bool action)
+{
+  if(Application->counter->values.currency.count < 1)
+  {
+    return {
+      0
+    };
+  }
+
+  vector<State*> elements;
+
+  /**
+   *
+   *
+   *
+   */
+  CC_VOOP(this->states)
+  {
+    if(element.state == Element::STATE_LOCKED)
+    {
+      if(!element.action)
+      {
+        if(element.category == ((probably(10) || !this->count(CATEGORY_REGULAR)) ? CATEGORY_RARE : CATEGORY_REGULAR))
+        {
+          elements.push_back(&element);
+        }
+      }
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  if(elements.size())
+  {
+    auto &element = CC_RANDOM(elements);
+
+    /**
+     *
+     *
+     *
+     */
+    if(action)
+    {
+      CC_VOOP(this->states)
+      {
+        if(element.state == Element::STATE_SELECTED)
+        {
+          element.state = Element::STATE_NORMAL;
+          Storage::set(
+            "@store.states." + convert(element.index),
+            Element::STATE_NORMAL
+          );
+        }
+      }
+
+      element->state = Element::STATE_SELECTED;
+      Storage::set(
+        "@store.states." + convert(element->index),
+        Element::STATE_SELECTED
+      );
+    }
+
+    return *element;
+  }
+  else
+  {
+    return {
+      0
+    };
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
 void Store::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags)
 {
-  if(true)
+  if(Support::shaders(SHADER_COMPLEX))
   {
     this->texture->beginWithClear(0.0f, 0.0f, 0.0f, 0.0f);
     this->scroll->getInnerContainer()->setVisible(true);
@@ -925,7 +1061,7 @@ void Store::Element::onDestroy(bool action)
  */
 void Store::Element::onAction()
 {
-  Store::getInstance()->active = this;
+  Store::getInstance()->current = this;
 
   /**
    *
@@ -935,7 +1071,7 @@ void Store::Element::onAction()
   switch(this->state)
   {
     case STATE_NORMAL:
-    this->setState(STATE_SELECTED);return;
+    this->setState(STATE_SELECTED);
     break;
     case STATE_SELECTED:
     this->bind(false);
@@ -945,7 +1081,7 @@ void Store::Element::onAction()
      *
      *
      */
-    Store::getInstance()->hide();return;
+    Store::getInstance()->hide();
     break;
   }
 
@@ -1028,7 +1164,14 @@ void Store::Element::onAction()
               ScaleTo::create(0.2, 0.8)
             ),
             CallFunc::create([=] () {
-              auto position = Vec2(Application->getCenter().x, -Store::getInstance()->scroll->getInnerContainer()->getPositionY() + Store::getInstance()->scroll->getInnerContainer()->getContentSize().height / 2 - 495);
+              Store::getInstance()->scroll->getInnerContainer()->setPositionY(-(Store::getInstance()->scroll->getInnerContainer()->getContentSize().height - Application->getHeight()) - 300);
+
+              /**
+               *
+               *
+               *
+               */
+              auto position = Vec2(Application->getCenter().x, Store::getInstance()->scroll->getInnerContainer()->getContentSize().height - Application->getHeight() / 2 - 35);
 
               /**
                *
@@ -1047,7 +1190,7 @@ void Store::Element::onAction()
               Store::getInstance()->texts.connect->setScale(0.8);
               Store::getInstance()->texts.connect->setOpacity(0.0);
               Store::getInstance()->texts.connect->setText("@store.connect." + convert(this->action));
-              Store::getInstance()->texts.connect->setPosition(position.x, position.y - (this->action < ACTION_INAPP ? 180 : 180));
+              Store::getInstance()->texts.connect->setPosition(position.x, position.y - 180);
               Store::getInstance()->texts.connect->runAction(
                 Spawn::create(
                   EaseSineOut::create(
@@ -1079,116 +1222,204 @@ void Store::Element::onAction()
                     ),
                     DelayTime::create(0.5),
                     CallFunc::create([=] () {
+                      auto callback = [&] (bool state) {
+                        if(state)
+                        {
+                          /**
+                           *
+                           * @Action
+                           * |@Action successful;
+                           *
+                           */
+                          Application->environment->clear->runAction(
+                            Sequence::create(
+                              DelayTime::create(0.5),
+                              FadeTo::create(0.1, 255.0),
+                              CallFunc::create([=] () {
+                                Application->environment->showElements({Environment::ELEMENT_NOTIFICATION_NODE});
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                this->setState(STATE_SELECTED);
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                this->currency->_destroy();
+                                this->icon->_destroy();
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                Store::getInstance()->texts.connect->_destroy();
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                Store::getInstance()->texts.character->_create();
+                                Store::getInstance()->texts.character->setText("@store.new.character." + convert(random(1, 2)));
+                                Store::getInstance()->texts.character->setCameraMask(BACKGROUND);
+                                Store::getInstance()->texts.character->setScale(1.0);
+                                Store::getInstance()->texts.character->setScaleX(0.9);
+                                Store::getInstance()->texts.character->setOpacity(255.0);
+                                Store::getInstance()->texts.character->setPosition(this->getPositionX(), this->getPositionY() + 160);
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                Store::getInstance()->buttons.announce->add(Application->getCenter().x - 64, 200);
+                                Store::getInstance()->buttons.next->add(Application->getCenter().x + 64, 200);
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                Entity* separator = nullptr;
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                switch(this->getCategory())
+                                {
+                                  case CATEGORY_REGULAR:
+                                  break;
+                                  case CATEGORY_RARE:
+                                  separator = Store::getInstance()->separator2;
+                                  break;
+                                  case CATEGORY_MYTHICAL:
+                                  separator = Store::getInstance()->separator3;
+                                  break;
+                                }
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                if(separator)
+                                {
+                                  separator->setPosition(position.x, position.y + 100);
+                                  separator->setScale(0.8);
+                                  separator->setOpacity(0.0);
+                                  separator->runAction(
+                                    Spawn::create(
+                                      EaseSineOut::create(
+                                        ScaleTo::create(0.2, 1.0)
+                                      ),
+                                      EaseSineOut::create(
+                                        FadeTo::create(0.2, 255.0)
+                                      ),
+                                      nullptr
+                                    )
+                                  );
+
+                                  this->runAction(
+                                    EaseSineOut::create(
+                                      MoveBy::create(0.5, Vec2(0.0, -30.0))
+                                    )
+                                  );
+                                }
+                              }),
+                              DelayTime::create(0.1),
+                              FadeTo::create(0.3, 0.0),
+                              nullptr
+                            )
+                          );
+                        }
+                        else
+                        {
+                          /**
+                           *
+                           * @Action
+                           * |@Action failed;
+                           *
+                           */
+                          Store::getInstance()->texts.connect->runAction(
+                            Spawn::create(
+                              EaseSineIn::create(
+                                FadeTo::create(0.2, 0.0)
+                              ),
+                              EaseSineIn::create(
+                                ScaleTo::create(0.2, 0.8)
+                              ),
+                              nullptr
+                            )
+                          );
+
+                          /**
+                           *
+                           *
+                           *
+                           */
+                          this->runAction(
+                            Spawn::create(
+                              EaseSineIn::create(
+                                FadeTo::create(0.2, 0.0)
+                              ),
+                              Sequence::create(
+                                EaseSineIn::create(
+                                  ScaleTo::create(0.2, 1.2)
+                                ),
+                                CallFunc::create([=] () {
+                                Store::getInstance()->onEnter();
+                                }),
+                                nullptr
+                              ),
+                              nullptr
+                            )
+                          );
+                        }
+                      };
 
                       /**
                        *
                        *
                        *
                        */
-                      if(true)
+                      switch(this->action)
                       {
-                        /**
-                         *
-                         * @Action
-                         * |@Action successful;
-                         *
-                         */
-                        Application->environment->clear->runAction(
-                          Sequence::create(
-                            FadeTo::create(0.1, 255.0),
-                            CallFunc::create([=] () {
-                              Application->environment->showElements({Environment::ELEMENT_NOTIFICATION_NODE});
-
-                              /**
-                               *
-                               *
-                               *
-                               */
-                              this->setState(STATE_SELECTED);
-
-                              /**
-                               *
-                               *
-                               *
-                               */
-                              this->currency->_destroy();
-                              this->icon->_destroy();
-
-                              /**
-                               *
-                               *
-                               *
-                               */
-                              Store::getInstance()->texts.connect->_destroy();
-
-                              /**
-                               *
-                               *
-                               *
-                               */
-                              Store::getInstance()->texts.character->_create();
-                              Store::getInstance()->texts.character->setText("@store.new.character." + convert(random(1, 2)));
-                              Store::getInstance()->texts.character->setCameraMask(BACKGROUND);
-                              Store::getInstance()->texts.character->setScale(1.0);
-                              Store::getInstance()->texts.character->setScaleX(0.9);
-                              Store::getInstance()->texts.character->setOpacity(255.0);
-                              Store::getInstance()->texts.character->setPosition(this->getPositionX(), this->getPositionY() + 160);
-
-                              /**
-                               *
-                               *
-                               *
-                               */
-                              Store::getInstance()->buttons.announce->add(Application->getCenter().x - 64, 200);
-                              Store::getInstance()->buttons.next->add(Application->getCenter().x + 64, 200);
-                            }),
-                            FadeTo::create(0.3, 0.0),
-                            nullptr
-                          )
-                        );
+                        case ACTION_TWITTER:
+                        Application->onTwitterLike();
+                        break;
+                        case ACTION_FACEBOOK:
+                        Application->onFacebookLike();
+                        break;
+                        case ACTION_INSTAGRAM:
+                        Application->onInstagramLike();
+                        break;
+                        case ACTION_INAPP:
+                        //Purchase::purchaseItem("com", callback);
+                        callback(true);
+                        break;
                       }
-                      else
-                      {
-                        /**
-                         *
-                         * @Action
-                         * |@Action failed;
-                         *
-                         */
-                        Store::getInstance()->texts.connect->runAction(
-                          Spawn::create(
-                            EaseSineIn::create(
-                              FadeTo::create(0.2, 0.0)
-                            ),
-                            EaseSineIn::create(
-                              ScaleTo::create(0.2, 0.8)
-                            ),
-                            nullptr
-                          )
-                        );
 
-                        /**
-                         *
-                         *
-                         *
-                         */
-                        this->runAction(
-                          Spawn::create(
-                            EaseSineIn::create(
-                              FadeTo::create(0.2, 0.0)
-                            ),
-                            Sequence::create(
-                              EaseSineIn::create(
-                                ScaleTo::create(0.2, 1.2)
-                              ),
-                              CallFunc::create([=] () {
-                              Store::getInstance()->onEnter();
-                              }),
-                              nullptr
-                            ),
-                            nullptr
-                          )
-                        );
+                      /**
+                       *
+                       *
+                       *
+                       */
+                      switch(this->action)
+                      {
+                        case ACTION_TWITTER:
+                        case ACTION_FACEBOOK:
+                        case ACTION_INSTAGRAM:
+                        callback(true);
+                        case ACTION_INAPP:
+                        break;
                       }
                     }),
                     nullptr

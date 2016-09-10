@@ -325,6 +325,28 @@
         "size": 0
       }
     ],
+    "restore-purchases-title": [
+      {
+        "title": "Restore purchases",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Восстановление покупок",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Recuperar compras",
+        "font": "Impact",
+        "size": 32
+      },
+      {
+        "title": "Restaurer les achats",
+        "font": "Impact",
+        "size": 32
+      }
+    ],
     "restore-purchases-successful-message": [
       {
         "title": "Your previous purchases was successful restored!",

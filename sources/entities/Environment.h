@@ -84,6 +84,8 @@ class Environment : public Background
 
   int texture;
 
+  Capture* capture;
+
   BackgroundColor* clear;
 
   Entity* background;

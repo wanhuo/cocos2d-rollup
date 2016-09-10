@@ -53,6 +53,7 @@ class Unlock : public Popup
   struct Texts {
     Text* text;
     Text* currency;
+    Text* separator;
   };
 
   Buttons buttons;
@@ -86,6 +87,7 @@ class Unlock : public Popup
   int state = STATE_NORMAL;
 
   Entity* icon;
+  Entity* separator;
 
   Texts texts;
 

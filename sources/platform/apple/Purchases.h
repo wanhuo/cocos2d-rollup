@@ -28,6 +28,6 @@
 @implementation Purchases
 
 + (NSSet*) getIdentifiers {
-  return [NSSet setWithObjects: @"", nil];
+  return [NSSet setWithObjects: @"com.tooflya.gamename.characters.3000", nil];
 }
 @end

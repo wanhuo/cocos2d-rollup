@@ -31,9 +31,7 @@
  */
 void Events::onStart()
 {
-  //Director::getInstance()->setDisplayStats(true);
-
-  Storage::clear();
+  //Storage::clear();
 
   new Game;
   new Menu;
@@ -110,16 +108,6 @@ void Events::onAchievements()
 void Events::onServices()
 {
   Modal::hide();
-  
-  /*Game::getInstance()->buttons.leaderboards->bind(true);
-  Game::getInstance()->buttons.achievements->bind(true);
-  Finish::getInstance()->buttons.leaderboards->bind(true);
-  Finish::getInstance()->buttons.achievements->bind(true);
-
-  Game::getInstance()->buttons.leaderboards->setCurrentFrameIndex(0);
-  Game::getInstance()->buttons.achievements->setCurrentFrameIndex(0);
-  Finish::getInstance()->buttons.leaderboards->setCurrentFrameIndex(0);
-  Finish::getInstance()->buttons.achievements->setCurrentFrameIndex(0);*/
 }
 
 /**
@@ -139,42 +127,9 @@ void Events::onRate()
  *
  *
  */
-void Events::onFacebookLike()
-{
-  Analytics::sendEvent("Application", "application.events.onFacebookLike", "Application onFacebookLike event");
-  Analytics::sendSocial("Facebook", "Open publisher view from application", "503287153144438");
-
-  Media::openFacebook("503287153144438");
-}
-
-void Events::onTwitterLike()
-{
-  Analytics::sendEvent("Application", "application.events.onTwitterLike", "Application onTwitterLike event");
-  Analytics::sendSocial("Twitter", "Open publisher view from application", "2869168750");
-
-  Media::openTwitter("2869168750");
-}
-
-/**
- *
- *
- *
- */
-void Events::onShare(bool action, bool complete, const std::function<void(int)>& callback, const std::function<void(int, int)>& update)
+void Events::onShare()
 {
   Analytics::sendEvent("Application", "application.events.onShare", "Application onShare event");
-
-  auto text = new Text("share-message");
-  auto size = Director::getInstance()->getOpenGLView()->getFrameSize();
-
-  if(Screenshot::support())
-  {
-    //Social::share(action, complete, callback, update, text->data(Application->counter->values.current), Config::link);
-  }
-  else
-  {
-    //Social::share(action, complete, callback, update, size.width, size.width, 0, 0, text->data(Application->counter->values.current), Config::link);
-  }
 }
 
 /**
@@ -203,20 +158,57 @@ void Events::onSound()
  *
  *
  */
-void Events::onTwitter()
+bool Events::onFacebookLike()
+{
+  Analytics::sendEvent("Application", "application.events.onFacebookLike", "Application onFacebookLike event");
+  Analytics::sendSocial("Facebook", "Open publisher view from application", "503287153144438");
+
+  return Media::openFacebook("503287153144438");
+}
+
+bool Events::onTwitterLike()
+{
+  Analytics::sendEvent("Application", "application.events.onTwitterLike", "Application onTwitterLike event");
+  Analytics::sendSocial("Twitter", "Open publisher view from application", "2869168750");
+
+  return Media::openTwitter("2869168750");
+}
+
+bool Events::onInstagramLike()
+{
+  Analytics::sendEvent("Application", "application.events.onInstagramLike", "Application InstagramLike event");
+  Analytics::sendSocial("Instagram", "Open publisher view from application", "ketchapp");
+
+  return Media::openInstagram("ketchapp");
+}
+
+/**
+ *
+ *
+ *
+ */
+bool Events::onTwitter()
 {
   Analytics::sendEvent("Application", "application.events.onTwitter", "Application onTwitter event");
   Analytics::sendSocial("Twitter", "Open developer view from application", "");
 
-  Media::openTwitter();
+  return Media::openTwitter();
 }
 
-void Events::onFacebook()
+bool Events::onFacebook()
 {
   Analytics::sendEvent("Application", "application.events.onFacebook", "Application onFacebook event");
   Analytics::sendSocial("Facebook", "Open developer view from application", "386292514777918");
 
-  Media::openFacebook();
+  return Media::openFacebook();
+}
+
+bool Events::onInstagram()
+{
+  Analytics::sendEvent("Application", "application.events.onInstagram", "Application onInstagram event");
+  Analytics::sendSocial("Instagram", "Open developer view from application", "tooflya");
+
+  return Media::openInstagram();
 }
 
 void Events::onMail()

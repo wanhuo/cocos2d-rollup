@@ -152,7 +152,7 @@ class Store : public Popup
     CATEGORY_MYTHICAL = 3
   };
 
-  struct Data {
+  struct State {
     int index;
     int category;
     int state;
@@ -163,7 +163,7 @@ class Store : public Popup
     bool update;
   };
 
-  vector<Data> states;
+  vector<State> states;
 
   public:
   struct Buttons {
@@ -196,7 +196,7 @@ class Store : public Popup
   BackgroundScroll* scroll;
   RenderTexture* texture;
 
-  Node* active;
+  Node* current;
 
   /**
    *
@@ -240,6 +240,8 @@ class Store : public Popup
   virtual void hideButtons();
 
   virtual int count(int category, bool create = false);
+
+  virtual State element(bool action = false);
 
   virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
 };
