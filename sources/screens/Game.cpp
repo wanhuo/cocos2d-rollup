@@ -259,6 +259,8 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     break;
     case STATE_STORE:
     break;
+    case STATE_USERS:
+    break;
     case STATE_MENU:
     if(Menu::getInstance()->state == Menu::STATE_MENU)
     {
@@ -278,6 +280,8 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     case STATE_SETTINGS:
     break;
     case STATE_STORE:
+    break;
+    case STATE_USERS:
     break;
     case STATE_MENU:
     case STATE_GAME:
@@ -304,6 +308,8 @@ void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
     break;
     case STATE_STORE:
     break;
+    case STATE_USERS:
+    break;
   }
 }
 
@@ -329,6 +335,8 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
     case STATE_SETTINGS:
     break;
     case STATE_STORE:
+    break;
+    case STATE_USERS:
     break;
   }
 }
@@ -584,6 +592,18 @@ void Game::onStore()
   this->environment->onStore();
 }
 
+void Game::onUsers()
+{
+  Users::getInstance()->show();
+
+  /**
+   *
+   *
+   *
+   */
+  this->environment->onUsers();
+}
+
 /**
  *
  *
@@ -741,6 +761,9 @@ void Game::changeState(State state)
       case STATE_STORE:
       this->onStore();
       break;
+      case STATE_USERS:
+      this->onUsers();
+      break;
     }
   }
 }
@@ -774,6 +797,10 @@ void Game::updateStore(float time)
 {
 }
 
+void Game::updateUsers(float time)
+{
+}
+
 /**
  *
  *
@@ -803,6 +830,9 @@ void Game::updateStates(float time)
     case STATE_STORE:
     this->updateStore(time);
     break;
+    case STATE_USERS:
+    this->updateUsers(time);
+    break;
   }
 
   this->environment->update(time);
@@ -825,6 +855,8 @@ void Game::updateStates(float time)
     case STATE_SETTINGS:
     break;
     case STATE_STORE:
+    break;
+    case STATE_USERS:
     break;
     case STATE_GAME:
     if(Director::getInstance()->getCaptureState())

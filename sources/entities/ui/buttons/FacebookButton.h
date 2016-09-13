@@ -103,6 +103,10 @@ class FacebookButton
      *
      */
     protected:
+    Text* text;
+    Text* currency;
+
+    Entity* icon;
 
     /**
      *
@@ -115,6 +119,8 @@ class FacebookButton
 
     virtual void onCreate() override;
     virtual void onDestroy(bool action = false) override;
+
+    virtual void onAction();
   };
 
   /**
@@ -160,6 +166,10 @@ class FacebookButton
      *
      */
     protected:
+    Text* text;
+    Text* currency;
+
+    Entity* icon;
 
     /**
      *
@@ -172,6 +182,8 @@ class FacebookButton
 
     virtual void onCreate() override;
     virtual void onDestroy(bool action = false) override;
+
+    virtual void onAction();
   };
 };
 

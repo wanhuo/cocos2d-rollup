@@ -38,6 +38,25 @@ FacebookButton::Add::Add(Node* parent, bool autocreate)
 : ExtendedButton("ui/button-facebook-add.png", 2, 1, parent, [=] () {
 }, autocreate)
 {
+  this->text = new Text("@facebook.add", this, TextHAlignment::LEFT, true);
+  this->text->setPosition(60, this->getHeight() / 2);
+  this->text->setSystemFontSize(26);
+
+  this->currency = new Text("@buttons.currency", this, TextHAlignment::RIGHT, true);
+  this->currency->setPosition(this->getWidth() - 62, this->getHeight() / 2);
+  this->currency->setSystemFontSize(26);
+  this->currency->data(50);
+
+  this->icon = new Entity("ui/button-currency-icon.png", this, true);
+  this->icon->setScale(0.7);
+  this->icon->setPosition(this->getWidth() - 42, this->getHeight() / 2 - 1);
+
+  /**
+   *
+   *
+   *
+   */
+  this->setCascadeOpacityEnabled(true);
 }
 
 FacebookButton::Add::~Add()
@@ -57,4 +76,13 @@ void FacebookButton::Add::onCreate()
 void FacebookButton::Add::onDestroy(bool action)
 {
   ExtendedButton::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void FacebookButton::Add::onAction()
+{
 }

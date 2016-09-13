@@ -69,7 +69,7 @@ Menu::Menu()
   this->buttons.store = new ExtendedButton("ui/button-store.png", 2, 1, this, std::bind(&Menu::onStore, this));
   this->buttons.settings = new ExtendedButton("ui/button-settings.png", 2, 1, this, std::bind(&Menu::onSettings, this));
   this->buttons.rate = new ExtendedButton("ui/button-rate.png", 2, 1, this, std::bind(&Menu::onRate, this));
-  this->buttons.social = new ExtendedButton("ui/button-social.png", 2, 1, this, std::bind(&Menu::onSocial, this));
+  this->buttons.social = new ExtendedButton("ui/button-social.png", 2, 1, this, std::bind(&Menu::onUsers, this));
   this->buttons.share = new ExtendedButton("ui/button-share.png", 2, 1, this, std::bind(&Menu::onShare, this));
   this->buttons.video = new VideoButton(this);
   this->buttons.present = new PresentButton(this);
@@ -222,13 +222,35 @@ void Menu::onSettings()
   );
 }
 
+void Menu::onUsers()
+{
+  if(!Facebook::status())
+  {
+    Facebook::connect([=] (bool state) {
+      //
+    });
+  }
+  else
+  {
+    Application->environment->onUsers();
+
+    this->hide();
+
+    Application->environment->clear->runAction(
+      Sequence::create(
+        DelayTime::create(0.5),
+        CallFunc::create([=] () {
+        Application->changeState(Game::STATE_USERS);
+        }),
+        nullptr
+      )
+    );
+  }
+}
+
 void Menu::onRate()
 {
   Application->onRate();
-}
-
-void Menu::onSocial()
-{
 }
 
 void Menu::onShare()

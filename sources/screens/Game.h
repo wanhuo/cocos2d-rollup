@@ -72,6 +72,7 @@
 #include "Unlock.h"
 #include "Settings.h"
 #include "Store.h"
+#include "Users.h"
 
 /**
  *
@@ -164,7 +165,8 @@ class Game : public Screen
     STATE_FINISH,
     STATE_UNLOCK,
     STATE_SETTINGS,
-    STATE_STORE
+    STATE_STORE,
+    STATE_USERS
   };
 
   /**
@@ -230,6 +232,7 @@ class Game : public Screen
   virtual void onUnlock();
   virtual void onSettings();
   virtual void onStore();
+  virtual void onUsers();
 
   virtual void onNoad();
 
@@ -251,6 +254,7 @@ class Game : public Screen
   virtual void updateUnlock(float time);
   virtual void updateSettings(float time);
   virtual void updateStore(float time);
+  virtual void updateUsers(float time);
 
   virtual void updateStates(float time);
 

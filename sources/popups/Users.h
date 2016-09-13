@@ -21,8 +21,8 @@
  *
  */
 
-#ifndef _MENU_H_
-#define _MENU_H_
+#ifndef _USERS_H_
+#define _USERS_H_
 
 #include "Game.h"
 
@@ -31,7 +31,7 @@
  *
  *
  */
-class Menu : public Popup
+class Users : public Popup
 {
   /**
    *
@@ -39,21 +39,12 @@ class Menu : public Popup
    *
    */
   public:
-  enum State {
-    STATE_MENU,
-    STATE_FINISH
-  };
-
   struct Buttons {
-    ExtendedButton* play;
-    ExtendedButton* restart;
-    ExtendedButton* store;
-    ExtendedButton* rate;
-    ExtendedButton* share;
-    ExtendedButton* social;
-    ExtendedButton* settings;
-    ExtendedButton* video;
-    ExtendedButton* present;
+    ExtendedButton* menu;
+    ExtendedButton* sound;
+    ExtendedButton* services;
+    ExtendedButton* restore;
+    ExtendedButton* noad;
   };
 
   Buttons buttons;
@@ -64,7 +55,7 @@ class Menu : public Popup
    *
    */
   private:
-  static Menu* instance;
+  static Users* instance;
 
   /**
    *
@@ -72,15 +63,10 @@ class Menu : public Popup
    *
    */
   protected:
-  Entity* background;
-
-  virtual void onPlay();
-  virtual void onRestart();
-  virtual void onStore();
-  virtual void onSettings();
-  virtual void onRate();
-  virtual void onUsers();
-  virtual void onShare();
+  virtual void onMenu();
+  virtual void onServices();
+  virtual void onRestore();
+  virtual void onNoad();
 
   /**
    *
@@ -88,20 +74,16 @@ class Menu : public Popup
    *
    */
   public:
-  static Menu* getInstance();
+  static Users* getInstance();
 
-  Menu();
- ~Menu();
-
-  int state = STATE_MENU;
+  Users();
+ ~Users();
 
   virtual void onEnter() override;
   virtual void onExit() override;
 
   virtual void show() override;
   virtual void hide() override;
-
-  virtual void changeState(int state);
 };
 
 #endif

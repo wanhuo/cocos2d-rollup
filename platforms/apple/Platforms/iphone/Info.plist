@@ -31,7 +31,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb747864001998896</string>
+				<string>fb962549423874562</string>
 			</array>
 		</dict>
 		<dict>
@@ -39,7 +39,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.ketchapp.steps</string>
+				<string>com.ketchapp.briskball</string>
 			</array>
 		</dict>
 	</array>

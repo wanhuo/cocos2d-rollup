@@ -197,6 +197,9 @@
 		78B93DF81D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */; };
 		78B93DF91D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */; };
 		78B93DFA1D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */; };
+		78B93DFD1D87E8DE004FA0DE /* Users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DFB1D87E8DE004FA0DE /* Users.cpp */; };
+		78B93DFE1D87E8DE004FA0DE /* Users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DFB1D87E8DE004FA0DE /* Users.cpp */; };
+		78B93DFF1D87E8DE004FA0DE /* Users.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DFB1D87E8DE004FA0DE /* Users.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
@@ -454,6 +457,8 @@
 		78B93DEF1D86B85F004FA0DE /* FacebookButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacebookButton.cpp; sourceTree = "<group>"; };
 		78B93DF01D86B85F004FA0DE /* FacebookButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButton.h; sourceTree = "<group>"; };
 		78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacebookButton.State.cpp; sourceTree = "<group>"; };
+		78B93DFB1D87E8DE004FA0DE /* Users.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Users.cpp; sourceTree = "<group>"; };
+		78B93DFC1D87E8DE004FA0DE /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -1143,6 +1148,8 @@
 				787B53B31D7EB49400C1C17D /* Settings.h */,
 				787B53B41D7EB49400C1C17D /* Store.cpp */,
 				787B53B51D7EB49400C1C17D /* Store.h */,
+				78B93DFB1D87E8DE004FA0DE /* Users.cpp */,
+				78B93DFC1D87E8DE004FA0DE /* Users.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1505,6 +1512,7 @@
 				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
 				787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				78B93DD01D819356004FA0DE /* AnnounceButton.cpp in Sources */,
+				78B93DFE1D87E8DE004FA0DE /* Users.cpp in Sources */,
 				787B53CF1D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
 				78B93DE71D82EAE4004FA0DE /* Capture.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
@@ -1546,6 +1554,7 @@
 				7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				787B53D51D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */,
 				787B53B81D7EB49400C1C17D /* Settings.cpp in Sources */,
+				78B93DFF1D87E8DE004FA0DE /* Users.cpp in Sources */,
 				78A20B271D7C6C3300789617 /* Popup.cpp in Sources */,
 				787B53A71D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
@@ -1584,6 +1593,7 @@
 				787B539D1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				7891E8961CF21293005C238E /* NSVote.mm in Sources */,
+				78B93DFD1D87E8DE004FA0DE /* Users.cpp in Sources */,
 				7891E88E1CF21293005C238E /* NSMedia.mm in Sources */,
 				7828E3B81D79F12200AA66D9 /* Dust.cpp in Sources */,
 				7832A8A61D10B5380059BFE3 /* AFHTTPRequestOperationManager.m in Sources */,

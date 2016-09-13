@@ -217,9 +217,6 @@ void Settings::hide()
       nullptr
     )
   );
-
-  this->line2->setScale(0.8);
-  this->line2->setOpacity(0.0);
   this->line2->runAction(
     Spawn::create(
       EaseSineIn::create(

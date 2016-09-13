@@ -38,6 +38,7 @@ void Events::onStart()
   new Unlock;
   new Settings;
   new Store;
+  new Users;
 
   Director::getInstance()->runWithScene(Application);
 

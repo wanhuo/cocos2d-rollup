@@ -211,6 +211,20 @@ void Environment::onStore()
   this->onBackground(true);
 }
 
+void Environment::onUsers()
+{
+  this->hideElements({
+    ELEMENT_COUNTER
+  });
+
+  /**
+   *
+   *
+   *
+   */
+  this->onBackground(true);
+}
+
 /**
  *
  *

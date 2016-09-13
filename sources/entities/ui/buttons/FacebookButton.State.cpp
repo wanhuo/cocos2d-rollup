@@ -35,9 +35,27 @@
  *
  */
 FacebookButton::State::State(Node* parent, bool autocreate)
-: ExtendedButton("ui/button-facebook-state.png", 2, 1, parent, [=] () {
-}, autocreate)
+: ExtendedButton("ui/button-facebook-state.png", 2, 1, parent, std::bind(&FacebookButton::State::onAction, this), autocreate)
 {
+  this->text = new Text("@facebook.state.connect", this, TextHAlignment::LEFT, true);
+  this->text->setPosition(60, this->getHeight() / 2);
+  this->text->setSystemFontSize(26);
+
+  this->currency = new Text("@buttons.currency", this, TextHAlignment::RIGHT, true);
+  this->currency->setPosition(this->getWidth() - 62, this->getHeight() / 2);
+  this->currency->setSystemFontSize(26);
+  this->currency->data(200);
+
+  this->icon = new Entity("ui/button-currency-icon.png", this, true);
+  this->icon->setScale(0.7);
+  this->icon->setPosition(this->getWidth() - 42, this->getHeight() / 2 - 1);
+
+  /**
+   *
+   *
+   *
+   */
+  this->setCascadeOpacityEnabled(true);
 }
 
 FacebookButton::State::~State()
@@ -52,9 +70,46 @@ FacebookButton::State::~State()
 void FacebookButton::State::onCreate()
 {
   ExtendedButton::onCreate();
+
+  /**
+   *
+   *
+   *
+   */
+  if(!Facebook::status())
+  {
+    this->text->setText("@facebook.state.connect");
+
+    this->currency->_create();
+    this->icon->_create();
+  }
+  else
+  {
+    this->text->setText("@facebook.state.disconnect");
+
+    this->currency->_destroy();
+    this->icon->_destroy();
+  }
 }
 
 void FacebookButton::State::onDestroy(bool action)
 {
   ExtendedButton::onDestroy(action);
+}
+
+/**
+ *
+ *
+ *
+ */
+void FacebookButton::State::onAction()
+{
+  if(!Facebook::status())
+  {
+    Facebook::connect([=] (bool state) {
+    });
+  }
+  else
+  {
+  }
 }

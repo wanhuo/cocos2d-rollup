@@ -114,6 +114,7 @@ class Environment : public Background
   virtual void onUnlock();
   virtual void onSettings();
   virtual void onStore();
+  virtual void onUsers();
 
   virtual void onBackground(bool state);
 

@@ -21,6 +21,27 @@
     0
   ],
   "languages": {
+    "@facebook.state.connect": [
+      {
+        "title": "CONNECT",
+        "font": "msyi",
+        "size": 26
+      }
+    ],
+    "@facebook.state.disconnect": [
+      {
+        "title": "DISCONNECT",
+        "font": "msyi",
+        "size": 26
+      }
+    ],
+    "@facebook.add": [
+      {
+        "title": "ADD FRIEND",
+        "font": "msyi",
+        "size": 26
+      }
+    ],
     "@buttons.time": [
       {
         "title": "$1:$2",
