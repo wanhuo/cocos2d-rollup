@@ -185,8 +185,7 @@ void Environment::onUnlock()
 void Environment::onSettings()
 {
   this->hideElements({
-    ELEMENT_COUNTER,
-    ELEMENT_NOTIFICATION_NODE
+    ELEMENT_COUNTER
   });
 
   /**

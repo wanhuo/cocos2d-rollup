@@ -55,7 +55,7 @@ this->buttons.announce->onAction();
       }
     );
   }, AnnounceButton::TYPE_LARGE);
-  this->buttons.announce->setPosition(Application->getCenter().x, Application->getCenter().y - 220.0);
+  this->buttons.announce->setPosition(Application->getCenter().x, Application->getCenter().y - 320.0);
   this->buttons.announce->setCameraMask(BACKGROUND);
 
   /**
@@ -86,7 +86,7 @@ this->buttons.announce->onAction();
    *
    *
    */
-  this->elements = new Pool(new Entity(this->textureFileName), this);
+  this->elements = new Pool(new Entity("ui/ring-pulse.png"), this);
 
   /**
    *
@@ -188,13 +188,13 @@ void Capture::onAdd()
             Spawn::create(
               Sequence::create(
                 EaseSineInOut::create(
-                  ScaleTo::create(1.0, 1.5)
+                  ScaleTo::create(1.4, 1.3)
                 ),
                 nullptr
               ),
               Sequence::create(
                 EaseSineInOut::create(
-                  FadeTo::create(1.0, 0.0)
+                  FadeTo::create(1.4, 0.0)
                 ),
                 CallFunc::create([=] () {
                 element->_destroy();
@@ -205,7 +205,7 @@ void Capture::onAdd()
             )
           );
         }),
-        DelayTime::create(0.5),
+        DelayTime::create(0.6),
         nullptr
       )
     )

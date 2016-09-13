@@ -38,17 +38,17 @@ FacebookButton::State::State(Node* parent, bool autocreate)
 : ExtendedButton("ui/button-facebook-state.png", 2, 1, parent, std::bind(&FacebookButton::State::onAction, this), autocreate)
 {
   this->text = new Text("@facebook.state.connect", this, TextHAlignment::LEFT, true);
-  this->text->setPosition(60, this->getHeight() / 2);
-  this->text->setSystemFontSize(26);
+  this->text->setPosition(55, this->getHeight() / 2 - 6);
+  this->text->enableBold();
 
-  this->currency = new Text("@buttons.currency", this, TextHAlignment::RIGHT, true);
-  this->currency->setPosition(this->getWidth() - 62, this->getHeight() / 2);
-  this->currency->setSystemFontSize(26);
+  this->currency = new Text("@buttons.facebook.currency", this, TextHAlignment::RIGHT, true);
+  this->currency->setPosition(this->getWidth() - 62, this->getHeight() / 2 - 6);
+  this->currency->enableBold();
   this->currency->data(200);
 
   this->icon = new Entity("ui/button-currency-icon.png", this, true);
   this->icon->setScale(0.7);
-  this->icon->setPosition(this->getWidth() - 42, this->getHeight() / 2 - 1);
+  this->icon->setPosition(this->getWidth() - 40, this->getHeight() / 2);
 
   /**
    *
@@ -80,8 +80,11 @@ void FacebookButton::State::onCreate()
   {
     this->text->setText("@facebook.state.connect");
 
-    this->currency->_create();
-    this->icon->_create();
+    if(!Storage::get("@facebook.currency"))
+    {
+      this->currency->_create();
+      this->icon->_create();
+    }
   }
   else
   {
@@ -107,9 +110,38 @@ void FacebookButton::State::onAction()
   if(!Facebook::status())
   {
     Facebook::connect([=] (bool state) {
+      if(state)
+      {
+        if(!Storage::get("@facebook.currency"))
+        {
+          Application->counter->currency.handler->add(200, this);
+
+          /**
+           *
+           *
+           *
+           */
+          Storage::set("@facebook.currency", true);
+        }
+      }
+
+      /**
+       *
+       *
+       *
+       */
+      this->onCreate();
     });
   }
   else
   {
+    Facebook::disconnect();
+
+    /**
+     *
+     *
+     *
+     */
+    this->onCreate();
   }
 }

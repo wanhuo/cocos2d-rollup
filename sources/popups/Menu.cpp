@@ -274,16 +274,18 @@ void Menu::onShare()
  */
 void Menu::show()
 {
-  this->_create();
+  Popup::show();
 
+  /**
+   *
+   *
+   *
+   */
   this->background->setOpacity(0);
   this->background->runAction(
     Spawn::create(
       Sequence::create(
         ScaleTo::create(0.5, 1.0),
-        CallFunc::create([=] () {
-        this->onShow();
-        }),
         nullptr
       ),
       FadeTo::create(0.5 * 3, 200.0),
@@ -294,13 +296,17 @@ void Menu::show()
 
 void Menu::hide()
 {
+  Popup::hide();
+
+  /**
+   *
+   *
+   *
+   */
   this->background->runAction(
     Spawn::create(
       Sequence::create(
         ScaleTo::create(0.5, 2.0),
-        CallFunc::create([=] () {
-        this->onHide();
-        }),
         nullptr
       ),
       FadeTo::create(0.5, 0.0),

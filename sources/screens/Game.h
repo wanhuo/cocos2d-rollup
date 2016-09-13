@@ -74,6 +74,9 @@
 #include "Store.h"
 #include "Users.h"
 
+#include "network/HttpRequest.h"
+#include "network/HttpClient.h"
+
 /**
  *
  *
@@ -81,6 +84,7 @@
  */
 using namespace cocos2d;
 using namespace cocos2d::experimental;
+using namespace cocos2d::network;
 
 /**
  *

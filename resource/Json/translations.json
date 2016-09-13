@@ -24,21 +24,21 @@
     "@facebook.state.connect": [
       {
         "title": "CONNECT",
-        "font": "msyi",
+        "font": "Bangla Sangam MN",
         "size": 26
       }
     ],
     "@facebook.state.disconnect": [
       {
-        "title": "DISCONNECT",
-        "font": "msyi",
+        "title": "LOG OUT",
+        "font": "Bangla Sangam MN",
         "size": 26
       }
     ],
     "@facebook.add": [
       {
         "title": "ADD FRIEND",
-        "font": "msyi",
+        "font": "Bangla Sangam MN",
         "size": 26
       }
     ],
@@ -53,6 +53,13 @@
       {
         "title": "+$1",
         "font": "msyi",
+        "size": 28
+      }
+    ],
+    "@buttons.facebook.currency": [
+      {
+        "title": "+$1",
+        "font": "Bangla Sangam MN",
         "size": 28
       }
     ],

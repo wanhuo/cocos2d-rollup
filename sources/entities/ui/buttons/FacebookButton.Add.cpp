@@ -39,17 +39,17 @@ FacebookButton::Add::Add(Node* parent, bool autocreate)
 }, autocreate)
 {
   this->text = new Text("@facebook.add", this, TextHAlignment::LEFT, true);
-  this->text->setPosition(60, this->getHeight() / 2);
-  this->text->setSystemFontSize(26);
+  this->text->setPosition(55, this->getHeight() / 2 - 6);
+  this->text->enableBold();
 
-  this->currency = new Text("@buttons.currency", this, TextHAlignment::RIGHT, true);
-  this->currency->setPosition(this->getWidth() - 62, this->getHeight() / 2);
-  this->currency->setSystemFontSize(26);
+  this->currency = new Text("@buttons.facebook.currency", this, TextHAlignment::RIGHT, true);
+  this->currency->setPosition(this->getWidth() - 62, this->getHeight() / 2 - 6);
+  this->currency->enableBold();
   this->currency->data(50);
 
   this->icon = new Entity("ui/button-currency-icon.png", this, true);
   this->icon->setScale(0.7);
-  this->icon->setPosition(this->getWidth() - 42, this->getHeight() / 2 - 1);
+  this->icon->setPosition(this->getWidth() - 40, this->getHeight() / 2);
 
   /**
    *
