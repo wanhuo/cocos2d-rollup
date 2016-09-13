@@ -2,7 +2,7 @@
  * Tooflya Inc. Development
  *
  * @author Igor Mats from Tooflya Inc.
- * @copyright (c) 2015 by Igor Mats
+ * @copyright (c) by Igor Mats
  * http://www.tooflya.com/development/
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,63 +23,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @version of cocos2d is 3.5
+ * @cocos2d
  *
  */
-
-#ifndef _ANNOUNCE_BUTTON_H_
-#define _ANNOUNCE_BUTTON_H_
 
 #include "Game.h"
-
-/**
- *
- *
- *
- */
-class AnnounceButton : public ExtendedButton
-{
-  /**
-   *
-   *
-   *
-   */
-  public:
-  enum Type {
-    TYPE_SMALL,
-    TYPE_LARGE
-  };
-
-  /**
-   *
-   *
-   *
-   */
-  private:
-  int type;
-
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Entity* icon;
-  Text* text;
-
-  /**
-   *
-   *
-   *
-   */
-  public:
-  AnnounceButton(Node* parent, const function<void()>& action, int type = TYPE_SMALL, bool autocreate = false);
- ~AnnounceButton();
-
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
-
-  virtual void onAction();
-};
-
-#endif

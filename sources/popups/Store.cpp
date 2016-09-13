@@ -71,6 +71,7 @@ Store::Store()
   this->buttons.rate = new ExtendedButton("ui/button-rate.png", 2, 1, this, std::bind(&Store::onRate, this));
   this->buttons.menu = new ExtendedButton("ui/button-menu.png", 2, 1, this, std::bind(&Store::onMenu, this));
   this->buttons.share = new ExtendedButton("ui/button-share.png", 2, 1, this, std::bind(&Store::onShare, this));
+  this->buttons.services = new ExtendedButton("ui/button-services.png", 2, 1, this, std::bind(&Store::onServices, this));
   this->buttons.next = new ExtendedButton("ui/button-next.png", 2, 1, this, std::bind(&Store::onNext, this));
   this->buttons.present = new PresentButton(this);
   this->buttons.video = new VideoButton(this);
@@ -663,6 +664,11 @@ void Store::onRate()
   Application->onRate();
 }
 
+void Store::onServices()
+{
+  Application->onLeaderboards();
+}
+
 void Store::onNext()
 {
   this->buttons.announce->remove();
@@ -807,8 +813,21 @@ void Store::showButtons()
   this->buttons.menu->add(position.x, position.y);
   this->buttons.rate->add(position.x - 128, position.y);
   this->buttons.share->add(position.x - 256, position.y);
-  this->buttons.video->add(position.x + 128, position.y);
   this->buttons.present->add(position.x + 256, position.y);
+
+  /**
+   *
+   *
+   *
+   */
+  if(Heyzap::available(AD_TYPE_VIDEO))
+  {
+    this->buttons.video->add(position.x + 128, position.y);
+  }
+  else
+  {
+    this->buttons.services->add(position.x + 128, position.y);
+  }
 }
 
 void Store::hideButtons()
@@ -818,6 +837,7 @@ void Store::hideButtons()
   this->buttons.rate->remove();
   this->buttons.video->remove();
   this->buttons.present->remove();
+  this->buttons.services->remove();
 }
 
 /**
@@ -872,7 +892,7 @@ int Store::count(int category, bool create)
  */
 Store::State Store::element(bool action)
 {
-  if(Application->counter->values.currency.count < 1)
+  if(Application->counter->values.currency.count < 1000)
   {
     return {
       0
@@ -1010,6 +1030,15 @@ Store::Element::Element()
    */
   this->icon = new TiledEntity("ui/store-element-icon.png", 4, 1, this);
   this->icon->setPosition(this->getWidth() / 2, 12.0);
+  this->icon->setLocalZOrder(2);
+
+  /**
+   *
+   *
+   *
+   */
+  this->texture = new Entity("characters/1001/texture.png", this);
+  this->texture->setPosition(this->getWidth() / 2, this->getHeight() / 2);
 
   /**
    *
@@ -1101,7 +1130,7 @@ void Store::Element::onAction()
       case STATE_NORMAL:
       break;
       case STATE_LOCKED:
-      for(auto element : Store::getInstance()->scroll->getChildren())
+      CC_VOOP(Store::getInstance()->scroll->getChildren())
       {
         if(element != this)
         {
@@ -1474,51 +1503,61 @@ void Store::Element::setState(int state)
    *
    *
    */
+  this->texture->stopAllActions();
+
+  /**
+   *
+   *
+   *
+   */
   switch(this->state)
   {
     case STATE_SELECTED:
-      this->setAction(ACTION_NONE);
+    this->setAction(ACTION_NONE);
 
-      /**
-       *
-       *
-       *
-       */
-      for(auto &element : Store::getInstance()->states)
+    /**
+     *
+     *
+     *
+     */
+    for(auto &element : Store::getInstance()->states)
+    {
+      if(element.index == this->index)
       {
-        if(element.index == this->index)
-        {
-          element.state = STATE_SELECTED;
-          element.update = false;
-        }
-
-        if(element.state == STATE_SELECTED)
-        {
-          if(element.index != this->index)
-          {
-            element.state = STATE_NORMAL;
-            element.update = true;
-          }
-        }
+        element.state = STATE_SELECTED;
+        element.update = false;
       }
 
-      /**
-       *
-       *
-       *
-       */
-      CC_LOOP(Store::getInstance()->elements)
+      if(element.state == STATE_SELECTED)
       {
-        auto element = (Store::Element*) Store::getInstance()->elements->element(i);
-
-        if(element->index != this->index)
+        if(element.index != this->index)
         {
-          if(element->state == STATE_SELECTED)
-          {
-            element->setState(STATE_NORMAL);
-          }
+          element.state = STATE_NORMAL;
+          element.update = true;
         }
       }
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    CC_LOOP(Store::getInstance()->elements)
+    {
+      auto element = (Store::Element*) Store::getInstance()->elements->element(i);
+
+      if(element->index != this->index)
+      {
+        if(element->state == STATE_SELECTED)
+        {
+          element->setState(STATE_NORMAL);
+        }
+      }
+    }
+
+    this->setTexture("ui/store-element-3.png");
+    break;
     case STATE_NORMAL:
     this->setTexture("ui/store-element-2.png");
     break;
@@ -1533,6 +1572,39 @@ void Store::Element::setState(int state)
    *
    */
   this->updateTexturePoistion();
+
+  /**
+   *
+   *
+   *
+   */
+  switch(this->state)
+  {
+    case STATE_SELECTED:
+    this->texture->runAction(
+      RepeatForever::create(
+        RotateBy::create(20.0, 360)
+      )
+    );
+    case STATE_NORMAL:
+    this->texture->setTexture("characters/" + convert(this->getIndex()) + "/texture.png");
+    this->texture->_create();
+    break;
+    case STATE_LOCKED:
+    break;
+  }
+
+  switch(this->state)
+  {
+    case STATE_SELECTED:
+    this->texture->setLocalZOrder(1);
+    break;
+    case STATE_NORMAL:
+    this->texture->setLocalZOrder(-1);
+    break;
+    case STATE_LOCKED:
+    break;
+  }
 
   /**
    *

@@ -185,6 +185,18 @@
 		78B93DE61D82EAE4004FA0DE /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE41D82EAE4004FA0DE /* Capture.cpp */; };
 		78B93DE71D82EAE4004FA0DE /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE41D82EAE4004FA0DE /* Capture.cpp */; };
 		78B93DE81D82EAE4004FA0DE /* Capture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE41D82EAE4004FA0DE /* Capture.cpp */; };
+		78B93DEB1D86B058004FA0DE /* Steps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE91D86B058004FA0DE /* Steps.cpp */; };
+		78B93DEC1D86B058004FA0DE /* Steps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE91D86B058004FA0DE /* Steps.cpp */; };
+		78B93DED1D86B058004FA0DE /* Steps.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DE91D86B058004FA0DE /* Steps.cpp */; };
+		78B93DF21D86B85F004FA0DE /* FacebookButton.Add.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DEE1D86B85F004FA0DE /* FacebookButton.Add.cpp */; };
+		78B93DF31D86B85F004FA0DE /* FacebookButton.Add.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DEE1D86B85F004FA0DE /* FacebookButton.Add.cpp */; };
+		78B93DF41D86B85F004FA0DE /* FacebookButton.Add.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DEE1D86B85F004FA0DE /* FacebookButton.Add.cpp */; };
+		78B93DF51D86B85F004FA0DE /* FacebookButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DEF1D86B85F004FA0DE /* FacebookButton.cpp */; };
+		78B93DF61D86B85F004FA0DE /* FacebookButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DEF1D86B85F004FA0DE /* FacebookButton.cpp */; };
+		78B93DF71D86B85F004FA0DE /* FacebookButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DEF1D86B85F004FA0DE /* FacebookButton.cpp */; };
+		78B93DF81D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */; };
+		78B93DF91D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */; };
+		78B93DFA1D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */; };
 		78BF8F791CF139DC00DBBF62 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC491C2240360011F47C /* libz.1.dylib */; };
 		78BF8F7A1CF139E000DBBF62 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843AC4F1C2240BE0011F47C /* libiconv.2.dylib */; };
 		78C352D01CEE7DB000F10068 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7894C0311BC9282F00363FC9 /* Game.cpp */; };
@@ -436,6 +448,12 @@
 		78B93DD31D81D274004FA0DE /* SoundButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundButton.h; sourceTree = "<group>"; };
 		78B93DE41D82EAE4004FA0DE /* Capture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Capture.cpp; sourceTree = "<group>"; };
 		78B93DE51D82EAE4004FA0DE /* Capture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Capture.h; sourceTree = "<group>"; };
+		78B93DE91D86B058004FA0DE /* Steps.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Steps.cpp; sourceTree = "<group>"; };
+		78B93DEA1D86B058004FA0DE /* Steps.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Steps.h; sourceTree = "<group>"; };
+		78B93DEE1D86B85F004FA0DE /* FacebookButton.Add.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacebookButton.Add.cpp; sourceTree = "<group>"; };
+		78B93DEF1D86B85F004FA0DE /* FacebookButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacebookButton.cpp; sourceTree = "<group>"; };
+		78B93DF01D86B85F004FA0DE /* FacebookButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookButton.h; sourceTree = "<group>"; };
+		78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacebookButton.State.cpp; sourceTree = "<group>"; };
 		78C353651CEE7DB000F10068 /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78C35A2D1CEE84E200F10068 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		78C35A2E1CEE84E200F10068 /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = "<group>"; };
@@ -922,6 +940,10 @@
 				78B93DCE1D819356004FA0DE /* AnnounceButton.h */,
 				78B93DD21D81D274004FA0DE /* SoundButton.cpp */,
 				78B93DD31D81D274004FA0DE /* SoundButton.h */,
+				78B93DEF1D86B85F004FA0DE /* FacebookButton.cpp */,
+				78B93DF01D86B85F004FA0DE /* FacebookButton.h */,
+				78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */,
+				78B93DEE1D86B85F004FA0DE /* FacebookButton.Add.cpp */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -1159,6 +1181,8 @@
 				787B539A1D7DCA7000C1C17D /* Coin.h */,
 				78B93DE41D82EAE4004FA0DE /* Capture.cpp */,
 				78B93DE51D82EAE4004FA0DE /* Capture.h */,
+				78B93DE91D86B058004FA0DE /* Steps.cpp */,
+				78B93DEA1D86B058004FA0DE /* Steps.h */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1462,6 +1486,7 @@
 				787B53D41D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */,
 				787B539E1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				7828E3B91D79F12200AA66D9 /* Dust.cpp in Sources */,
+				78B93DF61D86B85F004FA0DE /* FacebookButton.cpp in Sources */,
 				78C3F6851D528D980031E5B1 /* Plate.cpp in Sources */,
 				78DF64C91D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C0341BC9282F00363FC9 /* Game.cpp in Sources */,
@@ -1472,6 +1497,7 @@
 				7828E3BE1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78B93DD51D81D274004FA0DE /* SoundButton.cpp in Sources */,
 				787B53BA1D7EB49400C1C17D /* Store.cpp in Sources */,
+				78B93DEC1D86B058004FA0DE /* Steps.cpp in Sources */,
 				787B53C61D7EC4E100C1C17D /* PresentButton.cpp in Sources */,
 				78DF64D31D2446660049EB22 /* Element.cpp in Sources */,
 				787B53CC1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
@@ -1483,8 +1509,10 @@
 				78B93DE71D82EAE4004FA0DE /* Capture.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
+				78B93DF91D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */,
 				7891E8641CF2125F005C238E /* main.cpp in Sources */,
 				787B53C91D7EC4E100C1C17D /* TimeButton.cpp in Sources */,
+				78B93DF31D86B85F004FA0DE /* FacebookButton.Add.cpp in Sources */,
 				7894C01B1BC9245800363FC9 /* Events.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1497,6 +1525,7 @@
 				7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				787B53CD1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
 				7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
+				78B93DFA1D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */,
 				787B53BB1D7EB49400C1C17D /* Store.cpp in Sources */,
 				78C3F6861D528D980031E5B1 /* Plate.cpp in Sources */,
 				78B93DD61D81D274004FA0DE /* SoundButton.cpp in Sources */,
@@ -1505,6 +1534,7 @@
 				78C352D91CEE7DB000F10068 /* Events.cpp in Sources */,
 				7832A8B11D10B5380059BFE3 /* AFSecurityPolicy.m in Sources */,
 				78B93DD11D819356004FA0DE /* AnnounceButton.cpp in Sources */,
+				78B93DF71D86B85F004FA0DE /* FacebookButton.cpp in Sources */,
 				78DF64CA1D24460A0049EB22 /* Generator.cpp in Sources */,
 				787B53CA1D7EC4E100C1C17D /* TimeButton.cpp in Sources */,
 				7832A8B41D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
@@ -1519,6 +1549,7 @@
 				78A20B271D7C6C3300789617 /* Popup.cpp in Sources */,
 				787B53A71D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78C35A4F1CEE84E200F10068 /* AppController.mm in Sources */,
+				78B93DF41D86B85F004FA0DE /* FacebookButton.Add.cpp in Sources */,
 				7832A8AB1D10B5380059BFE3 /* AFHTTPSessionManager.m in Sources */,
 				78DF64D41D2446660049EB22 /* Element.cpp in Sources */,
 				78A20B241D7C6C3300789617 /* Menu.cpp in Sources */,
@@ -1531,6 +1562,7 @@
 				787B53D01D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
 				7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78C35A511CEE84E200F10068 /* main.m in Sources */,
+				78B93DED1D86B058004FA0DE /* Steps.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1539,6 +1571,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78CEEB401D0C44D5000A85D4 /* YYAnimatedImageView.m in Sources */,
+				78B93DF51D86B85F004FA0DE /* FacebookButton.cpp in Sources */,
 				787B53AA1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				7832A8AC1D10B5380059BFE3 /* AFNetworkReachabilityManager.m in Sources */,
 				787B53C51D7EC4E100C1C17D /* PresentButton.cpp in Sources */,
@@ -1560,6 +1593,7 @@
 				78A20B221D7C6C3300789617 /* Menu.cpp in Sources */,
 				78DF64C81D24460A0049EB22 /* Generator.cpp in Sources */,
 				7894C01A1BC9245800363FC9 /* Events.cpp in Sources */,
+				78B93DF81D86B85F004FA0DE /* FacebookButton.State.cpp in Sources */,
 				7891E88B1CF21293005C238E /* AppController.mm in Sources */,
 				7891E88F1CF21293005C238E /* NSModal.mm in Sources */,
 				7832A8A31D10B5380059BFE3 /* AFHTTPRequestOperation.m in Sources */,
@@ -1579,6 +1613,8 @@
 				7891E8901CF21293005C238E /* NSBatch.mm in Sources */,
 				7891E88C1CF21293005C238E /* NSInternal.mm in Sources */,
 				787B53CB1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
+				78B93DEB1D86B058004FA0DE /* Steps.cpp in Sources */,
+				78B93DF21D86B85F004FA0DE /* FacebookButton.Add.cpp in Sources */,
 				7828E3BD1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,
 				78DF64D21D2446660049EB22 /* Element.cpp in Sources */,

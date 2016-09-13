@@ -216,7 +216,7 @@ Game::Game()
    *
    *
    */
-  Music->play("music-1", true);
+  //Music->play("music-1", true);
 }
 
 Game::~Game()

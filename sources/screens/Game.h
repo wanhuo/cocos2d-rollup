@@ -48,6 +48,7 @@
 #include "UnlockButton.h"
 #include "AnnounceButton.h"
 #include "SoundButton.h"
+#include "FacebookButton.h"
 
 #include "Element.h"
 #include "Gem.h"
@@ -56,6 +57,7 @@
 #include "Dust.h"
 
 #include "Capture.h"
+#include "Steps.h"
 
 #include "Environment.h"
 #include "Generator.h"

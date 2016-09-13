@@ -60,6 +60,22 @@ Settings::Settings()
   this->buttons.restore = new ExtendedButton("ui/button-restore.png", 2, 1, this, std::bind(&Settings::onRestore, this));
   this->buttons.noad = new ExtendedButton("ui/button-noad.png", 2, 1, this, std::bind(&Settings::onNoad, this));
   this->buttons.sound = new SoundButton(this);
+
+  this->buttons.facebook.state = new FacebookButton::State(this);
+  this->buttons.facebook.add = new FacebookButton::Add(this);
+
+  this->line1 = new Entity("ui/settings-line.png", this, true);
+  this->line2 = new Entity("ui/settings-line.png", this, true);
+
+  this->line1->setPosition(Application->getCenter().x, Application->getCenter().y - 15);
+  this->line2->setPosition(Application->getCenter().x, Application->getCenter().y - 200);
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.steps = new Steps(this);
 }
 
 Settings::~Settings()
@@ -80,21 +96,49 @@ void Settings::onEnter()
    *
    *
    */
-  Vec2 position;
+  this->buttons.menu->add(Application->getCenter().x, 200);
+  this->buttons.services->add(Application->getCenter().x - 128, 200);
+  this->buttons.sound->add(Application->getCenter().x - 256, 200);
+  this->buttons.restore->add(Application->getCenter().x + 128, 200);
+  this->buttons.noad->add(Application->getCenter().x + 256, 200);
 
-  position.x = Application->getCenter().x;
-  position.y = 200.0;
+  this->buttons.facebook.state->add(Application->getCenter().x, Application->getCenter().y - 68);
+  this->buttons.facebook.add->add(Application->getCenter().x, Application->getCenter().y - 148);
+
+  this->buttons.steps->add(Application->getCenter().x, Application->getCenter().y + 300);
 
   /**
    *
    *
    *
    */
-  this->buttons.menu->add(position.x, position.y);
-  this->buttons.services->add(position.x - 128, position.y);
-  this->buttons.sound->add(position.x - 256, position.y);
-  this->buttons.restore->add(position.x + 128, position.y);
-  this->buttons.noad->add(position.x + 256, position.y);
+  this->line1->setOpacity(0.0);
+  this->line1->setScale(0.8);
+  this->line1->runAction(
+    Spawn::create(
+      EaseSineOut::create(
+        ScaleTo::create(0.5, 1.0)
+      ),
+      EaseSineOut::create(
+        FadeTo::create(0.5, 255.0)
+      ),
+      nullptr
+    )
+  );
+
+  this->line2->setOpacity(0.0);
+  this->line2->setScale(0.8);
+  this->line2->runAction(
+    Spawn::create(
+      EaseSineOut::create(
+        ScaleTo::create(0.5, 1.0)
+      ),
+      EaseSineOut::create(
+        FadeTo::create(0.5, 255.0)
+      ),
+      nullptr
+    )
+  );
 }
 
 void Settings::onExit()
@@ -158,4 +202,33 @@ void Settings::hide()
   this->buttons.sound->remove();
   this->buttons.restore->remove();
   this->buttons.noad->remove();
+  this->buttons.steps->remove();
+  this->buttons.facebook.state->remove();
+  this->buttons.facebook.add->remove();
+
+  this->line1->runAction(
+    Spawn::create(
+      EaseSineIn::create(
+        ScaleTo::create(0.5, 0.8)
+      ),
+      EaseSineIn::create(
+        FadeTo::create(0.5, 0.0)
+      ),
+      nullptr
+    )
+  );
+
+  this->line2->setScale(0.8);
+  this->line2->setOpacity(0.0);
+  this->line2->runAction(
+    Spawn::create(
+      EaseSineIn::create(
+        ScaleTo::create(0.5, 0.8)
+      ),
+      EaseSineIn::create(
+        FadeTo::create(0.5, 0.0)
+      ),
+      nullptr
+    )
+  );
 }

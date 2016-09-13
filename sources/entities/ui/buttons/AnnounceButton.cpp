@@ -34,17 +34,40 @@
  *
  *
  */
-AnnounceButton::AnnounceButton(Node* parent, const function<void()>& action, bool autocreate)
-: ExtendedButton("ui/button-announce.png", 2, 1, parent, action, autocreate)
+AnnounceButton::AnnounceButton(Node* parent, const function<void()>& action, int type, bool autocreate)
+: ExtendedButton(type == TYPE_SMALL ? "ui/button-announce-1.png" : "ui/button-announce-2.png", 2, 1, parent, action, autocreate)
 {
-  this->icon = new Entity("ui/button-currency-icon.png", this, true);
-  this->icon->setScale(0.5);
+  this->type = type;
 
-  this->text = new Text("@buttons.currency", this, true);
+  /**
+   *
+   *
+   *
+   */
+  switch(this->type)
+  {
+    case TYPE_SMALL:
+    this->icon = new Entity("ui/button-currency-icon.png", this, true);
+    this->icon->setScale(0.5);
 
-  this->text->data(50);
-  this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 27);
-  this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 30);
+    this->text = new Text("@buttons.currency", this, true);
+
+    this->text->data(50);
+    this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 27);
+    this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 30);
+    break;
+    case TYPE_LARGE:
+    this->icon = new Entity("ui/button-currency-icon.png", this, true);
+    this->icon->setScale(0.9);
+
+    this->text = new Text("@buttons.announce", this, TextHAlignment::LEFT, true);
+
+    this->text->data(50);
+    this->text->setScaleX(0.85);
+    this->text->setPosition(60, this->getHeight() / 2 + 4);
+    this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() - 20, this->getHeight() / 2 - 1);
+    break;
+  }
 
   /**
    *

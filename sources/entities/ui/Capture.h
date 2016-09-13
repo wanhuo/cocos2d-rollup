@@ -101,8 +101,6 @@ class Capture : public ExtendedButton
     AnnounceButton* announce;
   };
 
-  int index;
-
   Buttons buttons;
 
   /**
@@ -113,6 +111,8 @@ class Capture : public ExtendedButton
   protected:
   Entity* element;
 
+  Pool* elements;
+
   /**
    *
    *
@@ -122,14 +122,13 @@ class Capture : public ExtendedButton
   Capture();
  ~Capture();
 
+  int index;
+
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
   virtual void onAdd() override;
   virtual void onRemove() override;
-
-  virtual void add(float x = 0.0, float y = 0.0) override;
-  virtual void remove(bool action = false) override;
 
   virtual void update(float time) override;
 };

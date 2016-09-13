@@ -2,7 +2,7 @@
  * Tooflya Inc. Development
  *
  * @author Igor Mats from Tooflya Inc.
- * @copyright (c) 2015 by Igor Mats
+ * @copyright (c) by Igor Mats
  * http://www.tooflya.com/development/
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,12 +23,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @version of cocos2d is 3.5
+ * @cocos2d
  *
  */
-
-#ifndef _ANNOUNCE_BUTTON_H_
-#define _ANNOUNCE_BUTTON_H_
 
 #include "Game.h"
 
@@ -37,49 +34,27 @@
  *
  *
  */
-class AnnounceButton : public ExtendedButton
+FacebookButton::State::State(Node* parent, bool autocreate)
+: ExtendedButton("ui/button-facebook-state.png", 2, 1, parent, [=] () {
+}, autocreate)
 {
-  /**
-   *
-   *
-   *
-   */
-  public:
-  enum Type {
-    TYPE_SMALL,
-    TYPE_LARGE
-  };
+}
 
-  /**
-   *
-   *
-   *
-   */
-  private:
-  int type;
+FacebookButton::State::~State()
+{
+}
 
-  /**
-   *
-   *
-   *
-   */
-  protected:
-  Entity* icon;
-  Text* text;
+/**
+ *
+ *
+ *
+ */
+void FacebookButton::State::onCreate()
+{
+  ExtendedButton::onCreate();
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  AnnounceButton(Node* parent, const function<void()>& action, int type = TYPE_SMALL, bool autocreate = false);
- ~AnnounceButton();
-
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
-
-  virtual void onAction();
-};
-
-#endif
+void FacebookButton::State::onDestroy(bool action)
+{
+  ExtendedButton::onDestroy(action);
+}

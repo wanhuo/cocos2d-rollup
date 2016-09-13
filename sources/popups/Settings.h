@@ -39,15 +39,25 @@ class Settings : public Popup
    *
    */
   public:
+  struct Facebook {
+    ExtendedButton* state;
+    ExtendedButton* add;
+  };
+
   struct Buttons {
     ExtendedButton* menu;
     ExtendedButton* sound;
     ExtendedButton* services;
     ExtendedButton* restore;
     ExtendedButton* noad;
+    ExtendedButton* steps;
+    Facebook facebook;
   };
 
   Buttons buttons;
+
+  Entity* line1;
+  Entity* line2;
 
   /**
    *

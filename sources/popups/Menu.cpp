@@ -100,7 +100,7 @@ void Menu::onEnter()
     case STATE_FINISH:
     if(Director::getInstance()->getCaptureState())
     {
-      Application->environment->capture->add();
+      Application->environment->capture->add(Application->getCenter().x, Application->getCenter().y);
     }
     break;
   }

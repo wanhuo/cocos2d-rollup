@@ -35,6 +35,13 @@
         "size": 28
       }
     ],
+    "@buttons.announce": [
+      {
+        "title": "SHARE GIF +$1",
+        "font": "msyi",
+        "size": 46
+      }
+    ],
     "@buttons.unlock.currency": [
       {
         "title": "$1",

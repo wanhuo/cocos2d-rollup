@@ -39,7 +39,7 @@ Capture::Capture()
 this->buttons.announce->onAction();
 })
 {
-  this->buttons.announce = new AnnounceButton(this, [=] () {
+  this->buttons.announce = new AnnounceButton(Application, [=] () {
     Application->onShare(
       Application->getFrameWidth(),
       Application->getFrameWidth(),
@@ -54,7 +54,8 @@ this->buttons.announce->onAction();
         }
       }
     );
-  });
+  }, AnnounceButton::TYPE_LARGE);
+  this->buttons.announce->setPosition(Application->getCenter().x, Application->getCenter().y - 220.0);
   this->buttons.announce->setCameraMask(BACKGROUND);
 
   /**
@@ -63,8 +64,8 @@ this->buttons.announce->onAction();
    *
    */
   auto holder = ClippingNode::create();
-  holder->setAlphaThreshold(0.1f);
-  holder->setScale(0.89);
+  holder->setAlphaThreshold(0.05f);
+  holder->setScale(0.88);
   holder->setPosition(this->getWidth() / 2, this->getHeight() / 2);
   holder->setCascadeOpacityEnabled(true);
   holder->setStencil(
@@ -79,6 +80,13 @@ this->buttons.announce->onAction();
    *
    */
   this->element = new Entity(holder, true);
+
+  /**
+   *
+   *
+   *
+   */
+  this->elements = new Pool(new Entity(this->textureFileName), this);
 
   /**
    *
@@ -114,18 +122,9 @@ void Capture::onCreate()
    *
    *
    */
-  this->setPosition(Application->getCenter().x, Application->getCenter().y);
-  this->setScale(1.8);
-  this->setOpacity(0.0);
-
-  /**
-   *
-   *
-   *
-   */
   this->element->initWithTexture(Director::getInstance()->getCaptureTextures(this->index));
-  this->element->setScaleX(1.0 * 0.6);
-  this->element->setScaleY(-1.0 * 0.6);
+  this->element->setScaleX(1.0 * 1.1);
+  this->element->setScaleY(-1.0 * 1.1);
 
   /**
    *
@@ -138,6 +137,13 @@ void Capture::onCreate()
 void Capture::onDestroy(bool action)
 {
   ExtendedButton::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->elements->clear();
 }
 
 /**
@@ -154,18 +160,16 @@ void Capture::onAdd()
    *
    *
    */
-  this->buttons.announce->add(this->getWidth() / 2, -20.0);
-  this->buttons.announce->stopAllActions();
-  this->buttons.announce->setScale(0.2);
-  this->buttons.announce->runAction(
-    Spawn::create(
-      EaseSineOut::create(
-        ScaleTo::create(0.5, 0.4)
-      ),
+  this->buttons.announce->add();
+
+  /**
+   *
+   *
+   *
+   */
+  this->runAction(
+    RepeatForever::create(
       Sequence::create(
-        EaseSineOut::create(
-          FadeTo::create(0.5, 255.0)
-        ),
         CallFunc::create([=] () {
 
           /**
@@ -173,11 +177,37 @@ void Capture::onAdd()
            *
            *
            */
-          this->buttons.announce->onAdd();
+          auto element = this->elements->_create();
+
+          element->setScale(1.0);
+          element->setOpacity(255);
+          element->setLocalZOrder(-1);
+          element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+          element->setCameraMask(BACKGROUND);
+          element->runAction(
+            Spawn::create(
+              Sequence::create(
+                EaseSineInOut::create(
+                  ScaleTo::create(1.0, 1.5)
+                ),
+                nullptr
+              ),
+              Sequence::create(
+                EaseSineInOut::create(
+                  FadeTo::create(1.0, 0.0)
+                ),
+                CallFunc::create([=] () {
+                element->_destroy();
+                }),
+                nullptr
+              ),
+              nullptr
+            )
+          );
         }),
+        DelayTime::create(0.5),
         nullptr
-      ),
-      nullptr
+      )
     )
   );
 }
@@ -185,92 +215,13 @@ void Capture::onAdd()
 void Capture::onRemove()
 {
   ExtendedButton::onRemove();
-}
 
-/**
- *
- *
- *
- */
-void Capture::add(float x, float y)
-{
-  if(!this->state->create)
-  {
-    this->_create();
-
-    /**
-     *
-     *
-     *
-     */
-    this->runAction(
-      Spawn::create(
-        EaseSineOut::create(
-          ScaleTo::create(0.5, 2.0)
-        ),
-        Sequence::create(
-          EaseSineOut::create(
-            FadeTo::create(0.5, 255.0)
-          ),
-          CallFunc::create([=] () {
-
-            /**
-             *
-             *
-             *
-             */
-            this->onAdd();
-          }),
-          nullptr
-        ),
-        nullptr
-      )
-    );
-  }
-}
-
-void Capture::remove(bool action)
-{
-  if(this->state->create)
-  {
-    this->onRemove();
-
-    /**
-     *
-     *
-     *
-     */
-    this->buttons.announce->remove(action);
-
-    /**
-     *
-     *
-     *
-     */
-    this->runAction(
-      Spawn::create(
-        EaseSineIn::create(
-          ScaleTo::create(0.5, 1.8)
-        ),
-        Sequence::create(
-          EaseSineIn::create(
-            FadeTo::create(0.5 - 0.1, 0.0)
-          ),
-          CallFunc::create([=] () {
-
-            /**
-             *
-             *
-             *
-             */
-            this->_destroy(action);
-          }),
-          nullptr
-        ),
-        nullptr
-      )
-    );
-  }
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.announce->remove();
 }
 
 /**

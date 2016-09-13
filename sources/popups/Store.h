@@ -90,6 +90,7 @@ class Store : public Popup
 
     float price;
 
+    Entity* texture;
     TiledEntity* icon;
 
     /**
@@ -172,6 +173,7 @@ class Store : public Popup
     ExtendedButton* rate;
     ExtendedButton* video;
     ExtendedButton* present;
+    ExtendedButton* services;
     ExtendedButton* next;
     ExtendedButton* announce;
   };
@@ -218,6 +220,7 @@ class Store : public Popup
   virtual void onShare();
   virtual void onRate();
   virtual void onNext();
+  virtual void onServices();
 
   /**
    *
