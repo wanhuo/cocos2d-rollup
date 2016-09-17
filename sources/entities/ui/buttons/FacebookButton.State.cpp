@@ -38,17 +38,19 @@ FacebookButton::State::State(Node* parent, bool autocreate)
 : ExtendedButton("ui/button-facebook-state.png", 2, 1, parent, std::bind(&FacebookButton::State::onAction, this), autocreate)
 {
   this->text = new Text("@facebook.state.connect", this, TextHAlignment::LEFT, true);
-  this->text->setPosition(55, this->getHeight() / 2 - 6);
+  this->text->setPosition(60, this->getHeight() / 2 + 1);
   this->text->enableBold();
 
-  this->currency = new Text("@buttons.facebook.currency", this, TextHAlignment::RIGHT, true);
-  this->currency->setPosition(this->getWidth() - 62, this->getHeight() / 2 - 6);
-  this->currency->enableBold();
-  this->currency->data(200);
-
   this->icon = new Entity("ui/button-currency-icon.png", this, true);
-  this->icon->setScale(0.7);
-  this->icon->setPosition(this->getWidth() - 40, this->getHeight() / 2);
+  this->icon->setScale(0.6);
+  this->icon->setCascadeOpacityEnabled(true);
+  this->icon->setPosition(this->getWidth() - 35, this->getHeight() / 2);
+
+  this->currency = new Text("@buttons.facebook.currency", this->icon, TextHAlignment::RIGHT, true);
+  this->currency->setScale(1.6);
+  this->currency->setPosition(-5, this->icon->getHeight() / 2 + 3);
+  this->currency->data(200);
+  this->currency->enableBold();
 
   /**
    *

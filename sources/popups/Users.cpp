@@ -50,11 +50,6 @@ Users::Users()
 {
   instance = this;
 
-  struct utsname systemInfo;
-  uname(&systemInfo);
-auto a =
-  systemInfo.machine;
-  auto b = a;
   /**
    *
    *
@@ -158,6 +153,7 @@ void Users::onEnter()
    *
    *
    */
+  this->invitations.clear();
   this->listen = false;
 
   /**

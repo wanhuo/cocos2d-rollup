@@ -48,6 +48,7 @@
 #include "UnlockButton.h"
 #include "AnnounceButton.h"
 #include "SoundButton.h"
+#include "StepsButton.h"
 #include "FacebookButton.h"
 
 #include "Element.h"

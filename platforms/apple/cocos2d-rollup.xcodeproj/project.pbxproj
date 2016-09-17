@@ -102,6 +102,9 @@
 		7866BFEC1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */; };
 		7866BFED1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */; };
 		7866BFEE1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */; };
+		7866BFF11D8DBEE700E7EBCF /* StepsButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEF1D8DBEE700E7EBCF /* StepsButton.cpp */; };
+		7866BFF21D8DBEE700E7EBCF /* StepsButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEF1D8DBEE700E7EBCF /* StepsButton.cpp */; };
+		7866BFF31D8DBEE700E7EBCF /* StepsButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEF1D8DBEE700E7EBCF /* StepsButton.cpp */; };
 		787239781D521E36007BD010 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239751D521E36007BD010 /* Bolts.framework */; };
 		787239791D521E36007BD010 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239761D521E36007BD010 /* FBSDKCoreKit.framework */; };
 		7872397A1D521E36007BD010 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239771D521E36007BD010 /* FBSDKLoginKit.framework */; };
@@ -384,6 +387,8 @@
 		7843ACE11C2250060011F47C /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		785545EC1CD8CA2F00B58ED0 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../../resource/Models; sourceTree = "<group>"; };
 		7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacebookButton.Invite.cpp; sourceTree = "<group>"; };
+		7866BFEF1D8DBEE700E7EBCF /* StepsButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StepsButton.cpp; sourceTree = "<group>"; };
+		7866BFF01D8DBEE700E7EBCF /* StepsButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StepsButton.h; sourceTree = "<group>"; };
 		787239751D521E36007BD010 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		787239761D521E36007BD010 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		787239771D521E36007BD010 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -956,6 +961,8 @@
 				78B93DCE1D819356004FA0DE /* AnnounceButton.h */,
 				78B93DD21D81D274004FA0DE /* SoundButton.cpp */,
 				78B93DD31D81D274004FA0DE /* SoundButton.h */,
+				7866BFEF1D8DBEE700E7EBCF /* StepsButton.cpp */,
+				7866BFF01D8DBEE700E7EBCF /* StepsButton.h */,
 				78B93DEF1D86B85F004FA0DE /* FacebookButton.cpp */,
 				78B93DF01D86B85F004FA0DE /* FacebookButton.h */,
 				78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */,
@@ -1536,6 +1543,7 @@
 				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
 				787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				78B93DD01D819356004FA0DE /* AnnounceButton.cpp in Sources */,
+				7866BFF21D8DBEE700E7EBCF /* StepsButton.cpp in Sources */,
 				78B93DFE1D87E8DE004FA0DE /* Users.cpp in Sources */,
 				787B53CF1D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
 				7866BFED1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */,
@@ -1599,6 +1607,7 @@
 				7832A8BA1D10B5380059BFE3 /* AFURLResponseSerialization.m in Sources */,
 				78C35A511CEE84E200F10068 /* main.m in Sources */,
 				78B93DED1D86B058004FA0DE /* Steps.cpp in Sources */,
+				7866BFF31D8DBEE700E7EBCF /* StepsButton.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1617,6 +1626,7 @@
 				7891E88A1CF21293005C238E /* NSAnalytics.mm in Sources */,
 				783DE9581D1C096B009706B7 /* Events.mm in Sources */,
 				7891E8951CF21293005C238E /* NSSocial.mm in Sources */,
+				7866BFF11D8DBEE700E7EBCF /* StepsButton.cpp in Sources */,
 				787B539D1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				7894C0331BC9282F00363FC9 /* Game.cpp in Sources */,
 				7891E8961CF21293005C238E /* NSVote.mm in Sources */,

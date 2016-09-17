@@ -21,6 +21,12 @@
     0
   ],
   "languages": {
+    "@play.free": [
+      {
+        "title": "PLAY \"STEPS\" FOR FREE",
+        "size": 25
+      }
+    ],
     "@facebook.state.connect": [
       {
         "title": "CONNECT",
@@ -36,7 +42,7 @@
     "@facebook.add": [
       {
         "title": "ADD FRIEND",
-        "size": 2256
+        "size": 25
       }
     ],
     "@facebook.invite": [
@@ -72,7 +78,7 @@
     "@buttons.facebook.currency": [
       {
         "title": "+$1",
-        "size": 25
+        "size": 28
       }
     ],
     "@buttons.announce": [

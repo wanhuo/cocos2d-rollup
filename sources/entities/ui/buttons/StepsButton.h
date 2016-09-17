@@ -27,8 +27,8 @@
  *
  */
 
-#ifndef _STEPS_H_
-#define _STEPS_H_
+#ifndef _STEPS_BUTTON_H_
+#define _STEPS_BUTTON_H_
 
 #include "Game.h"
 
@@ -37,7 +37,7 @@
  *
  *
  */
-class Steps : public ExtendedButton
+class StepsButton : public ExtendedButton
 {
   /**
    *
@@ -45,7 +45,6 @@ class Steps : public ExtendedButton
    *
    */
   private:
-  Entity* element;
 
   /**
    *
@@ -53,24 +52,20 @@ class Steps : public ExtendedButton
    *
    */
   protected:
-  Pool* elements;
-
+  Text* text;
   /**
    *
    *
    *
    */
   public:
-  Steps(Node* parent);
- ~Steps();
-
-  StepsButton* button;
+  StepsButton(Node* parent, bool autocreate = false);
+ ~StepsButton();
 
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void onAdd() override;
-  virtual void onRemove() override;
+  virtual void onAction();
 };
 
 #endif

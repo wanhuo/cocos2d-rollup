@@ -27,9 +27,6 @@
  *
  */
 
-#ifndef _STEPS_H_
-#define _STEPS_H_
-
 #include "Game.h"
 
 /**
@@ -37,40 +34,45 @@
  *
  *
  */
-class Steps : public ExtendedButton
+StepsButton::StepsButton(Node* parent, bool autocreate)
+: ExtendedButton("ui/button-steps-play.png", 2, 1, parent, std::bind(&StepsButton::onAction, this), autocreate)
 {
-  /**
-   *
-   *
-   *
-   */
-  private:
-  Entity* element;
+  this->text = new Text("@play.free", this, TextHAlignment::LEFT, true);
+  this->text->setPosition(60, this->getHeight() / 2 + 1);
+  this->text->enableBold();
 
   /**
    *
    *
    *
    */
-  protected:
-  Pool* elements;
+  this->setCascadeOpacityEnabled(true);
+}
 
-  /**
-   *
-   *
-   *
-   */
-  public:
-  Steps(Node* parent);
- ~Steps();
+StepsButton::~StepsButton()
+{
+}
 
-  StepsButton* button;
+/**
+ *
+ *
+ *
+ */
+void StepsButton::onCreate()
+{
+  ExtendedButton::onCreate();
+}
 
-  virtual void onCreate() override;
-  virtual void onDestroy(bool action = false) override;
+void StepsButton::onDestroy(bool action)
+{
+  ExtendedButton::onDestroy(action);
+}
 
-  virtual void onAdd() override;
-  virtual void onRemove() override;
-};
-
-#endif
+/**
+ *
+ *
+ *
+ */
+void StepsButton::onAction()
+{
+}

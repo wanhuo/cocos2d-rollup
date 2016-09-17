@@ -48,7 +48,7 @@ FacebookButton::Invite::Invite(Node* parent, bool autocreate)
 
   this->currency = new Text("@buttons.facebook.currency", this->icon, TextHAlignment::RIGHT, true);
   this->currency->setScale(1.6);
-  this->currency->setPosition(-5, this->icon->getHeight() / 2 + 1);
+  this->currency->setPosition(-5, this->icon->getHeight() / 2 + 3);
   this->currency->enableBold();
 
   /**

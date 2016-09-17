@@ -317,6 +317,8 @@ void Store::onEnter()
       }
     };
 
+    bool p = true;
+
     /**
      *
      * @Store.Elements
@@ -334,8 +336,10 @@ void Store::onEnter()
          *
          *
          */
-        if(this->elements->count == 4)
+        if(this->elements->count == 4 && p)
         {
+          p = false;
+
           auto a = ((Element*) this->elements->element(1))->getState();
           auto b = ((Element*) this->elements->element(2))->getState();
           auto c = ((Element*) this->elements->element(3))->getState();

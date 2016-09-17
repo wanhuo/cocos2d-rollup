@@ -36,7 +36,7 @@
  */
 Steps::Steps(Node* parent)
 : ExtendedButton("ui/capture-background.png", 1, 1, parent, [=] () {
-// @TODO:
+this->button->onAction();
 })
 {
   auto holder = ClippingNode::create();
@@ -63,6 +63,13 @@ Steps::Steps(Node* parent)
    *
    *
    */
+  this->button = new StepsButton(parent);
+
+  /**
+   *
+   *
+   *
+   */
   this->elements = new Pool(new Entity("ui/ring-pulse.png"), this);
 
   /**
@@ -71,6 +78,7 @@ Steps::Steps(Node* parent)
    *
    */
   this->setCascadeOpacityEnabled(true);
+  this->setCameraMask(BACKGROUND);
 }
 
 Steps::~Steps()
@@ -85,13 +93,6 @@ Steps::~Steps()
 void Steps::onCreate()
 {
   ExtendedButton::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  this->setCameraMask(BACKGROUND);
 }
 
 void Steps::onDestroy(bool action)
@@ -114,6 +115,13 @@ void Steps::onDestroy(bool action)
 void Steps::onAdd()
 {
   ExtendedButton::onAdd();
+
+  /**
+   *
+   *
+   *
+   */
+  this->button->add(Application->getCenter().x, Application->getCenter().y + 50);
 
   /**
    *
@@ -168,4 +176,11 @@ void Steps::onAdd()
 void Steps::onRemove()
 {
   ExtendedButton::onRemove();
+
+  /**
+   *
+   *
+   *
+   */
+  this->button->remove();
 }
