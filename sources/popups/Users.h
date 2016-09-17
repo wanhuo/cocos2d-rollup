@@ -59,11 +59,17 @@ class Users : public Popup
       TYPE_INVITE
     };
 
+    struct Buttons {
+      ExtendedButton* add;
+      ExtendedButton* remove;
+    };
+
     struct Texts {
       Text* name;
       Text* score;
     };
 
+    Buttons buttons;
     Texts texts;
 
     /**
@@ -97,6 +103,9 @@ class Users : public Popup
 
     virtual void onEnter() override;
     virtual void onExit() override;
+
+    virtual void onAdd();
+    virtual void onRemove();
 
     virtual void setType(int type);
     virtual void setData(FacebookFriend* element, float time = 0.0);

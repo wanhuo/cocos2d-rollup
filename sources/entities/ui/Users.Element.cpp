@@ -41,6 +41,12 @@ Users::Element::Element()
     );
   }
 
+  this->buttons.add = new ExtendedButton("ui/users-element-add.png", 2, 1, this, std::bind(&Users::Element::onAdd, this));
+  this->buttons.remove = new ExtendedButton("ui/users-element-remove.png", 2, 1, this, std::bind(&Users::Element::onRemove, this));
+
+  this->buttons.add->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+  this->buttons.remove->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+
   /**
    *
    *
@@ -109,9 +115,50 @@ void Users::Element::onDestroy(bool action)
  *
  *
  */
+void Users::Element::onAdd()
+{
+  this->buttons.add->runAction(
+    Sequence::create(
+      FadeTo::create(0.1, 0),
+      CallFunc::create([=] () {
+      this->buttons.add->_destroy();
+      this->buttons.remove->add();
+      }),
+      nullptr
+    )
+  );
+}
+
+void Users::Element::onRemove()
+{
+  this->buttons.remove->runAction(
+    Sequence::create(
+      FadeTo::create(0.1, 0),
+      CallFunc::create([=] () {
+      this->buttons.remove->_destroy();
+      this->buttons.add->add();
+      }),
+      nullptr
+    )
+  );
+}
+
+/**
+ *
+ *
+ *
+ */
 void Users::Element::setType(int type)
 {
   this->type = type;
+
+  /**
+   *
+   *
+   *
+   */
+  this->buttons.add->_destroy();
+  this->buttons.remove->_destroy();
 
   /**
    *
@@ -213,14 +260,28 @@ void Users::Element::setData(FacebookFriend* element, float time)
     Sequence::create(
       DelayTime::create(time),
       Spawn::create(
-        EaseSineOut::create(
-          FadeTo::create(0.5, 255.0)
+        Sequence::create(
+          EaseSineOut::create(
+            FadeTo::create(0.5, 255.0)
+          ),
+          CallFunc::create([=] () {
+          }),
+          nullptr
         ),
         nullptr
       ),
       nullptr
     )
   );
+
+  switch(this->type)
+  {
+    case TYPE_USER:
+    break;
+    case TYPE_INVITE:
+    this->buttons.add->add();
+    break;
+  }
 }
 
 /**

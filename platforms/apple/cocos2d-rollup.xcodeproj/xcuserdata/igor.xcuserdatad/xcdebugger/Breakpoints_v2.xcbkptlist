@@ -54,31 +54,31 @@
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Users::updateA(bool)"
+                  symbolName = "Users::update(bool)"
                   moduleName = "application"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/igor/Development/cocos2d-rollup/sources/popups/Users.cpp"
-                  timestampString = "495802799.354028"
+                  timestampString = "495813194.323955"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "551"
-                  endingLineNumber = "551"
-                  offsetFromSymbolStart = "144">
+                  startingLineNumber = "564"
+                  endingLineNumber = "564"
+                  offsetFromSymbolStart = "190">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Users::updateA(bool)::$_2::operator()(std::__1::vector&lt;framework::FacebookFriend*, std::__1::allocator&lt;framework::FacebookFriend*&gt; &gt;) const"
+                  symbolName = "Users::update(bool)::$_2::operator()(std::__1::vector&lt;framework::FacebookFriend*, std::__1::allocator&lt;framework::FacebookFriend*&gt; &gt;) const"
                   moduleName = "application"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/igor/Development/cocos2d-rollup/sources/popups/Users.cpp"
-                  timestampString = "495802799.354207"
+                  timestampString = "495813194.324074"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "551"
-                  endingLineNumber = "551"
-                  offsetFromSymbolStart = "1792">
+                  startingLineNumber = "564"
+                  endingLineNumber = "564"
+                  offsetFromSymbolStart = "1818">
                </Location>
             </Locations>
          </BreakpointContent>
