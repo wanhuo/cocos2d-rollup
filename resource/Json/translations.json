@@ -24,19 +24,19 @@
     "@facebook.state.connect": [
       {
         "title": "CONNECT",
-        "size": 26
+        "size": 25
       }
     ],
     "@facebook.state.disconnect": [
       {
         "title": "LOG OUT",
-        "size": 26
+        "size": 25
       }
     ],
     "@facebook.add": [
       {
         "title": "ADD FRIEND",
-        "size": 26
+        "size": 2256
       }
     ],
     "@facebook.invite": [
@@ -60,7 +60,7 @@
     "@buttons.time": [
       {
         "title": "$1:$2",
-        "size": 28
+        "size": 20
       }
     ],
     "@buttons.currency": [
@@ -107,8 +107,8 @@
     ],
     "@store.separator.1": [
       {
-        "title": "rare",
-        "size": 38,
+        "title": "Rare",
+        "size": 22,
         "color": [
           0,
           0,
@@ -118,8 +118,8 @@
     ],
     "@store.separator.2": [
       {
-        "title": "mythical",
-        "size": 38,
+        "title": "Premium",
+        "size": 22,
         "color": [
           0,
           0,
@@ -196,7 +196,7 @@
     "@store.element.currency": [
       {
         "title": "$1 $2",
-        "size": 24
+        "size": 16
       }
     ],
     "vote-title": [

@@ -150,7 +150,7 @@ class Store : public Popup
   enum Categories {
     CATEGORY_REGULAR = 1,
     CATEGORY_RARE = 2,
-    CATEGORY_MYTHICAL = 3
+    CATEGORY_PREMIUM = 3
   };
 
   struct State {

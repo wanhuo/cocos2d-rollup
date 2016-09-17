@@ -33,7 +33,7 @@ void Events::onStart()
 {
   //Storage::clear();
 
-  Director::getInstance()->setDisplayStats(true);
+  //Director::getInstance()->setDisplayStats(true);
 
   Text::FONT = "Bangla Sangam MN";
 

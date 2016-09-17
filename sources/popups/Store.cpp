@@ -149,9 +149,9 @@ Store::Store()
   auto charactersJsonData = Json_getItem(rootJsonData, "@characters");
   auto regularJsonData = Json_getItem(charactersJsonData, "@regular");
   auto rareJsonData = Json_getItem(charactersJsonData, "@rare");
-  auto mythicalJsonData = Json_getItem(charactersJsonData, "@mythical");
+  auto premiumJsonData = Json_getItem(charactersJsonData, "@premium");
 
-  for(auto state : {regularJsonData, rareJsonData, mythicalJsonData})
+  for(auto state : {regularJsonData, rareJsonData, premiumJsonData})
   {
     for(auto element = state->child; element; element = element->next)
     {
@@ -241,7 +241,7 @@ void Store::onEnter()
         position.x = 1;
         position.y++;
 
-        if(category == CATEGORY_MYTHICAL)
+        if(category == CATEGORY_PREMIUM)
         {
           position.y += 0.2;
         }
@@ -359,7 +359,7 @@ void Store::onEnter()
         this->texts.more1->data(this->count(CATEGORY_REGULAR));
         this->texts.more1->setOpacity(0);
         this->texts.more1->setScale(0.8);
-        this->texts.more1->setPosition(Application->getCenter().x, reset().y - 90);
+        this->texts.more1->setPosition(Application->getCenter().x, reset().y - 100);
         this->texts.more1->runAction(
           Spawn::create(
             Sequence::create(
@@ -399,7 +399,7 @@ void Store::onEnter()
        * | @2.Separator;
        *
        */
-      this->texts.separator2->setPosition(this->separator2->getWidth() / 2 , this->separator2->getHeight() / 2 + 5);
+      this->texts.separator2->setPosition(this->separator2->getWidth() / 2 , this->separator2->getHeight() / 2);
 
       this->separator2->_create();
       this->separator2->setCascadeOpacityEnabled(true);
@@ -457,7 +457,7 @@ void Store::onEnter()
         this->texts.more2->data(this->count(CATEGORY_RARE));
         this->texts.more2->setOpacity(0);
         this->texts.more2->setScale(0.8);
-        this->texts.more2->setPosition(Application->getCenter().x, reset().y - 90);
+        this->texts.more2->setPosition(Application->getCenter().x, reset().y - 100);
         this->texts.more2->runAction(
           Spawn::create(
             Sequence::create(
@@ -497,7 +497,7 @@ void Store::onEnter()
        * | @2.Separator;
        *
        */
-      this->texts.separator3->setPosition(this->separator3->getWidth() / 2 , this->separator3->getHeight() / 2 + 5);
+      this->texts.separator3->setPosition(this->separator3->getWidth() / 2 , this->separator3->getHeight() / 2);
 
       this->separator3->_create();
       this->separator3->setCascadeOpacityEnabled(true);
@@ -537,7 +537,7 @@ void Store::onEnter()
        */
       CC_VOOP(this->states)
       {
-        if(element.category == CATEGORY_MYTHICAL)
+        if(element.category == CATEGORY_PREMIUM)
         {
           handler(element);
         }
@@ -1332,7 +1332,7 @@ void Store::Element::onAction()
                                   case CATEGORY_RARE:
                                   separator = Store::getInstance()->separator2;
                                   break;
-                                  case CATEGORY_MYTHICAL:
+                                  case CATEGORY_PREMIUM:
                                   separator = Store::getInstance()->separator3;
                                   break;
                                 }
@@ -1506,6 +1506,7 @@ void Store::Element::setState(int state)
    *
    *
    */
+  this->texture->setScale(1.0);
   this->texture->stopAllActions();
 
   /**
@@ -1584,6 +1585,7 @@ void Store::Element::setState(int state)
   switch(this->state)
   {
     case STATE_SELECTED:
+    this->texture->setScale(1.07936507937);
     this->texture->runAction(
       RepeatForever::create(
         RotateBy::create(20.0, 360)
@@ -1600,7 +1602,7 @@ void Store::Element::setState(int state)
   switch(this->state)
   {
     case STATE_SELECTED:
-    this->texture->setLocalZOrder(1);
+    this->texture->setLocalZOrder(-1);
     break;
     case STATE_NORMAL:
     this->texture->setLocalZOrder(-1);
@@ -1624,7 +1626,7 @@ void Store::Element::setState(int state)
     this->icon->_destroy();
     break;
     case STATE_LOCKED:
-    if(this->category == CATEGORY_MYTHICAL)
+    if(this->category == CATEGORY_PREMIUM)
     {
       this->currency->_create();
       this->currency->data(convert(1.99), "USD");
