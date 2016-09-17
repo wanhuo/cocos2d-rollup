@@ -46,7 +46,7 @@ class Users : public Popup
    *
    */
   public:
-  class Element : public TiledEntity
+  class Element : public Entity
   {
     /**
      *

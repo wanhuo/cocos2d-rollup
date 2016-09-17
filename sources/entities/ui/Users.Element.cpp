@@ -29,7 +29,7 @@
  *
  */
 Users::Element::Element()
-: TiledEntity("ui/users-element-background.png", 2, 1)
+: Entity("ui/users-element-background.png")
 {
   this->element = new Entity("ui/no-picture.png", this, true);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
@@ -50,8 +50,6 @@ Users::Element::Element()
 
   this->buttons.add->setLocalZOrder(-1);
   this->buttons.remove->setLocalZOrder(-1);
-
-  this->buttons.add->bind(true, false);
 
   /**
    *
@@ -84,7 +82,7 @@ Users::Element::~Element()
  */
 void Users::Element::onEnter()
 {
-  TiledEntity::onEnter();
+  Entity::onEnter();
 
   /**
    *
@@ -96,7 +94,7 @@ void Users::Element::onEnter()
 
 void Users::Element::onExit()
 {
-  TiledEntity::onExit();
+  Entity::onExit();
 }
 
 /**
@@ -106,12 +104,12 @@ void Users::Element::onExit()
  */
 void Users::Element::onCreate()
 {
-  TiledEntity::onCreate();
+  Entity::onCreate();
 }
 
 void Users::Element::onDestroy(bool action)
 {
-  TiledEntity::onDestroy(action);
+  Entity::onDestroy(action);
 }
 
 /**
@@ -295,6 +293,7 @@ void Users::Element::setData(FacebookFriend* element, float time)
             FadeTo::create(0.5, 255.0)
           ),
           CallFunc::create([=] () {
+          this->buttons.add->bind(true, false);
           }),
           nullptr
         ),

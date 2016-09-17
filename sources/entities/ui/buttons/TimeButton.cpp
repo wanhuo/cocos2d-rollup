@@ -197,7 +197,7 @@ void TimeButton::onWait()
     this->text->_create();
     this->text->setText("@buttons.time");
     this->text->setOpacity(255);
-    this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 5);
+    this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 25);
 
     /**
      *
@@ -279,7 +279,7 @@ void TimeButton::onAction(int count, Node* element)
    *
    *
    */
-  this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 5);
+  this->text->setPosition(this->getWidth() / 2 - this->icon->getWidthScaled() / 2 - 2.0, this->getHeight() / 2 - 25);
   this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 22);
 
   /**
@@ -315,7 +315,7 @@ void TimeButton::onAction(int count, Node* element)
             FadeTo::create(0.5, 0),
             CallFunc::create([=] () {
             this->text->setText("@buttons.time");
-            this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 5);
+            this->text->setPosition(this->getWidth() / 2, this->getHeight() / 2 - 25);
             this->text->runAction(
               FadeTo::create(0.5, 255)
             );

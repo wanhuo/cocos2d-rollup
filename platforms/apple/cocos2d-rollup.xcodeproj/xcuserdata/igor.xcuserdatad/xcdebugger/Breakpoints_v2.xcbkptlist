@@ -58,11 +58,11 @@
                   moduleName = "application"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/igor/Development/cocos2d-rollup/sources/popups/Users.cpp"
-                  timestampString = "495830994.677486"
+                  timestampString = "495833338.002975"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "608"
-                  endingLineNumber = "608"
+                  startingLineNumber = "615"
+                  endingLineNumber = "615"
                   offsetFromSymbolStart = "136">
                </Location>
                <Location
@@ -73,11 +73,11 @@
                   moduleName = "application"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/igor/Development/cocos2d-rollup/sources/popups/Users.cpp"
-                  timestampString = "495830994.677615"
+                  timestampString = "495833338.003094"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "608"
-                  endingLineNumber = "608"
+                  startingLineNumber = "615"
+                  endingLineNumber = "615"
                   offsetFromSymbolStart = "1848">
                </Location>
             </Locations>
