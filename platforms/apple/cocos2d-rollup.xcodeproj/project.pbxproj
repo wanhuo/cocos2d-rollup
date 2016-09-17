@@ -99,6 +99,9 @@
 		7843ACDC1C224ABC0011F47C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7843ACDB1C224ABC0011F47C /* CoreGraphics.framework */; };
 		785545ED1CD8CA2F00B58ED0 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 785545EC1CD8CA2F00B58ED0 /* Models */; };
 		785545EE1CD8CA2F00B58ED0 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 785545EC1CD8CA2F00B58ED0 /* Models */; };
+		7866BFEC1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */; };
+		7866BFED1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */; };
+		7866BFEE1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */; };
 		787239781D521E36007BD010 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239751D521E36007BD010 /* Bolts.framework */; };
 		787239791D521E36007BD010 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239761D521E36007BD010 /* FBSDKCoreKit.framework */; };
 		7872397A1D521E36007BD010 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787239771D521E36007BD010 /* FBSDKLoginKit.framework */; };
@@ -380,6 +383,7 @@
 		7843ACE01C224FE30011F47C /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7843ACE11C2250060011F47C /* application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		785545EC1CD8CA2F00B58ED0 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ../../resource/Models; sourceTree = "<group>"; };
+		7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FacebookButton.Invite.cpp; sourceTree = "<group>"; };
 		787239751D521E36007BD010 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		787239761D521E36007BD010 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		787239771D521E36007BD010 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -956,6 +960,7 @@
 				78B93DF01D86B85F004FA0DE /* FacebookButton.h */,
 				78B93DF11D86B85F004FA0DE /* FacebookButton.State.cpp */,
 				78B93DEE1D86B85F004FA0DE /* FacebookButton.Add.cpp */,
+				7866BFEB1D8D969800E7EBCF /* FacebookButton.Invite.cpp */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -1533,6 +1538,7 @@
 				78B93DD01D819356004FA0DE /* AnnounceButton.cpp in Sources */,
 				78B93DFE1D87E8DE004FA0DE /* Users.cpp in Sources */,
 				787B53CF1D7EC4E100C1C17D /* VideoButton.cpp in Sources */,
+				7866BFED1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */,
 				78B93DE71D82EAE4004FA0DE /* Capture.cpp in Sources */,
 				78DF64CE1D24463B0049EB22 /* Character.cpp in Sources */,
 				78A20B421D7C9F0F00789617 /* Number.cpp in Sources */,
@@ -1550,6 +1556,7 @@
 			files = (
 				780BC3B31D89747E003DCDD6 /* Users.Element.cpp in Sources */,
 				787B53AC1D7DF59900C1C17D /* Unlock.cpp in Sources */,
+				7866BFEE1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */,
 				7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				787B53CD1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
 				7832A8BD1D10B5380059BFE3 /* AFURLSessionManager.m in Sources */,
@@ -1646,6 +1653,7 @@
 				787B53CB1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
 				78B93DEB1D86B058004FA0DE /* Steps.cpp in Sources */,
 				78B93DF21D86B85F004FA0DE /* FacebookButton.Add.cpp in Sources */,
+				7866BFEC1D8D969800E7EBCF /* FacebookButton.Invite.cpp in Sources */,
 				7828E3BD1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				78CEEB441D0C44D5000A85D4 /* YYSpriteSheetImage.m in Sources */,
 				78DF64D21D2446660049EB22 /* Element.cpp in Sources */,

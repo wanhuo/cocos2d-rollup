@@ -144,6 +144,7 @@ class Users : public Popup
     ExtendedButton* video;
     ExtendedButton* present;
     ExtendedButton* services;
+    FacebookButton::Invite* invite;
   };
 
   Buttons buttons;
@@ -162,6 +163,8 @@ class Users : public Popup
   float y;
 
   float time;
+
+  vector<Element*> invitations;
 
   /**
    *
@@ -203,6 +206,10 @@ class Users : public Popup
 
   virtual void showButtons();
   virtual void hideButtons();
+
+  virtual void invitationsCreate(Element* element);
+  virtual void invitationsDestroy(Element* element);
+  virtual void invitationsUpdate();
 
   virtual void update(bool reset = false);
 

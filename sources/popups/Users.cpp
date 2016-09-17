@@ -50,6 +50,11 @@ Users::Users()
 {
   instance = this;
 
+  struct utsname systemInfo;
+  uname(&systemInfo);
+auto a =
+  systemInfo.machine;
+  auto b = a;
   /**
    *
    *
@@ -57,7 +62,7 @@ Users::Users()
    */
   if(Support::shaders(SHADER_COMPLEX))
   {
-    this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 300, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
+    this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 400, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
     this->texture->setPosition(Application->getCenter());
     this->addChild(this->texture);
 
@@ -77,6 +82,7 @@ Users::Users()
   this->buttons.services = new ExtendedButton("ui/button-services.png", 2, 1, this, std::bind(&Users::onServices, this));
   this->buttons.present = new PresentButton(this);
   this->buttons.video = new VideoButton(this);
+  this->buttons.invite = new FacebookButton::Invite(this);
 
   /**
    *
@@ -85,12 +91,10 @@ Users::Users()
    */
   this->scroll = new BackgroundScroll(this);
   this->scroll->setDirection(cocos2d::ui::ScrollView::Direction::VERTICAL);
-  this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 300));
   this->scroll->setBounceEnabled(true);
   this->scroll->setTouchEnabled(true);
   this->scroll->setSwallowTouches(false);
   this->scroll->setScrollBarEnabled(false);
-  this->scroll->setPositionY(300);
 
   /**
    *
@@ -161,15 +165,16 @@ void Users::onEnter()
    *
    *
    */
-  this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 300));
+  this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 400));
   this->scroll->getInnerContainer()->setPosition(Vec2(0, 0));
+  this->scroll->setPositionY(400);
 
   /**
    *
    *
    *
    */
-  this->container->setPosition(0, Application->getHeight() - 300);
+  this->container->setPosition(0, Application->getHeight() - 400);
 
   /**
    *
@@ -180,7 +185,7 @@ void Users::onEnter()
   this->animation->setCameraMask(BACKGROUND);
   this->animation->setOpacity(0.0);
   this->animation->setScale(0.8);
-  this->animation->setPosition(Application->getCenter().x, (Application->getHeight() - 300) / 2 - this->animation->getHeight() / 2);
+  this->animation->setPosition(Application->getCenter().x, (Application->getHeight() - 400) / 2 - this->animation->getHeight() / 2);
   this->animation->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, 360.0)
@@ -280,7 +285,7 @@ void Users::onEnter()
       *
       *
       */
-    auto size = max(Application->getHeight() - 300, abs(this->y) + 100);
+    auto size = max(Application->getHeight() - 400, abs(this->y) + 100);
 
      /**
       *
@@ -401,6 +406,7 @@ void Users::showButtons()
   this->buttons.rate->add(Application->getCenter().x - 128, 200);
   this->buttons.share->add(Application->getCenter().x - 256, 200);
   this->buttons.present->add(Application->getCenter().x + 256, 200);
+  this->buttons.invite->add(Application->getCenter().x, 320);
 
   /**
    *
@@ -425,6 +431,48 @@ void Users::hideButtons()
   this->buttons.video->remove();
   this->buttons.present->remove();
   this->buttons.services->remove();
+  this->buttons.invite->remove();
+}
+
+/**
+ *
+ *
+ *
+ */
+void Users::invitationsCreate(Element* element)
+{
+  this->invitations.push_back(element);
+
+   /**
+    *
+    *
+    *
+    */
+  this->invitationsUpdate();
+}
+
+void Users::invitationsDestroy(Element* element)
+{
+   this->invitations.erase(
+    std::remove(
+      this->invitations.begin(),
+      this->invitations.end(),
+      element
+    ),
+    this->invitations.end()
+  );
+
+   /**
+    *
+    *
+    *
+    */
+  this->invitationsUpdate();
+}
+
+void Users::invitationsUpdate()
+{
+  this->buttons.invite->update(this->invitations.size());
 }
 
 /**
@@ -484,8 +532,8 @@ void Users::update(bool reset)
     *
     *
     */
-    auto size = max(Application->getHeight() - 300, abs(this->y) + 100);
-    auto position = Application->getHeight() - size - 300;
+    auto size = max(Application->getHeight() - 400, abs(this->y) + 100);
+    auto position = Application->getHeight() - size - 400;
 
     /**
      *

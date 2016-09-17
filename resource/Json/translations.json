@@ -24,22 +24,25 @@
     "@facebook.state.connect": [
       {
         "title": "CONNECT",
-        "font": "Bangla Sangam MN",
         "size": 26
       }
     ],
     "@facebook.state.disconnect": [
       {
         "title": "LOG OUT",
-        "font": "Bangla Sangam MN",
         "size": 26
       }
     ],
     "@facebook.add": [
       {
         "title": "ADD FRIEND",
-        "font": "Bangla Sangam MN",
         "size": 26
+      }
+    ],
+    "@facebook.invite": [
+      {
+        "title": "INVITE FRIENDS",
+        "size": 25
       }
     ],
     "@facebook.user.name": [
@@ -57,63 +60,54 @@
     "@buttons.time": [
       {
         "title": "$1:$2",
-        "font": "msyi",
         "size": 28
       }
     ],
     "@buttons.currency": [
       {
         "title": "+$1",
-        "font": "msyi",
-        "size": 28
+        "size": 26
       }
     ],
     "@buttons.facebook.currency": [
       {
         "title": "+$1",
-        "font": "Bangla Sangam MN",
-        "size": 28
+        "size": 25
       }
     ],
     "@buttons.announce": [
       {
         "title": "SHARE GIF +$1",
-        "font": "msyi",
         "size": 46
       }
     ],
     "@buttons.unlock.currency": [
       {
         "title": "$1",
-        "font": "msyi",
         "size": 56
       }
     ],
     "@counter.number": [
       {
         "title": "$1",
-        "font": "msyi",
         "size": 120
       }
     ],
     "@counter.currency": [
       {
         "title": "$1",
-        "font": "msyi",
         "size": 54
       }
     ],
     "@store.more": [
       {
         "title": "+$1 more",
-        "font": "msyi",
-        "size": 36
+        "size": 20
       }
     ],
     "@store.separator.1": [
       {
         "title": "rare",
-        "font": "msyi",
         "size": 38,
         "color": [
           0,
@@ -125,7 +119,6 @@
     "@store.separator.2": [
       {
         "title": "mythical",
-        "font": "msyi",
         "size": 38,
         "color": [
           0,
@@ -137,326 +130,270 @@
     "@store.connect": [
       {
         "title": "",
-        "font": "msyi",
         "size": 36
       }
     ],
     "@store.connect.1": [
       {
         "title": "Connecting to Facebook...",
-        "font": "msyi",
         "size": 36
       }
     ],
     "@store.connect.2": [
       {
         "title": "Connecting to Twitter...",
-        "font": "msyi",
         "size": 36
       }
     ],
     "@store.connect.3": [
       {
         "title": "Connecting to Instagram...",
-        "font": "msyi",
         "size": 36
       }
     ],
     "@store.connect.4": [
       {
         "title": "Connecting to App Store...",
-        "font": "msyi",
         "size": 36
       }
     ],
     "@buttons.unlock.character": [
       {
         "title": "",
-        "font": "msyi",
         "size": 64
       }
     ],
     "@buttons.unlock.character.1": [
       {
         "title": "What is inside?",
-        "font": "msyi",
         "size": 64
       }
     ],
     "@buttons.unlock.character.2": [
       {
         "title": "Oh, new character?",
-        "font": "msyi",
         "size": 64
       }
     ],
     "@store.new.character": [
       {
         "title": "",
-        "font": "msyi",
         "size": 64
       }
     ],
     "@store.new.character.1": [
       {
         "title": "I've got new character!",
-        "font": "msyi",
         "size": 64
       }
     ],
     "@store.new.character.2": [
       {
         "title": "Look! This is new character!",
-        "font": "msyi",
         "size": 64
       }
     ],
     "@store.element.currency": [
       {
         "title": "$1 $2",
-        "font": "msyi",
         "size": 24
       }
     ],
     "vote-title": [
       {
         "title": "Please rate us",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Пожалуйста проголосуйте за нас",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Avalia-nos",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Veuillez nous noter",
-        "font": "square",
         "size": 0
       }
     ],
     "vote-description": [
       {
         "title": "If you enjoy this game, would you mind taking a moment to rate it? It won't take more than a minute.\nThanks for your support!",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Если вам понравилась эта игра, пожалуйста проголосуйте за нас! Это не займет больше минуты.\nБольшое спасибо за поддержку!",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Se gostas deste jogo, avalia-o já! Não demora mais do que 1 minuto! Agradecemos o teu apoio!",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Si vous aimez ce jeu, pourriez-vous prendre un moment pour le noter? Cela ne prendra pas plus d'une minute. Merci de votre aide!",
-        "font": "square",
         "size": 0
       }
     ],
     "vote-1": [
       {
         "title": "Rate It Now",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Проголосовать сейчас",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Avalia já",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Notez-le maintenant",
-        "font": "square",
         "size": 0
       }
     ],
     "vote-2": [
       {
         "title": "Remind Me Later",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Напомнить позже",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Lembra-me mais tarde",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Me le rappeler plus tard",
-        "font": "square",
         "size": 0
       }
     ],
     "vote-3": [
       {
         "title": "No, Thanks",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Нет, спасибо",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Não, obrigado",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Non merci",
-        "font": "square",
         "size": 0
       }
     ],
     "purchases-error-title": [
       {
         "title": "In-App Purchases",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Внутриигровые покупки",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Compras de In-App",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Achats intégrés dans l'appli",
-        "font": "square",
         "size": 0
       }
     ],
     "purchases-error-message": [
       {
         "title": "Sorry, but no in-app purchases available now. Please try again later.",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Извините, но в данный момент невозможно выполнить внутриигровую покупку. Пожалуйста, попробуйте позже.",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Pedimos desculpa, mas não existem comrpas de In-App disponíveis de momento. Tente mais tarde.",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Désolé, mais il n'y a pas d'achats intégrés dans l'appli disponibles maintenant. Veuillez réessayer plus tard.",
-        "font": "square",
         "size": 0
       }
     ],
     "restore-purchases-title": [
       {
         "title": "Restore purchases",
-        "font": "Impact",
         "size": 32
       },
       {
         "title": "Восстановление покупок",
-        "font": "Impact",
         "size": 32
       },
       {
         "title": "Recuperar compras",
-        "font": "Impact",
         "size": 32
       },
       {
         "title": "Restaurer les achats",
-        "font": "Impact",
         "size": 32
       }
     ],
     "restore-purchases-successful-message": [
       {
         "title": "Your previous purchases was successful restored!",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Ваши предыдущие внутриигровые покупки были успешно восстановлены!",
-        "font": "square",
         "size": 0
       },
       {
         "title": "As suas compras foram recuperadas com sucesso!",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Vos achats précédents ont été restaurés avec succès!",
-        "font": "square",
         "size": 0
       }
     ],
     "restore-purchases-error-message": [
       {
         "title": "Sorry, no previous purchases could be restored.",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Извините, но предыдущие внутриигровые покупки не могут быть восстановлены.",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Pedimos desculpa, não foi possível recuperar as compras.",
-        "font": "square",
         "size": 0
       },
       {
         "title": "Désolé, les achats précédents n'ont pas pu être restaurés.",
-        "font": "square",
         "size": 0
       }
     ],
     "share-message": [
       {
-        "title": "OMG! I scored $1 points in #Steps! Can you beat my score? ",
-        "font": "square",
+        "title": "OMG! I scored $1 points in #BriskBall! Can you beat my score? ",
         "size": 0
       },
       {
-        "title": "ОГО! Я набрал $1 очков в игре #Steps! Можешь побить мой рекорд? ",
-        "font": "square",
+        "title": "ОГО! Я набрал $1 очков в игре #BriskBall! Можешь побить мой рекорд? ",
         "size": 0
       },
       {
-        "title": "OMG! I consegui $1 pontos no #Steps! Consegues bater o meu recorde? ",
-        "font": "square",
+        "title": "OMG! I consegui $1 pontos no #BriskBall! Consegues bater o meu recorde? ",
         "size": 0
       },
       {
-        "title": "OMG! J'ai obtenu $1 points pour avoir joué #Steps! ",
-        "font": "square",
+        "title": "OMG! J'ai obtenu $1 points pour avoir joué #BriskBall! ",
         "size": 0
       }
     ]

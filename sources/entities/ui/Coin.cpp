@@ -81,7 +81,10 @@ void Coin::onDestroy(bool action)
 void Coin::animate(Node* element)
 {
   auto v = Vec2(0, 0);
-  auto c = element->getPosition();
+  auto c = element->convertToWorldSpace(Vec2::ZERO);
+
+  c.x += element->getContentSize().width / 2;
+  c.y += element->getContentSize().height / 2;
 
   auto r = random(30.0, 100.0);
   auto a = random(0.0, 360.0);

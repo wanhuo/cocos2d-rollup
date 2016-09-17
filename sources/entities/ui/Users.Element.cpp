@@ -57,12 +57,12 @@ Users::Element::Element()
    *
    */
   this->texts.name = new Text("@facebook.user.name", this, TextHAlignment::LEFT, true);
-  this->texts.name->setPosition(130, this->getHeight() / 2 - 5);
-  this->texts.name->enableBold();
+  this->texts.name->setPosition(130, this->getHeight() / 2 - 2);
+  //this->texts.name->enableBold();
 
   this->texts.score = new Text("@facebook.user.score", this, TextHAlignment::RIGHT, true);
-  this->texts.score->setPosition(Application->getWidth() - 110, this->getHeight() / 2 - 5);
-  this->texts.score->enableBold();
+  this->texts.score->setPosition(Application->getWidth() - 110, this->getHeight() / 2 - 2);
+  //this->texts.score->enableBold();
 
   /**
    *
@@ -121,47 +121,56 @@ void Users::Element::onDestroy(bool action)
  */
 void Users::Element::onAdd()
 {
-  this->buttons.add->runAction(
-    Sequence::create(
-      FadeTo::create(0.1, 0),
-      CallFunc::create([=] () {
-      this->buttons.add->_destroy();
+  Application->counter->currency.handler->add(20, this);
 
-      /**
-       *
-       *
-       *
-       */
-      this->buttons.remove->_create();
-      this->buttons.remove->setScale(0.0);
-      this->buttons.remove->setOpacity(255.0);
-      this->buttons.remove->runAction(
-        Sequence::create(
-          ScaleTo::create(0.1, 1.0),
-          CallFunc::create([=] () {
-          this->buttons.remove->bind(true, false);
-          }),
-          nullptr
-        )
-      );
-      }),
+  this->buttons.remove->_create();
+  this->buttons.remove->setScale(0.0);
+  this->buttons.remove->setRotation(90.0);
+  this->buttons.remove->setOpacity(255.0);
+  this->buttons.remove->runAction(
+    Spawn::create(
+      RotateTo::create(0.1, 0.0),
+      Sequence::create(
+        ScaleTo::create(0.1, 1.0),
+        CallFunc::create([=] () {
+        this->buttons.remove->bind(true, false);
+        }),
+        nullptr
+      ),
       nullptr
     )
   );
+
+  this->buttons.add->bind(false);
+
+  /**
+   *
+   *
+   *
+   */
+  Users::getInstance()->invitationsCreate(this);
 }
 
 void Users::Element::onRemove()
 {
   this->buttons.remove->runAction(
     Sequence::create(
-      FadeTo::create(0.1, 0),
+      ScaleTo::create(0.1, 0.0),
       CallFunc::create([=] () {
       this->buttons.remove->_destroy();
-      this->buttons.add->add();
       }),
       nullptr
     )
   );
+
+  this->buttons.add->bind(true, false);
+
+  /**
+   *
+   *
+   *
+   */
+  Users::getInstance()->invitationsDestroy(this);
 }
 
 /**
