@@ -64,8 +64,8 @@ Settings::Settings()
   this->buttons.facebook.state = new FacebookButton::State(this);
   this->buttons.facebook.add = new FacebookButton::Add(this);
 
-  this->line1 = new Entity("ui/settings-line.png", this, true);
-  this->line2 = new Entity("ui/settings-line.png", this, true);
+  this->line1 = new Entity("ui/separator-2.png", this, true);
+  this->line2 = new Entity("ui/separator-2.png", this, true);
 
   this->line1->setPosition(Application->getCenter().x, Application->getCenter().y - 15);
   this->line2->setPosition(Application->getCenter().x, Application->getCenter().y - 200);

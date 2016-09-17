@@ -195,6 +195,14 @@ Game::Game()
     );
   }
 
+  if(Support::shaders(SHADER_SIMPLE))
+  {
+    GLProgramCache::getInstance()->addGLProgram(
+      GLProgram::createWithFilenames("shader.main.mask.vert", "shader.main.mask.frag"),
+      "@shader.main.mask"
+    );
+  }
+
   /**
    *
    * @Director
@@ -217,6 +225,7 @@ Game::Game()
    *
    */
   //Music->play("music-1", true);
+  this->_defaultCamera = this->cameras.cameraBackground;
 }
 
 Game::~Game()

@@ -55,13 +55,16 @@ Users::Users()
    *
    *
    */
-  this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 300, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8_OES);
-  this->texture->setPosition(Application->getCenter());
-  this->addChild(this->texture);
+  if(Support::shaders(SHADER_COMPLEX))
+  {
+    this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 300, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
+    this->texture->setPosition(Application->getCenter());
+    this->addChild(this->texture);
 
-  this->texture->getSprite()->setGLProgram(GLProgramCache::getInstance()->getGLProgram("@shader.opacity.vertical"));
-  this->texture->getSprite()->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
-  this->texture->getSprite()->getTexture()->setAntiAliasTexParameters();
+    this->texture->getSprite()->setGLProgram(GLProgramCache::getInstance()->getGLProgram("@shader.opacity.vertical"));
+    this->texture->getSprite()->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
+    this->texture->getSprite()->getTexture()->setAntiAliasTexParameters();
+  }
 
   /**
    *
@@ -94,14 +97,29 @@ Users::Users()
    *
    *
    */
-  this->elements = new Pool(new Element, this->scroll);
+  this->container = new Background(this->scroll);
 
   /**
    *
    *
    *
    */
-  this->loader = new Entity("ui/loader.png", this->scroll);
+  this->elements = new Pool(new Element, this->container);
+
+  /**
+   *
+   *
+   *
+   */
+  this->animation = new Entity("ui/animation.png", this->container);
+  this->separator = new Entity("ui/separator-2.png", this->container);
+
+  /**
+   *
+   *
+   *
+   */
+  this->setScheduleUpdate(true);
 }
 
 Users::~Users()
@@ -122,31 +140,21 @@ void Users::onEnter()
    *
    *
    */
-  auto position = Vec2(Application->getCenter().x, 200.0);
+  this->showButtons();
 
   /**
    *
    *
    *
    */
-  this->buttons.menu->add(position.x, position.y);
-  this->buttons.rate->add(position.x - 128, position.y);
-  this->buttons.share->add(position.x - 256, position.y);
-  this->buttons.present->add(position.x + 256, position.y);
+  this->elements->clear();
 
   /**
    *
    *
    *
    */
-  if(Heyzap::available(AD_TYPE_VIDEO))
-  {
-    this->buttons.video->add(position.x + 128, position.y);
-  }
-  else
-  {
-    this->buttons.services->add(position.x + 128, position.y);
-  }
+  this->listen = false;
 
   /**
    *
@@ -154,24 +162,31 @@ void Users::onEnter()
    *
    */
   this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 300));
-  this->scroll->setPositionY(300);
+  this->scroll->getInnerContainer()->setPosition(Vec2(0, 0));
 
   /**
    *
    *
    *
    */
-  this->loader->_create();
-  this->loader->setCameraMask(BACKGROUND);
-  this->loader->setOpacity(0.0);
-  this->loader->setScale(0.8);
-  this->loader->setPosition(Application->getCenter().x, (Application->getHeight() - 300 / 2) / 2);
-  this->loader->runAction(
+  this->container->setPosition(0, Application->getHeight() - 300);
+
+  /**
+   *
+   *
+   *
+   */
+  this->animation->_create();
+  this->animation->setCameraMask(BACKGROUND);
+  this->animation->setOpacity(0.0);
+  this->animation->setScale(0.8);
+  this->animation->setPosition(Application->getCenter().x, (Application->getHeight() - 300) / 2 - this->animation->getHeight() / 2);
+  this->animation->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, 360.0)
     )
   );
-  this->loader->runAction(
+  this->animation->runAction(
     Spawn::create(
       EaseSineOut::create(
         ScaleTo::create(0.5, 1.0)
@@ -188,51 +203,84 @@ void Users::onEnter()
    *
    *
    */
-  Facebook::friends->get([=] (vector<FacebookFriend*> elements) {
-    this->loader->_destroy();
+  this->x =  100.0;
+  this->y = -200.0;
 
-    /**
-     *
-     *
-     *
-     */
-    auto x = 200.0;
-    auto y = Application->getHeight() - 200;
+  /**
+   *
+   *
+   *
+   */
+  this->time = 0.0;
 
-    auto time = 0.0;
-
+  /**
+   *
+   * @Facebook
+   * | @Getting scores of user who have played this application;
+   */
+  Facebook::score->get([=] (vector<FacebookFriend*> elements) {
     CC_VOOP(elements)
     {
-      auto el = (Element*) this->elements->_create();
+      auto current = (Element*) this->elements->_create();
 
-      el->setPosition(x, y);
-      el->setCameraMask(BACKGROUND);
-      el->data(element);
+      current->setPosition(this->x, this->y);
+      current->setType(Element::TYPE_USER);
+      current->setData(element, this->time);
 
       /**
        *
        *
        *
        */
-      y -= 150;
-    }
+      this->y -= 110;
 
-     /**
-      *
-      *
-      *
-      */
-    auto size = max(Application->getHeight() - 300, Application->getHeight() - this->elements->last()->getPositionY() + 200);
-    auto position = Application->getHeight() - size - 300;
+      /**
+       *
+       *
+       *
+       */
+      this->time += 0.1;
+    }
 
     /**
      *
      *
      *
      */
-    this->scroll->stopAutoScroll();
-    this->scroll->setTouchEnabled(true);
-    this->scroll->getInnerContainer()->setPosition(Vec2(0, position));
+    this->separator->_create();
+    this->separator->setCameraMask(BACKGROUND);
+    this->separator->setPosition(Application->getCenter().x, this->y);
+    this->separator->setScale(0.8);
+    this->separator->setOpacity(0.0);
+    this->separator->runAction(
+      Sequence::create(
+        DelayTime::create(this->time),
+        Spawn::create(
+          EaseSineOut::create(
+            ScaleTo::create(0.2, 1.0)
+          ),
+          EaseSineOut::create(
+            FadeTo::create(0.2, 255.0)
+          ),
+          nullptr
+        ),
+        nullptr
+      )
+    );
+
+    /**
+     *
+     *
+     *
+     */
+    this->y -= 110;
+
+     /**
+      *
+      *
+      *
+      */
+    auto size = max(Application->getHeight() - 300, abs(this->y) + 100);
 
      /**
       *
@@ -245,29 +293,20 @@ void Users::onEnter()
         size
       )
     );
+    this->container->setPosition(0, size);
 
     /**
      *
      *
      *
      */
-    for(auto element : this->scroll->getChildren())
-    {
-      element->setPositionY(element->getPositionY() - Application->getHeight() + size);
-    }
+    this->update(true);
   });
 }
 
 void Users::onExit()
 {
   Popup::onExit();
-
-  /**
-   *
-   *
-   *
-   */
-  this->elements->clear();
 
   /**
    *
@@ -330,6 +369,56 @@ void Users::hide()
    *
    *
    */
+  this->hideButtons();
+
+  /**
+   *
+   *
+   *
+   */
+  for(auto element : this->container->getChildren())
+  {
+    element->stopAllActions();
+    element->runAction(
+      Spawn::create(
+        EaseSineIn::create(
+          FadeTo::create(0.25, 0.0)
+        ),
+        nullptr
+      )
+    );
+  }
+}
+
+/**
+ *
+ *
+ *
+ */
+void Users::showButtons()
+{
+  this->buttons.menu->add(Application->getCenter().x, 200);
+  this->buttons.rate->add(Application->getCenter().x - 128, 200);
+  this->buttons.share->add(Application->getCenter().x - 256, 200);
+  this->buttons.present->add(Application->getCenter().x + 256, 200);
+
+  /**
+   *
+   *
+   *
+   */
+  if(Heyzap::available(AD_TYPE_VIDEO))
+  {
+    this->buttons.video->add(Application->getCenter().x + 128, 200);
+  }
+  else
+  {
+    this->buttons.services->add(Application->getCenter().x + 128, 200);
+  }
+}
+
+void Users::hideButtons()
+{
   this->buttons.menu->remove();
   this->buttons.share->remove();
   this->buttons.rate->remove();
@@ -343,6 +432,154 @@ void Users::hide()
  *
  *
  */
+void Users::update(bool reset)
+{
+  this->listen = false;
+
+  /**
+   *
+   *
+   *
+   */
+  if(!reset) this->time = 0.0;
+
+  /**
+   *
+   *
+   *
+   */
+  Facebook::friends->get([=] (vector<FacebookFriend*> elements) {
+    this->animation->_destroy();
+
+    /**
+     *
+     *
+     *
+     */
+    CC_VOOP(elements)
+    {
+      auto current = (Element*) this->elements->_create();
+
+      current->setPosition(this->x, this->y);
+      current->setType(Element::TYPE_INVITE);
+      current->setData(element, this->time);
+
+      /**
+       *
+       *
+       *
+       */
+      this->y -= 110;
+
+      /**
+       *
+       *
+       *
+       */
+      this->time += 0.1;
+    }
+
+   /**
+    *
+    *
+    *
+    */
+    auto size = max(Application->getHeight() - 300, abs(this->y) + 100);
+    auto position = Application->getHeight() - size - 300;
+
+    /**
+     *
+     *
+     *
+     */
+    if(elements.size())
+    {
+      this->scroll->stopAutoScroll();
+    }
+
+     /**
+      *
+      *
+      *
+      */
+    this->scroll->setInnerContainerSize(
+      Size(
+        Application->getWidth(),
+        size
+      )
+    );
+    auto test = (this->scroll->getInnerContainer()->getPositionY() - 110 * elements.size());
+    this->scroll->getInnerContainer()->setPosition(
+      Vec2(
+        0.0,
+        (reset ? position :  test)
+      )
+    );
+    this->container->setPosition(0, size);
+
+    /**
+     *
+     *
+     *
+     */
+    if(elements.size() >= 10)
+    {
+      Application->runAction(
+        Sequence::create(
+          DelayTime::create(this->time),
+          CallFunc::create([=] () {
+            this->listen = true;
+          }),
+          nullptr
+        )
+      );
+
+      /**
+       *
+       *
+       *
+       */
+      this->animation->_create();
+      this->animation->setCameraMask(BACKGROUND);
+      this->animation->setOpacity(0.0);
+      this->animation->setScale(0.2);
+      this->animation->setPosition(Application->getCenter().x, this->y);
+      this->animation->runAction(
+        RepeatForever::create(
+          RotateBy::create(1.0, 360.0)
+        )
+      );
+      this->animation->runAction(
+        Spawn::create(
+          EaseSineOut::create(
+            ScaleTo::create(0.5, 0.3)
+          ),
+          EaseSineOut::create(
+            FadeTo::create(0.5, 255.0)
+          ),
+          nullptr
+        )
+      );
+    }
+  }, reset);
+}
+
+/**
+ *
+ *
+ *
+ */
+void Users::update(float time)
+{
+  if(this->listen)
+  {
+    if(this->scroll->getInnerContainer()->getPositionY() > -200.0)
+    {
+      this->update();
+    }
+  }
+}
+
 void Users::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags)
 {
   if(Support::shaders(SHADER_COMPLEX))
@@ -366,165 +603,4 @@ void Users::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t pare
    *
    */
   Popup::visit(renderer, parentTransform, parentFlags);
-}
-
-/**
- * Tooflya Inc. Development
- *
- * @author Igor Mats from Tooflya Inc.
- * @copyright (c) by Igor Mats
- * http://www.tooflya.com/development/
- *
- *
- * License: Tooflya Inc. Software License v1.
- *
- * Licensee may not use this software for commercial purposes. For the purpose of this license,
- * commercial purposes means that a 3rd party has to pay in order to access Software or that
- * the Website that runs Software is behind a paywall. In consideration of the License granted
- * under clause 2, Licensee shall pay Licensor a fee, via Credit-Card, PayPal or any other
- * mean which Licensor may deem adequate. Failure to perform payment shall construe as material
- * breach of this Agreement. This software is provided under an AS-IS basis and without any support,
- * updates or maintenance. Nothing in this Agreement shall require Licensor to provide Licensee with
- * support or fixes to any bug, failure, mis-performance or other defect in The Software.
- *
- * @cocos2d
- *
- */
-
-Users::Element::Element()
-: Entity("ui/picture-background.png")
-{
-  auto holder = ClippingNode::create();
-  holder->setAlphaThreshold(0.05f);
-  holder->setScale(0.88);
-  holder->setPosition(this->getWidth() / 2, this->getHeight() / 2);
-  holder->setCascadeOpacityEnabled(true);
-  holder->setStencil(
-    Sprite::create(this->textureFileName)
-  );
-
-  this->addChild(holder);
-
-  /**
-   *
-   *
-   *
-   */
-  this->element = new Entity(this->textureFileName, holder, true);
-  this->element->setCameraMask(BACKGROUND);
-}
-
-Users::Element::~Element()
-{
-}
-
-/**
- *
- *
- *
- */
-void Users::Element::onEnter()
-{
-  Entity::onEnter();
-}
-
-void Users::Element::onExit()
-{
-  Entity::onExit();
-}
-
-/**
- *
- *
- *
- */
-void Users::Element::onCreate()
-{
-  Entity::onCreate();
-}
-
-void Users::Element::onDestroy(bool action)
-{
-  Entity::onDestroy(action);
-}
-
-/**
- *
- *
- *
- */
-void Users::Element::data(FacebookFriend* element)
-{
-  {
-    auto request = new HttpRequest;
-
-    /**
-     *
-     *
-     *
-     */
-    request->setUrl(element->texture);
-    request->setRequestType(HttpRequest::Type::GET);
-    request->setResponseCallback([=] (HttpClient* client, HttpResponse* response) {
-
-      /**
-       *
-       *
-       *
-       */
-      if(!response->isSucceed())
-      {
-        // @TODO: Network unreachable;
-      }
-      else
-      {
-        vector<char>* buffer = response->getResponseData();
-
-        /**
-         *
-         *
-         *
-         */
-        auto texture = new Texture2D;
-        auto image = new Image;
-
-        image->autorelease();
-        image->initWithImageData(reinterpret_cast<unsigned char*>(&(buffer->front())), buffer->size());
-
-        texture->autorelease();
-        texture->initWithImage(image);
-
-        /**
-         *
-         *
-         *
-         */
-        this->element->setTexture(texture);
-      }
-    });
-
-    /**
-     *
-     *
-     *
-     */
-    HttpClient::getInstance()->send(request);
-
-    /**
-     *
-     *
-     *
-     */
-    request->release();
-  }
-}
-
-/**
- *
- *
- *
- */
-Users::Element* Users::Element::deepCopy()
-{
-  return new Users::Element;
 }

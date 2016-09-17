@@ -56,7 +56,7 @@ Unlock::Unlock()
    *
    */
   this->icon = new Entity("ui/button-currency-icon.png", this);
-  this->separator = new Entity("ui/store-separator.png", this);
+  this->separator = new Entity("ui/separator-1.png", this);
 
   this->texts.separator = new Text("@store.separator.1", this->separator, true);
   this->texts.currency = new Text("@buttons.unlock.currency", this);

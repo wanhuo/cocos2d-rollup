@@ -9,14 +9,78 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../../cocos2d-apple-library/Sources/iphone/facebook/NSFacebook.mm"
-            timestampString = "495463772.139432"
+            filePath = "../../sources/popups/Users.cpp"
+            timestampString = "495812478.70292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
-            landmarkName = "+getScore:"
+            startingLineNumber = "512"
+            endingLineNumber = "512"
+            landmarkName = "Users::update(bool reset)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../sources/popups/Users.cpp"
+            timestampString = "495812202.456384"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
+            landmarkName = "Users::onEnter()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../sources/popups/Users.cpp"
+            timestampString = "495812478.70292"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
+            landmarkName = "Users::update(bool reset)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Users::updateA(bool)"
+                  moduleName = "application"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igor/Development/cocos2d-rollup/sources/popups/Users.cpp"
+                  timestampString = "495802799.354028"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "551"
+                  endingLineNumber = "551"
+                  offsetFromSymbolStart = "144">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Users::updateA(bool)::$_2::operator()(std::__1::vector&lt;framework::FacebookFriend*, std::__1::allocator&lt;framework::FacebookFriend*&gt; &gt;) const"
+                  moduleName = "application"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/igor/Development/cocos2d-rollup/sources/popups/Users.cpp"
+                  timestampString = "495802799.354207"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "551"
+                  endingLineNumber = "551"
+                  offsetFromSymbolStart = "1792">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -42,6 +42,18 @@
         "size": 26
       }
     ],
+    "@facebook.user.name": [
+      {
+        "title": "$1",
+        "size": 40
+      }
+    ],
+    "@facebook.user.score": [
+      {
+        "title": "$1",
+        "size": 40
+      }
+    ],
     "@buttons.time": [
       {
         "title": "$1:$2",

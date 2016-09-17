@@ -46,7 +46,7 @@ class Users : public Popup
    *
    */
   public:
-  class Element : public Entity
+  class Element : public TiledEntity
   {
     /**
      *
@@ -54,6 +54,17 @@ class Users : public Popup
      *
      */
     public:
+    enum Type {
+      TYPE_USER,
+      TYPE_INVITE
+    };
+
+    struct Texts {
+      Text* name;
+      Text* score;
+    };
+
+    Texts texts;
 
     /**
      *
@@ -79,13 +90,16 @@ class Users : public Popup
     Element();
    ~Element();
 
+    int type;
+
     virtual void onCreate() override;
     virtual void onDestroy(bool action = false) override;
 
     virtual void onEnter() override;
     virtual void onExit() override;
 
-    virtual void data(FacebookFriend* element);
+    virtual void setType(int type);
+    virtual void setData(FacebookFriend* element, float time = 0.0);
 
     virtual Element* deepCopy() override;
   };
@@ -126,9 +140,19 @@ class Users : public Popup
   Buttons buttons;
 
   BackgroundScroll* scroll;
+  Background* container;
+
   RenderTexture* texture;
 
-  Entity* loader;
+  Entity* animation;
+  Entity* separator;
+
+  bool listen;
+
+  float x;
+  float y;
+
+  float time;
 
   /**
    *
@@ -168,6 +192,12 @@ class Users : public Popup
   virtual void show() override;
   virtual void hide() override;
 
+  virtual void showButtons();
+  virtual void hideButtons();
+
+  virtual void update(bool reset = false);
+
+  virtual void update(float time) override;
   virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
 };
 

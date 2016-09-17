@@ -110,23 +110,13 @@ void Menu::onEnter()
    *
    *
    */
-  Vec2 position;
-
-  position.x = Application->getCenter().x;
-  position.y = 200.0;
-
-  /**
-   *
-   *
-   *
-   */
   switch(this->state)
   {
     case STATE_MENU:
-    this->buttons.play->add(position.x, position.y);
+    this->buttons.play->add(Application->getCenter().x, 200);
     break;
     case STATE_FINISH:
-    this->buttons.restart->add(position.x, position.y);
+    this->buttons.restart->add(Application->getCenter().x, 200);
     break;
   }
 
@@ -137,11 +127,11 @@ void Menu::onEnter()
    */
   if(Heyzap::available(AD_TYPE_VIDEO))
   {
-    this->buttons.video->add(position.x + 128, position.y);
+    this->buttons.video->add(Application->getCenter().x + 128, 200);
   }
   else
   {
-    this->buttons.share->add(position.x + 128, position.y);
+    this->buttons.share->add(Application->getCenter().x + 128, 200);
   }
 
   /**
@@ -149,11 +139,11 @@ void Menu::onEnter()
    *
    *
    */
-  this->buttons.rate->add(position.x - 128, position.y);
-  this->buttons.store->add(position.x - 256, position.y);
-  this->buttons.present->add(position.x + 256, position.y);
-  this->buttons.social->add(position.x * 2 - 128 * 1.35, Application->getHeight() - 64);
-  this->buttons.settings->add(position.x * 2 - 64, Application->getHeight() - 64);
+  this->buttons.rate->add(Application->getCenter().x - 128, 200);
+  this->buttons.store->add(Application->getCenter().x - 256, 200);
+  this->buttons.present->add(Application->getCenter().x + 256, 200);
+  this->buttons.social->add(Application->getCenter().x * 2 - 128 * 1.35, Application->getHeight() - 64);
+  this->buttons.settings->add(Application->getCenter().x * 2 - 64, Application->getHeight() - 64);
 }
 
 void Menu::onExit()

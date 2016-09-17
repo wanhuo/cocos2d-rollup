@@ -381,5 +381,7 @@ void Environment::update(float time)
     break;
     case Game::STATE_STORE:
     break;
+    case Game::STATE_USERS:
+    break;
   }
 }

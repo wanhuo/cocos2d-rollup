@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		780BC3B11D89747E003DCDD6 /* Users.Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 780BC3B01D89747E003DCDD6 /* Users.Element.cpp */; };
+		780BC3B21D89747E003DCDD6 /* Users.Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 780BC3B01D89747E003DCDD6 /* Users.Element.cpp */; };
+		780BC3B31D89747E003DCDD6 /* Users.Element.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 780BC3B01D89747E003DCDD6 /* Users.Element.cpp */; };
 		781B06801BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		781B06811BD26FC70072FB24 /* config.json in Resources */ = {isa = PBXBuildFile; fileRef = 781B067F1BD26FC70072FB24 /* config.json */; };
 		78283F9E1CE1C8F70010CAB7 /* facebook_like_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 78283F9C1CE1C8F70010CAB7 /* facebook_like_button.png */; };
@@ -250,6 +253,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		780BC3B01D89747E003DCDD6 /* Users.Element.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Users.Element.cpp; sourceTree = "<group>"; };
 		781B067F1BD26FC70072FB24 /* config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = config.json; path = ../../resource/Config/apple/config.json; sourceTree = "<group>"; };
 		78283F9C1CE1C8F70010CAB7 /* facebook_like_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_like_button.png; sourceTree = "<group>"; };
 		78283F9F1CE1CDA40010CAB7 /* Ketchapp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Ketchapp.framework; sourceTree = "<group>"; };
@@ -1194,6 +1198,7 @@
 				78B93DE51D82EAE4004FA0DE /* Capture.h */,
 				78B93DE91D86B058004FA0DE /* Steps.cpp */,
 				78B93DEA1D86B058004FA0DE /* Steps.h */,
+				780BC3B01D89747E003DCDD6 /* Users.Element.cpp */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -1503,6 +1508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780BC3B21D89747E003DCDD6 /* Users.Element.cpp in Sources */,
 				787B53D41D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */,
 				787B539E1D7DCA7000C1C17D /* Coin.cpp in Sources */,
 				7828E3B91D79F12200AA66D9 /* Dust.cpp in Sources */,
@@ -1542,6 +1548,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				780BC3B31D89747E003DCDD6 /* Users.Element.cpp in Sources */,
 				787B53AC1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				7832A8B71D10B5380059BFE3 /* AFURLRequestSerialization.m in Sources */,
 				787B53CD1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
@@ -1650,6 +1657,7 @@
 				78A20B251D7C6C3300789617 /* Popup.cpp in Sources */,
 				78A20B411D7C9F0F00789617 /* Number.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
+				780BC3B11D89747E003DCDD6 /* Users.Element.cpp in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,
 				787B53B91D7EB49400C1C17D /* Store.cpp in Sources */,
 				78B93DD41D81D274004FA0DE /* SoundButton.cpp in Sources */,

@@ -55,13 +55,16 @@ Store::Store()
    *
    *
    */
-  this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 300, Texture2D::PixelFormat::RGBA8888);
-  this->texture->setPosition(Application->getCenter());
-  this->addChild(this->texture);
+  if(Support::shaders(SHADER_COMPLEX))
+  {
+    this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 300, Texture2D::PixelFormat::RGBA8888);
+    this->texture->setPosition(Application->getCenter());
+    this->addChild(this->texture);
 
-  this->texture->getSprite()->setGLProgram(GLProgramCache::getInstance()->getGLProgram("@shader.opacity.vertical"));
-  this->texture->getSprite()->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
-  this->texture->getSprite()->getTexture()->setAntiAliasTexParameters();
+    this->texture->getSprite()->setGLProgram(GLProgramCache::getInstance()->getGLProgram("@shader.opacity.vertical"));
+    this->texture->getSprite()->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
+    this->texture->getSprite()->getTexture()->setAntiAliasTexParameters();
+  }
 
   /**
    *
@@ -111,8 +114,8 @@ Store::Store()
    *
    *
    */
-  this->separator2 = new Entity("ui/store-separator.png", this->scroll);
-  this->separator3 = new Entity("ui/store-separator.png", this->scroll);
+  this->separator2 = new Entity("ui/separator-1.png", this->scroll);
+  this->separator3 = new Entity("ui/separator-1.png", this->scroll);
 
   this->separator2->setCascadeOpacityEnabled(true);
   this->separator3->setCascadeOpacityEnabled(true);

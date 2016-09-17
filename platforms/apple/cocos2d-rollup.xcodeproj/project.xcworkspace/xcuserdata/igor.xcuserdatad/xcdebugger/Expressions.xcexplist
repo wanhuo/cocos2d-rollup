@@ -6,10 +6,21 @@
          contextName = "Plate::remove():Plate.cpp">
       </ContextState>
       <ContextState
-         contextName = "TypeGate::onDestroy(bool):TypeGate.cpp">
+         contextName = "Users::visit(cocos2d::Renderer*, cocos2d::Mat4 const&amp;, unsigned int):Users.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "Camera::_visitingCamera">
+            </PersistentString>
+            <PersistentString
+               value = "Game::instance">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Plate::clearDecorations(bool, bool, bool):Plate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "TypeGate::onDestroy(bool):TypeGate.cpp">
       </ContextState>
       <ContextState
          contextName = "Energy::onPickup()::$_0::operator()() const:Energy.cpp">
@@ -30,6 +41,17 @@
          contextName = "Character::update(float):Character.cpp">
       </ContextState>
       <ContextState
+         contextName = "Users::updateA(bool)::$_2::operator()(std::__1::vector&lt;framework::FacebookFriend*, std::__1::allocator&lt;framework::FacebookFriend*&gt; &gt;) const:Users.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "reset">
+            </PersistentString>
+            <PersistentString
+               value = "resetTest">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Character::onTurn(int):Character.cpp">
          <PersistentStrings>
             <PersistentString
@@ -44,7 +66,18 @@
          contextName = "Environment::updateFishes(float):Environment.cpp">
       </ContextState>
       <ContextState
+         contextName = "+[NSFacebook getScore:reset:]:NSFacebook.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "Facebook::info">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Character::updateCopter(float):Character.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Game::update(float):Game.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
