@@ -359,7 +359,7 @@ void Store::onEnter()
         this->texts.more1->data(this->count(CATEGORY_REGULAR));
         this->texts.more1->setOpacity(0);
         this->texts.more1->setScale(0.8);
-        this->texts.more1->setPosition(Application->getCenter().x, reset().y - 100);
+        this->texts.more1->setPosition(Application->getCenter().x, reset().y - 105);
         this->texts.more1->runAction(
           Spawn::create(
             Sequence::create(
@@ -457,7 +457,7 @@ void Store::onEnter()
         this->texts.more2->data(this->count(CATEGORY_RARE));
         this->texts.more2->setOpacity(0);
         this->texts.more2->setScale(0.8);
-        this->texts.more2->setPosition(Application->getCenter().x, reset().y - 100);
+        this->texts.more2->setPosition(Application->getCenter().x, reset().y - 105);
         this->texts.more2->runAction(
           Spawn::create(
             Sequence::create(

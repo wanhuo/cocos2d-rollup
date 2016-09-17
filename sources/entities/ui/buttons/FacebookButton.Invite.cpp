@@ -38,13 +38,13 @@ FacebookButton::Invite::Invite(Node* parent, bool autocreate)
 : ExtendedButton("ui/button-facebook-invite.png", 2, 1, parent, std::bind(&FacebookButton::Invite::onAction, this), autocreate)
 {
   this->text = new Text("@facebook.invite", this, TextHAlignment::LEFT, true);
-  this->text->setPosition(55, this->getHeight() / 2);
+  this->text->setPosition(60, this->getHeight() / 2 + 1);
   this->text->enableBold();
 
   this->icon = new Entity("ui/button-currency-icon.png", this, true);
   this->icon->setScale(0.6);
   this->icon->setCascadeOpacityEnabled(true);
-  this->icon->setPosition(this->getWidth() - 35, this->getHeight() / 2 - 1);
+  this->icon->setPosition(this->getWidth() - 35, this->getHeight() / 2);
 
   this->currency = new Text("@buttons.facebook.currency", this->icon, TextHAlignment::RIGHT, true);
   this->currency->setScale(1.6);
