@@ -33,6 +33,7 @@ Users::Element::Element()
 {
   this->element = new Entity("ui/no-picture.png", this, true);
   this->element->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+  this->element->setLocalZOrder(-2);
   
   if(Support::shaders(SHADER_SIMPLE))
   {
@@ -46,6 +47,9 @@ Users::Element::Element()
 
   this->buttons.add->setPosition(this->getWidth() / 2, this->getHeight() / 2);
   this->buttons.remove->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+
+  this->buttons.add->setLocalZOrder(-1);
+  this->buttons.remove->setLocalZOrder(-1);
 
   /**
    *
@@ -122,7 +126,24 @@ void Users::Element::onAdd()
       FadeTo::create(0.1, 0),
       CallFunc::create([=] () {
       this->buttons.add->_destroy();
-      this->buttons.remove->add();
+
+      /**
+       *
+       *
+       *
+       */
+      this->buttons.remove->_create();
+      this->buttons.remove->setScale(0.0);
+      this->buttons.remove->setOpacity(255.0);
+      this->buttons.remove->runAction(
+        Sequence::create(
+          ScaleTo::create(0.1, 1.0),
+          CallFunc::create([=] () {
+          this->buttons.remove->bind(true, false);
+          }),
+          nullptr
+        )
+      );
       }),
       nullptr
     )
