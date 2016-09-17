@@ -57,7 +57,7 @@ Users::Users()
    */
   if(Support::shaders(SHADER_COMPLEX))
   {
-    this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 400, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
+    this->texture = RenderTexture::create(Application->getWidth(), Application->getHeight() - 380, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
     this->texture->setPosition(Application->getCenter());
     this->addChild(this->texture);
 
@@ -161,16 +161,16 @@ void Users::onEnter()
    *
    *
    */
-  this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 400));
+  this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 380));
   this->scroll->getInnerContainer()->setPosition(Vec2(0, 0));
-  this->scroll->setPositionY(400);
+  this->scroll->setPositionY(330);
 
   /**
    *
    *
    *
    */
-  this->container->setPosition(0, Application->getHeight() - 400);
+  this->container->setPosition(0, Application->getHeight() - 380);
 
   /**
    *
@@ -181,7 +181,7 @@ void Users::onEnter()
   this->animation->setCameraMask(BACKGROUND);
   this->animation->setOpacity(0.0);
   this->animation->setScale(0.8);
-  this->animation->setPosition(Application->getCenter().x, (Application->getHeight() - 400) / 2 - this->animation->getHeight() / 2);
+  this->animation->setPosition(Application->getCenter().x, (Application->getHeight() - 380) / 2 - this->animation->getHeight() / 2);
   this->animation->runAction(
     RepeatForever::create(
       RotateBy::create(1.0, 360.0)
@@ -205,7 +205,7 @@ void Users::onEnter()
    *
    */
   this->x =  100.0;
-  this->y = -200.0;
+  this->y = -150.0;
 
   /**
    *
@@ -248,6 +248,13 @@ void Users::onEnter()
      *
      *
      */
+    this->y += 30;
+
+    /**
+     *
+     *
+     *
+     */
     this->separator->_create();
     this->separator->setCameraMask(BACKGROUND);
     this->separator->setPosition(Application->getCenter().x, this->y);
@@ -274,14 +281,14 @@ void Users::onEnter()
      *
      *
      */
-    this->y -= 110;
+    this->y -= 80;
 
      /**
       *
       *
       *
       */
-    auto size = max(Application->getHeight() - 400, abs(this->y) + 100);
+    auto size = max(Application->getHeight() - 380, abs(this->y) + 100);
 
      /**
       *
@@ -528,8 +535,8 @@ void Users::update(bool reset)
     *
     *
     */
-    auto size = max(Application->getHeight() - 400, abs(this->y) + 100);
-    auto position = Application->getHeight() - size - 400;
+    auto size = max(Application->getHeight() - 380, abs(this->y) + 100);
+    auto position = Application->getHeight() - size - 380;
 
     /**
      *

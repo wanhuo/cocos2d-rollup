@@ -51,6 +51,8 @@ Users::Element::Element()
   this->buttons.add->setLocalZOrder(-1);
   this->buttons.remove->setLocalZOrder(-1);
 
+  this->buttons.add->bind(true, false);
+
   /**
    *
    *
@@ -58,11 +60,9 @@ Users::Element::Element()
    */
   this->texts.name = new Text("@facebook.user.name", this, TextHAlignment::LEFT, true);
   this->texts.name->setPosition(130, this->getHeight() / 2 - 2);
-  //this->texts.name->enableBold();
 
   this->texts.score = new Text("@facebook.user.score", this, TextHAlignment::RIGHT, true);
   this->texts.score->setPosition(Application->getWidth() - 110, this->getHeight() / 2 - 2);
-  //this->texts.score->enableBold();
 
   /**
    *

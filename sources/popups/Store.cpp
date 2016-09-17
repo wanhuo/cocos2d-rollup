@@ -219,7 +219,7 @@ void Store::onEnter()
     auto reset = [&] () -> Vec2 {
       position.x = 0;
 
-      return Vec2(Application->getCenter().x + (position.x - 2.5) * 160, Application->getHeight() - 200 - position.y * 160);
+      return Vec2(Application->getCenter().x + (position.x - 2.5) * 160, Application->getHeight() - 150 - position.y * 160);
     };
 
     /**
@@ -247,7 +247,7 @@ void Store::onEnter()
         }
       }
 
-      return Vec2(Application->getCenter().x + (position.x - 2.5) * 160, Application->getHeight() - 200 - position.y * 160);
+      return Vec2(Application->getCenter().x + (position.x - 2.5) * 160, Application->getHeight() - 150 - position.y * 160);
     };
 
     /**
