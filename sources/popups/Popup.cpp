@@ -90,6 +90,8 @@ void Popup::show()
 {
   this->_create();
 
+  this->bind(true);
+
   this->runAction(
     Sequence::create(
       FadeTo::create(0.5, 70),
@@ -103,6 +105,8 @@ void Popup::show()
 
 void Popup::hide()
 {
+  this->bind(false);
+
   this->runAction(
     Sequence::create(
       FadeTo::create(0.5, 0),

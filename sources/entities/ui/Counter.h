@@ -56,6 +56,7 @@ class Counter : public Entity
 
   struct Value {
     int count;
+    int best;
   };
 
   struct Values {
@@ -96,9 +97,16 @@ class Counter : public Entity
   Currency currency;
   Animation animation;
 
+  Text* best;
+
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
+  virtual void onMenu();
+  virtual void onFinish();
+  virtual void onGame();
+
+  virtual void onSave();
   virtual void onCount(int count = 1);
   virtual void onCoin(int count = 1, bool sound = true);
 

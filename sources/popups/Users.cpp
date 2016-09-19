@@ -163,7 +163,7 @@ void Users::onEnter()
    */
   this->scroll->setContentSize(Size(Application->getWidth(), Application->getHeight() - 380));
   this->scroll->getInnerContainer()->setPosition(Vec2(0, 0));
-  this->scroll->setPositionY(330);
+  this->scroll->setPositionY(380);
 
   /**
    *

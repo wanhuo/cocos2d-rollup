@@ -51,21 +51,6 @@ Coin::~Coin()
 void Coin::onCreate()
 {
   Entity::onCreate();
-
-  /**
-   *
-   *
-   *
-   */
-  Application->counter->currency.icon->runAction(
-    Sequence::create(
-      ScaleTo::create(0.0, 1.1),
-      ScaleTo::create(0.1, 1.0),
-      nullptr
-    )
-  );
-
-  Application->counter->onCoin(1, false);
 }
 
 void Coin::onDestroy(bool action)
@@ -78,8 +63,33 @@ void Coin::onDestroy(bool action)
  *
  *
  */
-void Coin::animate(Node* element)
+void Coin::animate(Node* element, bool animation)
 {
+  this->animation = animation;
+
+  /**
+   *
+   *
+   *
+   */
+  if(!this->animation)
+  {
+    Application->counter->currency.icon->runAction(
+      Sequence::create(
+        ScaleTo::create(0.0, 1.1),
+        ScaleTo::create(0.1, 1.0),
+        nullptr
+      )
+    );
+
+    Application->counter->onCoin(1, false);
+  }
+
+  /**
+   *
+   *
+   *
+   */
   auto v = Vec2(0, 0);
   auto c = element->convertToWorldSpace(Vec2::ZERO);
 

@@ -39,8 +39,9 @@ Counter::Counter()
 {
   this->elements = new Pool(new Number, this);
 
-  this->setPosition(Application->getCenter().x - 25, Application->getHeight() - 256);
+  this->setPosition(Application->getCenter().x, Application->getHeight() - 256);
   this->setCascadeOpacityEnabled(true);
+  this->setLocalZOrder(10);
   this->setOpacity(0);
 
   /**
@@ -53,11 +54,14 @@ Counter::Counter()
 
   this->currency.background->setCascadeOpacityEnabled(true);
 
+  this->best = new Text("@counter.best", this);
   this->currency.text = new Text("@counter.currency", this->currency.background, TextHAlignment::LEFT, true);
   this->currency.icon = new Entity("ui/counter-currency-icon.png", this->currency.background, true);
 
-  this->currency.text->setPosition(64, Application->getHeight() - 38);
+  this->currency.text->setPosition(66, Application->getHeight() - 40);
   this->currency.icon->setPosition(42, Application->getHeight() - 42);
+
+  this->best->setPosition(0, -80);
 
   /**
    *
@@ -102,6 +106,109 @@ void Counter::onDestroy(bool action)
  *
  *
  */
+void Counter::onMenu()
+{
+}
+
+void Counter::onFinish()
+{
+  this->onSave();
+
+  /**
+   *
+   *
+   *
+   */
+  this->best->_create();
+  this->best->stopAllActions();
+  this->best->setCameraMask(BACKGROUND);
+  this->best->setScale(0.8);
+  this->best->setOpacity(0.0);
+
+  this->best->runAction(
+    Spawn::create(
+      EaseSineOut::create(
+        ScaleTo::create(0.5, 1.0)
+      ),
+      Sequence::create(
+        EaseSineOut::create(
+          FadeTo::create(0.5, 255.0)
+        ),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+}
+
+void Counter::onGame()
+{
+  this->best->stopAllActions();
+  this->best->runAction(
+    Spawn::create(
+      EaseSineIn::create(
+        ScaleTo::create(0.5, 0.8)
+      ),
+      Sequence::create(
+        EaseSineIn::create(
+          FadeTo::create(0.5, 0.0)
+        ),
+        CallFunc::create([=] () {
+
+          /**
+           *
+           *
+           *
+           */
+          this->best->_destroy();
+        }),
+        nullptr
+      ),
+      nullptr
+    )
+  );
+}
+
+/**
+ *
+ *
+ *
+ */
+void Counter::onSave()
+{
+  if(this->values.score.count > this->values.score.best)
+  {
+    // @TODO: New best;
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  this->values.score.best = max(this->values.score.count, this->values.score.best);
+
+  /**
+   *
+   *
+   *
+   */
+  Storage::set("@counter.values.best", this->values.score.best);
+  Storage::set("@counter.values.currency", this->values.currency.count);
+
+  /**
+   *
+   *
+   *
+   */
+  // @TODO: Send Facebook value;
+}
+
+/**
+ *
+ *
+ *
+ */
 void Counter::onCount(int count)
 {
   this->values.score.count += count;
@@ -132,6 +239,13 @@ void Counter::onCoin(int count, bool sound)
    */
   if(sound)
   {
+    this->onSave();
+
+    /**
+     *
+     *
+     *
+     */
     Sound->play("coin");
   }
 }
@@ -190,6 +304,7 @@ void Counter::reset()
   this->animation.count = 1;
   this->values.score.count = 0;
   this->values.currency.count = Storage::get("@counter.values.currency");
+  this->values.score.best = Storage::get("@counter.values.best");
 
   /**
    *
@@ -312,12 +427,6 @@ void Counter::updateScoreData()
         )
       );
     }
-
-    this->runAction(
-      EaseSineIn::create(
-        MoveTo::create(0.2, Vec2(Application->getCenter().x - (50.0 * (count - 1)) / 2, this->getPositionY()))
-      )
-    );
   }
 }
 

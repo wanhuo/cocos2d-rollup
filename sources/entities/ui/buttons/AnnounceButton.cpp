@@ -57,15 +57,27 @@ AnnounceButton::AnnounceButton(Node* parent, const function<void()>& action, int
     this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 2.0, this->getHeight() / 2 - 30);
     break;
     case TYPE_LARGE:
-    this->icon = new Entity("ui/button-currency-icon.png", this, true);
-    this->icon->setScale(0.9);
-
     this->text = new Text("@buttons.announce", this, TextHAlignment::LEFT, true);
+    this->text->setPosition(60, this->getHeight() / 2 + 1);
+    this->text->enableBold();
 
-    this->text->data(50);
-    this->text->setScaleX(0.85);
-    this->text->setPosition(60, this->getHeight() / 2 + 4);
-    this->icon->setPosition(this->text->getPositionX() + this->text->getWidth() - 20, this->getHeight() / 2 - 1);
+    this->icon = new Entity("ui/button-currency-icon.png", this, true);
+    this->icon->setScale(0.6);
+    this->icon->setCascadeOpacityEnabled(true);
+    this->icon->setPosition(this->getWidth() - 35, this->getHeight() / 2);
+
+    this->currency = new Text("@buttons.facebook.currency", this->icon, TextHAlignment::RIGHT, true);
+    this->currency->setScale(1.6);
+    this->currency->setPosition(-5, this->icon->getHeight() / 2 + 3);
+    this->currency->data(50);
+    this->currency->enableBold();
+
+    /**
+     *
+     *
+     *
+     */
+    this->setCascadeOpacityEnabled(true);
     break;
   }
 

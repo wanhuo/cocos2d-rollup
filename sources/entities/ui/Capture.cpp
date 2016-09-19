@@ -56,6 +56,7 @@ this->buttons.announce->onAction();
     );
   }, AnnounceButton::TYPE_LARGE);
   this->buttons.announce->setPosition(Application->getCenter().x, Application->getCenter().y - 320.0);
+  this->buttons.announce->setLocalZOrder(10);
   this->buttons.announce->setCameraMask(BACKGROUND);
 
   /**
@@ -93,6 +94,7 @@ this->buttons.announce->onAction();
    *
    *
    */
+  this->setLocalZOrder(10);
   this->setCascadeOpacityEnabled(true);
   this->setScheduleUpdate(true);
 }
@@ -352,7 +354,7 @@ void Capture::Element::visit(Renderer *renderer, const Mat4& parentTransform, ui
      *
      */
     Application->counter->setScale(1.0 / (Director::getInstance()->getCaptureScale() / 1.1));
-    Application->counter->setPosition(Director::getInstance()->getCaptureWidth() / 2 - 18, Director::getInstance()->getCaptureHeight() * 0.65);
+    Application->counter->setPosition(Director::getInstance()->getCaptureWidth() / 2, Director::getInstance()->getCaptureHeight() * 0.75);
 
     /**
      *

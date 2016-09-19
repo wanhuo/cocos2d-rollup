@@ -52,6 +52,7 @@ class Coin : public Entity
    *
    */
   protected:
+  bool animation;
 
   /**
    *
@@ -65,7 +66,7 @@ class Coin : public Entity
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void animate(Node* element);
+  virtual void animate(Node* element, bool animation = false);
 
   virtual Coin* deepCopy() override;
 };

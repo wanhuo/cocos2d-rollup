@@ -64,8 +64,10 @@ class AnnounceButton : public ExtendedButton
    *
    */
   protected:
-  Entity* icon;
   Text* text;
+  Text* currency;
+
+  Entity* icon;
 
   /**
    *

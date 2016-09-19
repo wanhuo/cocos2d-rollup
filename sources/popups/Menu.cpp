@@ -264,29 +264,71 @@ void Menu::onShare()
  */
 void Menu::show()
 {
-  Popup::show();
+  switch(this->state)
+  {
+    case STATE_MENU:
+    this->_create();
+
+    /**
+     *
+     *
+     *
+     */
+    this->bind(false);
+
+    /**
+     *
+     *
+     *
+     */
+    this->background->setOpacity(0);
+    this->background->runAction(
+      Spawn::create(
+        Sequence::create(
+          ScaleTo::create(0.5, 1.0),
+          CallFunc::create([=] () {
+          this->onShow();
+          }),
+          nullptr
+        ),
+        FadeTo::create(0.5 * 3, 200.0),
+        nullptr
+      )
+    );
+    break;
+    case STATE_FINISH:
+    Popup::show();
+
+    /**
+     *
+     *
+     *
+     */
+    this->background->setOpacity(0);
+    this->background->runAction(
+      Spawn::create(
+        Sequence::create(
+          ScaleTo::create(0.5, 1.0),
+          nullptr
+        ),
+        FadeTo::create(0.5 * 3, 200.0),
+        nullptr
+      )
+    );
+    break;
+  }
+}
+
+void Menu::hide()
+{
+  Popup::hide();
 
   /**
    *
    *
    *
    */
-  this->background->setOpacity(0);
-  this->background->runAction(
-    Spawn::create(
-      Sequence::create(
-        ScaleTo::create(0.5, 1.0),
-        nullptr
-      ),
-      FadeTo::create(0.5 * 3, 200.0),
-      nullptr
-    )
-  );
-}
-
-void Menu::hide()
-{
-  Popup::hide();
+  this->bind(true);
 
   /**
    *

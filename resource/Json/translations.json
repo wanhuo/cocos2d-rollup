@@ -72,7 +72,7 @@
     "@buttons.currency": [
       {
         "title": "+$1",
-        "size": 26
+        "size": 20
       }
     ],
     "@buttons.facebook.currency": [
@@ -83,8 +83,8 @@
     ],
     "@buttons.announce": [
       {
-        "title": "SHARE GIF +$1",
-        "size": 46
+        "title": "SHARE GIF",
+        "size": 25
       }
     ],
     "@buttons.unlock.currency": [
@@ -93,16 +93,22 @@
         "size": 56
       }
     ],
+    "@counter.best": [
+      {
+        "title": "BEST $1",
+        "size": 42
+      }
+    ],
     "@counter.number": [
       {
         "title": "$1",
-        "size": 120
+        "size": 100
       }
     ],
     "@counter.currency": [
       {
         "title": "$1",
-        "size": 54
+        "size": 42
       }
     ],
     "@store.more": [
@@ -142,67 +148,67 @@
     "@store.connect.1": [
       {
         "title": "Connecting to Facebook...",
-        "size": 36
+        "size": 34
       }
     ],
     "@store.connect.2": [
       {
         "title": "Connecting to Twitter...",
-        "size": 36
+        "size": 34
       }
     ],
     "@store.connect.3": [
       {
         "title": "Connecting to Instagram...",
-        "size": 36
+        "size": 34
       }
     ],
     "@store.connect.4": [
       {
         "title": "Connecting to App Store...",
-        "size": 36
+        "size": 34
       }
     ],
     "@buttons.unlock.character": [
       {
         "title": "",
-        "size": 64
+        "size": 52
       }
     ],
     "@buttons.unlock.character.1": [
       {
         "title": "What is inside?",
-        "size": 64
+        "size": 52
       }
     ],
     "@buttons.unlock.character.2": [
       {
         "title": "Oh, new character?",
-        "size": 64
+        "size": 52
       }
     ],
     "@store.new.character": [
       {
         "title": "",
-        "size": 64
+        "size": 52
       }
     ],
     "@store.new.character.1": [
       {
         "title": "I've got new character!",
-        "size": 64
+        "size": 52
       }
     ],
     "@store.new.character.2": [
       {
         "title": "Look! This is new character!",
-        "size": 64
+        "size": 52
       }
     ],
     "@store.element.currency": [
       {
         "title": "$1 $2",
-        "size": 16
+        "size": 18
       }
     ],
     "vote-title": [

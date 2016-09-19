@@ -161,7 +161,9 @@ Store::Store()
       auto action = Json_getInt(element, "action", 0);
       auto price = Json_getFloat(element, "price", 0.0);
 
-      state = Storage::get("@store.states." + convert(index)) || state;
+      auto save = Storage::get("@store.states." + convert(index));
+
+      state = save ? save : state;
 
       this->states.push_back({
         index,
@@ -899,7 +901,7 @@ int Store::count(int category, bool create)
  */
 Store::State Store::element(bool action)
 {
-  if(Application->counter->values.currency.count < 1000)
+  if(Application->counter->values.currency.count < 100)
   {
     return {
       0
@@ -1044,7 +1046,7 @@ Store::Element::Element()
    *
    *
    */
-  this->texture = new Entity("characters/1001/texture.png", this);
+  this->texture = new Entity("characters/1000/texture.png", this);
   this->texture->setPosition(this->getWidth() / 2, this->getHeight() / 2);
 
   /**
@@ -1596,7 +1598,7 @@ void Store::Element::setState(int state)
       )
     );
     case STATE_NORMAL:
-    this->texture->setTexture("characters/" + convert(this->getIndex()) + "/texture.png");
+    this->texture->setTexture("characters/" + (this->index == 1000 ? "random.png" : (convert(this->getIndex()) + "/texture.png")));
     this->texture->_create();
     break;
     case STATE_LOCKED:

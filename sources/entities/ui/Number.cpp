@@ -37,7 +37,6 @@
 Number::Number()
 : Text("@counter.number", nullptr, TextHAlignment::CENTER)
 {
-  this->ignoreAnchorPointForPosition(true);
 }
 
 Number::~Number()
@@ -74,21 +73,6 @@ void Number::onDestroy(bool action)
 const char* Number::data(int data)
 {
   this->setScaleX(this->getScaleX() * -1.0);
-
-  /**
-   *
-   *
-   *
-   */
-  switch(data)
-  {
-    default:
-    this->setAnchorPoint(Vec2(0.59, 0.5));
-    break;
-    case 1:
-    this->setAnchorPoint(Vec2(0.85, 0.5));
-    break;
-  }
 
   /**
    *

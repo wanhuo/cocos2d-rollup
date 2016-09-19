@@ -63,11 +63,11 @@ void Coins::onDestroy(bool action)
  *
  *
  */
-void Coins::add(int count, Node* element)
+void Coins::add(int count, Node* element, bool animation)
 {
   for(int i = 0; i < count; i++)
   {
-    ((Coin*) this->elements->_create())->animate(element);
+    ((Coin*) this->elements->_create())->animate(element, animation);
   }
 
   /**
@@ -75,7 +75,7 @@ void Coins::add(int count, Node* element)
    *
    *
    */
-  Storage::set("@counter.values.currency", Application->counter->values.currency.count);
+  Application->counter->onSave();
 }
 
 void Coins::remove(int count)

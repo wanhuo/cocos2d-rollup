@@ -293,6 +293,7 @@ void Users::Element::setData(FacebookFriend* element, float time)
             FadeTo::create(0.5, 255.0)
           ),
           CallFunc::create([=] () {
+          this->buttons.add->bind(false);
           this->buttons.add->bind(true, false);
           }),
           nullptr

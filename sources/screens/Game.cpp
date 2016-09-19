@@ -530,6 +530,13 @@ void Game::onMenu()
    *
    *
    */
+  this->counter->onMenu();
+
+  /**
+   *
+   *
+   *
+   */
   this->environment->onMenu();
 }
 
@@ -549,6 +556,13 @@ void Game::onGame()
    *
    *
    */
+  this->counter->onGame();
+
+  /**
+   *
+   *
+   *
+   */
   this->environment->onGame();
 }
 
@@ -556,6 +570,13 @@ void Game::onFinish()
 {
   Menu::getInstance()->changeState(Menu::STATE_FINISH);
   Menu::getInstance()->show();
+
+  /**
+   *
+   *
+   *
+   */
+  this->counter->onFinish();
 
   /**
    *

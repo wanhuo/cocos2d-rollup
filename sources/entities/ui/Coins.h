@@ -66,7 +66,7 @@ class Coins : public Entity
   virtual void onCreate() override;
   virtual void onDestroy(bool action = false) override;
 
-  virtual void add(int count, Node* element);
+  virtual void add(int count, Node* element, bool animation = false);
   virtual void remove(int count);
 };
 
