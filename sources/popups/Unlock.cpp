@@ -56,6 +56,7 @@ Unlock::Unlock()
    *
    */
   this->icon = new Entity("ui/button-currency-icon.png", this);
+  this->texture = new Entity("characters/1000/texture.png", this->icon);
   this->separator = new Entity("ui/separator-1.png", this);
 
   this->texts.separator = new Text("@store.separator.1", this->separator, true);
@@ -68,6 +69,7 @@ Unlock::Unlock()
   this->texts.currency->data(100);
   this->texts.currency->setPosition(Application->getCenter().x - this->icon->getWidthScaled() / 2 - 2.0, Application->getCenter().y - 147);
   this->icon->setPosition(this->texts.currency->getPositionX() + this->texts.currency->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 7.0, Application->getCenter().y - 151);
+  this->texture->setPosition(this->icon->getWidth() / 2, this->icon->getHeight() / 2);
 
   this->separator->setCascadeOpacityEnabled(true);
 

@@ -269,6 +269,14 @@ void UnlockButton::onAction()
             Sequence::create(
               FadeTo::create(0.1, 255.0),
               CallFunc::create([=] () {
+                auto element = Store::getInstance()->element();
+
+                /**
+                 *
+                 *
+                 *
+                 */
+                Unlock::getInstance()->texture->setTexture("characters/" + convert(element.index) + "/texture.png");
                 Unlock::getInstance()->texts.text->setText("@store.new.character." + convert(random(1, 2)));
 
                 /**

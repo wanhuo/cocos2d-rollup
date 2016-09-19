@@ -78,8 +78,18 @@ void Character::reset()
     this->_create();
   }
 
-  this->setTexture("characters/" + convert(random(2, 9)) +"/texture.png");
+  /**
+   *
+   *
+   *
+   */
+  this->setTexture(Store::getInstance()->getCurrentCharacterTexture());
 
+  /**
+   *
+   *
+   *
+   */
   this->plane->setPosition3D(Vec3(0.0, 10.0, 0.0));
   this->plane->setRotation3D(Vec3(0.0, 0.0, 0.0));
   this->plane->setScale(1.0);

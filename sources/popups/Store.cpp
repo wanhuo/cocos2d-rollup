@@ -979,6 +979,63 @@ Store::State Store::element(bool action)
  *
  *
  */
+string Store::getCurrentCharacterTexture()
+{
+  auto index =  Storage::get("@store.selected");
+
+  /**
+   *
+   *
+   *
+   */
+  if(index == 1000 || index == 0)
+  {
+    return this->getRandomCharacterTexture();
+  }
+  else
+  {
+    return "characters/" + convert(index) + "/texture.png";
+  }
+}
+
+string Store::getRandomCharacterTexture()
+{
+  vector<State*> elements;
+
+  /**
+   *
+   *
+   *
+   */
+  CC_VOOP(this->states)
+  {
+    if(element.state == Element::STATE_NORMAL || element.state == Element::STATE_SELECTED)
+    {
+      elements.push_back(&element);
+    }
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  auto element = CC_RANDOM(elements);
+  auto index = ((State*) element)->index;
+
+  /**
+   *
+   *
+   *
+   */
+  return "characters/" + convert(index) + "/texture.png";
+}
+
+/**
+ *
+ *
+ *
+ */
 void Store::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags)
 {
   if(Support::shaders(SHADER_COMPLEX))
@@ -1309,7 +1366,7 @@ void Store::Element::onAction()
                                 Store::getInstance()->texts.character->setScale(1.0);
                                 Store::getInstance()->texts.character->setScaleX(0.9);
                                 Store::getInstance()->texts.character->setOpacity(255.0);
-                                Store::getInstance()->texts.character->setPosition(this->getPositionX(), this->getPositionY() + 160);
+                                Store::getInstance()->texts.character->setPosition(this->getPositionX(), this->getPositionY() + 180);
 
                                 /**
                                  *
@@ -1350,7 +1407,7 @@ void Store::Element::onAction()
                                  */
                                 if(separator)
                                 {
-                                  separator->setPosition(position.x, position.y + 100);
+                                  separator->setPosition(position.x, position.y + 120);
                                   separator->setScale(0.8);
                                   separator->setOpacity(0.0);
                                   separator->runAction(
@@ -1524,6 +1581,13 @@ void Store::Element::setState(int state)
   {
     case STATE_SELECTED:
     this->setAction(ACTION_NONE);
+
+    /**
+     *
+     *
+     *
+     */
+    Storage::set("@store.selected", this->index);
 
     /**
      *

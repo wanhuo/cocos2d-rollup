@@ -87,6 +87,7 @@ class Unlock : public Popup
   int state = STATE_NORMAL;
 
   Entity* icon;
+  Entity* texture;
   Entity* separator;
 
   Texts texts;

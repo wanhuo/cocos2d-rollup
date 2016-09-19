@@ -124,6 +124,7 @@ void Counter::onFinish()
   this->best->setCameraMask(BACKGROUND);
   this->best->setScale(0.8);
   this->best->setOpacity(0.0);
+  this->best->data(this->values.score.best);
 
   this->best->runAction(
     Spawn::create(

@@ -246,6 +246,9 @@ class Store : public Popup
 
   virtual State element(bool action = false);
 
+  virtual string getCurrentCharacterTexture();
+  virtual string getRandomCharacterTexture();
+
   virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
 };
 
