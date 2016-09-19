@@ -908,6 +908,18 @@ Store::State Store::element(bool action)
     };
   }
 
+  /**
+   *
+   *
+   *
+   */
+  auto category = ((probably(30) || !this->count(CATEGORY_REGULAR)) && this->count(CATEGORY_RARE)) ? CATEGORY_RARE : CATEGORY_REGULAR;
+
+  /**
+   *
+   *
+   *
+   */
   vector<State*> elements;
 
   /**
@@ -921,7 +933,7 @@ Store::State Store::element(bool action)
     {
       if(!element.action)
       {
-        if(element.category == ((probably(10) || !this->count(CATEGORY_REGULAR)) ? CATEGORY_RARE : CATEGORY_REGULAR))
+        if(element.category == category)
         {
           elements.push_back(&element);
         }
@@ -962,6 +974,8 @@ Store::State Store::element(bool action)
         "@store.states." + convert(element->index),
         Element::STATE_SELECTED
       );
+
+      Storage::set("@store.selected", element->index);
     }
 
     return *element;
@@ -1029,6 +1043,16 @@ string Store::getRandomCharacterTexture()
    *
    */
   return "characters/" + convert(index) + "/texture.png";
+}
+
+/**
+ *
+ *
+ *
+ */
+int Store::getCurrentCharacterCategory()
+{
+  return floor(Storage::get("@store.selected") / 1000.0);
 }
 
 /**

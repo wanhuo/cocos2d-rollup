@@ -37,6 +37,16 @@
 UnlockButton::UnlockButton(Node* parent)
 : ExtendedButton("ui/button-unlock.png", 3, 1, parent, std::bind(&UnlockButton::onAction, this))
 {
+  this->texture = new Entity("characters/1000/texture.png", this);
+  this->texture->setLocalZOrder(-1);
+  this->texture->setScale(1.627);
+
+  /**
+   *
+   *
+   *
+   */
+  this->setCascadeOpacityEnabled(true);
 }
 
 UnlockButton::~UnlockButton()
@@ -118,6 +128,13 @@ void UnlockButton::onCreate()
 void UnlockButton::onDestroy(bool action)
 {
   ExtendedButton::onDestroy(action);
+
+  /**
+   *
+   *
+   *
+   */
+  this->texture->_destroy();
 }
 
 /**
@@ -269,14 +286,23 @@ void UnlockButton::onAction()
             Sequence::create(
               FadeTo::create(0.1, 255.0),
               CallFunc::create([=] () {
-                auto element = Store::getInstance()->element();
+                auto element = Store::getInstance()->element(true);
 
                 /**
                  *
                  *
                  *
                  */
-                Unlock::getInstance()->texture->setTexture("characters/" + convert(element.index) + "/texture.png");
+                this->texture->_create();
+                this->texture->setCameraMask(BACKGROUND);
+                this->texture->setPosition(this->getWidth() / 2, this->getHeight() / 2);
+                this->texture->setTexture("characters/" + convert(element.index) + "/texture.png");
+
+                /**
+                 *
+                 *
+                 *
+                 */
                 Unlock::getInstance()->texts.text->setText("@store.new.character." + convert(random(1, 2)));
 
                 /**

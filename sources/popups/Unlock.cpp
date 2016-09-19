@@ -56,20 +56,18 @@ Unlock::Unlock()
    *
    */
   this->icon = new Entity("ui/button-currency-icon.png", this);
-  this->texture = new Entity("characters/1000/texture.png", this->icon);
   this->separator = new Entity("ui/separator-1.png", this);
 
   this->texts.separator = new Text("@store.separator.1", this->separator, true);
   this->texts.currency = new Text("@buttons.unlock.currency", this);
   this->texts.text = new Text("@buttons.unlock.character", this);
 
-  this->texts.separator->setPosition(this->separator->getWidth() / 2 , this->separator->getHeight() / 2 + 5);
+  this->texts.separator->setPosition(this->separator->getWidth() / 2 , this->separator->getHeight() / 2);
   this->texts.text->setPosition(Application->getCenter().x, Application->getCenter().y + 200);
 
   this->texts.currency->data(100);
   this->texts.currency->setPosition(Application->getCenter().x - this->icon->getWidthScaled() / 2 - 2.0, Application->getCenter().y - 147);
   this->icon->setPosition(this->texts.currency->getPositionX() + this->texts.currency->getWidth() / 2 + this->icon->getWidthScaled() / 2 + 7.0, Application->getCenter().y - 151);
-  this->texture->setPosition(this->icon->getWidth() / 2, this->icon->getHeight() / 2);
 
   this->separator->setCascadeOpacityEnabled(true);
 
@@ -187,14 +185,14 @@ void Unlock::hide()
 
 void Unlock::showButtons()
 {
-  auto state = Store::getInstance()->element(true);
+  auto state = Store::getInstance()->getCurrentCharacterCategory();
 
   /**
    *
    *
    *
    */
-  if(state.category == Store::CATEGORY_RARE)
+  if(state == Store::CATEGORY_RARE)
   {
     this->separator->_create();
     this->separator->setPosition(Application->getCenter().x, Application->getCenter().y + 135);

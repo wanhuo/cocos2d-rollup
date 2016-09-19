@@ -73,6 +73,26 @@ Menu::Menu()
   this->buttons.share = new ExtendedButton("ui/button-share.png", 2, 1, this, std::bind(&Menu::onShare, this));
   this->buttons.video = new VideoButton(this);
   this->buttons.present = new PresentButton(this);
+  this->buttons.announce = new AnnounceButton(this, [=] () {
+    Application->onShare(
+      Application->getFrameWidth(),
+      Application->getFrameWidth(),
+      0,
+      Application->getFrameHeight() / 2 - Application->getFrameWidth() / 2,
+      false,
+      "", // @TODO: Add share text;
+      [=] (int state) {
+        if(state)
+        {
+          Application->counter->currency.handler->add(50, this->buttons.announce);
+        }
+      }
+    );
+  }, AnnounceButton::TYPE_LARGE);
+  this->buttons.announce->setPosition(Application->getCenter().x, Application->getCenter().y - 320.0);
+  this->buttons.announce->setLocalZOrder(10);
+  this->buttons.state = new FacebookButton::State(this);
+  this->buttons.add = new FacebookButton::Add(this);
 }
 
 Menu::~Menu()
@@ -144,6 +164,31 @@ void Menu::onEnter()
   this->buttons.present->add(Application->getCenter().x + 256, 200);
   this->buttons.social->add(Application->getCenter().x * 2 - 128 * 1.35, Application->getHeight() - 64);
   this->buttons.settings->add(Application->getCenter().x * 2 - 64, Application->getHeight() - 64);
+
+  /**
+   *
+   *
+   *
+   */
+  switch(this->state)
+  {
+    case STATE_MENU:
+    break;
+    case STATE_FINISH:
+    if(Facebook::status() && probably(20))
+    {
+      this->buttons.add->add(Application->getCenter().x, Application->getCenter().y - 320.0);
+    }
+    else if(!Facebook::status() && probably(20))
+    {
+      this->buttons.state->add(Application->getCenter().x, Application->getCenter().y - 320.0);
+    }
+    else
+    {
+      this->buttons.announce->add();
+    }
+    break;
+  }
 }
 
 void Menu::onExit()
@@ -360,6 +405,9 @@ void Menu::hide()
   this->buttons.settings->remove();
   this->buttons.video->remove();
   this->buttons.present->remove();
+  this->buttons.announce->remove();
+  this->buttons.add->remove();
+  this->buttons.state->remove();
 
   /**
    *

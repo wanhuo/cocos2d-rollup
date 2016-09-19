@@ -52,6 +52,7 @@ class UnlockButton : public ExtendedButton
    *
    */
   protected:
+  Entity* texture;
 
   /**
    *

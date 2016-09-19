@@ -97,11 +97,7 @@ class Capture : public ExtendedButton
    *
    */
   private:
-  struct Buttons {
-    AnnounceButton* announce;
-  };
-
-  Buttons buttons;
+  Pool* elements;
 
   /**
    *
@@ -110,8 +106,6 @@ class Capture : public ExtendedButton
    */
   protected:
   Entity* element;
-
-  Pool* elements;
 
   /**
    *

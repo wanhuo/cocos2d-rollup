@@ -36,34 +36,9 @@
  */
 Capture::Capture()
 : ExtendedButton("ui/capture-background.png", 1, 1, Application, [=] () {
-this->buttons.announce->onAction();
+Menu::getInstance()->buttons.announce->onAction();
 })
 {
-  this->buttons.announce = new AnnounceButton(Application, [=] () {
-    Application->onShare(
-      Application->getFrameWidth(),
-      Application->getFrameWidth(),
-      0,
-      Application->getFrameHeight() / 2 - Application->getFrameWidth() / 2,
-      false,
-      "", // @TODO: Add share text;
-      [=] (int state) {
-        if(state)
-        {
-          Application->counter->currency.handler->add(50, this->buttons.announce);
-        }
-      }
-    );
-  }, AnnounceButton::TYPE_LARGE);
-  this->buttons.announce->setPosition(Application->getCenter().x, Application->getCenter().y - 320.0);
-  this->buttons.announce->setLocalZOrder(10);
-  this->buttons.announce->setCameraMask(BACKGROUND);
-
-  /**
-   *
-   *
-   *
-   */
   auto holder = ClippingNode::create();
   holder->setAlphaThreshold(0.05f);
   holder->setScale(0.88);
@@ -162,13 +137,6 @@ void Capture::onAdd()
    *
    *
    */
-  this->buttons.announce->add();
-
-  /**
-   *
-   *
-   *
-   */
   this->runAction(
     RepeatForever::create(
       Sequence::create(
@@ -217,13 +185,6 @@ void Capture::onAdd()
 void Capture::onRemove()
 {
   ExtendedButton::onRemove();
-
-  /**
-   *
-   *
-   *
-   */
-  this->buttons.announce->remove();
 }
 
 /**

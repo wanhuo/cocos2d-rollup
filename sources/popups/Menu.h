@@ -54,6 +54,10 @@ class Menu : public Popup
     ExtendedButton* settings;
     ExtendedButton* video;
     ExtendedButton* present;
+    AnnounceButton* announce;
+
+    ExtendedButton* state;
+    ExtendedButton* add;
   };
 
   Buttons buttons;
