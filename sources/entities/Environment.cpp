@@ -98,7 +98,8 @@ Environment::Texture Environment::getTextures()
 
   return {
     path + "/texture.png",
-    path + "/background.png"
+    path + "/background.png",
+    path + "/dust.png"
   };
 }
 
@@ -117,6 +118,10 @@ void Environment::onAction()
  *
  *
  */
+void Environment::onIntro()
+{
+}
+
 void Environment::onMenu()
 {
   this->showElements({

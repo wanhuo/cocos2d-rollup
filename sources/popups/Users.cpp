@@ -368,9 +368,9 @@ void Users::show()
   Popup::show();
 }
 
-void Users::hide()
+void Users::hide(const std::function<void()>& callback)
 {
-  Popup::hide();
+  Popup::hide(callback);
 
   /**
    *

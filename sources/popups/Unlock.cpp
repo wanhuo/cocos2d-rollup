@@ -129,9 +129,9 @@ void Unlock::show()
   this->buttons.action->add();
 }
 
-void Unlock::hide()
+void Unlock::hide(const std::function<void()>& callback)
 {
-  Popup::hide();
+  Popup::hide(callback);
 
   /**
    *
@@ -183,16 +183,9 @@ void Unlock::hide()
   );
 }
 
-void Unlock::showButtons()
+void Unlock::showButtons(int category)
 {
-  auto state = Store::getInstance()->getCurrentCharacterCategory();
-
-  /**
-   *
-   *
-   *
-   */
-  if(state == Store::CATEGORY_RARE)
+  if(category == Store::CATEGORY_RARE)
   {
     this->separator->_create();
     this->separator->setPosition(Application->getCenter().x, Application->getCenter().y + 135);
@@ -226,6 +219,13 @@ void Unlock::showButtons()
    */
   this->buttons.next->add(Application->getCenter().x + 64, 200);
   this->buttons.announce->add(Application->getCenter().x - 64, 200);
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->play("unlock");
 }
 
 /**

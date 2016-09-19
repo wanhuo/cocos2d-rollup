@@ -310,7 +310,7 @@ void UnlockButton::onAction()
                  *
                  *
                  */
-                Unlock::getInstance()->showButtons();
+                Unlock::getInstance()->showButtons(element.category);
               }),
               DelayTime::create(0.1),
               FadeTo::create(0.3, 0.0),

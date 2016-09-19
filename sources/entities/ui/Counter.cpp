@@ -52,6 +52,7 @@ Counter::Counter()
   this->currency.background = new Entity(true);
   this->currency.handler = new Coins(this->currency.background);
 
+  this->currency.background->setOpacity(0);
   this->currency.background->setCascadeOpacityEnabled(true);
 
   this->best = new Text("@counter.best", this);

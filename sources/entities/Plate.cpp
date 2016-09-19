@@ -193,39 +193,55 @@ int Plate::getIndex()
  *
  *
  */
-void Plate::start(bool animation)
+void Plate::start(bool animation, float time)
 {
-  this->setTexture(Application->environment->getTextures().environments);
-  this->setOpacity(255);
+  this->setOpacity(0.0);
+  this->setScaleY(0.0);
 
-  this->runAction(
-    RepeatForever::create(
-      RotateBy::create(1.0, Vec3(0, 90 * (this->rotation == LEFT ? -1 : 1), 0))
+  /**
+   *
+   *
+   *
+   */
+  Application->runAction(
+    Sequence::create(
+      DelayTime::create(time),
+      CallFunc::create([=] () {
+      this->setTexture(Application->environment->getTextures().environments);
+      this->setOpacity(255);
+
+      this->runAction(
+        RepeatForever::create(
+          RotateBy::create(1.0, Vec3(0, 90 * (this->rotation == LEFT ? -1 : 1), 0))
+        )
+      );
+
+      if(animation)
+      {
+        if(this->stage)
+        {
+          if(probably(50))
+          {
+            this->flushed = 1;
+          }
+        }
+
+        this->setScaleY(0.0);
+
+        this->runAction(
+          EaseSineOut::create(
+            ScaleTo::create(0.5 + time, 1.0, 1.0 + (this->stage && !this->flushed ? 0.5 : 0.0), 1.0)
+          )
+        );
+      }
+      else
+      {
+        this->setScaleY(1.0);
+      }
+      }),
+      nullptr
     )
   );
-
-  if(animation)
-  {
-    if(this->stage)
-    {
-      if(probably(50))
-      {
-        this->flushed = 1;
-      }
-    }
-
-    this->setScaleY(0.0);
-
-    this->runAction(
-      EaseSineOut::create(
-        ScaleTo::create(0.5, 1.0, 1.0 + (this->stage && !this->flushed ? 0.5 : 0.0), 1.0)
-      )
-    );
-  }
-  else
-  {
-    this->setScaleY(1.0);
-  }
 }
 
 void Plate::finish()

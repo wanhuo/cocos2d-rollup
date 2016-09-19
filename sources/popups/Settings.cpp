@@ -188,9 +188,9 @@ void Settings::show()
   Popup::show();
 }
 
-void Settings::hide()
+void Settings::hide(const std::function<void()>& callback)
 {
-  Popup::hide();
+  Popup::hide(callback);
 
   /**
    *

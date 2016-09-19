@@ -48,7 +48,7 @@ Game* Game::getInstance()
 Game::Game()
 {
   instance = this;
-
+  
   /**
    *
    *
@@ -168,6 +168,13 @@ Game::Game()
 
   /**
    *
+   *
+   *
+   */
+   this->changeState(STATE_INTRO);
+
+  /**
+   *
    * @Director
    * | @Shadows;
    *
@@ -224,7 +231,6 @@ Game::Game()
    *
    *
    */
-  //Music->play("music-1", true);
   this->_defaultCamera = this->cameras.cameraBackground;
 }
 
@@ -258,6 +264,8 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
   {
     case STATE_NONE:
     break;
+    case STATE_INTRO:
+    break;
     case STATE_FINISH:
     break;
     case STATE_GAME:
@@ -282,6 +290,8 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
   {
     case STATE_NONE:
     break;
+    case STATE_INTRO:
+    break;
     case STATE_FINISH:
     break;
     case STATE_UNLOCK:
@@ -304,6 +314,8 @@ void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
   switch(this->state)
   {
     case STATE_NONE:
+    break;
+    case STATE_INTRO:
     break;
     case STATE_MENU:
     break;
@@ -332,6 +344,8 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
   switch(this->state)
   {
     case STATE_NONE:
+    break;
+    case STATE_INTRO:
     break;
     case STATE_MENU:
     break;
@@ -369,13 +383,6 @@ void Game::onEnter()
    *
    */
   Internal::onStart();
-
-  /**
-   *
-   *
-   *
-   */
-   this->changeState(STATE_MENU);
 
   /**
    *
@@ -521,6 +528,107 @@ bool Game::onInstagram()
  *
  *
  */
+void Game::onIntro()
+{
+  this->intro = new Entity(this, true);
+  this->intro->setCameraMask(BACKGROUND);
+
+  /**
+   *
+   *
+   *
+   */
+  auto names = new Pool(new Text("@app.name"), this->intro);
+
+  auto x = 0.0;
+  auto y = Application->getCenter().y;
+
+  for(auto element : {
+    "B",
+    "R",
+    "I",
+    "S",
+    "K",
+    " ",
+    "B",
+    "A",
+    "L",
+    "L"
+  })
+  {
+    if(names->count)
+    {
+      x += names->last()->getContentSize().width / 2 + 10;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    auto name = (Text*) names->_create();
+    name->setCameraMask(BACKGROUND);
+    name->setOpacity(0);
+    name->setAnchorPoint(Vec2(0.5, 0.0));
+    name->setRotation(0, 90 * (probably(50) ? 1 : -1), 0);
+    name->data(element);
+
+    /**
+     *
+     *
+     *
+     */
+    if(names->count > 1)
+    {
+      x += name->getContentSize().width / 2 + 10;
+    }
+
+    /**
+     *
+     *
+     *
+     */
+    name->setPosition(x, y);
+
+    /**
+     *
+     *
+     *
+     */
+    auto time = random(1.0, 2.0);
+
+    name->runAction(
+      Spawn::create(
+        Sequence::create(
+          DelayTime::create(time),
+          EaseSineIn::create(
+            RotateTo::create(time, Vec3(0.0, 0.0, 0.0))
+          ),
+          CallFunc::create([=] () {
+          name->setCameraMask(BACKGROUND);
+          }),
+          nullptr
+        ),
+        Sequence::create(
+          DelayTime::create(time),
+          EaseSineIn::create(
+            FadeTo::create(time, 255)
+          ),
+          nullptr
+          ),
+        nullptr
+      )
+    );
+  }
+
+  /**
+   *
+   *
+   *
+   */
+  this->intro->setPosition(Application->getWidth() / 2 - x / 2, Application->getHeight() / 4);
+}
+
 void Game::onMenu()
 {
   Menu::getInstance()->show();
@@ -773,6 +881,9 @@ void Game::changeState(State state)
     {
       case STATE_NONE:
       break;
+      case STATE_INTRO:
+      this->onIntro();
+      break;
       case STATE_MENU:
       this->onMenu();
       break;
@@ -803,6 +914,10 @@ void Game::changeState(State state)
  *
  *
  */
+void Game::updateIntro(float time)
+{
+}
+
 void Game::updateMenu(float time)
 {
 }
@@ -842,6 +957,9 @@ void Game::updateStates(float time)
   {
     case STATE_NONE:
     break;
+    case STATE_INTRO:
+    this->updateIntro(time);
+    break;
     case STATE_MENU:
     this->updateMenu(time);
     break;
@@ -875,6 +993,8 @@ void Game::updateStates(float time)
   switch(this->state)
   {
     case STATE_NONE:
+    break;
+    case STATE_INTRO:
     break;
     case STATE_MENU:
     break;

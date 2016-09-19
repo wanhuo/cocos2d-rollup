@@ -237,7 +237,7 @@ class Store : public Popup
   virtual void onExit() override;
 
   virtual void show() override;
-  virtual void hide() override;
+  virtual void hide(const std::function<void()>& callback = nullptr) override;
 
   virtual void showButtons();
   virtual void hideButtons();
@@ -248,8 +248,6 @@ class Store : public Popup
 
   virtual string getCurrentCharacterTexture();
   virtual string getRandomCharacterTexture();
-
-  virtual int getCurrentCharacterCategory();
 
   virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
 };

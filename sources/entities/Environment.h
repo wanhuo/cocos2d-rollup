@@ -56,6 +56,7 @@ class Environment : public Background
   struct Texture {
     string environments;
     string background;
+    string dust;
   };
 
   /**
@@ -108,6 +109,7 @@ class Environment : public Background
 
   virtual void onAction();
 
+  virtual void onIntro();
   virtual void onMenu();
   virtual void onGame();
   virtual void onFinish();

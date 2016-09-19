@@ -771,9 +771,9 @@ void Store::show()
   Popup::show();
 }
 
-void Store::hide()
+void Store::hide(const std::function<void()>& callback)
 {
-  Popup::hide();
+  Popup::hide(callback);
 
   /**
    *
@@ -1043,16 +1043,6 @@ string Store::getRandomCharacterTexture()
    *
    */
   return "characters/" + convert(index) + "/texture.png";
-}
-
-/**
- *
- *
- *
- */
-int Store::getCurrentCharacterCategory()
-{
-  return floor(Storage::get("@store.selected") / 1000.0);
 }
 
 /**
@@ -1452,6 +1442,13 @@ void Store::Element::onAction()
                                     )
                                   );
                                 }
+
+                                /**
+                                 *
+                                 *
+                                 *
+                                 */
+                                Sound->play("unlock");
                               }),
                               DelayTime::create(0.1),
                               FadeTo::create(0.3, 0.0),

@@ -114,17 +114,43 @@ void FacebookButton::State::onAction()
     Facebook::connect([=] (bool state) {
       if(state)
       {
-        if(!Storage::get("@facebook.currency"))
-        {
-          Application->counter->currency.handler->add(200, this);
+        Application->runAction(
+          Sequence::create(
+            CallFunc::create([=] () {
+            Modal::block();
+            }),
+            CallFunc::create([=] () {
+            if(!Storage::get("@facebook.currency"))
+            {
+              Application->counter->currency.handler->add(200, this);
 
-          /**
-           *
-           *
-           *
-           */
-          Storage::set("@facebook.currency", true);
-        }
+              /**
+               *
+               *
+               *
+               */
+              Storage::set("@facebook.currency", true);
+            }
+            }),
+            DelayTime::create(0.5),
+            CallFunc::create([=] () {
+
+              /**
+               *
+               *
+               *
+               */
+              Popup::popup->hide([=] () {
+              Application->changeState(Game::STATE_USERS);
+              });
+            }),
+            DelayTime::create(1.0),
+            CallFunc::create([=] () {
+            Modal::hide();
+            }),
+            nullptr
+          )
+        );
       }
 
       /**

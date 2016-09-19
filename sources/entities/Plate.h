@@ -101,7 +101,7 @@ class Plate : public Element
 
   virtual int getIndex();
 
-  virtual void start(bool animation = false);
+  virtual void start(bool animation = false, float time = 0.0);
   virtual void finish();
 
   virtual void flush();

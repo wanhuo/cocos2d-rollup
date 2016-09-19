@@ -28,6 +28,13 @@
  *
  *
  */
+Popup* Popup::popup;
+
+/**
+ *
+ *
+ *
+ */
 Popup::Popup()
 : BackgroundColor(Application, Color4B(0, 0, 0, 0))
 {
@@ -88,6 +95,13 @@ void Popup::onHide()
  */
 void Popup::show()
 {
+  popup = this;
+
+  /**
+   *
+   *
+   *
+   */
   this->_create();
 
   this->bind(true);
@@ -103,7 +117,7 @@ void Popup::show()
   );
 }
 
-void Popup::hide()
+void Popup::hide(const std::function<void()>& callback)
 {
   this->bind(false);
 
@@ -112,6 +126,16 @@ void Popup::hide()
       FadeTo::create(0.5, 0),
       CallFunc::create([=] () {
       this->onHide();
+
+      /**
+       *
+       *
+       *
+       */
+      if(callback)
+      {
+        callback();
+      }
       }),
       nullptr
     )

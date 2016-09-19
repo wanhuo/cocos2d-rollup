@@ -95,7 +95,7 @@ class Generator : public Ref
 
   virtual Plate* element(int index);
 
-  virtual void create(bool animation = false);
+  virtual void create(bool animation = false, float time = 0.0);
   virtual void destroy();
 
   virtual void reset();

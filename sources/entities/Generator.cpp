@@ -71,7 +71,7 @@ Plate* Generator::element(int index)
  *
  *
  */
-void Generator::create(bool animation)
+void Generator::create(bool animation, float time)
 {
   auto elements = Application->environment->plates;
 
@@ -238,7 +238,7 @@ void Generator::create(bool animation)
       }
     }
 
-    current->start(animation);
+    current->start(animation, time);
 
 
 
@@ -361,6 +361,6 @@ void Generator::reset()
    */
   for(int i = 0; i < COUNT_START; i++)
   {
-    this->create();
+    this->create(Application->state == Game::STATE_INTRO, 0.2 * i);
   }
 }

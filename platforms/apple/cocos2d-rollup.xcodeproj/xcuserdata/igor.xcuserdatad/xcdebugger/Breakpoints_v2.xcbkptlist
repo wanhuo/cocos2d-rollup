@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../sources/popups/Unlock.cpp"
-            timestampString = "495986114.040168"
+            filePath = "../../sources/entities/ui/buttons/FacebookButton.Add.cpp"
+            timestampString = "495991989.239238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
-            landmarkName = "Unlock::showButtons()"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "FacebookButton::Add::onAction()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../sources/entities/ui/Counter.cpp"
+            timestampString = "495997989.462144"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "441"
+            endingLineNumber = "441"
+            landmarkName = "Counter::update(float time)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -30,7 +30,7 @@
  *
  */
 void Events::onStart()
-{Storage::clear();
+{
   Text::FONT = "Bangla Sangam MN";
 
   new Game;

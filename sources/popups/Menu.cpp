@@ -261,25 +261,13 @@ void Menu::onUsers()
 {
   if(!Facebook::status())
   {
-    Facebook::connect([=] (bool state) {
-      //
-    });
+    ((FacebookButton::State*) this->buttons.state)->onAction();
   }
   else
   {
-    Application->environment->onUsers();
-
-    this->hide();
-
-    Application->environment->clear->runAction(
-      Sequence::create(
-        DelayTime::create(0.5),
-        CallFunc::create([=] () {
-        Application->changeState(Game::STATE_USERS);
-        }),
-        nullptr
-      )
-    );
+    this->hide([=] () {
+    Application->changeState(Game::STATE_USERS);
+    });
   }
 }
 
@@ -364,9 +352,9 @@ void Menu::show()
   }
 }
 
-void Menu::hide()
+void Menu::hide(const std::function<void()>& callback)
 {
-  Popup::hide();
+  Popup::hide(callback);
 
   /**
    *

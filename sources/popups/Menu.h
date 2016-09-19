@@ -103,7 +103,7 @@ class Menu : public Popup
   virtual void onExit() override;
 
   virtual void show() override;
-  virtual void hide() override;
+  virtual void hide(const std::function<void()>& callback = nullptr) override;
 
   virtual void changeState(int state);
 };

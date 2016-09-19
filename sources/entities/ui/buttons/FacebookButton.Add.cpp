@@ -35,8 +35,7 @@
  *
  */
 FacebookButton::Add::Add(Node* parent, bool autocreate)
-: ExtendedButton("ui/button-facebook-add.png", 2, 1, parent, [=] () {
-}, autocreate)
+: ExtendedButton("ui/button-facebook-add.png", 2, 1, parent, std::bind(&FacebookButton::Add::onAction, this), autocreate)
 {
   this->text = new Text("@facebook.add", this, TextHAlignment::LEFT, true);
   this->text->setPosition(60, this->getHeight() / 2 + 1);
@@ -87,4 +86,14 @@ void FacebookButton::Add::onDestroy(bool action)
  */
 void FacebookButton::Add::onAction()
 {
+  if(!Facebook::status())
+  {
+    ((FacebookButton::State*) Menu::getInstance()->buttons.state)->onAction();
+  }
+  else
+  {
+    Popup::popup->hide([=] () {
+    Application->changeState(Game::STATE_USERS);
+    });
+  }
 }

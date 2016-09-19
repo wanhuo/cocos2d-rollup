@@ -56,6 +56,8 @@ class Popup : public BackgroundColor
   Popup();
  ~Popup();
 
+  static Popup* popup;
+
   virtual void onEnter() override;
   virtual void onExit() override;
 
@@ -63,7 +65,7 @@ class Popup : public BackgroundColor
   virtual void onHide();
 
   virtual void show();
-  virtual void hide();
+  virtual void hide(const std::function<void()>& callback = nullptr);
 
   virtual bool containsTouchLocation(cocos2d::Touch* touch) override;
 };

@@ -59,6 +59,7 @@ void Dust::onCreate()
    *
    *
    */
+  this->setTexture(Application->environment->getTextures().dust);
   this->setOpacity(0);
   this->setScale(0.005 * 0.2);
 

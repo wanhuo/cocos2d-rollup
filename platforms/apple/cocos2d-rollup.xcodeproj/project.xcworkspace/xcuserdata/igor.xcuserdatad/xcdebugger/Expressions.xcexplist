@@ -3,7 +3,70 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Character::update(float):Character.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Plate::clearDecorations(bool, bool, bool):Plate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Energy::onPickup()::$_0::operator()() const:Energy.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "FacebookButton::State::onAction()::$_0::operator()(bool) const::&apos;lambda1&apos;()::operator()() const:FacebookButton.State.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "Popup::popup">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Special::clearDecorations(bool, bool, bool):Special.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Store::onEnter():Store.cpp">
+      </ContextState>
+      <ContextState
          contextName = "Plate::remove():Plate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "UnlockButton::onAction()::$_1::operator()() const::&apos;lambda&apos;()::operator()() const:UnlockButton.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "+[NSFacebook getScore:reset:]:NSFacebook.mm">
+         <PersistentStrings>
+            <PersistentString
+               value = "Facebook::info">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Character::updateCopter(float):Character.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Plate::clearDecorations(bool, bool):Plate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Game::update(float):Game.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Cube::update(float):Cube.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Store::onEnter()::$_1::operator()(Store::State) const:Store.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "TypeGate::onDestroy(bool):TypeGate.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Users::updateA(bool)::$_2::operator()(std::__1::vector&lt;framework::FacebookFriend*, std::__1::allocator&lt;framework::FacebookFriend*&gt; &gt;) const:Users.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "reset">
+            </PersistentString>
+            <PersistentString
+               value = "resetTest">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Users::visit(cocos2d::Renderer*, cocos2d::Mat4 const&amp;, unsigned int):Users.cpp">
@@ -17,39 +80,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Plate::clearDecorations(bool, bool, bool):Plate.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "TypeGate::onDestroy(bool):TypeGate.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Energy::onPickup()::$_0::operator()() const:Energy.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Special::clearDecorations(bool, bool, bool):Special.cpp">
-      </ContextState>
-      <ContextState
          contextName = "Up::onPickup():Up.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Plate::clearDecorations(bool, bool):Plate.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Cube::update(float):Cube.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Character::update(float):Character.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Users::updateA(bool)::$_2::operator()(std::__1::vector&lt;framework::FacebookFriend*, std::__1::allocator&lt;framework::FacebookFriend*&gt; &gt;) const:Users.cpp">
-         <PersistentStrings>
-            <PersistentString
-               value = "reset">
-            </PersistentString>
-            <PersistentString
-               value = "resetTest">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Character::onTurn(int):Character.cpp">
@@ -66,18 +97,7 @@
          contextName = "Environment::updateFishes(float):Environment.cpp">
       </ContextState>
       <ContextState
-         contextName = "+[NSFacebook getScore:reset:]:NSFacebook.mm">
-         <PersistentStrings>
-            <PersistentString
-               value = "Facebook::info">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Character::updateCopter(float):Character.cpp">
-      </ContextState>
-      <ContextState
-         contextName = "Game::update(float):Game.cpp">
+         contextName = "Store::getRandomCharacterTexture():Store.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
