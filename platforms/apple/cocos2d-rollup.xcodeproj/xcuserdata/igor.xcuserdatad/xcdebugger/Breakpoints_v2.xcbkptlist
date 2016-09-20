@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../sources/entities/Character.cpp"
-            timestampString = "496077472.199837"
+            timestampString = "496077764.443834"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "916"
-            endingLineNumber = "916"
+            startingLineNumber = "917"
+            endingLineNumber = "917"
             landmarkName = "Character::update(float time)"
             landmarkType = "5">
          </BreakpointContent>

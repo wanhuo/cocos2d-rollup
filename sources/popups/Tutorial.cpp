@@ -124,13 +124,19 @@ void Tutorial::onPlay()
    *
    */
   this->hide([=] () {
-    Application->changeState(Game::STATE_MENU);
-
     Application->environment->clear->runAction(
       Sequence::create(
         FadeTo::create(0.3, 255.0),
         CallFunc::create([=] () {
-        Application->reset();
+          Application->changeState(Game::STATE_MENU);
+          Application->reset();
+
+          /**
+           *
+           *
+           *
+           */
+          Internal::onReady();
         }),
         DelayTime::create(0.1),
         FadeTo::create(0.3, 0.0),

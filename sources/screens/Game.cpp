@@ -448,35 +448,56 @@ void Game::onShare(
   const std::function<void(int, int)>& update
 )
 {
-  Screenshot::save(
-    width,
-    height,
-    x,
-    y,
-    [=] (bool state, const string filename) {
+  Application->environment->clear->runAction(
+    Sequence::create(
+      FadeTo::create(0.1, 255.0),
+      CallFunc::create([=] () {
 
       /**
        *
        *
        *
        */
-      Social::share(animation, text + " ?", callback, update);
-    }
+      Sound->play("capture");
+      }),
+      DelayTime::create(0.1),
+      FadeTo::create(0.3, 0.0),
+      DelayTime::create(0.1),
+      CallFunc::create([=] () {
+      Director::getInstance()->getScheduler()->setTimeScale(0.0);
+
+      /**
+       *
+       *
+       *
+       */
+      Screenshot::save(
+        width,
+        height,
+        x,
+        y,
+        [=] (bool state, const string filename) {
+          Director::getInstance()->getScheduler()->setTimeScale(1.0);
+
+          /**
+           *
+           *
+           *
+           */
+          Social::share(animation, text + " ?", callback, update);
+        }
+      );
+
+      /**
+       *
+       *
+       *
+       */
+      Events::onShare();
+      }),
+      nullptr
+    )
   );
-
-  /**
-   *
-   *
-   *
-   */
-  Events::onShare();
-
-  /**
-   *
-   *
-   *
-   */
-  Sound->play("capture");
 }
 
 /**
@@ -671,6 +692,40 @@ void Game::onIntro()
        *
        */
       this->environment->character->reset();
+
+      /**
+       *
+       *
+       *
+       */
+      this->runAction(
+        Sequence::create(
+          DelayTime::create(2.0),
+          CallFunc::create([=] () {
+          Music->play("music-1", true);
+          Music->volume(0.0);
+
+          /**
+           *
+           *
+           *
+           */
+          this->runAction(
+            Repeat::create(
+              Sequence::create(
+                DelayTime::create(1.0 / 60.0),
+                CallFunc::create([=] () {
+                Music->volume(Music->volume() + 0.0013);
+                }),
+                nullptr
+              ),
+              60 * 5
+            )
+          );
+          }),
+          nullptr
+        )
+      );
       }),
       nullptr
     )
