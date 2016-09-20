@@ -957,6 +957,8 @@ Store::State Store::element(bool action)
      */
     if(action)
     {
+      Application->counter->currency.handler->remove(100);
+
       CC_VOOP(this->states)
       {
         if(element.state == Element::STATE_SELECTED)

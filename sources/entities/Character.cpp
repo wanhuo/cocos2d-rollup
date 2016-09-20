@@ -53,7 +53,7 @@ Character::Character()
 
   this->setScheduleUpdate(true);
 
-   streak = MotionStreak3D::create(0.25f, 0.0f, 0.6f, Color3B(255, 255, 255), "test.png");
+   streak = MotionStreak3D::create(0.20f, 0.0f, 0.6f, Color3B(255, 255, 255), "test.png");
    //streak->setBlendFunc((BlendFunc) {GL_SRC_COLOR, GL_ONE_MINUS_SRC_ALPHA});
    streak->setBlendFunc((BlendFunc) {GL_DST_COLOR, GL_ONE_MINUS_SRC_ALPHA});
    streak->enableShadow(false);
@@ -122,7 +122,10 @@ void Character::reset()
    *
    *
    */
-  this->changeState(STATE_START);
+  if(Application->state != Game::STATE_INTRO)
+  {
+    this->changeState(STATE_START);
+  }
 }
 
 /**
@@ -164,6 +167,7 @@ static Speed* speed2 = nullptr;
 static Speed* speed3 = nullptr;
 static Speed* speed4 = nullptr;
 static Speed* speed5 = nullptr;
+static Speed* speed6 = nullptr;
 void Character::onAction()
 {
   switch(this->state)
@@ -185,7 +189,19 @@ void Character::onAction()
       if(speed3) speed3->setSpeed(t);
       if(speed4) speed4->setSpeed(t);
       if(speed5) speed5->setSpeed(t);
+      if(speed6) speed6->setSpeed(t);
       this->action = true;
+    }
+
+    /**
+     *
+     * @Tutorial
+     *
+     */
+    if(Application->environment->generator->tutorial)
+    {
+      Application->stopAllActions();
+      Director::getInstance()->getScheduler()->setTimeScale(1.0);
     }
     break;
     case STATE_CRASH:
@@ -198,6 +214,7 @@ void Character::onAction()
  *
  *
  */
+static float timea = 1.0;
 void Character::onMove()
 {
   speed1 = nullptr;
@@ -205,6 +222,7 @@ void Character::onMove()
   speed3 = nullptr;
   speed4 = nullptr;
   speed5 = nullptr;
+  speed6 = nullptr;
 
   this->index++;
 
@@ -348,14 +366,14 @@ if(this->plates.current && element)
   }
 }
 
+
+  this->plates.previous = this->plates.current;
+  this->plates.current = element;
 if(element)
 {
 
   x = element->getPositionX() - this->plane->getPositionX();
   z = element->getPositionZ() - this->plane->getPositionZ();
-
-  this->plates.previous = this->plates.current;
-  this->plates.current = element;
   }
   else
   {
@@ -378,6 +396,37 @@ if(element)
 
   speed1 = Speed::create(
     Sequence::create(
+      CallFunc::create([=] () {
+
+          /**
+           *
+           * @Tutorial
+           *
+           */
+          if(Application->environment->generator->tutorial)
+          {
+            // @TODO: Optimize this;
+            if(this->plates.current)
+            if(!Application->environment->generator->element(this->index + 1) || (this->plates.current->stage < Application->environment->generator->element(this->index + 1)->stage))
+            {
+              this->action = true;
+              timea = 1.0;
+              Application->runAction(
+                Repeat::create(
+                  Sequence::create(
+                    DelayTime::create(1.0 / 60.0),
+                    CallFunc::create([=] () {
+                    timea -= 1.0 / 15.0;
+                    Director::getInstance()->getScheduler()->setTimeScale(timea);
+                    }),
+                    nullptr
+                  ),
+                  15
+                )
+              );
+            }
+          }
+      }),
       EaseSineOut::create(
         MoveBy::create(time, Vec3(0, y + a, 0))
       ),
@@ -394,8 +443,11 @@ if(element)
       Sequence::create(
         DelayTime::create(time / 3),
         CallFunc::create([=] () {
-          this->bind = true;
-          this->action = false;
+          if(!Application->environment->generator->tutorial)
+          {
+            this->bind = true;
+            this->action = false;
+          }
         }),
         nullptr
       ),
@@ -432,7 +484,10 @@ if(element)
           }
         }),
         CallFunc::create([=] () {
-          this->bind = false;
+          if(!Application->environment->generator->tutorial)
+          {
+            this->bind = false;
+          }
 
           /**
            *
@@ -564,8 +619,15 @@ if(element)
 
   if(Director::getInstance()->getShadowState())
   {
+    speed6 = Speed::create(
+      Sequence::create(
+        MoveBy::create(time * 2, Vec3(x, 0, z)),
+        nullptr
+      ),
+      1.0
+    );
     Application->getShadowsCamera()->runAction(
-      MoveBy::create(time * 2, Vec3(x, 0, z))
+      speed6
     );
   }
 
@@ -615,6 +677,37 @@ void Character::onStart()
     {
       this->shadow->runAction(
         ScaleTo::create(0.5, 1.0)
+      );
+    }
+    break;
+
+    /**
+     *
+     *
+     *
+     */
+    case Game::STATE_TUTORIAL:
+    this->plane->runAction(
+      Sequence::create(
+        EaseSineIn::create(
+          MoveTo::create(0.5, Vec3(0.0, 1.5, 0.0))
+        ),
+        CallFunc::create([=] () {
+        if(Application->state == Game::STATE_TUTORIAL)
+        {
+          this->changeState(STATE_NORMAL);
+        }
+        }),
+        nullptr
+      )
+    );
+    
+    if(Director::getInstance()->getShadowState())
+    {
+      this->shadow->runAction(
+        EaseSineIn::create(
+          ScaleTo::create(0.5, 1.0)
+        )
       );
     }
     break;

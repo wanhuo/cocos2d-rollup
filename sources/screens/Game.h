@@ -166,6 +166,7 @@ class Game : public Screen
   enum State {
     STATE_NONE,
     STATE_INTRO,
+    STATE_TUTORIAL,
     STATE_MENU,
     STATE_GAME,
     STATE_FINISH,
@@ -176,6 +177,7 @@ class Game : public Screen
   };
 
   Entity* intro;
+  Entity* separator;
 
   /**
    *
@@ -235,6 +237,7 @@ class Game : public Screen
   virtual bool onInstagram();
 
   virtual void onIntro();
+  virtual void onTutorial();
   virtual void onMenu();
   virtual void onGame();
   virtual void onFinish();
@@ -258,6 +261,7 @@ class Game : public Screen
   virtual void changeState(State state);
 
   virtual void updateIntro(float time);
+  virtual void updateTutorial(float time);
   virtual void updateMenu(float time);
   virtual void updateGame(float time);
   virtual void updateFinish(float time);

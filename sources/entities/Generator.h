@@ -89,6 +89,7 @@ class Generator : public Ref
   int index;
   int rotation;
   int direction;
+  int tutorial;
 
   Parameters parameters;
   Previous previous;

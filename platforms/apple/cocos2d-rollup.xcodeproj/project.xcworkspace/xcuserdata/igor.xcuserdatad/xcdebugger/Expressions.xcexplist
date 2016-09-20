@@ -9,6 +9,9 @@
          contextName = "Plate::clearDecorations(bool, bool, bool):Plate.cpp">
       </ContextState>
       <ContextState
+         contextName = "__22+[NSFacebook connect:]_block_invoke:NSFacebook.mm">
+      </ContextState>
+      <ContextState
          contextName = "Energy::onPickup()::$_0::operator()() const:Energy.cpp">
       </ContextState>
       <ContextState
@@ -50,6 +53,14 @@
       </ContextState>
       <ContextState
          contextName = "Cube::update(float):Cube.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "SoundButton::updateState(bool):SoundButton.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "MusicFactory::instance">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "Store::onEnter()::$_1::operator()(Store::State) const:Store.cpp">
@@ -98,6 +109,9 @@
       </ContextState>
       <ContextState
          contextName = "Store::getRandomCharacterTexture():Store.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "Game::onIntro():Game.cpp">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

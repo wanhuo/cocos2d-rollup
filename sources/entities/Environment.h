@@ -50,6 +50,7 @@ class Environment : public Background
   public:
   enum Elements {
     ELEMENT_COUNTER,
+    ELEMENT_INTRO,
     ELEMENT_NOTIFICATION_NODE
   };
 
@@ -110,6 +111,7 @@ class Environment : public Background
   virtual void onAction();
 
   virtual void onIntro();
+  virtual void onTutorial();
   virtual void onMenu();
   virtual void onGame();
   virtual void onFinish();

@@ -203,18 +203,23 @@ void Plate::start(bool animation, float time)
    *
    *
    */
+  this->runAction(
+    RepeatForever::create(
+      RotateBy::create(1.0, Vec3(0, 90 * (this->rotation == LEFT ? -1 : 1), 0))
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
   Application->runAction(
     Sequence::create(
-      DelayTime::create(time),
+      DelayTime::create(animation ? time : 0.0),
       CallFunc::create([=] () {
       this->setTexture(Application->environment->getTextures().environments);
       this->setOpacity(255);
-
-      this->runAction(
-        RepeatForever::create(
-          RotateBy::create(1.0, Vec3(0, 90 * (this->rotation == LEFT ? -1 : 1), 0))
-        )
-      );
 
       if(animation)
       {

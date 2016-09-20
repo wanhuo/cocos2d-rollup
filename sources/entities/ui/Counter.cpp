@@ -90,9 +90,23 @@ void Counter::onCreate()
    *
    *
    */
+  this->state->create = false;
+
+  /**
+   *
+   *
+   *
+   */
   this->runAction(
-    EaseSineIn::create(
-      FadeTo::create(0.5, 255.0)
+    Sequence::create(
+      DelayTime::create(0.5),
+      CallFunc::create([=] () {
+      this->state->create = true;
+      }),
+      EaseSineIn::create(
+        FadeTo::create(0.5, 255.0)
+      ),
+      nullptr
     )
   );
 }

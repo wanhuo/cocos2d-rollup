@@ -168,13 +168,6 @@ Game::Game()
 
   /**
    *
-   *
-   *
-   */
-   this->changeState(STATE_INTRO);
-
-  /**
-   *
    * @Director
    * | @Shadows;
    *
@@ -302,6 +295,7 @@ void Game::onTouchStart(cocos2d::Touch* touch, Event* event)
     break;
     case STATE_USERS:
     break;
+    case STATE_TUTORIAL:
     case STATE_MENU:
     case STATE_GAME:
     this->environment->onAction();
@@ -316,6 +310,8 @@ void Game::onTouchFinish(cocos2d::Touch* touch, Event* event)
     case STATE_NONE:
     break;
     case STATE_INTRO:
+    break;
+    case STATE_TUTORIAL:
     break;
     case STATE_MENU:
     break;
@@ -389,7 +385,7 @@ void Game::onEnter()
    *
    *
    */
-  this->reset();
+   this->changeState(STATE_INTRO);
 }
 
 void Game::onExit()
@@ -530,8 +526,17 @@ bool Game::onInstagram()
  */
 void Game::onIntro()
 {
+  this->reset();
+
+  /**
+   *
+   *
+   *
+   */
   this->intro = new Entity(this, true);
-  this->intro->setCameraMask(BACKGROUND);
+  this->intro->setCascadeOpacityEnabled(true);
+
+  this->separator = new Entity(((this->environment->texture == 5 || this->environment->texture == 7) ? "ui/separator-3.png" : "ui/separator-2.png"), this->intro, true);
 
   /**
    *
@@ -567,11 +572,11 @@ void Game::onIntro()
      *
      */
     auto name = (Text*) names->_create();
-    name->setCameraMask(BACKGROUND);
     name->setOpacity(0);
     name->setAnchorPoint(Vec2(0.5, 0.0));
     name->setRotation(0, 90 * (probably(50) ? 1 : -1), 0);
     name->data(element);
+    name->setColor((this->environment->texture == 5 || this->environment->texture == 7) ? Color3B::BLACK : Color3B::WHITE);
 
     /**
      *
@@ -595,12 +600,12 @@ void Game::onIntro()
      *
      *
      */
-    auto time = random(1.0, 2.0);
+    auto time = random(3.0, 4.0);
 
     name->runAction(
       Spawn::create(
         Sequence::create(
-          DelayTime::create(time),
+          DelayTime::create(time / 10),
           EaseSineIn::create(
             RotateTo::create(time, Vec3(0.0, 0.0, 0.0))
           ),
@@ -610,7 +615,7 @@ void Game::onIntro()
           nullptr
         ),
         Sequence::create(
-          DelayTime::create(time),
+          DelayTime::create(time / 10),
           EaseSineIn::create(
             FadeTo::create(time, 255)
           ),
@@ -626,7 +631,60 @@ void Game::onIntro()
    *
    *
    */
+  this->intro->setCameraMask(BACKGROUND);
   this->intro->setPosition(Application->getWidth() / 2 - x / 2, Application->getHeight() / 4);
+
+  /**
+   *
+   *
+   *
+   */
+  this->separator->setPosition(x / 2, Application->getCenter().y);
+  this->separator->setScaleX(0.0);
+  this->separator->setScaleY(1.0);
+  this->separator->runAction(
+    Sequence::create(
+      DelayTime::create(2.0),
+      EaseSineIn::create(
+        ScaleTo::create(2.0, 1.0)
+      ),
+      CallFunc::create([=] () {
+      this->changeState(STATE_TUTORIAL);
+
+      /**
+       *
+       *
+       *
+       */
+      this->environment->character->reset();
+
+      /**
+       *
+       *
+       *
+       */
+      Internal::onReady();
+      }),
+      nullptr
+    )
+  );
+
+  /**
+   *
+   *
+   *
+   */
+  Sound->play("intro-" + convert(random(1, 8)));
+}
+
+void Game::onTutorial()
+{
+  /**
+   *
+   *
+   *
+   */
+  this->environment->onTutorial();
 }
 
 void Game::onMenu()
@@ -672,6 +730,23 @@ void Game::onGame()
    *
    */
   this->environment->onGame();
+
+  /**
+   *
+   *
+   *
+   */
+  this->intro->runAction(
+    Sequence::create(
+      EaseSineIn::create(
+        FadeTo::create(0.5, 0.0)
+      ),
+      CallFunc::create([=] () {
+      this->intro->_destroy();
+      }),
+      nullptr
+    )
+  );
 }
 
 void Game::onFinish()
@@ -884,6 +959,9 @@ void Game::changeState(State state)
       case STATE_INTRO:
       this->onIntro();
       break;
+      case STATE_TUTORIAL:
+      this->onTutorial();
+      break;
       case STATE_MENU:
       this->onMenu();
       break;
@@ -915,6 +993,10 @@ void Game::changeState(State state)
  *
  */
 void Game::updateIntro(float time)
+{
+}
+
+void Game::updateTutorial(float time)
 {
 }
 
@@ -957,6 +1039,9 @@ void Game::updateStates(float time)
   {
     case STATE_NONE:
     break;
+    case STATE_TUTORIAL:
+    this->updateTutorial(time);
+    break;
     case STATE_INTRO:
     this->updateIntro(time);
     break;
@@ -995,6 +1080,8 @@ void Game::updateStates(float time)
     case STATE_NONE:
     break;
     case STATE_INTRO:
+    break;
+    case STATE_TUTORIAL:
     break;
     case STATE_MENU:
     break;

@@ -80,34 +80,41 @@ void Generator::create(bool animation, float time)
    *
    *
    */
-  switch(this->direction)
+  if(!this->tutorial)
   {
-    case NONE:
-    if(!this->previous.next)
-    {
-      this->parameters.rotation += random(-this->parameters.pullement, this->parameters.pullement);
-    }
-    //log("> %f", this->parameters.rotation );
-    break;
-    case RIGHT:
-    case LEFT:
-    auto rotation = 0.0;
-
-    if(this->parameters.pullement > 10 || this->parameters.pullement < -10)
-    this->parameters.pullement *= this->parameters.escarpment;
-    rotation = this->parameters.pullement;
-
     switch(this->direction)
     {
-      case RIGHT:
-      this->parameters.rotation += rotation;
+      case NONE:
+      if(!this->previous.next)
+      {
+        this->parameters.rotation += random(-this->parameters.pullement, this->parameters.pullement);
+      }
+      //log("> %f", this->parameters.rotation );
       break;
+      case RIGHT:
       case LEFT:
-      this->parameters.rotation -= rotation;
+      auto rotation = 0.0;
+
+      if(this->parameters.pullement > 10 || this->parameters.pullement < -10)
+      this->parameters.pullement *= this->parameters.escarpment;
+      rotation = this->parameters.pullement;
+
+      switch(this->direction)
+      {
+        case RIGHT:
+        this->parameters.rotation += rotation;
+        break;
+        case LEFT:
+        this->parameters.rotation -= rotation;
+        break;
+      }
+      //log("%f", rotation);
       break;
     }
-    //log("%f", rotation);
-    break;
+  }
+  else
+  {
+    this->parameters.rotation = 90;
   }
 
   /**
@@ -169,11 +176,14 @@ void Generator::create(bool animation, float time)
 
   if(!this->previous.next)
   {
-    if((tt < -35 && tt > -145) || (tt > 35 && tt < 145))
+    if(true)
     {
-      if(elements->count > COUNT_START && probably(PROBABILITY_NEXT))
+      if((tt < -35 && tt > -145) || (tt > 35 && tt < 145))
       {
-        this->previous.next = true;
+        if(elements->count > COUNT_START && probably(this->tutorial ? PROBABILITY_NEXT / 5 : PROBABILITY_NEXT))
+        {
+          this->previous.next = true;
+        }
       }
     }
 
@@ -193,27 +203,20 @@ void Generator::create(bool animation, float time)
      *
      *
      */
-    if(elements->count > COUNT_START && ((tt < -45 && tt > -135) || (tt > 45 && tt < 135 )))
+    this->previous.stage = 0;
+
+    if(true)
     {
-      if(this->previous.stage == 0)
+      if(elements->count > COUNT_START && ((tt < -45 && tt > -135) || (tt > 45 && tt < 135 )))
       {
-        if(probably(PROBABILITY_STAGE))
+        if(this->previous.stage == 0)
         {
-          this->previous.stage = 1;
-        }
-        else
-        {
-          this->previous.stage = 0;
+          if(probably(this->tutorial ? PROBABILITY_STAGE / 5 : PROBABILITY_STAGE))
+          {
+            this->previous.stage = 1;
+          }
         }
       }
-      else
-      {
-        this->previous.stage = 0;
-      }
-    }
-    else
-    {
-      this->previous.stage = 0;
     }
 
     /**
@@ -230,11 +233,14 @@ void Generator::create(bool animation, float time)
      *
      *
      */
-    if(elements->count > COUNT_START)
+    if(!this->tutorial)
     {
-      if(probably(20))
+      if(elements->count > COUNT_START)
       {
-        current->changeState(Plate::STATE_COIN);
+        if(probably(20))
+        {
+          current->changeState(Plate::STATE_COIN);
+        }
       }
     }
 
@@ -324,6 +330,8 @@ void Generator::destroy()
  */
 void Generator::reset()
 {
+  this->tutorial = 1;
+
   this->index = 0;
   this->rotation = 0;
   this->direction = 0;
@@ -359,8 +367,22 @@ void Generator::reset()
    *
    *
    */
-  for(int i = 0; i < COUNT_START; i++)
-  {
-    this->create(Application->state == Game::STATE_INTRO, 0.2 * i);
-  }
+  Application->runAction(
+    Sequence::create(
+      DelayTime::create(this->tutorial ? 3.0 : 0.0),
+      CallFunc::create([=] () {
+
+      /**
+       *
+       *
+       *
+       */
+      for(int i = 0; i < COUNT_START; i++)
+      {
+        this->create(Application->state == Game::STATE_INTRO, 0.2 * i);
+      }
+      }),
+      nullptr
+    )
+  );
 }

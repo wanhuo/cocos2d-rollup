@@ -87,5 +87,5 @@ void Coins::remove(int count)
    *
    *
    */
-  Storage::set("@counter.values.currency", Application->counter->values.currency.count);
+  Application->counter->onSave();
 }

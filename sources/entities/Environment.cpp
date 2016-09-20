@@ -122,6 +122,10 @@ void Environment::onIntro()
 {
 }
 
+void Environment::onTutorial()
+{
+}
+
 void Environment::onMenu()
 {
   this->showElements({
@@ -138,6 +142,9 @@ void Environment::onMenu()
   {
     case Menu::STATE_MENU:
     this->onBackground(false);
+    this->showElements({
+      ELEMENT_INTRO
+    });
     break;
     case Menu::STATE_FINISH:
     this->onBackground(true);
@@ -190,7 +197,8 @@ void Environment::onUnlock()
 void Environment::onSettings()
 {
   this->hideElements({
-    ELEMENT_COUNTER
+    ELEMENT_COUNTER,
+    ELEMENT_INTRO
   });
 
   /**
@@ -204,7 +212,8 @@ void Environment::onSettings()
 void Environment::onStore()
 {
   this->hideElements({
-    ELEMENT_COUNTER
+    ELEMENT_COUNTER,
+    ELEMENT_INTRO
   });
 
   /**
@@ -218,7 +227,8 @@ void Environment::onStore()
 void Environment::onUsers()
 {
   this->hideElements({
-    ELEMENT_COUNTER
+    ELEMENT_COUNTER,
+    ELEMENT_INTRO
   });
 
   /**
@@ -306,10 +316,13 @@ void Environment::applyElements(ActionInterval* action, initializer_list<int> el
     switch(element)
     {
       case ELEMENT_COUNTER:
-      Application->counter->runAction(action->clone());
+      if(Application->counter->Node::state->create) Application->counter->runAction(action->clone());
       break;
       case ELEMENT_NOTIFICATION_NODE:
       Director::getInstance()->getNotificationNode()->runAction(action->clone());
+      break;
+      case ELEMENT_INTRO:
+      Application->intro->runAction(action->clone());
       break;
     }
   }
@@ -370,6 +383,10 @@ void Environment::update(float time)
   switch(Application->state)
   {
     case Game::STATE_NONE:
+    break;
+    case Game::STATE_INTRO:
+    break;
+    case Game::STATE_TUTORIAL:
     break;
     case Game::STATE_MENU:
     this->updateMenu(time);
