@@ -74,6 +74,7 @@
 #include "Settings.h"
 #include "Store.h"
 #include "Users.h"
+#include "Tutorial.h"
 
 #include "network/HttpRequest.h"
 #include "network/HttpClient.h"

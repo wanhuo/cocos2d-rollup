@@ -330,7 +330,7 @@ void Generator::destroy()
  */
 void Generator::reset()
 {
-  this->tutorial = 1;
+  this->tutorial = !Storage::get("@app.tutorial.complete");
 
   this->index = 0;
   this->rotation = 0;

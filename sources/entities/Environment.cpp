@@ -75,7 +75,14 @@ void Environment::create()
 
 void Environment::reset()
 {
-  this->texture = random(1, 7);
+  if(!Storage::get("@app.tutorial.complete"))
+  {
+    this->texture = random(1, 5);
+  }
+  else
+  {
+    this->texture = random(1, 7);
+  }
 
   this->character->reset();
   this->generator->reset();

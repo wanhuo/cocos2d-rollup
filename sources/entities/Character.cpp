@@ -201,7 +201,23 @@ void Character::onAction()
     if(Application->environment->generator->tutorial)
     {
       Application->stopAllActions();
+
+      /**
+       *
+       *
+       *
+       */
       Director::getInstance()->getScheduler()->setTimeScale(1.0);
+
+      /**
+       *
+       *
+       *
+       */
+      Tutorial::getInstance()->element->stopAllActions();
+      Tutorial::getInstance()->element->runAction(
+        FadeTo::create(0.1, 0)
+      );
     }
     break;
     case STATE_CRASH:
@@ -417,12 +433,27 @@ if(element)
                     DelayTime::create(1.0 / 60.0),
                     CallFunc::create([=] () {
                     timea -= 1.0 / 15.0;
-                    Director::getInstance()->getScheduler()->setTimeScale(timea);
+
+                    if(Application->state == Game::STATE_TUTORIAL)
+                    {
+                      Director::getInstance()->getScheduler()->setTimeScale(timea);
+                    }
                     }),
                     nullptr
                   ),
                   15
                 )
+              );
+
+              /**
+               *
+               *
+               *
+               */
+              Tutorial::getInstance()->element->_create();
+              Tutorial::getInstance()->element->stopAllActions();
+              Tutorial::getInstance()->element->runAction(
+                FadeTo::create(0.2, 255)
               );
             }
           }
@@ -653,6 +684,19 @@ if(element)
  */
 void Character::onStart()
 {
+  this->plane->stopAllActions();
+  this->stopAllActions();
+
+  if(Director::getInstance()->getShadowState())
+  {
+    this->shadow->stopAllActions();
+  }
+
+  /**
+   *
+   *
+   *
+   */
   switch(Application->state)
   {
     /**
@@ -737,7 +781,7 @@ void Character::onStart()
     {
       this->shadow->runAction(
         EaseBounceOut::create(
-          ScaleTo::create(2.0, 1.9)
+          ScaleTo::create(2.0, 1.0)
         )
       );
     }
@@ -849,7 +893,16 @@ void Character::updateStates(float time)
    */
   if(Director::getInstance()->getShadowState())
   {
-    this->shadow->setPosition3D(this->plane->getPosition3D());
+    auto x = this->plane->getPosition3D().x;
+    auto y = this->plane->getPosition3D().y + 5.0;
+    auto z = this->plane->getPosition3D().z;
+
+    /**
+     *
+     *
+     *
+     */
+    this->shadow->setPosition(x, y, z);
   }
 }
 

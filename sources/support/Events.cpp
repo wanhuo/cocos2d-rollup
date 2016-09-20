@@ -30,7 +30,7 @@
  *
  */
 void Events::onStart()
-{
+{//Storage::clear();
   Text::FONT = "Bangla Sangam MN";
 
   new Game;
@@ -39,6 +39,7 @@ void Events::onStart()
   new Settings;
   new Store;
   new Users;
+  new Tutorial;
 
   Director::getInstance()->runWithScene(Application);
 

@@ -536,7 +536,7 @@ void Game::onIntro()
   this->intro = new Entity(this, true);
   this->intro->setCascadeOpacityEnabled(true);
 
-  this->separator = new Entity(((this->environment->texture == 5 || this->environment->texture == 7) ? "ui/separator-3.png" : "ui/separator-2.png"), this->intro, true);
+  this->separator = new Entity(((this->environment->texture == 6 || this->environment->texture == 7) ? "ui/separator-3.png" : "ui/separator-2.png"), this->intro, true);
 
   /**
    *
@@ -576,7 +576,7 @@ void Game::onIntro()
     name->setAnchorPoint(Vec2(0.5, 0.0));
     name->setRotation(0, 90 * (probably(50) ? 1 : -1), 0);
     name->data(element);
-    name->setColor((this->environment->texture == 5 || this->environment->texture == 7) ? Color3B::BLACK : Color3B::WHITE);
+    name->setColor((this->environment->texture == 6 || this->environment->texture == 7) ? Color3B::BLACK : Color3B::WHITE);
 
     /**
      *
@@ -649,7 +649,21 @@ void Game::onIntro()
         ScaleTo::create(2.0, 1.0)
       ),
       CallFunc::create([=] () {
-      this->changeState(STATE_TUTORIAL);
+      if(Storage::get("@app.tutorial.complete"))
+      {
+        this->changeState(STATE_MENU);
+
+        /**
+         *
+         *
+         *
+         */
+        Internal::onReady();
+      }
+      else
+      {
+        this->changeState(STATE_TUTORIAL);
+      }
 
       /**
        *
@@ -657,13 +671,6 @@ void Game::onIntro()
        *
        */
       this->environment->character->reset();
-
-      /**
-       *
-       *
-       *
-       */
-      Internal::onReady();
       }),
       nullptr
     )
@@ -679,6 +686,8 @@ void Game::onIntro()
 
 void Game::onTutorial()
 {
+  Tutorial::getInstance()->show();
+
   /**
    *
    *
@@ -931,11 +940,13 @@ void Game::reset()
    *
    *
    */
+  this->cameras.cameraElements->stopAllActions();
   this->cameras.cameraElements->setPosition3D(this->startCameraPosition);
   this->cameras.cameraElements->setRotation3D(this->startCameraRotation);
 
   if(Director::getInstance()->getShadowState())
   {
+    this->cameras.cameraShadows->stopAllActions();
     this->cameras.cameraShadows->setPosition3D(this->startShadowsCameraPosition);
     this->cameras.cameraShadows->setRotation3D(this->startShadowsCameraRotation);
   }

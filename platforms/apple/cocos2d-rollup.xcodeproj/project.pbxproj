@@ -242,6 +242,9 @@
 		78CEEB541D0C93D6000A85D4 /* UIActivityViewController+exclude.m in Sources */ = {isa = PBXBuildFile; fileRef = 78CEEB531D0C93D6000A85D4 /* UIActivityViewController+exclude.m */; };
 		78CF5D541CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
 		78CF5D551CE5E1900039FB70 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 78CF5D531CE5E1900039FB70 /* Shaders */; };
+		78DF10851D9164270005F970 /* Tutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF10831D9164270005F970 /* Tutorial.cpp */; };
+		78DF10861D9164270005F970 /* Tutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF10831D9164270005F970 /* Tutorial.cpp */; };
+		78DF10871D9164270005F970 /* Tutorial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF10831D9164270005F970 /* Tutorial.cpp */; };
 		78DF64C51D24460A0049EB22 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C11D24460A0049EB22 /* Environment.cpp */; };
 		78DF64C61D24460A0049EB22 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C11D24460A0049EB22 /* Environment.cpp */; };
 		78DF64C71D24460A0049EB22 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 78DF64C11D24460A0049EB22 /* Environment.cpp */; };
@@ -501,6 +504,8 @@
 		78CEEB521D0C93D6000A85D4 /* UIActivityViewController+exclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIActivityViewController+exclude.h"; sourceTree = "<group>"; };
 		78CEEB531D0C93D6000A85D4 /* UIActivityViewController+exclude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIActivityViewController+exclude.m"; sourceTree = "<group>"; };
 		78CF5D531CE5E1900039FB70 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shaders; path = ../../resource/Shaders; sourceTree = "<group>"; };
+		78DF10831D9164270005F970 /* Tutorial.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tutorial.cpp; sourceTree = "<group>"; };
+		78DF10841D9164270005F970 /* Tutorial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tutorial.h; sourceTree = "<group>"; };
 		78DF64C11D24460A0049EB22 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		78DF64C21D24460A0049EB22 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
 		78DF64C31D24460A0049EB22 /* Generator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Generator.cpp; sourceTree = "<group>"; };
@@ -1170,6 +1175,8 @@
 				787B53B51D7EB49400C1C17D /* Store.h */,
 				78B93DFB1D87E8DE004FA0DE /* Users.cpp */,
 				78B93DFC1D87E8DE004FA0DE /* Users.h */,
+				78DF10831D9164270005F970 /* Tutorial.cpp */,
+				78DF10841D9164270005F970 /* Tutorial.h */,
 			);
 			name = popups;
 			path = ../../sources/popups;
@@ -1541,6 +1548,7 @@
 				787B53CC1D7EC4E100C1C17D /* UnlockButton.cpp in Sources */,
 				787B53A61D7DCB1200C1C17D /* Coins.cpp in Sources */,
 				78A20B3D1D7C9CC500789617 /* Counter.cpp in Sources */,
+				78DF10861D9164270005F970 /* Tutorial.cpp in Sources */,
 				787B53AB1D7DF59900C1C17D /* Unlock.cpp in Sources */,
 				78B93DD01D819356004FA0DE /* AnnounceButton.cpp in Sources */,
 				7866BFF21D8DBEE700E7EBCF /* StepsButton.cpp in Sources */,
@@ -1589,6 +1597,7 @@
 				7828E3BF1D7C617200AA66D9 /* Gem.cpp in Sources */,
 				787B53D51D7EC50A00C1C17D /* ExtendedButton.cpp in Sources */,
 				787B53B81D7EB49400C1C17D /* Settings.cpp in Sources */,
+				78DF10871D9164270005F970 /* Tutorial.cpp in Sources */,
 				78B93DFF1D87E8DE004FA0DE /* Users.cpp in Sources */,
 				78A20B271D7C6C3300789617 /* Popup.cpp in Sources */,
 				787B53A71D7DCB1200C1C17D /* Coins.cpp in Sources */,
@@ -1676,6 +1685,7 @@
 				78A20B411D7C9F0F00789617 /* Number.cpp in Sources */,
 				7832A8B21D10B5380059BFE3 /* AFURLConnectionOperation.m in Sources */,
 				780BC3B11D89747E003DCDD6 /* Users.Element.cpp in Sources */,
+				78DF10851D9164270005F970 /* Tutorial.cpp in Sources */,
 				7891E8931CF21293005C238E /* RootViewController.mm in Sources */,
 				787B53B91D7EB49400C1C17D /* Store.cpp in Sources */,
 				78B93DD41D81D274004FA0DE /* SoundButton.cpp in Sources */,
