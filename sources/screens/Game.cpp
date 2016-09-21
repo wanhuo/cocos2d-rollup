@@ -343,6 +343,8 @@ void Game::onKeyPressed(cocos2d::EventKeyboard::KeyCode key, Event *event)
     break;
     case STATE_INTRO:
     break;
+    case STATE_TUTORIAL:
+    break;
     case STATE_MENU:
     break;
     case STATE_GAME:

@@ -254,7 +254,7 @@ class FacebookButton
 
     virtual void onAction();
 
-    virtual void update(int count);
+    virtual void update(unsigned long count);
   };
 };
 

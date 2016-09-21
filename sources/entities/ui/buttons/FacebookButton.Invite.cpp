@@ -136,7 +136,7 @@ void FacebookButton::Invite::onAction()
  *
  *
  */
-void FacebookButton::Invite::update(int count)
+void FacebookButton::Invite::update(unsigned long count)
 {
   this->currency->data(count * 5);
 

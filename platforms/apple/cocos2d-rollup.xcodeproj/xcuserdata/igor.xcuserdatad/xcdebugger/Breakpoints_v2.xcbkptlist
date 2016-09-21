@@ -64,7 +64,7 @@
             startingLineNumber = "250"
             endingLineNumber = "250"
             landmarkName = "Character::onMove()"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -74,13 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../sources/entities/Character.cpp"
-            timestampString = "496077764.443834"
+            timestampString = "496139874.274053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "917"
-            endingLineNumber = "917"
+            startingLineNumber = "919"
+            endingLineNumber = "919"
             landmarkName = "Character::update(float time)"
-            landmarkType = "5">
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

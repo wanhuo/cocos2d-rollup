@@ -527,14 +527,16 @@ if(element)
            */
           switch(this->state)
           {
+            case STATE_NONE:
+            break;
+            case STATE_START:
+            break;
             case STATE_NORMAL:
             if(this->action){
-          auto id = Sound->play("bounce-7");
-          //Sound->volume(id, 0.7);
+          Sound->play("bounce-7");
           }
           else{
-          auto id = Sound->play("bounce-1");
-          //Sound->volume(id, 0.2);
+          Sound->play("bounce-1");
           }
 
             this->onMove();
